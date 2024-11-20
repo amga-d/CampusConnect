@@ -2,8 +2,9 @@
     $db_server = "localhost";
     $db_user = "root";
     $db_pass = "";
-    $db_name = "ecommerce";
+    $db_name = "campusconnect";
 
+    
     
 
     try {
@@ -13,7 +14,7 @@
                                 $db_name);
 
     } catch (mysqli_sql_exception) {
-        echo "failed to connect to the data base";
+        echo "failed to  to the data base";
         // echo "<script>consol.log('dsdfdsf');</script>";
     }
     
