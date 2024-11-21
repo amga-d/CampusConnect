@@ -7,7 +7,7 @@ function check_login()
         return true;
     } else {
 
-        header("Location: ../landingpage.php");
+        header("Location: ./user_service/landingpage.php");
         return false;
     }
     die;
