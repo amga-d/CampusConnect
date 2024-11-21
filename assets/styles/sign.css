@@ -57,6 +57,12 @@ body{
     border: 1.5px solid #2d79f3;
   }
   
+  .error{
+    color: red;
+    display: block;
+    margin: -7px 0px 5px 10px;
+    font-size: 14px;
+  }
   .flex-row {
     display: flex;
     flex-direction: row;
