@@ -1,5 +1,4 @@
 <?php
-    // include("./db_conn.php");
 
     function check_login(){
         if(isset($_SESSION["user_id"])){
@@ -7,11 +6,22 @@
             return true;
         }
         else{    
-            header("Location: ./user_service/signin.php");
+            
+            header("Location: ../landingpage.php");
             return false;
         }
         die;
     }
+
+    function check_login_without_redirecting(){
+        if(isset($_SESSION["user_id"])){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
 
 
     function generate_random_uid(){

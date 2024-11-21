@@ -37,12 +37,14 @@ nav {
     justify-content: space-between;
     align-items: center;
     padding: 1rem 0;
+    margin: 0 5%;
 }
 
 .logo {
-    font-size: 1.5rem;
+    width: 15%;
+    /* font-size: 1;
     font-weight: bold;
-    color: var(--twitter-blue);
+    color: var(--twitter-blue); */
 }
 
 .nav-links {
@@ -90,7 +92,7 @@ nav {
 
 .hero-content {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
 }
 
