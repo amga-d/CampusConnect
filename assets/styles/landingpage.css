@@ -149,6 +149,7 @@ nav {
 .hero-text {
     flex: 1;
     padding-right: 4rem;
+    
     position: relative;
     z-index: 2;
 }
@@ -163,16 +164,21 @@ nav {
     font-size: 3.5rem;
     line-height: 1.2;
     margin-bottom: 1.5rem;
-    background: linear-gradient(45deg, #fff, #e6e9ff);
+    color: var(--black);
+    font-weight: 800;
+    background: linear-gradient(45deg, #1a1a1a, #404040);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .hero-text p {
     font-size: 1.2rem;
     margin-bottom: 2rem;
-    opacity: 0.9;
+    color: #404040;
+    line-height: 1.6;
+    font-weight: 500;
 }
 
 .cta-button {
@@ -292,10 +298,7 @@ nav {
 }
 
 footer {
-    background-color: var(--black);
-    color: var(--white);
-    text-align: center;
-    padding: 2rem 0;
+    display: none;
 }
 
 /* Updated Custom cursor styles */
