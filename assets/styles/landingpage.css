@@ -528,3 +528,119 @@ footer {
 html {
     scroll-behavior: smooth;
 }
+
+/* Testimonials Section */
+.testimonials {
+    padding: 6rem 0;
+    background: linear-gradient(135deg, 
+        var(--white) 55%, 
+        rgba(29, 161, 242, 0.15) 55%
+    );
+    position: relative;
+}
+
+.testimonials h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    color: var(--black);
+    font-weight: 700;
+}
+
+.testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.testimonial-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(29, 161, 242, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(29, 161, 242, 0.2);
+}
+
+.testimonial-card p {
+    font-style: italic;
+    margin-bottom: 1.5rem;
+    color: #404040;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.testimonial-card cite {
+    font-weight: 600;
+    color: var(--twitter-blue);
+    display: block;
+}
+
+.stats {
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+    margin-top: 3rem;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--twitter-blue);
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    font-size: 1.1rem;
+    color: #404040;
+    font-weight: 500;
+}
+
+/* CTA Section */
+.cta {
+    padding: 6rem 0;
+    background: linear-gradient(45deg, #8faabb, #5f8aa5);
+    color: var(--white);
+    text-align: center;
+}
+
+.cta h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    font-weight: 700;
+}
+
+/* Additional responsive styles */
+@media (max-width: 768px) {
+    .testimonial-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stats {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .testimonials {
+        padding: 4rem 0;
+    }
+
+    .cta {
+        padding: 4rem 0;
+    }
+
+    .cta h2 {
+        font-size: 2rem;
+    }
+}
