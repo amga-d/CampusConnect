@@ -66,4 +66,70 @@ document.addEventListener('DOMContentLoaded', () => {
             cursorDot.style.transform = 'translate(-50%, -50%) scale(1)';
         }
     });
+
+    document.querySelectorAll('.feature-card').forEach(card => {
+        card.addEventListener('mousemove', handleHover);
+        card.addEventListener('mouseleave', resetCard);
+    });
+
+    function handleHover(e) {
+        const card = e.currentTarget;
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left; // Mouse position X relative to card
+        const y = e.clientY - rect.top;  // Mouse position Y relative to card
+        
+        // Calculate rotation based on mouse position
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = (y - centerY) / 10;
+        const rotateY = (centerX - x) / 10;
+        
+        // Apply the transformation
+        card.style.transform = `
+            perspective(1000px)
+            rotateX(${rotateX}deg)
+            rotateY(${rotateY}deg)
+            scale3d(1.05, 1.05, 1.05)
+        `;
+        
+        // Move card content based on mouse position
+        const icon = card.querySelector('.feature-icon');
+        const title = card.querySelector('h3');
+        const text = card.querySelector('p');
+        
+        const moveIcon = (x - centerX) / 20;
+        const moveTitle = (x - centerX) / 30;
+        const moveText = (x - centerX) / 40;
+        
+        icon.style.transform = `
+            translateX(${moveIcon}px)
+            translateY(${(y - centerY) / 20}px)
+            translateZ(40px)
+        `;
+        
+        title.style.transform = `
+            translateX(${moveTitle}px)
+            translateY(${(y - centerY) / 30}px)
+            translateZ(30px)
+        `;
+        
+        text.style.transform = `
+            translateX(${moveText}px)
+            translateY(${(y - centerY) / 40}px)
+            translateZ(20px)
+        `;
+    }
+
+    function resetCard(e) {
+        const card = e.currentTarget;
+        const icon = card.querySelector('.feature-icon');
+        const title = card.querySelector('h3');
+        const text = card.querySelector('p');
+        
+        // Reset all transformations smoothly
+        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+        icon.style.transform = 'translateX(0) translateY(0) translateZ(0)';
+        title.style.transform = 'translateX(0) translateY(0) translateZ(0)';
+        text.style.transform = 'translateX(0) translateY(0) translateZ(0)';
+    }
 }); 
