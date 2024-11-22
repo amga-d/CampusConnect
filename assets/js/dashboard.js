@@ -1,90 +1,24 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize components
     initializeSidebar();
-    initializeCustomCursor();
     populateDashboardData();
     initializeAnimations();
-
-    // Handle notifications
     initializeNotifications();
+    initializeSearch();
 });
 
 function initializeSidebar() {
     const sidebar = document.getElementById('sidebar');
     const toggleBtn = document.getElementById('toggleSidebar');
+    const layout = document.querySelector('.layout');
 
     toggleBtn.addEventListener('click', () => {
         sidebar.classList.toggle('collapsed');
-        toggleBtn.querySelector('i').classList.toggle('fa-chevron-right');
-        toggleBtn.querySelector('i').classList.toggle('fa-chevron-left');
-    });
-}
-
-function initializeCustomCursor() {
-    const cursor = document.querySelector('.custom-cursor');
-    const cursorDot = document.querySelector('.custom-cursor-dot');
-    let isMoving = false;
-    let moveTimeout;
-
-    const updateCursorPosition = (e) => {
-        // Update cursor position with smooth animation
-        cursor.style.left = `${e.clientX}px`;
-        cursor.style.top = `${e.clientY}px`;
-        
-        // Dot follows cursor instantly
-        cursorDot.style.left = `${e.clientX}px`;
-        cursorDot.style.top = `${e.clientY}px`;
-
-        // Add moving state
-        if (!isMoving) {
-            isMoving = true;
-            cursor.style.transform = 'translate(-50%, -50%) scale(0.8)';
-            cursorDot.style.transform = 'translate(-50%, -50%) scale(0.8)';
-        }
-
-        // Clear existing timeout
-        clearTimeout(moveTimeout);
-
-        // Set new timeout
-        moveTimeout = setTimeout(() => {
-            isMoving = false;
-            cursor.style.transform = 'translate(-50%, -50%) scale(1)';
-            cursorDot.style.transform = 'translate(-50%, -50%) scale(1)';
-        }, 100);
-    };
-
-    document.addEventListener('mousemove', updateCursorPosition);
-
-    // Enhanced hover effects for interactive elements
-    const interactiveElements = document.querySelectorAll('a, button, .stat-card, .dashboard-card');
-    interactiveElements.forEach(element => {
-        element.addEventListener('mouseenter', () => {
-            cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
-            cursor.style.backgroundColor = 'rgba(74, 144, 226, 0.1)';
-            cursor.style.borderColor = 'var(--primary)';
-            cursorDot.style.backgroundColor = 'var(--primary)';
-            cursorDot.style.transform = 'translate(-50%, -50%) scale(1.2)';
-        });
-
-        element.addEventListener('mouseleave', () => {
-            cursor.style.transform = 'translate(-50%, -50%) scale(1)';
-            cursor.style.backgroundColor = 'transparent';
-            cursor.style.borderColor = 'rgba(74, 144, 226, 0.5)';
-            cursorDot.style.backgroundColor = 'var(--primary)';
-            cursorDot.style.transform = 'translate(-50%, -50%) scale(1)';
-        });
-    });
-
-    // Add cursor effects for text selection
-    document.addEventListener('selectstart', () => {
-        cursor.style.transform = 'translate(-50%, -50%) scale(0.5)';
-        cursorDot.style.transform = 'translate(-50%, -50%) scale(0.5)';
-    });
-
-    document.addEventListener('selectionchange', () => {
-        if (!window.getSelection().toString()) {
-            cursor.style.transform = 'translate(-50%, -50%) scale(1)';
-            cursorDot.style.transform = 'translate(-50%, -50%) scale(1)';
+        // Update toggle button icon
+        if (sidebar.classList.contains('collapsed')) {
+            toggleBtn.innerHTML = '<i class="fas fa-chevron-right"></i>';
+        } else {
+            toggleBtn.innerHTML = '<i class="fas fa-chevron-left"></i>';
         }
     });
 }
@@ -209,5 +143,81 @@ function initializeNotifications() {
     notificationBtn.addEventListener('click', () => {
         // Add notification functionality here
         console.log('Notifications clicked');
+    });
+}
+
+function initializeSearch() {
+    const searchInput = document.querySelector('.search-container input');
+    const searchResults = document.createElement('div');
+    searchResults.className = 'search-results';
+    document.querySelector('.search-container').appendChild(searchResults);
+
+    // Sample search data
+    const searchData = {
+        communities: ['Programming Club', 'Photography Society', 'AI Research Group'],
+        events: ['Tech Workshop', 'Career Fair', 'Alumni Meetup'],
+        people: ['John Doe', 'Sarah Chen', 'David Kim']
+    };
+
+    searchInput.addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase();
+        if (query.length < 2) {
+            searchResults.style.display = 'none';
+            return;
+        }
+
+        const filteredResults = {
+            communities: searchData.communities.filter(item => 
+                item.toLowerCase().includes(query)
+            ),
+            events: searchData.events.filter(item => 
+                item.toLowerCase().includes(query)
+            ),
+            people: searchData.people.filter(item => 
+                item.toLowerCase().includes(query)
+            )
+        };
+
+        // Display results
+        const hasResults = Object.values(filteredResults).some(arr => arr.length > 0);
+        if (hasResults) {
+            searchResults.innerHTML = `
+                ${filteredResults.communities.length ? `
+                    <div class="search-category">
+                        <h4>Communities</h4>
+                        ${filteredResults.communities.map(item => 
+                            `<div class="search-item"><i class="fas fa-users"></i>${item}</div>`
+                        ).join('')}
+                    </div>
+                ` : ''}
+                ${filteredResults.events.length ? `
+                    <div class="search-category">
+                        <h4>Events</h4>
+                        ${filteredResults.events.map(item => 
+                            `<div class="search-item"><i class="fas fa-calendar"></i>${item}</div>`
+                        ).join('')}
+                    </div>
+                ` : ''}
+                ${filteredResults.people.length ? `
+                    <div class="search-category">
+                        <h4>People</h4>
+                        ${filteredResults.people.map(item => 
+                            `<div class="search-item"><i class="fas fa-user"></i>${item}</div>`
+                        ).join('')}
+                    </div>
+                ` : ''}
+            `;
+            searchResults.style.display = 'block';
+        } else {
+            searchResults.innerHTML = '<div class="no-results">No results found</div>';
+            searchResults.style.display = 'block';
+        }
+    });
+
+    // Close search results when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.search-container')) {
+            searchResults.style.display = 'none';
+        }
     });
 } 
