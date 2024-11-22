@@ -115,6 +115,7 @@ function populateDashboardData() {
             </div>
         </div>
     `).join('');
+    
 }
 
 function initializeAnimations() {
@@ -220,4 +221,7 @@ function initializeSearch() {
             searchResults.style.display = 'none';
         }
     });
+
+
+
 } 
