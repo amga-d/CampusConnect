@@ -23,33 +23,74 @@ function initializeSidebar() {
 function initializeCustomCursor() {
     const cursor = document.querySelector('.custom-cursor');
     const cursorDot = document.querySelector('.custom-cursor-dot');
+    let isMoving = false;
+    let moveTimeout;
 
-    document.addEventListener('mousemove', (e) => {
-        cursor.style.left = e.clientX + 'px';
-        cursor.style.top = e.clientY + 'px';
-        cursorDot.style.left = e.clientX + 'px';
-        cursorDot.style.top = e.clientY + 'px';
-    });
+    const updateCursorPosition = (e) => {
+        // Update cursor position with smooth animation
+        cursor.style.left = `${e.clientX}px`;
+        cursor.style.top = `${e.clientY}px`;
+        
+        // Dot follows cursor instantly
+        cursorDot.style.left = `${e.clientX}px`;
+        cursorDot.style.top = `${e.clientY}px`;
 
-    // Add hover effects for interactive elements
+        // Add moving state
+        if (!isMoving) {
+            isMoving = true;
+            cursor.style.transform = 'translate(-50%, -50%) scale(0.8)';
+            cursorDot.style.transform = 'translate(-50%, -50%) scale(0.8)';
+        }
+
+        // Clear existing timeout
+        clearTimeout(moveTimeout);
+
+        // Set new timeout
+        moveTimeout = setTimeout(() => {
+            isMoving = false;
+            cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+            cursorDot.style.transform = 'translate(-50%, -50%) scale(1)';
+        }, 100);
+    };
+
+    document.addEventListener('mousemove', updateCursorPosition);
+
+    // Enhanced hover effects for interactive elements
     const interactiveElements = document.querySelectorAll('a, button, .stat-card, .dashboard-card');
-    interactiveElements.forEach(el => {
-        el.addEventListener('mouseenter', () => {
+    interactiveElements.forEach(element => {
+        element.addEventListener('mouseenter', () => {
             cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
-            cursor.style.border = '2px solid var(--primary)';
-            cursorDot.style.transform = 'translate(-50%, -50%) scale(0.5)';
+            cursor.style.backgroundColor = 'rgba(74, 144, 226, 0.1)';
+            cursor.style.borderColor = 'var(--primary)';
+            cursorDot.style.backgroundColor = 'var(--primary)';
+            cursorDot.style.transform = 'translate(-50%, -50%) scale(1.2)';
         });
 
-        el.addEventListener('mouseleave', () => {
+        element.addEventListener('mouseleave', () => {
             cursor.style.transform = 'translate(-50%, -50%) scale(1)';
-            cursor.style.border = '2px solid var(--primary)';
+            cursor.style.backgroundColor = 'transparent';
+            cursor.style.borderColor = 'rgba(74, 144, 226, 0.5)';
+            cursorDot.style.backgroundColor = 'var(--primary)';
             cursorDot.style.transform = 'translate(-50%, -50%) scale(1)';
         });
+    });
+
+    // Add cursor effects for text selection
+    document.addEventListener('selectstart', () => {
+        cursor.style.transform = 'translate(-50%, -50%) scale(0.5)';
+        cursorDot.style.transform = 'translate(-50%, -50%) scale(0.5)';
+    });
+
+    document.addEventListener('selectionchange', () => {
+        if (!window.getSelection().toString()) {
+            cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+            cursorDot.style.transform = 'translate(-50%, -50%) scale(1)';
+        }
     });
 }
 
 function populateDashboardData() {
-    // Sample data
+    // Sample data with dummy images
     const events = [
         {
             title: 'Tech Workshop',
@@ -72,13 +113,13 @@ function populateDashboardData() {
             name: 'Programming Club',
             members: 156,
             activity: 'High',
-            image: '../assets/img/communities/prog-club.jpg'
+            image: 'https://placehold.co/200x200/4A90E2/FFFFFF?text=Programming+Club'
         },
         {
             name: 'Photography Society',
             members: 89,
             activity: 'Medium',
-            image: '../assets/img/communities/photo-society.jpg'
+            image: 'https://placehold.co/200x200/5C6BC0/FFFFFF?text=Photography'
         }
     ];
 
