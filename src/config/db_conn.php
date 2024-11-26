@@ -14,8 +14,8 @@
                                 $db_name);
 
     } catch (mysqli_sql_exception) {
-        echo "failed to  to the data base";
-        // echo "<script>consol.log('dsdfdsf');</script>";
+        // echo "failed to  to the data base";
+        echo "<script>alart('dsdfdsf');</script>";
     }
     
 

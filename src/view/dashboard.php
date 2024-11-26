@@ -1,10 +1,15 @@
+<?php
+
+?>
+
+<!DOCTYPE html>
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>CampusConnect Dashboard</title>
-        <link rel="stylesheet" href="../assets/styles/dashboard.css" />
+        <link rel="stylesheet" href="/assets/styles/dashboard.css" />
         <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
@@ -25,12 +30,12 @@
                     </button>
                     <div class="image-box">
                         <img
-                            src="../assets/img/landing/logo image.png"
+                            src="/assets/img/landing/logo_image.png"
                             alt="CampusConnect"
                             class="logo"
                         />
                         <img
-                            src="../assets/img/landing/Logo Name.png"
+                            src="/assets/img/landing/logo_name.png"
                             alt=""
                             class="logo_name"
                         />
@@ -184,6 +189,6 @@
         </div>
 
         <!-- <script src="../assets/js/cursor.js"></script> -->
-        <script src="../assets/js/dashboard.js"></script>/
+        <script src="/assets/js/dashboard.js"></script>/
     </body>
 </html>
