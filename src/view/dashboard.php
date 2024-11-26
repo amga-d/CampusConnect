@@ -3,7 +3,6 @@
 ?>
 
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
@@ -30,12 +29,12 @@
                     </button>
                     <div class="image-box">
                         <img
-                            src="/assets/img/landing/logo_image.png"
+                            src="./assets/img/landing/logo image.png"
                             alt="CampusConnect"
                             class="logo"
                         />
                         <img
-                            src="/assets/img/landing/logo_name.png"
+                            src="./assets/img/landing/Logo Name.png"
                             alt=""
                             class="logo_name"
                         />
@@ -45,33 +44,33 @@
                 <nav class="sidebar-nav">
                     <ul>
                         <li class="active">
-                            <a href="#dashboard">
+                            <a href="#home">
                                 <i class="fas fa-home"></i>
-                                <span>Dashboard</span>
+                                <span>Home</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#discover">
+                                <i class="fas fa-compass"></i>
+                                <span>Discover</span>
                             </a>
                         </li>
                         <li>
                             <a href="#communities">
                                 <i class="fas fa-users"></i>
-                                <span>Communities</span>
+                                <span>My Communities</span>
                             </a>
                         </li>
                         <li>
                             <a href="#events">
-                                <i class="fas fa-calendar-alt"></i>
+                                <i class="fas fa-calendar"></i>
                                 <span>Events</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#messages">
-                                <i class="fas fa-comments"></i>
-                                <span>Messages</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#profile">
-                                <i class="fas fa-user"></i>
-                                <span>Profile</span>
+                            <a href="#bookmarks">
+                                <i class="fas fa-bookmark"></i>
+                                <span>Saved</span>
                             </a>
                         </li>
                     </ul>
@@ -79,111 +78,55 @@
             </aside>
 
             <main>
-                <!-- Modern Header with Glass Effect -->
-                <header class="glass-header">
-                    <div class="search-container">
-                        <i class="fas fa-search"></i>
-                        <input
-                            type="text"
-                            placeholder="Search communities, events, or people..."
-                        />
-                    </div>
-
-                    <div class="user-actions">
-                        <button
-                            class="notification-btn"
-                            aria-label="Notifications"
-                        >
-                            <i class="fas fa-bell"></i>
-                            <span class="notification-badge">3</span>
-                        </button>
-                        <div class="user-profile">
-                            <img
-                                src="https://placehold.co/40x40/4A90E2/FFFFFF?text=JD"
-                                alt="User Avatar"
-                            />
-                            <span>John Doe</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                    </div>
-                </header>
-
                 <div class="dashboard-content">
-                    <!-- Welcome Section with Stats -->
                     <section class="welcome-section">
                         <div class="welcome-text">
-                            <h1>Welcome back, John! 👋</h1>
-                            <p>
-                                Here's what's happening in your campus community
-                            </p>
+                            <h1>Welcome back, Alex! 👋</h1>
+                            <p>Check what's new in your communities</p>
                         </div>
-                        <div class="stats-grid">
-                            <div class="stat-card">
+                    </section>
+
+                    <section class="activity-section">
+                        <div class="activity-card">
+                            <div class="activity-header">
                                 <i class="fas fa-users"></i>
-                                <div class="stat-info">
-                                    <h3>12</h3>
-                                    <p>Active Communities</p>
-                                </div>
+                                <h2>Your Communities</h2>
                             </div>
-                            <div class="stat-card">
-                                <i class="fas fa-calendar-check"></i>
-                                <div class="stat-info">
-                                    <h3>5</h3>
-                                    <p>Upcoming Events</p>
-                                </div>
+                            <div class="activity-content">
+                                <p>You're part of 5 active communities</p>
                             </div>
-                            <div class="stat-card">
-                                <i class="fas fa-calendar-check"></i>
-                                <div class="stat-info">
-                                    <h3>5</h3>
-                                    <p>Upcoming Events</p>
-                                </div>
+                        </div>
+                        
+                        <div class="activity-card">
+                            <div class="activity-header">
+                                <i class="fas fa-calendar"></i>
+                                <h2>Upcoming Events</h2>
                             </div>
-                            <div class="stat-card">
-                                <i class="fas fa-comment-dots"></i>
-                                <div class="stat-info">
-                                    <h3>28</h3>
-                                    <p>New Messages</p>
-                                </div>
+                            <div class="activity-content">
+                                <p>3 events this week</p>
                             </div>
                         </div>
                     </section>
 
-                    <!-- Main Grid Layout -->
-                    <div class="dashboard-grid">
-                        <!-- Upcoming Events Card -->
-                        <section class="dashboard-card events-card">
-                            <div class="card-header">
-                                <h2>Upcoming Events</h2>
-                                <button class="view-all">View All</button>
+                    <section class="feed-section">
+                        <h2>Recent Activity</h2>
+                        <div class="feed-list">
+                            <div class="feed-item">
+                                <div class="feed-content">
+                                    <h3>Photography Club</h3>
+                                    <p>New photo challenge: "Campus Life"</p>
+                                    <span class="feed-time">2 hours ago</span>
+                                </div>
                             </div>
-                            <div class="events-list" id="eventsList">
-                                <!-- Dynamic content will be inserted here -->
+                            <div class="feed-item">
+                                <div class="feed-content">
+                                    <h3>Chess Club</h3>
+                                    <p>Weekly meetup tomorrow at 5 PM</p>
+                                    <span class="feed-time">5 hours ago</span>
+                                </div>
                             </div>
-                        </section>
-
-                        <!-- Communities Card -->
-                        <section class="dashboard-card communities-card">
-                            <div class="card-header">
-                                <h2>Your Communities</h2>
-                                <button class="view-all">View All</button>
-                            </div>
-                            <div class="communities-list" id="communitiesList">
-                                <!-- Dynamic content will be inserted here -->
-                            </div>
-                        </section>
-
-                        <!-- Activity Feed Card -->
-                        <section class="dashboard-card activity-card">
-                            <div class="card-header">
-                                <h2>Recent Activity</h2>
-                                <button class="view-all">View All</button>
-                            </div>
-                            <div class="activity-list" id="activityList">
-                                <!-- Dynamic content will be inserted here -->
-                            </div>
-                        </section>
-                    </div>
+                        </div>
+                    </section>
                 </div>
             </main>
         </div>
