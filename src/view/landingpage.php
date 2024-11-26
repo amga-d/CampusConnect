@@ -1,23 +1,35 @@
-<!DOCTYPE html>
+<?php
+    include("../controllers/functions.php");
+    session_start();
+
+    if(check_login_without_redirecting()){
+        header("Location: ../../index.php") ;
+        die();
+    }
+
+?>
+
+
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CampusConnect - Discover Your Community</title>
-    <link rel="stylesheet" href="../assets/styles/landingpage.css">
+    <link rel="stylesheet" href="/assets/styles/landingpage.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <header>
         <nav class=" nav-header " >
             <div class="logo">
-                <img class="logo1" src="../assets/img/landing/logo.png" alt="CampusConnect Logo">
-                <img class="logo2" src="../assets/img/landing/logo_name.png" alt="CampusConnect">
+                <img class="logo1" src="/assets/img/landing/logo_image.png" alt="CampusConnect Logo">
+                <img class="logo2" src="/assets/img/landing/logo_name.png" alt="CampusConnect">
             </div>
             <div class="nav-links">
                 <!-- <a href="#about" class="about">About</a> -->
-                <a href="../user_service/auth/signup.php" class="nav-sign">Sign Up</a>
-                <a href="../user_service/auth/signin.php" class="nav-log"> Login </a>
+                <a href="/src/view/auth/signin.php" class="nav-sign">Sign Up</a>
+                <a href="/src/view/auth/signup.php" class="nav-log"> Login </a>
             </div>
         </nav>
     </header>
@@ -31,7 +43,7 @@
                     <a href="../user_service/auth/signup.php" class="cta-button">Get Started</a>
                 </div>
                 <div class="hero-image">
-                    <img src="../assets/img/landing/hero.jpeg" alt="Campus life">
+                    <img src="/assets/img/landing/hero.jpeg" alt="Campus life">
                 </div>
             </div>
         </section>
@@ -104,8 +116,8 @@
             <div class="footer-content">
                 <div class="footer-brand">
                     <div class="footer-logo">
-                        <img class="logo1" src="../assets/img/landing/Logo image.png" alt="CampusConnect Logo">
-                        <img class="logo2" src="../assets/img/landing/Logo Name.png" alt="CampusConnect">
+                        <img class="logo1" src="/assets/img/landing/logo_image.png" alt="CampusConnect Logo">
+                        <img class="logo2" src="/assets/img/landing/logo_name.png" alt="CampusConnect">
                     </div>
                     <p class="footer-tagline">Empowering student connections</p>
                     <div class="footer-social">
@@ -152,6 +164,8 @@
     <div class="custom-cursor"></div>
     <div class="custom-cursor-dot"></div>
 
-    <script src="../assets/js/cursor.js"></script>
+    <script src="/assets/js/cursor.js"></script>
 </body>
 </html>
+
+

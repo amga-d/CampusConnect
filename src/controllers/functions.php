@@ -3,11 +3,10 @@
 function check_login()
 {
     if (isset($_SESSION["user_id"])) {
-        // echo "{$_SESSION["username"]}";
+        // echo "{$_SESSION["username"]}";""
         return true;
     } else {
-
-        header("Location: ./user_service/landingpage.php");
+        header("Location: /src/view/auth/signin.php");
         return false;
     }
     die;
