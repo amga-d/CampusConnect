@@ -29,51 +29,61 @@
                     </button>
                     <div class="image-box">
                         <img
-                            src="./assets/img/landing/logo image.png"
+                            src="/assets/img/landing/logo_image.png"
                             alt="CampusConnect"
                             class="logo"
-                        />
-                        <img
-                            src="./assets/img/landing/Logo Name.png"
-                            alt=""
-                            class="logo_name"
                         />
                     </div>
                 </div>
 
                 <nav class="sidebar-nav">
-                    <ul>
-                        <li class="active">
+                    <ul class="nav-list">
+                        <li class="nav-item active">
                             <a href="#home">
                                 <i class="fas fa-home"></i>
                                 <span>Home</span>
                             </a>
                         </li>
-                        <li>
+                        <li class="nav-item">
                             <a href="#discover">
                                 <i class="fas fa-compass"></i>
                                 <span>Discover</span>
                             </a>
                         </li>
-                        <li>
+                        <li class="nav-item">
                             <a href="#communities">
                                 <i class="fas fa-users"></i>
                                 <span>My Communities</span>
                             </a>
                         </li>
-                        <li>
+                        <li class="nav-item">
                             <a href="#events">
                                 <i class="fas fa-calendar"></i>
                                 <span>Events</span>
                             </a>
                         </li>
-                        <li>
+                        <li class="nav-item">
                             <a href="#bookmarks">
                                 <i class="fas fa-bookmark"></i>
                                 <span>Saved</span>
                             </a>
                         </li>
                     </ul>
+
+                    <div class="nav-divider"></div>
+                    
+                    <div class="profile-section">
+                        <a href="/src/view/profile.php" class="profile-link">
+                            <div class="profile-image">
+                                <img src="/assets/img/avatars/default.png" alt="Profile" onerror="this.src='/assets/img/avatars/default.png'">
+                            </div>
+                            <div class="profile-info">
+                                <span class="profile-name">Mike Tyson</span>
+                                <span class="profile-status">Student</span>
+                            </div>
+                            <i class="fas fa-chevron-right profile-arrow"></i>
+                        </a>
+                    </div>
                 </nav>
             </aside>
 
@@ -131,7 +141,6 @@
             </main>
         </div>
 
-        <!-- <script src="../assets/js/cursor.js"></script> -->
         <script src="/assets/js/dashboard.js"></script>/
     </body>
 </html>
