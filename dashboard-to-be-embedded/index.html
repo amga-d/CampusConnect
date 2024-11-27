@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Modern Dashboard</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/components/sidebar/sidebar.css">
+    <link rel="stylesheet" href="/components/dashboard/dashboard.css">
+  </head>
+  <body>
+    <div class="app-container">
+      <nav class="sidebar">
+        <div class="sidebar-header">
+          <img src="/assets/logo.svg" alt="Dashboard Logo" class="logo">
+          <h2>Dashboard</h2>
+        </div>
+        <ul class="nav-links">
+          <li class="active" data-page="home">
+            <span class="icon">🏠</span>
+            <span>Home</span>
+          </li>
+          <li data-page="events">
+            <span class="icon">📅</span>
+            <span>Events</span>
+          </li>
+          <li data-page="discover">
+            <span class="icon">🔍</span>
+            <span>Discover</span>
+          </li>
+          <li data-page="communities">
+            <span class="icon">👥</span>
+            <span>My Communities</span>
+          </li>
+        </ul>
+        <div class="user-profile">
+          <img src="/assets/avatar.svg" alt="User Avatar" class="avatar">
+          <div class="user-info">
+            <h3>John Doe</h3>
+            <p>Premium Member</p>
+          </div>
+        </div>
+      </nav>
+      
+      <main id="main-content" class="main-content">
+        <!-- Content will be dynamically loaded here -->
+      </main>
+    </div>
+    <script type="module" src="/js/main.js"></script>
+  </body>
+</html>
