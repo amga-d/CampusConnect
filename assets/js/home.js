@@ -30,27 +30,37 @@ function setupNavigation() {
     }
 
     // Get all navigation items
-    const navItems = document.querySelectorAll('.nav-item a');
+    const navItems = document.querySelectorAll('.nav-item a, .profile-link');
     const dynamicStyles = document.getElementById('dynamic-styles');
 
     // Style mapping for each page
     const pageStyles = {
-        'home': '/assets/styles/home.css',
-        'discover': '/assets/styles/discover.css',
-        'communities': '/assets/styles/communities.css',
-        'events': '/assets/styles/events.css',
-        'news': '/assets/styles/news.css'
+        'home': '/assets/styles/home_pages/home.css',
+        'discover': '/assets/styles/home_pages/discover.css',
+        'communities': '/assets/styles/home_pages/communities.css',
+        'events': '/assets/styles/home_pages/events.css',
+        'news': '/assets/styles/home_pages/news.css',
+        'profile': '/assets/styles/home_pages/profile.css'
     };
 
     // Function to load page content and update styles
     async function loadPage(pageId) {
-        // Remove 'active' class from all nav items
-        navItems.forEach(item => item.parentElement.classList.remove('active'));
+        // Remove 'active' class from all nav items and profile link
+        navItems.forEach(item => {
+            if (item.parentElement.classList.contains('nav-item')) {
+                item.parentElement.classList.remove('active');
+            }
+            item.classList.remove('active');
+        });
         
         // Add 'active' class to clicked item
         const currentNav = document.querySelector(`a[href="#${pageId}"]`);
         if (currentNav) {
-            currentNav.parentElement.classList.add('active');
+            if (currentNav.parentElement.classList.contains('nav-item')) {
+                currentNav.parentElement.classList.add('active');
+            } else {
+                currentNav.classList.add('active');
+            }
         }
 
         // Update the dynamic stylesheet
@@ -61,7 +71,7 @@ function setupNavigation() {
 
         try {
             // Load the page content
-            const response = await fetch(`/src/view/pages/${pageId}.php`);
+            const response = await fetch(`/src/view/home_pages/${pageId}.php`);
             if (response.ok) {
                 const content = await response.text();
                 mainContent.innerHTML = content;
@@ -74,7 +84,7 @@ function setupNavigation() {
         }
     }
 
-    // Add click event listeners to navigation items
+    // Add click event listeners to navigation items and profile link
     navItems.forEach(item => {
         item.addEventListener('click', (e) => {
             e.preventDefault();

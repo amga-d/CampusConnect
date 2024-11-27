@@ -77,7 +77,7 @@
                     <div class="nav-divider"></div>
                     
                     <div class="profile-section">
-                        <a href="/src/view/profile.php" class="profile-link">
+                        <a href="#profile" class="profile-link">
                             <div class="profile-image">
                                 <!-- <img src="/assets/img/avatars/default.png" alt="Profile" onerror="this.src='/assets/img/avatars/default.png'"> -->
                             </div>

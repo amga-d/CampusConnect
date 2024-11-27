@@ -125,6 +125,8 @@ body {
     text-decoration: none;
     border-radius: var(--radius-sm);
     transition: var(--transition);
+    max-height: 50px;
+
 }
 
 .nav-item.active a,
@@ -596,5 +598,25 @@ body {
 
 .sidebar::-webkit-scrollbar-thumb:hover {
     background: var(--primary);
+}
+
+.profile-link.active {
+    background: var(--gradient-primary);
+    color: var(--white) !important;
+}
+
+.profile-link.active .profile-name,
+.profile-link.active .profile-status,
+.profile-link.active .profile-arrow {
+    color: var(--white);
+    max-height: 50px;
+    
+}
+
+.sidebar.collapsed .profile-link.active {
+    background: var(--gradient-primary);
+    max-height: 50px;
+    color: var(--white);
+    
 }
 
