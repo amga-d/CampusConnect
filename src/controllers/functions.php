@@ -3,7 +3,6 @@
 function check_login()
 {
     if (isset($_SESSION["user_id"])) {
-        // echo "{$_SESSION["username"]}";""
         return true;
     } else {
         header("Location: /src/view/auth/signin.php");
@@ -20,8 +19,6 @@ function check_login_without_redirecting()
         return false;
     }
 }
-
-
 
 function generate_random_uid()
 {
