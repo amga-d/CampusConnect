@@ -7,18 +7,6 @@
     --white: #ffffff;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Arial', sans-serif;
-    line-height: 1.6;
-    color: var(--text-color);
-    background-color: var(--background-color);
-}
 
 .container {
     max-width: 1000px;
@@ -120,7 +108,7 @@ body {
     margin-bottom: 1rem;
 }
 
-.profile-name {
+.name {
     font-size: 2rem;
     font-weight: bold;
     margin-bottom: 0.5rem;
@@ -276,14 +264,7 @@ body {
 }
 
 @media (max-width: 768px) {
-    .profile-navigation {
-        padding: 1rem;
-    }
 
-    .nav-button {
-        padding: 0.5rem 1rem;
-        font-size: 0.9rem;
-    }
 
     .profile-header {
         padding: 1.5rem;
@@ -295,7 +276,7 @@ body {
         font-size: 3rem;
     }
 
-    .profile-name {
+    .name {
         font-size: 1.5rem;
     }
 

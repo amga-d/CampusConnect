@@ -1,24 +1,36 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Sidebar toggle functionality
-    const sidebar = document.getElementById('sidebar');
-    const toggleBtn = document.getElementById('toggleSidebar');
-    const toggleIcon = toggleBtn.querySelector('i');
 
+
+    barbtn.addEventListener('click',function(){
+        collapse();
+    });
     toggleBtn.addEventListener('click', function() {
-        sidebar.classList.toggle('collapsed');
-        
-        if (sidebar.classList.contains('collapsed')) {
-            toggleIcon.classList.remove('fa-chevron-left');
-            toggleIcon.classList.add('fa-chevron-right');
-        } else {
-            toggleIcon.classList.remove('fa-chevron-right');
-            toggleIcon.classList.add('fa-chevron-left');
-        }   
+        collapse();
     });
 
     // Navigation functionality
     setupNavigation();
 });
+
+const sidebar = document.getElementById('sidebar');
+const toggleBtn = document.getElementById('toggleSidebar');
+const toggleIcon = toggleBtn.querySelector('i');
+const barbtn = document.getElementById('bar');
+
+collapse();
+
+function collapse(){
+    sidebar.classList.toggle('collapsed');
+    
+    if (sidebar.classList.contains('collapsed')) {
+        toggleIcon.classList.remove('fa-chevron-left');
+        toggleIcon.classList.add('fa-chevron-right');
+    } else {
+        toggleIcon.classList.remove('fa-chevron-right');
+        toggleIcon.classList.add('fa-chevron-left');
+    } 
+}
 
 function setupNavigation() {
     // Create main content container if it doesn't exist
@@ -29,91 +41,97 @@ function setupNavigation() {
         document.querySelector('.layout').appendChild(mainContent);
     }
 
-    // Get all navigation items
     const navItems = document.querySelectorAll('.nav-item a, .profile-link');
     const dynamicStyles = document.getElementById('dynamic-styles');
 
+
+
     // Style mapping for each page
-    const pageStyles = {
-        'home': '/assets/styles/home_pages/home.css',
-        'discover': '/assets/styles/home_pages/discover.css',
-        'communities': '/assets/styles/home_pages/communities.css',
-        'events': '/assets/styles/home_pages/events.css',
-        'news': '/assets/styles/home_pages/news.css',
-        'profile': '/assets/styles/home_pages/profile.css'
-    };
 
-    // Function to load page content and update styles
+
+    // Improved loadPage function with better error handling
     async function loadPage(pageId) {
-        // Remove 'active' class from all nav items and profile link
-        navItems.forEach(item => {
-            if (item.parentElement.classList.contains('nav-item')) {
-                item.parentElement.classList.remove('active');
-            }
-            item.classList.remove('active');
-        });
-        
-        // Add 'active' class to clicked item
-        const currentNav = document.querySelector(`a[href="#${pageId}"]`);
-        if (currentNav) {
-            if (currentNav.parentElement.classList.contains('nav-item')) {
-                currentNav.parentElement.classList.add('active');
-            } else {
-                currentNav.classList.add('active');
-            }
-        }
-
-        // Update the dynamic stylesheet
-        const stylePath = pageStyles[pageId];
-        if (stylePath) {
-            dynamicStyles.href = stylePath;
-        }
-
+        const pageStyles = {
+            'home': '/assets/styles/home_pages/home.css',
+            'discover': '/assets/styles/home_pages/discover.css',
+            'communities': '/assets/styles/home_pages/communities.css',
+            'events': '/assets/styles/home_pages/events.css',
+            'news': '/assets/styles/home_pages/news.css',
+            'profile': '/assets/styles/home_pages/profile.css'
+        };
         try {
-            // Load the page content
-            const response = await fetch(`/src/view/home_pages/${pageId}.php`);
+            // Remove 'active' class from all nav items
+            navItems.forEach(item => {
+                const parent = item.parentElement;
+                // Only handle nav-items, excluding profile link
+                if (parent && parent.classList.contains('nav-item')) {
+                    parent.classList.remove('active');
+                    item.classList.remove('active');
+                }
+            });
+            
+            // Add 'active' class to clicked nav item (excluding profile)
+            const currentNav = document.querySelector(`a[href="#${pageId}"]`);
+            if (currentNav && currentNav.parentElement.classList.contains('nav-item')) {
+                currentNav.parentElement.classList.add('active');
+            }
+
+            
+            // Update the dynamic stylesheet with error handling
+            const stylePath = pageStyles[pageId];
+            if (stylePath && dynamicStyles) {
+                dynamicStyles.href = stylePath;
+                // Add error handling for stylesheet loading
+                dynamicStyles.onerror = () => {
+                    console.warn(`Failed to load stylesheet: ${stylePath}`);
+                };
+            }
+
+            // Load the page content with timeout
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 second timeout
+
+            const response = await fetch(`/src/view/home_pages/${pageId}.php`, {
+                signal: controller.signal
+            });
+            
+            clearTimeout(timeoutId);
+
             if (response.ok) {
                 const content = await response.text();
                 mainContent.innerHTML = content;
+                // Save current page to session storage
+                sessionStorage.setItem('activeNavItem', `#${pageId}`);
             } else {
-                mainContent.innerHTML = '<p>Error loading page content</p>';
+                throw new Error(`HTTP error! status: ${response.status}`);
             }
         } catch (error) {
             console.error('Error loading page:', error);
-            mainContent.innerHTML = '<p>Error loading page content</p>';
+            mainContent.innerHTML = `
+                <div class="error-container">
+                    <h2>Error Loading Page</h2>
+                    <p>Sorry, we couldn't load the requested content. Please try again later.</p>
+                    <button onclick="loadPage('home')">Return to Home</button>
+                </div>`;
         }
     }
 
-    // Add click event listeners to navigation items and profile link
+    // Add click event listeners with error handling
     navItems.forEach(item => {
         item.addEventListener('click', (e) => {
+            console.log(barbtn.style.display);
+            if (window.innerWidth <= 425) {
+                collapse();
+            }
             e.preventDefault();
-            const pageId = item.getAttribute('href').substring(1); // Remove the # from href
+            const pageId = item.getAttribute('href')?.substring(1) || 'home';
             loadPage(pageId);
+            // Update URL without page reload
+            window.history.pushState({page: pageId}, '', `#${pageId}`);
         });
     });
 
-    // Load home page by default
-    loadPage('home');
+    // Load initial page based on URL hash or default to home
+    const initialPage = window.location.hash.substring(1) || 'home';
+    loadPage(initialPage);
 }
-
-// Handle browser back/forward buttons
-window.addEventListener('popstate', (event) => {
-    const page = window.location.hash.replace('#', '') || 'home';
-    const navItem = document.querySelector(`.nav-item a[href="#${page}"]`).closest('.nav-item');
-    
-    // Update active state
-    setActiveNavItem(navItem);
-    
-    // Load the page content
-    loadPageContent(page);
-});
-
-// Restore active state on page refresh
-window.addEventListener('load', () => {
-    const activeHref = sessionStorage.getItem('activeNavItem') || '#home';
-    const activeItem = document.querySelector(`.nav-item a[href="${activeHref}"]`).closest('.nav-item');
-    setActiveNavItem(activeItem);
-});
-
-
