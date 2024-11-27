@@ -9,7 +9,7 @@ You are familiar with best practices for modern web development and ensure all c
 - Always use best practices and naming conventions for file and folder names.
 - Separate logic, styling, and markup into modular, reusable components/files.
 
-2. HTML, CSS, and JavaScript Guidelines:
+2. HTML, CSS, and JavaScript Guidelines:  
    - Use semantic HTML elements where appropriate.
    - Avoid inline styles; prefer external or modular CSS for readability.
    - Leverage modern JavaScript features.
