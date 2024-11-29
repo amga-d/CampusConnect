@@ -1,259 +1,123 @@
-/* Variables */
-:root {
-    --white: #ffffff;
-    --black: #000000;
-    --twitter-blue: #1DA1F2;
-}
-
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
-body {
-    font-family: 'Arial', sans-serif;
+main{
+    font-family: Arial, sans-serif;
+    background-color: white;
     line-height: 1.6;
-    color: var(--black);
-    background-color: var(--white);
+    color: #333;
 }
 
-/* Global Styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: system-ui, -apple-system, sans-serif;
-    line-height: 1.6;
-    color: var(--black);
-    background-color: var(--white);
-}
-
-.page-header {
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-.page-header h1 {
-    font-size: 2.5em;
-    margin-bottom: 10px;
-}
-
-.page-header p {
-    font-size: 1.2em;
-    color: #666;
-}
-
-/* News Section */
-.news-container {
-    max-width: 1000px;
-    margin: 40px auto;
-    padding: 0 20px;
-}
-
-.news-list {
-    list-style: none;
-}
-
-.news-item {
-    background-color: #f9f9f9;
-    margin-bottom: 20px;
-    transition: transform 0.3s ease;
-    display: flex;
-    border: 1px solid rgba(29, 161, 242, 0.3);
-    overflow: hidden;
-    border-radius: 25px;
-    min-height: 300px;
-    box-shadow: 0 2px 8px rgba(29, 161, 242, 0.1);
-    cursor: default;
-    position: relative;
-}
-
-.news-item:hover {
-    transform: translateX(10px);
-    border-color: rgba(29, 161, 242, 0.5);
-}
-
-.news-image {
-    width: 300px;
-    flex: 0 0 300px;
-    height: 100%;
-    display: block;
-    line-height: 0;
-    cursor: zoom-in;
-}
-
-.news-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    vertical-align: bottom;
-}
-
-.news-content {
-    padding: 20px;
-    flex: 1;
-    padding-bottom: 60px;
-}
-
-.news-category {
-    color: #C0C0C0;
-    font-size: 0.9em;
-    text-transform: uppercase;
-    margin-bottom: 10px;
-    display: inline-block;
-    cursor: text;
-}
-
-.news-date {
-    color: #808080;
-    font-size: 0.85em;
-    margin-left: 15px;
-    cursor: text;
-}
-
-.news-title {
-    color: var(--twitter-blue);
-    font-size: 1.5em;
-    margin-bottom: 10px;
-    color: var(--white);
-    cursor: text;
-}
-
-.news-article {
-    color: var(--black);
-    margin-bottom: 15px;
-    cursor: text;
-}
-
-.news-article a {
-    cursor: pointer;
-}
-
-/* Buttons */
-
-.news-item {
-    background-color: #f9f9f9;
-    margin-bottom: 20px;
-    transition: transform 0.3s ease;
-    display: flex;
-    border: 1px solid var(--twitter-blue);
-}
-
-.news-title {
-    color: var(--twitter-blue);
-}
-
-.page-button {
-    background-color: var(--twitter-blue);
-    color: var(--white);
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    border-radius: 25px;
-}
-
-.page-button.active {
-    background-color: #e8f5fd;
-    color: var(--twitter-blue);
-}
-
-.page-button:hover {
-    background-color: #444;
-}
-
-.page-button.active {
-    background-color: #C0C0C0;
-    color: var(--black);
-}
-
-/* Expandable Text */
-.collapsed-text {
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    text-overflow: ellipsis;
-    transition: max-height 0.3s ease;
-}
-
-.expanded-text {
-    -webkit-line-clamp: unset;
-    max-height: none;
-}
-
-/* Media Queries */
-@media (max-width: 768px) {
-    .news-item {
-        flex-direction: column;
-        min-height: unset;
-    }
-
-    .news-image {
-        width: 100%;
-        height: 200px;
-        flex: none;
-    }
-}
-
-/* Add these styles for the modal */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    padding-top: 50px;
-    padding-bottom: 50px;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.5); /* Lighter dim effect */
-    cursor: pointer;
-}
-
-.modal-content {
-    margin: auto;
-    display: block;
-    width: 80%;
+.app-container {
     max-width: 700px;
-    border-radius: 0;
-    cursor: default;
+    margin: 0 auto;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    min-height: 100vh;
 }
 
-/* Add styles for the gradient button overlay */
-.expand-overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
+.community-header {
     text-align: center;
-    cursor: pointer;
+    padding: 20px 15px;
+    background-color: white;
+    border-bottom: 1px solid #e7e7e9;
+    top: 0;
 }
 
-.expand-overlay-button {
+.community-title {
+    font-size: 1.8em;
+    font-weight: 700;
+    color: #0ea5e9;
+    letter-spacing: -0.5px;
+    margin-bottom: 5px;
+}
+
+.community-subtitle {
+    font-size: 0.9em;
+    color: #6c757d;
+    max-width: 350px;
+    margin: 0 auto;
+}
+
+.news-post {
+    background-color: white;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #e7e7e9;
+    transition: background-color 0.3s ease;
+}
+
+.news-post:hover {
+    background-color: #f9fafb;
+}
+
+.post-image {
     width: 100%;
-    padding: 50px 20px 20px;
-    border: none;
-    cursor: pointer;
-    background: linear-gradient(to bottom,
-        rgba(249, 249, 249, 0) 0%,
-        rgba(249, 249, 249, 0.9) 50%,
-        rgba(249, 249, 249, 1) 90%);
-    color: var(--twitter-blue);
-    font-weight: 500;
-    transition: all 0.3s ease;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    transition: transform 0.3s ease;
 }
 
-.expand-overlay-button:hover {
-    background: linear-gradient(to bottom,
-        rgba(249, 249, 249, 0) 0%,
-        rgba(249, 249, 249, 0.95) 50%,
-        rgba(249, 249, 249, 1) 90%);
-    color: #1a91da;
+.news-post:hover .post-image {
+    transform: scale(1.01);
+}
+
+.post-description {
+    padding: 15px;
+}
+
+.post-title {
+    font-size: 1.1em;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+
+.post-excerpt {
+    font-size: 0.95em;
+    color: #4a5568;
+    line-height: 1.6;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-bottom: 12px;
+}
+
+.read-more {
+    display: inline-block;
+    color: #0ea5e9;
+    font-weight: 600;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    font-size: 0.9em;
+}
+
+.read-more:hover {
+    color: #38bdf8;
+}
+
+.loading {
+    text-align: center;
+    padding: 20px;
+    color: #6c757d;
+    font-style: italic;
+}
+
+@media (max-width: 500px) {
+    .app-container {
+        width: 100%;
+        box-shadow: none;
+    }
+
+    .community-title {
+        font-size: 1.5em;
+    }
+
+    .community-subtitle {
+        font-size: 0.85em;
+    }
 }
