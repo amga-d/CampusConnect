@@ -1,7 +1,7 @@
 <div class="page-content">
 <main class="app-container">
         <div class="community-header">
-            <h1 class="community-title">Community Events</h1>
+            <h1 class="community-title">University News</h1>
             <p class="community-subtitle">Stay informed about the latest developments, events, and stories from our local community</p>
         </div>
         <div id="newsFeed">
