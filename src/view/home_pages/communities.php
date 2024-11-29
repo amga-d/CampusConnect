@@ -1,3 +1,7 @@
+<?php
+require_once __DIR__ . '/../../controllers/home_pages/homeController.php';
+?>
+
 <div class="page-content">
 <main class="main-content">
                 <section class="hero" id="about">

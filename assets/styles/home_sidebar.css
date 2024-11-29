@@ -316,7 +316,16 @@ body {
   box-shadow: var(--shadow-sm);
 }
 
-/* Search Container */
+.left-section{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: nowrap;
+  
+}
+
+/* Search Container
 .search-container {
   position: relative;
   width: 400px;
@@ -343,7 +352,7 @@ body {
   top: 50%;
   transform: translateY(-50%);
   color: var(--gray);
-}
+} */
 
 /* Right Section Actions */
 .top-bar-actions {

@@ -1,27 +1,5 @@
 <?php
-session_start();
-error_reporting(E_ALL);
-ini_set("display_errors", 1);
-
-// echo "<pre>";
-// echo "Current file: " . __FILE__ . "\n";
-// echo "Functions file path: " . __DIR__ . "/../controllers/functions.php\n";
-// echo "Functions file exists: " . (file_exists(__DIR__ . "/../controllers/functions.php") ? "Yes" : "No") . "\n";
-// echo "Session data: \n";
-// print_r($_SESSION);
-// echo "</pre>";
-
-require_once __DIR__ . "/../controllers/functions.php";
-
-if (!check_login()) {
-    header("Location: /src/view/auth/signin.php");
-    exit();
-}
-
-// Get user data from session
-$username = isset($_SESSION["username"]) ? htmlspecialchars($_SESSION["username"]) : "User";
-$user_id = isset($_SESSION["user_id"]) ? $_SESSION["user_id"] : null;
-
+    require_once __DIR__ . '/../controllers/homeController.php';
 ?>
 
 <!DOCTYPE html>
@@ -114,10 +92,7 @@ $user_id = isset($_SESSION["user_id"]) ? $_SESSION["user_id"] : null;
             <header class="top-bar">
                 <div class="left-section">
                     <div class="bar" id='bar'><i class="fa-solid fa-bars"></i></div>
-                    <div class="search-container">
-                        <i class="fas fa-search"></i>
-                        <input type="text" placeholder="Search communities, events, or people...">
-                    </div>
+                    <h2 class="Nav_title">Home</h2>
                 </div>
 
                 <div class="right-section">

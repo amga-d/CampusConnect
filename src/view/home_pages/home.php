@@ -1,5 +1,5 @@
 <?php
-    $username = "Amgad"
+    require_once __DIR__ . '/../../controllers/home_pages/homeController.php';
 ?>
 
 
