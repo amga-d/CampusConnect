@@ -9,7 +9,7 @@
                 <img src="https://picsum.photos/700/700?random=1" class="post-image" alt="News Image">
                 <div class="post-description">
                     <h2 class="post-title">New Community Center Breaks Ground</h2>
-                    <p class="post-excerpt">Our city is taking a significant step forward with the construction of a new community center. This project aims to provide a gathering space for local events, workshops, and community activities. The center will feature multipurpose rooms, a modern library, and spaces for youth programs.</p>
+                    <p class="post-excerpt">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit, sapiente eligendi, officiis recusandae soluta nam fuga placeat dolorum assumenda harum vel saepe alias libero consequatur! Cumque explicabo blanditiis modi tenetur! Our city is taking a significant step forward with the construction of a new community center. This project aims to provide a gathering space for local events, workshops, and community activities. The center will feature multipurpose rooms, a modern library, and spaces for youth programs.</p>
                     <span class="read-more" onclick="toggleReadMore(this)">Read more</span>
                 </div>
             </div>

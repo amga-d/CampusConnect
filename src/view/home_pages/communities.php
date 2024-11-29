@@ -11,7 +11,7 @@
                         <div class="hero-images">
                             <div class="image-grid">
                                 <div class="image-item">
-                                    <img src="/assets/img/communities/google developer student clubs.jpg" alt="Community image" class="hero-img">
+                                    <img src="https://smvdu.ac.in/wp-content/uploads/2023/11/aGoogle-Developers-Student-Clubs-1.jpg">
                                 </div>
                             </div>
                         </div>
