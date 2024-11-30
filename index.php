@@ -1,12 +1,17 @@
 <?php
     session_start();
-    include ("./src/controllers/functions.php") ;
-    check_login();
+    require_once "./src/controllers/functions.php" ;
     
+    if(check_login_without_redirecting()){
+        header("Location: /src/view/home.php");
+    } else {
+        header("Location: /src/view/landingpage.php");
+    }
+    
+    exit();
 
 ?>
 
-<h1>this is the home page</h1>
-<a href="./src/controllers/logout.php">logout</a>
+
 
 
