@@ -1,13 +1,12 @@
 <?php
-session_start();
-require_once "./src/controllers/functions.php";
+    session_start();
+    include ("./src/controllers/functions.php") ;
+    check_login();
+    
 
-// Redirect to dashboard if logged in, otherwise to landing page
-if (check_login_without_redirecting()) {
-    header("Location: /src/view/dashboard.php");
-} else {
-    header("Location: /src/view/landingpage.php");
-}
-exit();
+?>
+
+<h1>this is the home page</h1>
+<a href="./src/controllers/logout.php">logout</a>
 
 

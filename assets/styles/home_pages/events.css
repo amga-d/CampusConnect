@@ -1,0 +1,123 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+main{
+    font-family: Arial, sans-serif;
+    background-color: white;
+    line-height: 1.6;
+    color: #333;
+}
+
+.app-container {
+    max-width: 700px;
+    margin: 0 auto;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    min-height: 100vh;
+}
+
+.community-header {
+    text-align: center;
+    padding: 20px 15px;
+    background-color: white;
+    border-bottom: 1px solid #e7e7e9;
+    top: 0;
+}
+
+.community-title {
+    font-size: 1.8em;
+    font-weight: 700;
+    color: #333;
+    letter-spacing: -0.5px;
+    margin-bottom: 5px;
+}
+
+.community-subtitle {
+    font-size: 0.9em;
+    color: #6c757d;
+    max-width: 350px;
+    margin: 0 auto;
+}
+
+.news-post {
+    background-color: white;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #e7e7e9;
+    transition: background-color 0.3s ease;
+}
+
+.news-post:hover {
+    background-color: #f9fafb;
+}
+
+.post-image {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.news-post:hover .post-image {
+    transform: scale(1.01);
+}
+
+.post-description {
+    padding: 15px;
+}
+
+.post-title {
+    font-size: 1.1em;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+
+.post-excerpt {
+    font-size: 0.95em;
+    color: #4a5568;
+    line-height: 1.6;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-bottom: 12px;
+}
+
+.read-more {
+    display: inline-block;
+    color: #0ea5e9;
+    font-weight: 600;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    font-size: 0.9em;
+}
+
+.read-more:hover {
+    color: #38bdf8;
+}
+
+.loading {
+    text-align: center;
+    padding: 20px;
+    color: #6c757d;
+    font-style: italic;
+}
+
+@media (max-width: 500px) {
+    .app-container {
+        width: 100%;
+        box-shadow: none;
+    }
+
+    .community-title {
+        font-size: 1.5em;
+    }
+
+    .community-subtitle {
+        font-size: 0.85em;
+    }
+}

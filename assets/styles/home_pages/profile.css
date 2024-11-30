@@ -1,0 +1,231 @@
+:root {
+    --primary-color: #e0e0e0;
+    --secondary-color: #f5f5f5;
+    --twitterblue-color: #1da1f2;
+    --text-color: #333;
+    --light-text-color: #666;
+    --background-color: #ffffff;
+    --white: #ffffff;
+}
+
+body {
+    background-color: var(--background-color);
+    font-family: 'Arial', sans-serif;
+    color: var(--text-color);
+    line-height: 1.6;
+    margin: 0;
+    padding: 0 0 1rem; /* Added bottom padding */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 2rem;
+}
+
+.profile-card {
+    background-color: var(--white);
+    border-radius: 1rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    display: flex;
+    overflow: hidden;
+    border: 1px solid var(--primary-color);
+    transition: transform 0.3s ease;
+    min-height: 600px; /* Set minimum height */
+    margin-bottom: 2rem; /* Reduce gap at the bottom */
+}
+
+.profile-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+
+.profile-sidebar {
+    width: 350px;
+    background: var(--white);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    position: relative;
+}
+
+.profile-sidebar::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2px;
+    height: 80%;
+    background-color: var(--twitterblue-color);
+}
+
+.profile-avatar {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    border: 6px solid var(--white);
+    background-color: var(--white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease;
+}
+
+.profile-avatar:hover {
+    transform: scale(1.05);
+}
+
+.profile-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-sidebar-content {
+    text-align: center;
+}
+
+.name {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--twitterblue-color);
+    margin-bottom: 0.5rem;
+}
+
+.profile-title {
+    font-size: 1.2rem;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    font-style: italic;
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.social-link {
+    color: var(--twitterblue-color);
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+}
+
+.social-link:hover {
+    color: var(--light-text-color);
+}
+
+.profile-main-content {
+    flex: 1;
+    padding: 2rem;
+}
+
+.profile-navigation {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 1.5rem;
+}
+
+.nav-button {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.625rem 1.25rem;
+    border-radius: 9999px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: var(--twitterblue-color);
+    border: 2px solid var(--twitterblue-color);
+}
+
+.nav-button:hover {
+    background-color: var(--twitterblue-color);
+    color: var(--white);
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    background-color: var(--secondary-color);
+    border-radius: 0.5rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow-wrap: anywhere;
+}
+
+.info-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.info-icon {
+    font-size: 1.2rem;
+    color: var(--twitterblue-color);
+    margin-right: 0.75rem;
+    margin-top: 0.25rem;
+}
+
+.info-text {
+    flex: 1;
+}
+
+.info-label {
+    font-size: 0.9rem;
+    color: var(--light-text-color);
+    margin-bottom: 0.25rem;
+}
+
+.bio-section {
+    background-color: var(--secondary-color);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    margin-top: 2rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.bio-section:hover {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.bio-title {
+    font-size: 1.5rem;
+    color: var(--twitterblue-color);
+    margin-bottom: 1rem;
+    border-bottom: 2px solid var(--twitterblue-color);
+    padding-bottom: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .profile-card {
+        flex-direction: column;
+    }
+
+    .profile-sidebar {
+        width: 100%;
+        padding: 1.5rem;
+    }
+
+    .profile-sidebar::after {
+        display: none;
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr; /* Adjust for narrow screens */
+    }
+}
