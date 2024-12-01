@@ -28,8 +28,8 @@
             </div>
             <div class="nav-links">
                 <!-- <a href="#about" class="about">About</a> -->
-                <a href="/src/view/auth/signin.php" class="nav-sign">Sign Up</a>
-                <a href="/src/view/auth/signup.php" class="nav-log"> Login </a>
+                <a href="/src/view/auth/signup.php" class="nav-sign">Sign Up</a>
+                <a href="/src/view/auth/signin.php" class="nav-log"> Login </a>
             </div>
         </nav>
     </header>
