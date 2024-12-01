@@ -3,7 +3,7 @@
 $db_server = "localhost";
 $db_user = "root";
 $db_pass = "";
-$db_name = "campusconnect1";
+$db_name = "campusconnect";
 
 function connect_db() {
     global $db_server, $db_user, $db_pass, $db_name;
