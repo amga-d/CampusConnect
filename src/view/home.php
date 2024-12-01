@@ -74,13 +74,13 @@ require_once __DIR__ . '/../controllers/homeController.php';
 
                 <div tabindex="0" class="new-community-link">
                     <a href="#newcommunity" class="plusButton">
-                    <svg class="plusIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
-                        <g mask="url(#mask0_21_345)">
-                            <path d="M13.75 23.75V16.25H6.25V13.75H13.75V6.25H16.25V13.75H23.75V16.25H16.25V23.75H13.75Z"></path>
-                        </g>
-                    </svg>
-                </a>
-                <span> New Community</span>
+                        <svg class="plusIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
+                            <g mask="url(#mask0_21_345)">
+                                <path d="M13.75 23.75V16.25H6.25V13.75H13.75V6.25H16.25V13.75H23.75V16.25H16.25V23.75H13.75Z"></path>
+                            </g>
+                        </svg>
+                    </a>
+                    <span> New Community</span>
                 </div>
 
                 <div class="profile-section">
@@ -116,12 +116,23 @@ require_once __DIR__ . '/../controllers/homeController.php';
                             <span class="messages-badge">5</span>
                         </button>
                         <div class="user-menu">
-                            <button class="user-menu-btn">
+                            <button class="user-menu-btn" id="userMenuBtn">
                                 <div class="user-avatar">
                                     <img src="/assets/img/home/default_profile.png" alt="User Avatar">
                                 </div>
                                 <i class="fas fa-chevron-down"></i>
                             </button>
+                            <div class="user-dropdown" id="userDropdown">
+                                <a href="#profile" class="profile-link2">Profile</a>
+                                <a href="#settings">Settings</a>
+                                <a href="/src/controllers/logout.php">Logout</a>
+                            </div>
+                            <!-- <button class="user-menu-btn">
+                                <div class="user-avatar">
+                                    <img src="/assets/img/home/default_profile.png" alt="User Avatar">
+                                </div>
+                                <i class="fas fa-chevron-down"></i>
+                            </button> -->
                         </div>
                     </div>
                 </div>
@@ -131,7 +142,7 @@ require_once __DIR__ . '/../controllers/homeController.php';
     </div>
 
     <script src="/assets/js/home.js"></script>
-    <script class="dynamic-script" ></script>
+    <script class="dynamic-script"></script>
 </body>
 
 </html>

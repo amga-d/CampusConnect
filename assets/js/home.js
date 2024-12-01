@@ -12,6 +12,23 @@ document.addEventListener("DOMContentLoaded", function () {
     setupNavigation();
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+    const userMenuBtn = document.getElementById('userMenuBtn');
+    const userDropdown = document.getElementById('userDropdown');
+
+    userMenuBtn.addEventListener('click', function(event) {
+        event.stopPropagation();
+        userDropdown.classList.toggle('show');
+    });
+
+    // Close the dropdown when clicking outside
+    document.addEventListener('click', function(event) {
+        if (!userMenuBtn.contains(event.target) && !userDropdown.contains(event.target)) {
+            userDropdown.classList.remove('show');
+        }
+    });
+});
+
 const sidebar = document.getElementById("sidebar");
 const toggleBtn = document.getElementById("toggleSidebar");
 const toggleIcon = toggleBtn.querySelector("i");
@@ -41,7 +58,7 @@ function setupNavigation() {
         document.querySelector(".layout").appendChild(mainContent);
     }
 
-    const navItems = document.querySelectorAll(".nav-item a, .profile-link");
+    const navItems = document.querySelectorAll(".nav-item a, .profile-link, .profile-link2");
     const dynamicStyles = document.getElementById("dynamic-styles");
     const dynamicScript = document.createElement("script");
     document.body.appendChild(dynamicScript);
