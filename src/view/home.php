@@ -1,5 +1,5 @@
 <?php
-    require_once __DIR__ . '/../controllers/homeController.php';
+require_once __DIR__ . '/../controllers/homeController.php';
 ?>
 
 <!DOCTYPE html>
@@ -72,6 +72,17 @@
 
                 <div class="nav-divider"></div>
 
+                <div tabindex="0" class="new-community-link">
+                    <a href="#newcommunity" class="plusButton">
+                    <svg class="plusIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
+                        <g mask="url(#mask0_21_345)">
+                            <path d="M13.75 23.75V16.25H6.25V13.75H13.75V6.25H16.25V13.75H23.75V16.25H16.25V23.75H13.75Z"></path>
+                        </g>
+                    </svg>
+                </a>
+                <span> New Community</span>
+                </div>
+
                 <div class="profile-section">
                     <a href="#profile" class="profile-link">
                         <div class="profile-image">
@@ -79,7 +90,6 @@
                         </div>
                         <div class="profile-info">
                             <span class="profile-name">Mike Tyson</span>
-                            <!-- <span class="profile-status">Student</span> -->
                         </div>
                         <i class="fas fa-chevron-right profile-arrow"></i>
                     </a>

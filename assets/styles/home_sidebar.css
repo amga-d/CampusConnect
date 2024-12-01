@@ -145,6 +145,89 @@ body {
   margin: 1rem 0;
 }
 
+/* make community button */
+.new-community-link{
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  padding-left: 0.75rem;
+  gap: 1rem;
+  color: var(--gray);
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  transition: var(--transition);
+  /* cursor: pointer; */
+}
+
+.plusButton {
+  /* Config start */
+  --plus_sideLength: 2.5rem;
+  --plus_topRightTriangleSideLength: 0.9rem;
+  /* Config end */
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--gray);
+  border-radius: 50%;
+  width: var(--plus_sideLength);
+  height: var(--plus_sideLength);
+  background-color: var(--white);
+  overflow: hidden;
+}
+
+.plusButton::before {
+  position: absolute;
+  content: "";
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-width: 0 var(--plus_topRightTriangleSideLength) var(--plus_topRightTriangleSideLength) 0;
+  border-style: solid;
+  border-color: transparent var(--gray) transparent transparent;
+  transition-timing-function: ease-in-out;
+  transition-duration: 0.2s;
+}
+
+.new-community-link:hover .plusButton {
+  /* cursor: pointer; */
+  border: none;
+}
+
+.new-community-link:hover .plusButton::before {
+  border-color: transparent var(--primary) transparent transparent;
+  --plus_topRightTriangleSideLength: calc(var(--plus_sideLength) * 2);
+}
+
+.new-community-link:hover .plusButton:focus-visible::before {
+  --plus_topRightTriangleSideLength: calc(var(--plus_sideLength) * 2);
+}
+
+.plusButton>.plusIcon {
+  fill: var(--gray);
+  width: calc(var(--plus_sideLength) * 0.7);
+  height: calc(var(--plus_sideLength) * 0.7);
+  z-index: 1;
+  transition-timing-function: ease-in-out;
+  transition-duration: 0.2s;
+}
+
+.new-community-link:hover .plusButton>.plusIcon {
+  fill: white;
+  transform: rotate(180deg);
+}
+
+.new-community-link:hover  .plusButton:focus-visible>.plusIcon {
+  /* fill: var(--primary); */
+  transform: rotate(180deg);
+}
+.new-community-link:hover{
+  cursor: pointer;
+} 
+
+
+
 /* Profile Section */
 .profile-section {
   /* margin-top: auto; */
@@ -229,6 +312,15 @@ body {
   display: none;
 }
 
+.sidebar.sidebar.collapsed .new-community-link span{
+  display: none;
+}
+.sidebar.sidebar.collapsed .new-community-link {
+  justify-content: center;
+  padding-left: 0;
+}
+
+
 /* Updated Sidebar Toggle Button */
 #toggleSidebar {
   /* z-index: 1000; */
@@ -260,6 +352,9 @@ body {
   height: 27px;
   z-index: 1000; /* Ensure it's above other elements */
 }
+
+
+
 
 /* Consolidated Media Queries */
 
