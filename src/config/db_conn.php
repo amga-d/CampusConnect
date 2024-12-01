@@ -1,9 +1,9 @@
 <?php
 // Move credentials to a separate config file that's not in version control
-$db_server = "localhost";
-$db_user = "root";
-$db_pass = "";
-$db_name = "campusconnect1";
+$db_server = "localhost:3306";
+$db_user = "morad";
+$db_pass = "972003";
+$db_name = "campusconnect";
 
 function connect_db() {
     global $db_server, $db_user, $db_pass, $db_name;
