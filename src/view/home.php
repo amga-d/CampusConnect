@@ -131,6 +131,7 @@ require_once __DIR__ . '/../controllers/homeController.php';
     </div>
 
     <script src="/assets/js/home.js"></script>
+    <script class="dynamic-script" ></script>
 </body>
 
 </html>
