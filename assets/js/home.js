@@ -16,6 +16,7 @@ const sidebar = document.getElementById("sidebar");
 const toggleBtn = document.getElementById("toggleSidebar");
 const toggleIcon = toggleBtn.querySelector("i");
 const barbtn = document.getElementById("bar");
+const navTitle =document.getElementById("nav-title");
 
 collapse();
 
@@ -54,6 +55,7 @@ function setupNavigation() {
         events: "/assets/styles/home_pages/events.css",
         news: "/assets/styles/home_pages/news.css",
         profile: "/assets/styles/home_pages/profile.css",
+        createCommunity : "/assets/styles/home_pages/newcommunity.css"
     };
 
     // Improved loadPage function with better error handling
@@ -87,6 +89,10 @@ function setupNavigation() {
                     console.warn(`Failed to load stylesheet: ${stylePath}`);
                 };
             }
+
+            // Update the Nav-title 
+            const title = pageId.charAt(0).toUpperCase() +  pageId.slice(1);
+            navTitle.textContent = title;
 
             // Load the page content with timeout
             const controller = new AbortController();
