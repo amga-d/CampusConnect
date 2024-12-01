@@ -179,5 +179,9 @@
     border: 1px solid var(--twitter-blue)
     ;
   }
-  
+
+  #show-password{
+    cursor: pointer;
+  }
+
       

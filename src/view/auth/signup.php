@@ -15,7 +15,7 @@ require_once __DIR__. '/../../controllers/auth/signupController.php';
   
 
     <form class="form "
-      action= "./signup.php"
+      action= "<?php  htmlspecialchars($_SERVER['PHP_SELF'])?> "
       method="post">
 
       <!-- <div class="logo">

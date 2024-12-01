@@ -102,7 +102,7 @@ require_once __DIR__ . '/../controllers/homeController.php';
             <header class="top-bar">
                 <div class="left-section">
                     <div class="bar" id='bar'><i class="fa-solid fa-bars"></i></div>
-                    <h2 class="Nav_title">Home</h2>
+                    <h2 id="nav-title">Home</h2>
                 </div>
 
                 <div class="right-section">
