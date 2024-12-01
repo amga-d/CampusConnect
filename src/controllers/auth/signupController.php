@@ -50,8 +50,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   } 
 
   if ($valid_information) {
-    if(signup($username,$useremail,$password)){
-      header("Location: /src/view/home.php");
+    $user_id = signup($username,$useremail,$password);
+    if(!empty($user_id)){
+      $_SESSION["user_id"] = $user_id;
+      header("Location: /index.php");
       $useremail = $username = $password = "";
       exit();
     }

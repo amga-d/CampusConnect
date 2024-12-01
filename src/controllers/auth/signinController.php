@@ -40,7 +40,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     }
 
     if ($valid_information) {
-        if(authenticateLogin($useremail, $password)){
+        $user_id = authenticateLogin($useremail, $password);
+        if(!empty($user_id)){
+            $_SESSION["user_id"] = $user_id;
+            $useremail= $password="";
             header("Location: /index.php");
             exit();
         }
