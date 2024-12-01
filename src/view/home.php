@@ -6,13 +6,12 @@ require_once __DIR__ . '/../controllers/homeController.php';
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CampusConnect Dashboard</title>
-    <link rel="stylesheet" href="/assets/styles/home_sidebar.css" />
+    <?php include(__DIR__."/component/header.php");?>
     <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <title>CampusConnect</title>
+    <link rel="stylesheet" href="/assets/styles/home_sidebar.css" />
     <link id="dynamic-styles" rel="stylesheet" href="" />
 </head>
 
