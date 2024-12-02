@@ -1,6 +1,6 @@
 <?php
 // Move credentials to a separate config file that's not in version control
-$db_server = "localhost";
+$db_server = "mysql-server";
 $db_user = "root";
 $db_pass = "";
 $db_name = "campusconnect";

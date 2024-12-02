@@ -1,0 +1,110 @@
+version: '3.8'
+
+services:
+  php1:
+    build: .
+    container_name: php-fpm-1
+    volumes:
+      - .:/var/www/CampusConnect
+
+    networks:
+      - mynetwork
+    expose:
+      - 9000
+
+  php2:
+    build: .
+    container_name: php-fpm-2
+    volumes:
+      - .:/var/www/CampusConnect
+    networks:
+      - mynetwork
+    expose:
+      - 9000
+
+  php3:
+    build: .
+    container_name: php-fpm-3
+    volumes:
+      - .:/var/www/CampusConnect
+    networks:
+      - mynetwork
+    expose:
+      - 9000
+  dns:
+    image: jpillora/dnsmasq
+    container_name: dnsmasq
+    volumes:
+      - ./dnsmasq.conf:/etc/dnsmasq.conf
+    ports:
+      - "53:53/udp"
+      - "53:53/tcp"
+      - "5380:8080"
+    networks:
+      - mynetwork
+    restart: always
+
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql-server
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ""
+      MYSQL_PASSWORD: ""
+      MYSQL_DATABASE: campusconnect  # Optional: Define a database to be created on startup
+      MYSQL_ALLOW_EMPTY_PASSWORD: yes
+      
+    ports:
+      - "3306:3306"
+    volumes:
+      - data:/var/lib/mysql
+    
+    networks:
+      - mynetwork
+      
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    volumes:
+      - ./default.conf:/etc/nginx/conf.d/default.conf
+      - .:/var/www/CampusConnect
+    ports:
+      - "80:80"
+    depends_on:
+      - php1
+      - php2
+      - php3
+      - mysql
+      - dns
+    networks:
+      - mynetwork
+    extra_hosts:
+      - "myapp.local:192.168.1.7"
+
+
+networks:
+  mynetwork:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.1.0/24
+          gateway: 192.168.1.1
+
+volumes:
+  data:
+    driver: local
+
+
+# services:
+#   mysql:
+#     image: mysql:latest
+#     container_name: mysql-server
+#     restart: always
+#     environment:
+#       - MYSQL_ROOT_PASSWORD=""
+#       - MYSQL_ROOT_PASSWORD: ""
+#       MYSQL_USER: root
+#       MYSQL_PASSWORD: ""
+#       MYSQL_DATABASE: mydatabase
