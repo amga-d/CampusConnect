@@ -2,13 +2,13 @@
     require_once __DIR__ . '/../../controllers/home_pages/homeController.php';
 ?>
 
-
+li
 <div class="page-content">
 
 <main class="main-content">
             <header class="content-header">
                 <div class="welcome-section">
-                    <h1>Welcome Back, <?php echo htmlspecialchars($username); ?>! 👋</h1>
+                    <h1>Welcome Back, <?=  htmlspecialchars($username); ?>! 👋</h1>
                     <p>Here's what's happening in your communities</p>
                 </div>
                 <div class="header-actions">

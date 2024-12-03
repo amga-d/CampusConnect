@@ -10,10 +10,11 @@ function getCommunities()
         $stmt = $conn->prepare("
                 SELECT
                     c.community_name, 
+                    c.community_type,
                     c.description, 
                     c.profile_image, 
                     c.created_by, 
-                    c.requirement_status, 
+                    c.recruitment_status, 
                     c.created_at, 
                     COUNT(cm.user_id) AS member_count
                 FROM 
@@ -23,12 +24,13 @@ function getCommunities()
                 ON
                     c.community_id = cm.community_id
                 GROUP BY 
-                    c.community_id, 
+                    c.community_id,
+                    c.community_type,
                     c.community_name, 
                     c.description, 
                     c.profile_image, 
                     c.created_by, 
-                    c.requirement_status, 
+                    c.recruitment_status, 
                     c.created_at
                 ORDER BY 
                     c.created_at DESC 

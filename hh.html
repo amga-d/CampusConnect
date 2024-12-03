@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Card</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        :root {
+    --primary-color: #3b82f6;
+    --text-color: #1f2937;
+    --bg-color: #ffffff;
+    --tag-open-bg: #dcfce7;
+    --tag-open-text: #166534;
+    --tag-closed-bg: #fee2e2;
+    --tag-closed-text: #991b1b;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background-color: #f3f4f6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.card {
+    background-color: var(--bg-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 24px;
+    max-width: 400px;
+    width: 100%;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.profile-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 16px;
+}
+
+.community-name {
+    color: var(--text-color);
+    font-size: 24px;
+    margin: 0;
+}
+
+.community-description {
+    color: #4b5563;
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 0 0 16px 0;
+}
+
+.community-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.members {
+    font-size: 14px;
+    color: #6b7280;
+}
+
+.tag {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: 9999px;
+}
+
+.tag.open {
+    background-color: var(--tag-open-bg);
+    color: var(--tag-open-text);
+}
+
+.tag.closed {
+    background-color: var(--tag-closed-bg);
+    color: var(--tag-closed-text);
+}
+
+.open-button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    width: 100%;
+}
+
+.open-button:hover {
+    background-color: #2563eb;
+}
+
+.open-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+}
+
+@media (max-width: 480px) {
+    .card {
+        padding: 16px;
+    }
+
+    .card-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .profile-image {
+        margin-right: 0;
+        margin-bottom: 12px;
+    }
+
+    .community-info {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .members {
+        margin-bottom: 8px;
+    }
+}
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="card-header">
+            <img src="https://placeholder.com/150" alt="Tech Enthusiasts community profile" class="profile-image">
+            <h2 class="community-name">Tech Enthusiasts</h2>
+        </div>
+        <p class="community-description">A group for tech lovers to discuss the latest trends and innovations.</p>
+        <div class="community-info">
+            <span class="members">Current Members: 42</span>
+            <span class="tag open">Open for Recruitment</span>
+        </div>
+        <button class="open-button">Open</button>
+    </div>
+</body>
+</html>

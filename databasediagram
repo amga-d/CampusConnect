@@ -37,6 +37,8 @@ CREATE TABLE Communities (
 );
 ```
 
+
+
 ---
 
 ### 4. Create `Community_Members` Table
@@ -104,4 +106,5 @@ CREATE TABLE Announcements (
 
 ---
 
-Let me know if you'd like additional queries, such as **insert**, **select**, or **join** examples!
+Alter TABLE communities ADD community_type varchar(50);
+ALTER TABLE communities change requirement_status recruitment_status enum('open','closed');

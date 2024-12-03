@@ -81,80 +81,48 @@ function setupNavigation() {
             // Remove 'active' class from all nav items
             navItems.forEach((item) => {
                 const parent = item.parentElement;
-                // Only handle nav-items, excluding profile link
-                if (parent && parent.classList.contains("nav-item")) {
-                    parent.classList.remove("active");
-                    item.classList.remove("active");
+                if (parent.classList.contains('nav-item')) {
+                    parent.classList.remove('active');
                 }
             });
 
-            // Add 'active' class to clicked nav item (excluding profile)
-            const currentNav = document.querySelector(`a[href="#${pageId}"]`);
-            if (
-                currentNav &&
-                currentNav.parentElement.classList.contains("nav-item")
-            ) {
-                currentNav.parentElement.classList.add("active");
+            // Add 'active' class to the current nav item
+            const currentNavItem = document.querySelector(`.nav-item a[href="#${pageId}"]`);
+            if (currentNavItem) {
+                currentNavItem.parentElement.classList.add('active');
             }
 
-            // Update the dynamic stylesheet with error handling
-            const stylePath = pageStyles[pageId];
-            if (stylePath && dynamicStyles) {
-                dynamicStyles.href = stylePath;
-                // Add error handling for stylesheet loading
-                dynamicStyles.onerror = () => {
-                    console.warn(`Failed to load stylesheet: ${stylePath}`);
-                };
+            // Load the corresponding CSS file
+            const cssFilePath = pageStyles[pageId];
+            if (cssFilePath) {
+                const linkElement = document.createElement('link');
+                linkElement.rel = 'stylesheet';
+                linkElement.href = cssFilePath;
+                document.head.appendChild(linkElement);
+
+                // Wait for the CSS file to be fully loaded
+                await new Promise((resolve, reject) => {
+                    linkElement.onload = resolve;
+                    linkElement.onerror = reject;
+                });
             }
 
-            // Update the Nav-title 
-            const title = pageId.charAt(0).toUpperCase() +  pageId.slice(1);
-            navTitle.textContent = title;
+            // Load the corresponding page content
+            const response = await fetch(`/src/view/home_pages/${pageId}.php`);
+            const pageContent = await response.text();
+            mainContent.innerHTML = pageContent;
 
-            // Load the page content with timeout
-            const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 second timeout
-
-            const response = await fetch(`/src/view/home_pages/${pageId}.php`, {
-                signal: controller.signal,
-            });
-
-            clearTimeout(timeoutId);
-
-            if (response.ok) {
-                const content = await response.text();
-                mainContent.innerHTML = content;
-                // Save current page to session storage
-                sessionStorage.setItem("activeNavItem", `#${pageId}`);
-
-                // Fetch and execute the dynamic script file
-                const scriptPath = `/assets/js/${pageId}.js`;
-                const scriptResponse = await fetch(scriptPath);
-                if (scriptResponse.ok) {
-                    const scriptContent = await scriptResponse.text();
-                    dynamicScript.textContent = scriptContent;
-                } else {
-                    dynamicScript.textContent ="";
-                    console.warn(`Failed to load script: ${scriptPath}`);
-                }
-            } else {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
+            // Execute any dynamic scripts
+            dynamicScript.src = `/scripts/${pageId}.js`;
         } catch (error) {
-            console.error("Error loading page:", error);
-            mainContent.innerHTML = `
-                <div class="error-container">
-                    <h2>Error Loading Page</h2>
-                    <p>Sorry, we couldn't load the requested content. Please try again later.</p>
-                    <button onclick="loadPage('home')">Return to Home</button>
-                </div>`;
+            console.error('Error loading page:', error);
         }
     }
 
     // Add click event listeners with error handling
     navItems.forEach((item) => {
         item.addEventListener("click", (e) => {
-            console.log(barbtn.style.display);
+
             if (window.innerWidth <= 425) {
                 collapse();
             }

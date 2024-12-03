@@ -1,8 +1,21 @@
+:root {
+    --primary-color: #1DA1F2;
+    --background-color: #F7F9FC;
+    --text-color: #2D3748;
+    --text-light: #718096;
+    --white: #FFFFFF;
+    --border-color: #E2E8F0;
+    --tag-open-bg: #dcfce7;
+    --tag-open-text: #166534;
+    --tag-closed-bg: #fee2e2;
+    --tag-closed-text: #991b1b;
+}
 
 .container {
-    max-width: 1200px;
+    /* max-width: 1200px; */
     margin: 0 auto;
     padding: 20px;
+    padding-top: 30px;
 }
 
 /* Header Styles */
@@ -25,6 +38,7 @@
 .search-bar {
     display: flex;
     margin-bottom: 20px;
+    justify-content: center;
 }
 
 .search-bar input {
@@ -33,53 +47,41 @@
     font-size: 1em;
     border: 1px solid #ddd;
     border-radius: 4px 0 0 4px;
+    max-width: 700px;
 }
 
 .search-bar button {
     padding: 10px 15px;
-    background-color: #007bff;
+    background-color: var(--primary-color);
     color: white;
     border: none;
     border-radius: 0 4px 4px 0;
     cursor: pointer;
 }
 
-
-.tab {
-    padding: 10px 20px;
-    margin: 0 5px;
-    background-color: #f8f9fa;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.tab.active {
-    background-color: #007bff;
-    color: white;
-}
-
-/* Community Grid Styles */
 .community-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
+    gap: 25px;
+    justify-content: center;
+    max-width: 80vw;
+    margin: 0 auto;
 }
 
 /* Community Card Styles */
 .community-card {
     display: flex;
     flex-direction: column;
-    background: white;
+    background: var(--white);
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     height: 100%;  /* Ensure all cards are same height */
+    padding: 10px;
 }
 
 .community-card:hover {
-    transform: translateY(-5px);
+    /* transform: translateY(-5px); */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
@@ -87,40 +89,42 @@
     display: flex;
     align-items: center;
     padding: 15px;
-    background-color: #f8f9fa;
+    /* background-color: var(--background-color); */
 }
 
 
 .community-logo {
-    width: 60px;
-    height: 60px;
+    width: 80px;
+    height: 80px;
     object-fit: cover;
     border-radius: 50%;
     margin-right: 15px;
 }
 
 .community-info h2 {
-    margin: 0;
+    padding-inline: 15px;
     font-size: 1.2em;
 }
 
 .community-type {
-    font-size: 0.9em;
+    font-size: 0.8em;
     color: #666;
-    margin: 5px 0 0;
+    /* margin: 5px 0 0; */
+    padding: 10px 0 0 15px;
 }
 
 .card-body {
     flex: 1;  /* This will push the footer to the bottom */
     display: flex;
     flex-direction: column;
-    padding: 16px;
+    padding: 18px;
 }
 
 .community-description {
     flex: 1;  
-    color: #666;
-    margin-bottom: 16px;
+    margin-bottom: 16px;    
+    color: #4b5563;
+    font-size: 14px;
     line-height: 1.5;
 }
 
@@ -136,21 +140,26 @@
     display: flex;
     align-items: center;
     gap: 4px;
-    color: #666;
+    /* color: #666; */
+    font-size: 14px;
+    color: #6b7280;
 }
 
+
 .status {
-    font-size: 0.8em;
-    padding: 3px 8px;
-    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 8px 10px;
+    border-radius: 10px;
 }
 
 .status.open {
-    background: #e6f7e6;
-    color: #16a34a;
-    padding: 4px 8px;
-    border-radius: 12px;
-    font-size: 0.875rem;
+    background-color: var(--tag-open-bg);
+    color: var(--tag-open-text);
+}
+.status.close{
+    background-color: var(--tag-closed-bg);
+    color: var(--tag-closed-text);
 }
 
 .card-footer {
@@ -165,12 +174,13 @@
 
 .view-btn {
     width: 100%;
-    background: #0ea5e9;
+    background: var(--primary-color);
     color: white;
     border: none;
     border-radius: 6px;
     padding: 8px 16px;
-    font-weight: 500;
+    font-size: 14px;
+    font-weight: 600;
     cursor: pointer;
     transition: background-color 0.2s;
 }
