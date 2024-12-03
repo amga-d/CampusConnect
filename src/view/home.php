@@ -50,7 +50,7 @@ require_once __DIR__ . '/../controllers/homeController.php';
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#communities">
+                        <a href="#myCommunities">
                             <i class="fas fa-users"></i>
                             <span>My Communities</span>
                         </a>

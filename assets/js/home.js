@@ -73,7 +73,7 @@ function setupNavigation() {
     const pageStyles = {
         home: "/assets/styles/home_pages/home.css",
         discover: "/assets/styles/home_pages/discover.css",
-        communities: "/assets/styles/home_pages/communities.css",
+        myCommunities: "/assets/styles/home_pages/myCommunities.css",
         events: "/assets/styles/home_pages/events.css",
         news: "/assets/styles/home_pages/news.css",
         profile: "/assets/styles/home_pages/profile.css",
