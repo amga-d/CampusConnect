@@ -2,7 +2,7 @@
     require_once __DIR__ . '/../../controllers/home_pages/homeController.php';
 ?>
 
-li
+
 <div class="page-content">
 
 <main class="main-content">

@@ -3,156 +3,154 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Community Card</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Community Empty State</title>
     <style>
-        :root {
-    --primary-color: #3b82f6;
-    --text-color: #1f2937;
-    --bg-color: #ffffff;
-    --tag-open-bg: #dcfce7;
-    --tag-open-text: #166534;
-    --tag-closed-bg: #fee2e2;
-    --tag-closed-text: #991b1b;
-}
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
 
-body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    background-color: #f3f4f6;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    margin: 0;
-    padding: 20px;
-    box-sizing: border-box;
-}
+        .container {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+            animation: fadeIn 0.5s ease-out;
+        }
 
-.card {
-    background-color: var(--bg-color);
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 24px;
-    max-width: 400px;
-    width: 100%;
-}
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-.card-header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 16px;
-}
+        .icon {
+            background-color: #0070f3;
+            color: white;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 1.5rem;
+            position: relative;
+        }
 
-.profile-image {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-right: 16px;
-}
+        .icon::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            background-color: #0070f3;
+            opacity: 0.2;
+            border-radius: 50%;
+            filter: blur(10px);
+            z-index: -1;
+        }
 
-.community-name {
-    color: var(--text-color);
-    font-size: 24px;
-    margin: 0;
-}
+        h2 {
+            margin-bottom: 0.5rem;
+        }
 
-.community-description {
-    color: #4b5563;
-    font-size: 14px;
-    line-height: 1.5;
-    margin: 0 0 16px 0;
-}
+        p {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
 
-.community-info {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 16px;
-}
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
 
-.members {
-    font-size: 14px;
-    color: #6b7280;
-}
+        .btn {
+            padding: 0.75rem 1rem;
+            border-radius: 4px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s;
+        }
 
-.tag {
-    font-size: 12px;
-    font-weight: 600;
-    padding: 4px 8px;
-    border-radius: 9999px;
-}
+        .btn-primary {
+            background-color: #0070f3;
+            color: white;
+        }
 
-.tag.open {
-    background-color: var(--tag-open-bg);
-    color: var(--tag-open-text);
-}
+        .btn-primary:hover {
+            background-color: #0051a2;
+        }
 
-.tag.closed {
-    background-color: var(--tag-closed-bg);
-    color: var(--tag-closed-text);
-}
+        .btn-secondary {
+            background-color: transparent;
+            color: #0070f3;
+            border: 1px solid #0070f3;
+        }
 
-.open-button {
-    background-color: var(--primary-color);
-    color: white;
-    border: none;
-    border-radius: 4px;
-    padding: 8px 16px;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.2s;
-    width: 100%;
-}
+        .btn-secondary:hover {
+            background-color: #f0f7ff;
+        }
 
-.open-button:hover {
-    background-color: #2563eb;
-}
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            color: #666;
+        }
 
-.open-button:focus {
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
-}
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #333;
+        }
 
-@media (max-width: 480px) {
-    .card {
-        padding: 16px;
-    }
-
-    .card-header {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .profile-image {
-        margin-right: 0;
-        margin-bottom: 12px;
-    }
-
-    .community-info {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .members {
-        margin-bottom: 8px;
-    }
-}
+        @media (min-width: 480px) {
+            .buttons {
+                flex-direction: row;
+                justify-content: center;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="card">
-        <div class="card-header">
-            <img src="https://placeholder.com/150" alt="Tech Enthusiasts community profile" class="profile-image">
-            <h2 class="community-name">Tech Enthusiasts</h2>
+    <div class="container">
+        <div class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
         </div>
-        <p class="community-description">A group for tech lovers to discuss the latest trends and innovations.</p>
-        <div class="community-info">
-            <span class="members">Current Members: 42</span>
-            <span class="tag open">Open for Recruitment</span>
+        <h2>You are not part of any community</h2>
+        <p>Join and discover exciting communities or create your own to connect with like-minded individuals!</p>
+        <div class="buttons">
+            <a href="#" class="btn btn-primary">Discover Communities</a>
+            <a href="#" class="btn btn-secondary">Create New Community</a>
         </div>
-        <button class="open-button">Open</button>
+        <div class="stats">
+            <div>
+                <div class="stat-value">1.2k+</div>
+                <div>Active Communities</div>
+            </div>
+            <div>
+                <div class="stat-value">50k+</div>
+                <div>Members</div>
+            </div>
+        </div>
     </div>
 </body>
 </html>
+
