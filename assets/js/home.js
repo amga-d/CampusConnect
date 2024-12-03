@@ -12,19 +12,22 @@ document.addEventListener("DOMContentLoaded", function () {
     setupNavigation();
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-    const userMenuBtn = document.getElementById('userMenuBtn');
-    const userDropdown = document.getElementById('userDropdown');
+document.addEventListener("DOMContentLoaded", function () {
+    const userMenuBtn = document.getElementById("userMenuBtn");
+    const userDropdown = document.getElementById("userDropdown");
 
-    userMenuBtn.addEventListener('click', function(event) {
+    userMenuBtn.addEventListener("click", function (event) {
         event.stopPropagation();
-        userDropdown.classList.toggle('show');
+        userDropdown.classList.toggle("show");
     });
 
     // Close the dropdown when clicking outside
-    document.addEventListener('click', function(event) {
-        if (!userMenuBtn.contains(event.target) && !userDropdown.contains(event.target)) {
-            userDropdown.classList.remove('show');
+    document.addEventListener("click", function (event) {
+        if (
+            !userMenuBtn.contains(event.target) &&
+            !userDropdown.contains(event.target)
+        ) {
+            userDropdown.classList.remove("show");
         }
     });
 });
@@ -33,7 +36,7 @@ const sidebar = document.getElementById("sidebar");
 const toggleBtn = document.getElementById("toggleSidebar");
 const toggleIcon = toggleBtn.querySelector("i");
 const barbtn = document.getElementById("bar");
-const navTitle =document.getElementById("nav-title");
+const navTitle = document.getElementById("nav-title");
 
 collapse();
 
@@ -58,7 +61,9 @@ function setupNavigation() {
         document.querySelector(".layout").appendChild(mainContent);
     }
 
-    const navItems = document.querySelectorAll(".nav-item a, .profile-link, .profile-link2");
+    const navItems = document.querySelectorAll(
+        ".nav-item a, .profile-link, .profile-link2"
+    );
     const dynamicStyles = document.getElementById("dynamic-styles");
     const dynamicScript = document.createElement("script");
     document.body.appendChild(dynamicScript);
@@ -72,31 +77,51 @@ function setupNavigation() {
         events: "/assets/styles/home_pages/events.css",
         news: "/assets/styles/home_pages/news.css",
         profile: "/assets/styles/home_pages/profile.css",
-        createCommunity : "/assets/styles/home_pages/newcommunity.css"
+        createCommunity: "/assets/styles/home_pages/newcommunity.css",
     };
 
     // Improved loadPage function with better error handling
     async function loadPage(pageId) {
         try {
+            // Hide the main content to prevent FOUC
+            mainContent.style.visibility = 'hidden';
+
             // Remove 'active' class from all nav items
             navItems.forEach((item) => {
                 const parent = item.parentElement;
-                if (parent.classList.contains('nav-item')) {
-                    parent.classList.remove('active');
+                if (parent.classList.contains("nav-item")) {
+                    parent.classList.remove("active");
                 }
             });
 
             // Add 'active' class to the current nav item
-            const currentNavItem = document.querySelector(`.nav-item a[href="#${pageId}"]`);
+            const currentNavItem = document.querySelector(
+                `.nav-item a[href="#${pageId}"]`
+            );
             if (currentNavItem) {
-                currentNavItem.parentElement.classList.add('active');
+                currentNavItem.parentElement.classList.add("active");
             }
+
+            // Update the Nav-title
+            const title = pageId.charAt(0).toUpperCase() + pageId.slice(1);
+            navTitle.textContent = title;
+
+
+                        // Remove previously added CSS files
+                        const existingLinks = document.querySelectorAll('link[rel="stylesheet"]');
+                        existingLinks.forEach((link) => {
+                            if (link.href.includes('/assets/styles/home_pages/')) {
+                                link.remove();
+                            }
+                        });
+            
 
             // Load the corresponding CSS file
             const cssFilePath = pageStyles[pageId];
             if (cssFilePath) {
-                const linkElement = document.createElement('link');
-                linkElement.rel = 'stylesheet';
+                const linkElement = document.createElement("link");
+                linkElement.id = "dynamicStyles";
+                linkElement.rel = "stylesheet";
                 linkElement.href = cssFilePath;
                 document.head.appendChild(linkElement);
 
@@ -114,15 +139,18 @@ function setupNavigation() {
 
             // Execute any dynamic scripts
             dynamicScript.src = `/scripts/${pageId}.js`;
+
+            // Show the main content after everything is loaded
+            mainContent.style.visibility = 'visible';
         } catch (error) {
-            console.error('Error loading page:', error);
+            console.error("Error loading page:", error);
+            mainContent.style.visibility = 'visible'; // Ensure content is visible in case of error
         }
     }
 
     // Add click event listeners with error handling
     navItems.forEach((item) => {
         item.addEventListener("click", (e) => {
-
             if (window.innerWidth <= 425) {
                 collapse();
             }
