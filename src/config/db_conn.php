@@ -1,9 +1,15 @@
 <?php
+
+require_once realpath(__DIR__ . "/../../vendor/autoload.php");
+use Dotenv\Dotenv;
+
+$dotenv = Dotenv::createImmutable(__DIR__ . "/../../");
+$dotenv->load();
 // Move credentials to a separate config file that's not in version control
-$db_server = "localhost";
-$db_user = "root";
-$db_pass = "";
-$db_name = "campusconnect";
+$db_server = $_ENV['MYSQL_DB_HOST'];
+$db_user = $_ENV['MYSQL_DB_USER'];
+$db_pass = $_ENV['MYSQL_DB_PASSWORD'];
+$db_name = $_ENV['MYSQL_DB_NAME'];
 
 function connect_db() {
     global $db_server, $db_user, $db_pass, $db_name;
