@@ -17,9 +17,16 @@ CREATE TABLE Users (
     password VARCHAR(255) NOT NULL,
     profile_image VARCHAR(255),
     bio TEXT,
+    birthdate DATE,
+    gender ENUM('Male', 'Female') NOT NULL;
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 ```
+
+-- To add the new columns queries:-
+-- ALTER TABLE Users
+-- ADD COLUMN birthdate DATE,
+-- ADD COLUMN gender ENUM('Male', 'Female') NOT NULL;
 
 ---
 
@@ -36,8 +43,6 @@ CREATE TABLE Communities (
     FOREIGN KEY (created_by) REFERENCES Users(user_id)
 );
 ```
-
-
 
 ---
 
@@ -106,5 +111,4 @@ CREATE TABLE Announcements (
 
 ---
 
-Alter TABLE communities ADD community_type varchar(50);
-ALTER TABLE communities change requirement_status recruitment_status enum('open','closed');
+Let me know if you'd like additional queries, such as **insert**, **select**, or **join** examples!
