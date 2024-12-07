@@ -13,6 +13,7 @@ require_once __DIR__ . '/../controllers/homeController.php';
     <title>CampusConnect</title>
     <link rel="stylesheet" href="/assets/styles/home_sidebar.css" />
     <link id="dynamic-styles" rel="stylesheet" href="" />
+    <script src="/assets/js/home.js"></script>
 </head>
 
 <body>
@@ -140,7 +141,7 @@ require_once __DIR__ . '/../controllers/homeController.php';
         </div>
     </div>
 
-    <script src="/assets/js/home.js"></script>
+    
 </body>
 
 </html>
