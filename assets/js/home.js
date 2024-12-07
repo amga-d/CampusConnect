@@ -77,15 +77,15 @@ function setupNavigation() {
         createCommunity: "/assets/styles/home_pages/newcommunity.css",
     };
 
-    const pageScript ={
-        home : "",
+    const pageScript = {
+        home: "",
         discover: "",
         myCommunities: "",
         events: "/assets/js/events.js",
         news: "/assets/js/events.js",
-        profile: "",
+        profile: "/assets/js/profile.js",
         createCommunity: "",
-    }
+    };
     // Improved loadPage function with better error handling
     async function loadPage(pageId) {
         try {
@@ -124,10 +124,12 @@ function setupNavigation() {
 
             // Remove previously added js file
             const existingScript = document.getElementById("dynamic-script");
-            if(existingScript !=null && existingScript.src.includes("/assets/js/")){
+            if (
+                existingScript != null &&
+                existingScript.src.includes("/assets/js/")
+            ) {
                 existingScript.remove();
             }
-
 
             // Load the corresponding CSS file
             const cssFilePath = pageStyles[pageId];
@@ -145,26 +147,21 @@ function setupNavigation() {
                 });
             }
 
-            //load the corresponding js file
-            const scriptPath =pageScript[pageId];
-            if (scriptPath) {
-                const dynamicScript = document.createElement("script");
-                dynamicScript.src = scriptPath;
-                dynamicScript.id='dynamic-script';
-                document.body.appendChild(dynamicScript);
-
-                // Wait for the js file to be fully loaded
-                await new Promise((resolve) => {
-                    dynamicScript.onload = resolve;
-                    dynamicScript.onerror = resolve;
-                });
-            }
-
             // Load the corresponding page content
             const response = await fetch(`/src/view/home_pages/${pageId}.php`);
             const pageContent = await response.text();
             mainContent.innerHTML = pageContent;
 
+            //load the corresponding js file
+            const scriptPath = pageScript[pageId];
+            if (scriptPath) {
+                const dynamicScript = document.createElement("script");
+                dynamicScript.src = scriptPath;
+                dynamicScript.id = "dynamic-script";
+                document.body.appendChild(dynamicScript);
+
+                // Wait for the js file to be fully loaded
+            }
             // Show the main content after everything is loaded
             mainContent.style.visibility = "visible";
         } catch (error) {

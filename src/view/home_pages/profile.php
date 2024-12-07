@@ -1,15 +1,17 @@
 <?php
-require_once (__DIR__."/../../controllers/home_pages/profileController.php")
+require_once(__DIR__ . "/../../controllers/home_pages/profileController.php");
+$controller = new ProfileController();
+$userProfile = $controller->getProfile();
 ?>
 <div class="page-content">
     <div class="container">
         <div class="profile-card">
             <div class="profile-sidebar">
                 <div class="profile-avatar">
-                    <img src="<?php echo isset($user['profile_image']) ? htmlspecialchars($user['profile_image']) : '/assets/images/default-avatar.png'; ?>" alt="Profile Picture">
+                    <img src="<?php echo isset($userProfile['profile_image']) ? htmlspecialchars($userProfile['profile_image']) : '/assets/img/home/default_profile.png'; ?>" alt="Profile Picture">
                 </div>
                 <div class="profile-sidebar-content">
-                    <h1 class="name"><?php echo htmlspecialchars($user['name'] ?? 'No Name'); ?></h1>
+                    <h1 class="name"><?php echo htmlspecialchars($userProfile['name'] ?? 'No Name'); ?></h1>
                     <p class="profile-title">Student</p>
                     <div class="social-links">
                         <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
@@ -32,35 +34,35 @@ require_once (__DIR__."/../../controllers/home_pages/profileController.php")
                         <i class="info-icon fas fa-envelope"></i>
                         <div class="info-text">
                             <p class="info-label">Email</p>
-                            <p><?php echo htmlspecialchars($user['email'] ?? 'No email'); ?></p>
+                            <p><?php echo htmlspecialchars($userProfile['email'] ?? 'No email'); ?></p>
                         </div>
                     </div>
                     <div class="info-item">
                         <i class="info-icon fas fa-male"></i>
                         <div class="info-text">
                             <p class="info-label">Gender</p>
-                            <p><?php echo htmlspecialchars($user['gender'] ?? 'Not specified'); ?></p>
+                            <p><?php echo htmlspecialchars($userProfile['gender'] ?? 'Not specified'); ?></p>
                         </div>
                     </div>
                     <div class="info-item">
                         <i class="info-icon fas fa-birthday-cake"></i>
                         <div class="info-text">
                             <p class="info-label">Birthday</p>
-                            <p><?php echo isset($user['birthdate']) ? date('Y/m/d', strtotime($user['birthdate'])) : 'Not set'; ?></p>
+                            <p><?php echo isset($userProfile['birthdate']) ? date('Y/m/d', strtotime($userProfile['birthdate'])) : 'Not set'; ?></p>
                         </div>
                     </div>
                     <div class="info-item">
                         <i class="info-icon fas fa-calendar-alt"></i>
                         <div class="info-text">
                             <p class="info-label">Joined CampusConnect</p>
-                            <p><?php echo isset($user['created_at']) ? date('F Y', strtotime($user['created_at'])) : 'Unknown'; ?></p>
+                            <p><?php echo isset($userProfile['created_at']) ? date('F Y', strtotime($userProfile['created_at'])) : 'Unknown'; ?></p>
                         </div>
                     </div>
                 </div>
 
                 <section class="bio-section">
                     <h2 class="bio-title">About Me</h2>
-                    <p><?php echo htmlspecialchars($user['bio'] ?? 'No bio yet.'); ?></p>
+                    <p><?php echo htmlspecialchars($userProfile['bio'] ?? 'No bio yet.'); ?></p>
                 </section>
             </div>
         </div>
@@ -70,11 +72,10 @@ require_once (__DIR__."/../../controllers/home_pages/profileController.php")
     <div id="edit-profile-overlay" class="edit-profile-overlay">
         <div class="edit-profile-modal">
             <span class="modal-close">&times;</span>
-            <form class="edit-form" method="POST" action="/update-profile" enctype="multipart/form-data">
-            <form class="edit-form">
+            <form class="edit-form" method="POST" action="/update-profile">
                 <div class="edit-form-sidebar">
                     <div class="profile-avatar">
-                        <img src="<?php echo $userProfile['profile_image'] ?? '/api/placeholder/250/250'; ?>" alt="Profile Picture">
+                        <img src="<?php echo $userProfile['profile_image'] ?? '/assets/img/home/default_profile.png'; ?>" alt="Profile Picture">
                     </div>
                     <div class="profile-image-upload">
                         <input type="file" id="profile-image" name="profile_image" accept="image/*">
@@ -91,8 +92,8 @@ require_once (__DIR__."/../../controllers/home_pages/profileController.php")
                     <div class="form-group">
                         <label for="gender">Gender</label>
                         <select id="gender" name="gender">
-                            <option value="Male" <?php echo $userProfile['gender'] === 'Male' ? 'selected' : ''; ?>>Male</option>
-                            <option value="Female" <?php echo $userProfile['gender'] === 'Female' ? 'selected' : ''; ?>>Female</option>
+                            <option value="Male" <?php echo $userProfile['gender'] === 'MALE' ? 'selected' : ''; ?>>Male</option>
+                            <option value="Female" <?php echo $userProfile['gender'] === 'FEMALE' ? 'selected' : ''; ?>>Female</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -111,8 +112,5 @@ require_once (__DIR__."/../../controllers/home_pages/profileController.php")
             </form>
         </div>
     </div>
-    <script src="/assets/js/profile.js"></script>
-    <script class="dynamic-script"></script>
-
-  </body>
+    </body>
 </div>

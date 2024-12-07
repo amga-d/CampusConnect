@@ -1,9 +1,7 @@
 <?php
 require_once __DIR__ . '/../../model/profileModel.php';
-require_once __DIR__ . '/../../config/db_conn.php';
 
 class ProfileController {
-    private $db;
     private const ALLOWED_TYPES = [
         'image/jpeg' => 'jpg',
         'image/png'  => 'png',
@@ -15,8 +13,8 @@ class ProfileController {
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
-        $this->db = connect_db();
     }
+
 
     public function getProfile() {
         if (!isset($_SESSION['user_id'])) {
@@ -103,7 +101,7 @@ class ProfileController {
             throw new Exception('File size exceeds limit');
         }
 
-        $uploadDir = __DIR__ . '/../../public/uploads/profile_images/';
+        $uploadDir = __DIR__ . '/../../../public/uploads/profile_images/';
         if (!file_exists($uploadDir)) {
             mkdir($uploadDir, 0755, true);
         }
@@ -116,14 +114,9 @@ class ProfileController {
             throw new Exception('Failed to upload file');
         }
 
-        return 'uploads/profile_images/' . $fileName;
+        return '/public/uploads/profile_images/' . $fileName;
     }
 
-    public function __destruct() {
-        if ($this->db) {
-            $this->db->close();
-        }
-    }
 }
 
 // Handle AJAX requests
@@ -135,3 +128,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     echo json_encode($response);
     exit();
 }
+
