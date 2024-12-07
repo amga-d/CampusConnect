@@ -64,9 +64,6 @@ function setupNavigation() {
     const navItems = document.querySelectorAll(
         ".nav-item a, .profile-link, .profile-link2"
     );
-    const dynamicStyles = document.getElementById("dynamic-styles");
-    const dynamicScript = document.createElement("script");
-    document.body.appendChild(dynamicScript);
 
     // Style mapping for each page
 
@@ -80,11 +77,20 @@ function setupNavigation() {
         createCommunity: "/assets/styles/home_pages/newcommunity.css",
     };
 
+    const pageScript ={
+        home : "",
+        discover: "",
+        myCommunities: "",
+        events: "/assets/js/events.js",
+        news: "/assets/js/events.js",
+        profile: "",
+        createCommunity: "",
+    }
     // Improved loadPage function with better error handling
     async function loadPage(pageId) {
         try {
             // Hide the main content to prevent FOUC
-            mainContent.style.visibility = 'hidden';
+            mainContent.style.visibility = "hidden";
 
             // Remove 'active' class from all nav items
             navItems.forEach((item) => {
@@ -106,15 +112,22 @@ function setupNavigation() {
             const title = pageId.charAt(0).toUpperCase() + pageId.slice(1);
             navTitle.textContent = title;
 
+            // Remove previously added CSS files
+            const existingLinks = document.querySelectorAll(
+                'link[rel="stylesheet"]'
+            );
+            existingLinks.forEach((link) => {
+                if (link.href.includes("/assets/styles/home_pages/")) {
+                    link.remove();
+                }
+            });
 
-                        // Remove previously added CSS files
-                        const existingLinks = document.querySelectorAll('link[rel="stylesheet"]');
-                        existingLinks.forEach((link) => {
-                            if (link.href.includes('/assets/styles/home_pages/')) {
-                                link.remove();
-                            }
-                        });
-            
+            // Remove previously added js file
+            const existingScript = document.getElementById("dynamic-script");
+            if(existingScript !=null && existingScript.src.includes("/assets/js/")){
+                existingScript.remove();
+            }
+
 
             // Load the corresponding CSS file
             const cssFilePath = pageStyles[pageId];
@@ -132,19 +145,31 @@ function setupNavigation() {
                 });
             }
 
+            //load the corresponding js file
+            const scriptPath =pageScript[pageId];
+            if (scriptPath) {
+                const dynamicScript = document.createElement("script");
+                dynamicScript.src = scriptPath;
+                dynamicScript.id='dynamic-script';
+                document.body.appendChild(dynamicScript);
+
+                // Wait for the js file to be fully loaded
+                await new Promise((resolve) => {
+                    dynamicScript.onload = resolve;
+                    dynamicScript.onerror = resolve;
+                });
+            }
+
             // Load the corresponding page content
             const response = await fetch(`/src/view/home_pages/${pageId}.php`);
             const pageContent = await response.text();
             mainContent.innerHTML = pageContent;
 
-            // Execute any dynamic scripts
-            dynamicScript.src = `/scripts/${pageId}.js`;
-
             // Show the main content after everything is loaded
-            mainContent.style.visibility = 'visible';
+            mainContent.style.visibility = "visible";
         } catch (error) {
             console.error("Error loading page:", error);
-            mainContent.style.visibility = 'visible'; // Ensure content is visible in case of error
+            mainContent.style.visibility = "visible"; // Ensure content is visible in case of error
         }
     }
 

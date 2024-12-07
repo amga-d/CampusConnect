@@ -1,8 +1,9 @@
 <?php
 // profileModel.php
-require_once __DIR__ . '/../config/db_connection.php';
+require_once __DIR__ . '/../config/db_conn.php';
 
-function getUserProfile($userId) {
+function getUserProfile($userId)
+{
     $conn = connect_db();
 
     try {
@@ -11,18 +12,22 @@ function getUserProfile($userId) {
         $stmt->execute();
         $result = $stmt->get_result();
         $profile = $result->fetch_assoc();
-        
-        $stmt->close();
-        $conn->close();
-        
         return $profile;
     } catch (Exception $e) {
         error_log('Get profile error: ' . $e->getMessage());
         return false;
+    }finally{
+        if (isset($stmt)) {
+            $stmt->close();
+        }
+        if (isset($conn)) {
+            $conn->close();
+        }
     }
 }
 
-function updateUserProfile($userId, $email, $gender, $birthday, $bio, $profileImage = null) {
+function updateUserProfile($userId, $email, $gender, $birthday, $bio, $profileImage = null)
+{
     $conn = connect_db();
 
     try {
@@ -31,21 +36,21 @@ function updateUserProfile($userId, $email, $gender, $birthday, $bio, $profileIm
         $stmt->bind_param("si", $email, $userId);
         $stmt->execute();
         $result = $stmt->get_result();
-        
+
         if ($result->num_rows > 0) {
             throw new Exception('Email is already taken');
         }
-        
+
         // Prepare base update query
         $updateQuery = "UPDATE Users SET 
             email = ?, 
             gender = ?, 
             birthdate = ?, 
             bio = ?";
-        
+
         $params = [$email, $gender, $birthday, $bio];
         $types = "ssss";
-        
+
         // Add profile image to update if provided
         if ($profileImage) {
             $updateQuery .= ", profile_image = ?";
@@ -66,12 +71,17 @@ function updateUserProfile($userId, $email, $gender, $birthday, $bio, $profileIm
             throw new Exception($conn->error);
         }
 
-        $stmt->close();
-        $conn->close();
         return true;
-
     } catch (Exception $e) {
         error_log('Profile update model error: ' . $e->getMessage());
         return false;
+    }
+    finally{
+        if (isset($stmt)) {
+            $stmt->close();
+        }
+        if (isset($conn)) {
+            $conn->close();
+        }
     }
 }

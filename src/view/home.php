@@ -114,7 +114,7 @@ require_once __DIR__ . '/../controllers/homeController.php';
                             <i class="fas fa-envelope"></i>
                             <span class="messages-badge">5</span>
                         </button>
-                        <div class="user-menu">
+                        <div  class="user-menu">
                             <button class="user-menu-btn" id="userMenuBtn">
                                 <div class="user-avatar">
                                     <img src="/assets/img/home/default_profile.png" alt="User Avatar">
@@ -141,7 +141,6 @@ require_once __DIR__ . '/../controllers/homeController.php';
     </div>
 
     <script src="/assets/js/home.js"></script>
-    <script class="dynamic-script"></script>
 </body>
 
 </html>

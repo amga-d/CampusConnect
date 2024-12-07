@@ -1,3 +1,6 @@
+<?php
+require_once (__DIR__."/../../controllers/home_pages/profileController.php")
+?>
 <div class="page-content">
     <div class="container">
         <div class="profile-card">
