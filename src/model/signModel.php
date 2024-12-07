@@ -9,6 +9,7 @@ function isEmailUniqu($useremail)
 {
     $conn = connect_db();
     $count = null;
+    
     $stmt = $conn->prepare("SELECT COUNT(`email`) FROM `users` WHERE email = ?");
     $stmt->bind_param("s", $useremail);
     $stmt->execute();
@@ -55,24 +56,19 @@ function authenticateLogin($useremail, $password)
 {
     try {
         $conn = connect_db();
-        $stmt = $conn->prepare("SELECT password FROM `users` where email = ? ");
-        $stmt->bind_param("s", $useremail);
-        $stmt->execute();
+        $stmt = $conn->prepare("SELECT password FROM `users` where email = ?");
+        $stmt->bind_param("s", $useremail,);
 
         if (!$stmt->execute()) {
             throw new Exception("Query execution failed");
         }
-
-        $result = $stmt->get_result();
-        if ($result->num_rows > 0) {
-            $userdata = $result->fetch_assoc();
-            if (password_verify($password, $userdata["password"])) {
-                $user_id = get_user_id($useremail);
-                if (!empty($user_id)) {
-                    return $user_id;
-                }
-            }
+        $stmt ->bind_result($hasedPassword);
+        if ($stmt->fetch()){
+            if(password_verify($password, $hasedPassword)){
+                $user_id = get_user_id(useremail: $useremail);
+                return $user_id;
         }
+    }
         return false; 
     } catch (Exception $e) {
         error_log("Error creating a new account : " . $e->getMessage());
@@ -98,6 +94,7 @@ function get_user_id($useremail)
         if (!$stmt->execute()) {
             throw new Exception("Query execution failed");
         }
+
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
             $userdata = $result->fetch_assoc();
