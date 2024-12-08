@@ -115,3 +115,31 @@ function get_user_id($useremail)
         }
     }
 }
+
+function is_addtional_info($user_id){
+    try {
+        $conn = connect_db();
+        $stmt = $conn->prepare("SELECT `birthdate` FROM `users` WHERE `user_id` = ? AND `birthdate` IS NOT NULL");
+        $stmt->bind_param("i", $user_id);
+
+        if (!$stmt->execute()) {
+            throw new Exception("Query Execution Failed");
+        }
+        $result = $stmt->get_result();
+        if ($result->num_rows > 0) { 
+            return true;
+        }
+        return false;
+
+
+    } catch (Exception $e) {
+        error_log(message: "Check addtional information failed" . $e->getMessage());
+    }finally {
+        if (isset($conn)) {
+            $conn->close();
+        }
+        if (isset($stmt)) {
+            $stmt->close();
+        }
+    }
+}

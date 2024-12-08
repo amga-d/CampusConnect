@@ -85,3 +85,52 @@ function updateUserProfile($userId, $email, $gender, $birthday, $bio, $profileIm
         }
     }
 }
+
+function setUserProfile($userId, $gender,$bio, $birthday, $profileImage = null){
+    $conn = connect_db();
+
+    try{
+        // Prepare base update query
+        $updateQuery =" UPDATE users set 
+        gender = ?,
+        birthdate = ?,
+        bio = ?";
+
+        $params = [$gender, $birthday, $bio];
+        $types = "sss";
+
+        if($profileImage){
+            $updateQuery .= ", profile_image = ?";
+            $params[] = $profileImage;
+            $types .= "s";
+        }
+        
+        $updateQuery .= " WHERE user_id = ?";
+        $params[] = $userId;
+        $types .= "i";
+
+        // Prepare and execute statement
+        $stmt = $conn->prepare( $updateQuery );
+        $stmt->bind_param($types, ...$params);
+        $result = $stmt->execute();
+
+        if (!$result) {
+            echo"". $conn->error;
+            throw new Exception($conn->error);
+        }
+        return true;
+
+    }catch (Exception $e) {
+        error_log('Profile update model error: ' . $e->getMessage());
+        echo"". $e->getMessage();
+        return false;
+    }
+    finally{
+        if (isset($stmt)) {
+            $stmt->close();
+        }
+        if (isset($conn)) {
+            $conn->close();
+        }
+    }
+}

@@ -72,7 +72,7 @@ $userProfile = $controller->getProfile();
     <div id="edit-profile-overlay" class="edit-profile-overlay">
         <div class="edit-profile-modal">
             <span class="modal-close">&times;</span>
-            <form class="edit-form" method="POST" action="/update-profile">
+            <form class="edit-form" method="POST" action="/update-profile" enctype="multipart/form-data">
                 <div class="edit-form-sidebar">
                     <div class="profile-avatar">
                         <img src="<?php echo $userProfile['profile_image'] ?? '/assets/img/home/default_profile.png'; ?>" alt="Profile Picture">

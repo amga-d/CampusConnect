@@ -44,7 +44,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         if(!empty($user_id)){
             $_SESSION["user_id"] = $user_id;
             $useremail= $password="";
-            header("Location: /index.php");
+            if(is_addtional_info($user_id)){
+                header("Location: /index.php");
+            }
+            else{
+                header("Location: /src/view/auth/additionalInformation.php");
+            }
             exit();
         }
         else{

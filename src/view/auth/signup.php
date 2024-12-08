@@ -13,7 +13,7 @@ require_once __DIR__ . '/../../controllers/auth/signupController.php';
 <body>
 
 
-  <form class="form "
+  <form class="form"id="signUpForm"
     action="<?php htmlspecialchars($_SERVER['PHP_SELF']) ?> "
     method="post">
 
@@ -165,30 +165,6 @@ require_once __DIR__ . '/../../controllers/auth/signupController.php';
 <script>
   document.getElementById('googleButton').addEventListener('click', function(event) {
     event.preventDefault(); // Prevent form submission
-  });
-
-  document.getElementById('inputForm').addEventListener('submit', function(event) {
-    event.preventDefault();  // Prevent default form submission
-    
-    let formData = new FormData(this);  // Collect form data
-    fetch('/../../controllers/auth/signupController.php', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            // Show modal if signup is successful
-            document.getElementById('additionalInfoModal').style.display = 'block';
-        } else {
-            // alert(data.message);  // Show any error message returned from the server
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('An error occurred while submitting the form.');
-    });
-
   });
 </script>
 

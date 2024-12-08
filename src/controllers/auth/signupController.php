@@ -5,6 +5,7 @@ require_once __DIR__ . '/../../model/signModel.php';
 session_start();
 
 if (isset($_SESSION["user_id"])) {
+
   header("Location: /index.php");
   exit();
 }
@@ -51,19 +52,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if ($valid_information) {
     $user_id = signup($username, $useremail, $password);
 
-    if (!empty($user_id)) {
+    if(!empty($user_id)){
       $_SESSION["user_id"] = $user_id;
-      $response['success'] = true;
-      $response['message'] = 'Sign up successful. Please complete your profile.';
-    } else {
-      $response['success'] = false;
-      $response['message'] = 'Something went wrong.';
+      $_SESSION["additonalInfo"] = false;
+      header("Location: /src/view/auth/additionalInformation.php");
+      $useremail = $username = $password = "";
+      exit();
     }
-  } else {
-    $response['success'] = false;
-    $response['message'] = 'Please fix the errors in the form.';
+    else{
+      echo "Something went wrong";
+    }
   }
-
-  // Return the response as JSON
-   json_encode($response);
 }

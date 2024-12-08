@@ -89,7 +89,7 @@ require_once __DIR__ . '/../controllers/homeController.php';
                             <img src=<?=htmlspecialchars($userProfile ?? "/assets/img/home/default_profile.png")?> alt="Profile">
                         </div>
                         <div class="profile-info">
-                            <span class="profile-name"><?= $username?></span>
+                            <span class="profile-name"><?= htmlspecialchars($username)?></span>
                         </div>
                         <i class="fas fa-chevron-right profile-arrow"></i>
                     </a>
