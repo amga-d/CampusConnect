@@ -36,6 +36,9 @@ document.addEventListener("DOMContentLoaded", function () {
     collapse();
 
     function collapse() {
+        if (window.innerWidth > 1100) {
+            return; // Do not collapse if screen width is greater than 1024px
+        }
         sidebar.classList.toggle("collapsed");
 
         if (sidebar.classList.contains("collapsed")) {
@@ -46,6 +49,15 @@ document.addEventListener("DOMContentLoaded", function () {
             toggleIcon.classList.add("fa-chevron-left");
         }
     }
+
+    // Add a resize event listener to ensure sidebar is expanded on large screens
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 1100 && sidebar.classList.contains('collapsed')) {
+            sidebar.classList.remove('collapsed');
+            toggleIcon.classList.remove("fa-chevron-right");
+            toggleIcon.classList.add("fa-chevron-left");
+        }
+    });
 
     function setupNavigation() {
         // Create main content container if it doesn't exist

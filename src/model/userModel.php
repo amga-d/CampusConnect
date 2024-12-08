@@ -1,9 +1,8 @@
 <?php
-session_start();    
+
 require_once __DIR__ . '/../config/db_conn.php';
 
-function getUserName(){
-    $user_id = $_SESSION["user_id"];
+function getUserName($user_id){
     try{
 
     
@@ -33,8 +32,7 @@ function getUserName(){
 }
 
 
-function getUserProfile(){
-    $user_id = $_SESSION["user_id"];
+function getUserProfile($user_id){
     try{
         $conn = connect_db();
         $stmt = $conn->prepare("SELECT `profile_image` FROM `users` WHERE `user_id` = ?");

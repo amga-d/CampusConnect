@@ -8,7 +8,7 @@ if (!check_login()) {
     header("Location: /src/view/auth/signin.php");
     exit();
 }
-
-$username = getUserName();
-$userProfile =getUserProfile();
+$user_id = $_SESSION["user_id"];
+$username = getUserName($user_id);
+$userProfile = getUserProfile($user_id);
 ?>
