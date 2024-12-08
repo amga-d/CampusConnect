@@ -24,10 +24,10 @@ document.addEventListener("DOMContentLoaded", function () {
     // Sidebar toggle functionality
 
     barbtn.addEventListener("click", function () {
-        // collapse();
+        collapse();
     });
     toggleBtn.addEventListener("click", function () {
-        // collapse();
+        collapse();
     });
 
     // Navigation functionality
