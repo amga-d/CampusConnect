@@ -1,7 +1,19 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 require_once __DIR__ . '/../../controllers/home_pages/communityDashboardController.php';
 ?>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
 <div class="page-content">
     <?php if ($error): ?>
         <div class="error-message"><?= htmlspecialchars($error) ?></div>
@@ -314,3 +326,5 @@ async function manageMember(communityId, memberId, action) {
     background: #0056b3;
 }
 </style>
+</body>
+</html>
