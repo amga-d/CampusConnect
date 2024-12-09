@@ -13,8 +13,7 @@
 
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<?php include(__DIR__."/component/header.php");?>
     <title>CampusConnect - Discover Your Community</title>
     <link rel="stylesheet" href="/assets/styles/landingpage.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -28,8 +27,8 @@
             </div>
             <div class="nav-links">
                 <!-- <a href="#about" class="about">About</a> -->
-                <a href="/src/view/auth/signin.php" class="nav-sign">Sign Up</a>
-                <a href="/src/view/auth/signup.php" class="nav-log"> Login </a>
+                <a href="/src/view/auth/signup.php" class="nav-sign">Sign Up</a>
+                <a href="/src/view/auth/signin.php" class="nav-log"> Login </a>
             </div>
         </nav>
     </header>
@@ -40,7 +39,7 @@
                 <div class="hero-text">
                     <h1>Discover Your Campus Community</h1>
                     <p>Connect with organizations, stay informed, and make the most of your university experience.</p>
-                    <a href="../user_service/auth/signup.php" class="cta-button">Get Started</a>
+                    <a href="/src/view/auth/signup.php" class="cta-button">Get Started</a>
                 </div>
                 <div class="hero-image">
                     <img src="/assets/img/landing/hero.jpeg" alt="Campus life">

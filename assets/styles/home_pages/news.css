@@ -8,20 +8,14 @@
     --hover-accent-color: #0ea5e9;
 }
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
 
-body {
+
+.app-container {
     font-family: 'Arial', sans-serif;
     background-color: var(--secondary-color);
     color: var(--text-color);
     line-height: 1.6;
-}
 
-.app-container {
     max-width: 700px;
     margin: 0 auto;
     background-color: var(--primary-color);

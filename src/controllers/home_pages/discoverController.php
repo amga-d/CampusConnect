@@ -3,7 +3,7 @@ require_once __DIR__ . '/../../model/communitiesModel.php';
 
 // Initialize an array to store communities data
 $communities = [];
-$error = null;
+
 
 try {
     $result = getCommunities();
@@ -20,6 +20,5 @@ try {
     }
     
 } catch (Exception $e) {
-    $error = "An error occurred while loading communities. Please try again later.";
     error_log("Discover page error: " . $e->getMessage());
 }

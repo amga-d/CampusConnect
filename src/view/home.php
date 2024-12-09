@@ -1,19 +1,19 @@
 <?php
-    require_once __DIR__ . '/../controllers/homeController.php';
+require_once __DIR__ . '/../controllers/homeController.php';
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CampusConnect Dashboard</title>
-    <link rel="stylesheet" href="/assets/styles/home_sidebar.css" />
+    <?php include(__DIR__."/component/header.php");?>
     <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <title>CampusConnect</title>
+    <link rel="stylesheet" href="/assets/styles/home_sidebar.css" />
     <link id="dynamic-styles" rel="stylesheet" href="" />
+    <script src="/assets/js/home.js"></script>
 </head>
 
 <body>
@@ -51,7 +51,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#communities">
+                        <a href="#myCommunities">
                             <i class="fas fa-users"></i>
                             <span>My Communities</span>
                         </a>
@@ -72,14 +72,24 @@
 
                 <div class="nav-divider"></div>
 
+                <div tabindex="0" class="new-community-link">
+                    <a href="#newcommunity" class="plusButton">
+                        <svg class="plusIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
+                            <g mask="url(#mask0_21_345)">
+                                <path d="M13.75 23.75V16.25H6.25V13.75H13.75V6.25H16.25V13.75H23.75V16.25H16.25V23.75H13.75Z"></path>
+                            </g>
+                        </svg>
+                    </a>
+                    <span> New Community</span>
+                </div>
+
                 <div class="profile-section">
                     <a href="#profile" class="profile-link">
                         <div class="profile-image">
-                            <img src="/assets/img/home/default_profile.png" alt="Profile">
+                            <img src=<?=htmlspecialchars($userProfile ?? "/assets/img/home/default_profile.png")?> alt="Profile">
                         </div>
                         <div class="profile-info">
-                            <span class="profile-name">Mike Tyson</span>
-                            <!-- <span class="profile-status">Student</span> -->
+                            <span class="profile-name"><?= htmlspecialchars($username)?></span>
                         </div>
                         <i class="fas fa-chevron-right profile-arrow"></i>
                     </a>
@@ -92,7 +102,7 @@
             <header class="top-bar">
                 <div class="left-section">
                     <div class="bar" id='bar'><i class="fa-solid fa-bars"></i></div>
-                    <h2 class="Nav_title">Home</h2>
+                    <h2 id="nav-title">Home</h2>
                 </div>
 
                 <div class="right-section">
@@ -105,13 +115,24 @@
                             <i class="fas fa-envelope"></i>
                             <span class="messages-badge">5</span>
                         </button>
-                        <div class="user-menu">
-                            <button class="user-menu-btn">
+                        <div  class="user-menu">
+                            <button class="user-menu-btn" id="userMenuBtn">
+                                <div class="user-avatar">
+                                    <img src=<?= htmlspecialchars($userProfile ?? "/assets/img/home/default_profile.png")?> alt="User Avatar">
+                                </div>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="user-dropdown" id="userDropdown">
+                                <a href="#profile" class="profile-link2">Profile</a>
+                                <a href="#settings">Settings</a>
+                                <a href="/src/controllers/logout.php">Logout</a>
+                            </div>
+                            <!-- <button class="user-menu-btn">
                                 <div class="user-avatar">
                                     <img src="/assets/img/home/default_profile.png" alt="User Avatar">
                                 </div>
                                 <i class="fas fa-chevron-down"></i>
-                            </button>
+                            </button> -->
                         </div>
                     </div>
                 </div>
@@ -120,7 +141,7 @@
         </div>
     </div>
 
-    <script src="/assets/js/home.js"></script>
+    
 </body>
 
 </html>
