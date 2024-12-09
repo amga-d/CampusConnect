@@ -73,7 +73,7 @@ require_once __DIR__ . '/../controllers/homeController.php';
 
                 <div class="nav-divider"></div>
 
-                <div tabindex="0" class="new-community-link" onclick="window.location.hash = '#newcommunity'">
+                <div tabindex="0" class="new-community-link">
                     <a href="#newcommunity" class="plusButton">
                         <svg class="plusIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
                             <g mask="url(#mask0_21_345)">
@@ -81,7 +81,7 @@ require_once __DIR__ . '/../controllers/homeController.php';
                             </g>
                         </svg>
                     </a>
-                    <span>New Community</span>
+                    <span> New Community</span>
                 </div>
 
                 <div class="profile-section">

@@ -68,12 +68,25 @@ document.addEventListener("DOMContentLoaded", function () {
             document.querySelector(".layout").appendChild(mainContent);
         }
 
+        // Add click handler for new community link
+        const newCommunityLink = document.querySelector('.new-community-link');
+        if (newCommunityLink) {
+            newCommunityLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                loadPage('newcommunity');
+                window.history.pushState(
+                    { page: 'newcommunity', type: 'navigation' },
+                    "",
+                    '#newcommunity'
+                );
+            });
+        }
+
         const navItems = document.querySelectorAll(
-            ".nav-item a, .profile-link, .profile-link2, .new-community-link a"
+            ".nav-item a, .profile-link, .profile-link2"
         );
 
         // Style mapping for each page
-
         const pageStyles = {
             home: "/assets/styles/home_pages/home.css",
             discover: "/assets/styles/home_pages/discover.css",
@@ -81,7 +94,7 @@ document.addEventListener("DOMContentLoaded", function () {
             events: "/assets/styles/home_pages/events.css",
             news: "/assets/styles/home_pages/news.css",
             profile: "/assets/styles/home_pages/profile.css",
-            newcommunity: "/assets/styles/home_pages/newcommunity.css",
+            newcommunity: "/assets/styles/home_pages/newcommunity.css"
         };
 
         const pageScript = {
@@ -93,22 +106,10 @@ document.addEventListener("DOMContentLoaded", function () {
             profile: "/assets/js/profile.js",
             newcommunity: "/assets/js/newcommunity.js",
         };
-
-        // Add a mapping for page titles
-        const pageTitles = {
-            home: "Home",
-            discover: "Discover",
-            myCommunities: "My Communities",
-            events: "Events",
-            news: "News",
-            profile: "Profile",
-            newcommunity: "Create Community"
-        };
-
         // Improved loadPage function with better error handling
         async function loadPage(pageId) {
             try {
-                console.log('Loading page:', pageId); // Debug log
+                // Hide the main content to prevent FOUC
                 mainContent.style.visibility = "hidden";
 
                 // Check if it's a community view URL
@@ -134,8 +135,18 @@ document.addEventListener("DOMContentLoaded", function () {
                     currentNavItem.parentElement.classList.add("active");
                 }
 
-                // Update the Nav-title using the mapping
-                navTitle.textContent = pageTitles[pageId] || pageId.charAt(0).toUpperCase() + pageId.slice(1);
+                // Update the Nav-title
+                const titleMap = {
+                    home: "Home",
+                    discover: "Discover",
+                    myCommunities: "My Communities",
+                    events: "Events",
+                    news: "News",
+                    profile: "Profile",
+                    newcommunity: "Create Community"
+                };
+                const title = titleMap[pageId] || pageId.charAt(0).toUpperCase() + pageId.slice(1);
+                navTitle.textContent = title;
 
                 // Remove previously added CSS files
                 const existingLinks = document.querySelectorAll(
@@ -144,7 +155,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 existingLinks.forEach((link) => {
                     if (link.href.includes("/assets/styles/home_pages/")) {
                         link.remove();
-                        
                     }
                 });
 
@@ -177,44 +187,26 @@ document.addEventListener("DOMContentLoaded", function () {
                 const pageContent = await response.text();
                 mainContent.innerHTML = pageContent;
 
-                // Debug log before loading script
-                console.log('Looking for script for page:', pageId);
-                console.log('Available scripts:', pageScript);
-
-                // Load the corresponding JS file
+                // Load and execute the corresponding JS file
                 const scriptPath = pageScript[pageId];
                 if (scriptPath) {
-                    console.log('Loading script from:', scriptPath);
                     const scriptElement = document.createElement("script");
                     scriptElement.id = "dynamic-script";
-                    scriptElement.type = "text/javascript";
-                    
-                    try {
-                        // First, fetch the script content
-                        const scriptResponse = await fetch(scriptPath);
-                        const scriptContent = await scriptResponse.text();
-                        
-                        // Create a self-executing function wrapper
-                        const wrappedScript = `
-                            (function() {
-                                ${scriptContent}
-                            })();
-                        `;
-                        
-                        // Add the script content directly
-                        scriptElement.textContent = wrappedScript;
-                        document.body.appendChild(scriptElement);
-                        
-                        console.log('Script executed successfully');
-                    } catch (error) {
-                        console.error('Error loading or executing script:', error);
-                    }
+                    scriptElement.src = scriptPath;
+                    document.body.appendChild(scriptElement);
+
+                    // Wait for the script file to be fully loaded
+                    await new Promise((resolve, reject) => {
+                        scriptElement.onload = resolve;
+                        scriptElement.onerror = reject;
+                    });
                 }
 
+                // Show the main content after everything is loaded
                 mainContent.style.visibility = "visible";
             } catch (error) {
                 console.error("Error loading page:", error);
-                mainContent.style.visibility = "visible";
+                mainContent.style.visibility = "visible"; // Ensure content is visible in case of error
             }
         }
 
@@ -225,7 +217,13 @@ document.addEventListener("DOMContentLoaded", function () {
                     collapse();
                 }
                 e.preventDefault();
-                const pageId = item.getAttribute("href")?.substring(1) || "home";
+                let pageId = item.getAttribute("href")?.substring(1) || "home";
+                
+                // Handle the new community link click
+                if (item.classList.contains('plusButton') || item.parentElement.classList.contains('new-community-link')) {
+                    pageId = 'newcommunity';
+                }
+                
                 loadPage(pageId);
                 // Update URL and push state with more information
                 window.history.pushState(

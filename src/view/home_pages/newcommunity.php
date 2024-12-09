@@ -1,4 +1,6 @@
-
+<?php
+require_once __DIR__ . '/../../controllers/home_pages/newCommunityController.php';
+?>
 
 <div class="page-content">
     <div class="create-community-container">
@@ -42,8 +44,8 @@
                 
                 <div class="form-group image-upload">
                     <label for="profileImage">Profile Image</label>
-                    <div class="image-preview-container" id="imagePreviewContainer">
-                        <img id="imagePreview" src="/assets/img/home/default_community.png" alt="Preview">
+                    <div class="image-preview-container" onclick="document.getElementById('profileImage').click();">
+                        <img id="imagePreview" src="/assets/img/add.png" alt="Preview">
                         <div class="upload-overlay">
                             <i class="fas fa-camera"></i>
                             <span>Upload Image</span>
