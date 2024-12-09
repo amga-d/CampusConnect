@@ -27,7 +27,6 @@ CREATE TABLE Users (
 -- ALTER TABLE Users
 -- ADD COLUMN birthdate DATE,
 -- ADD COLUMN gender ENUM('Male', 'Female') NOT NULL;
-
 ---
 
 ### 3. Create `Communities` Table
@@ -89,11 +88,12 @@ CREATE TABLE Announcements (
     FOREIGN KEY (community_id) REFERENCES Communities(community_id) ON DELETE CASCADE,
     FOREIGN KEY (user_id) REFERENCES Users(user_id) ON DELETE CASCADE
 );
-``
+```
 
-
-Alter TABLE communities ADD community_type varchar(50);
-ALTER TABLE communities change requirement_status recruitment_status enum('open','closed');`
+```
+ALTER TABLE communities ADD community_type varchar(50);
+ALTER TABLE communities CHANGE requirement_status recruitment_status enum('open','closed');
+ALTER TABLE users ADD birthdate DATE, COLUMN gender ENUM('Male', 'Female') NOT NULL;
 
 ---
 

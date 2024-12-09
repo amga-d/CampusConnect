@@ -10,10 +10,7 @@ require_once __DIR__ . '/../../controllers/home_pages/discoverController.php';
                 <p>Find and join communities that match your interests</p>
             </header>
 
-            <div class="search-bar">
-                <input type="text" placeholder="Search communities...">
-                <button><i class="fas fa-search"></i></button>
-            </div>
+            
             <div class="community-grid">
                 <?php if (empty($communities)): ?>
                     <h1 class="no-communities">No communities found.</h1>
