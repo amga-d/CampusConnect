@@ -3,7 +3,6 @@
 function check_login()
 {
     if (isset($_SESSION["user_id"])) {
-        // echo "{$_SESSION["username"]}";""
         return true;
     } else {
         header("Location: /src/view/auth/signin.php");

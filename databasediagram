@@ -10,7 +10,7 @@ USE campusconnect;
 
 ### 2. Create `Users` Table
 ```sql
-CREATE TABLE Users (
+CREATE TABLE users (
     user_id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
@@ -32,7 +32,7 @@ CREATE TABLE Users (
 
 ### 3. Create `Communities` Table
 ```sql
-CREATE TABLE Communities (
+CREATE TABLE communities (
     community_id INT AUTO_INCREMENT PRIMARY KEY,
     community_name VARCHAR(255) NOT NULL,
     description TEXT,
@@ -48,7 +48,7 @@ CREATE TABLE Communities (
 
 ### 4. Create `Community_Members` Table
 ```sql
-CREATE TABLE Community_Members (
+CREATE TABLE community_members (
     membership_id INT AUTO_INCREMENT PRIMARY KEY,
     community_id INT NOT NULL,
     user_id INT NOT NULL,
@@ -63,7 +63,7 @@ CREATE TABLE Community_Members (
 
 ### 5. Create `Events` Table
 ```sql
-CREATE TABLE Events (
+CREATE TABLE events (
     event_id INT AUTO_INCREMENT PRIMARY KEY,
     community_id INT NOT NULL,
     event_name VARCHAR(255) NOT NULL,
@@ -79,7 +79,7 @@ CREATE TABLE Events (
 
 ### 6. Create `Announcements` Table
 ```sql
-CREATE TABLE Announcements (
+CREATE TABLE announcements (
     announcement_id INT AUTO_INCREMENT PRIMARY KEY,
     community_id INT NOT NULL,
     user_id INT NOT NULL,
