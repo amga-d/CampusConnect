@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/../../controllers/home_pages/discoverController.php';
+
 ?>
 
 <div class="page-content">
@@ -37,7 +38,7 @@ require_once __DIR__ . '/../../controllers/home_pages/discoverController.php';
                                 </div>
                             </div>
                             <div class="card-footer">
-                                <button class="view-btn">View Community</button>
+                                <button class="view-btn" data-community-id="<?= htmlspecialchars($community['community_id']) ?>">View Community</button>
                             </div>
                         </div>
                     <?php endforeach; ?>

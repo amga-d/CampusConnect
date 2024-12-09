@@ -51,7 +51,7 @@ CREATE TABLE Community_Members (
     membership_id INT AUTO_INCREMENT PRIMARY KEY,
     community_id INT NOT NULL,
     user_id INT NOT NULL,
-    role ENUM('admin', 'member') NOT NULL,
+    role ENUM('admin', 'member) NOT NULL,
     joined_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (community_id) REFERENCES Communities(community_id) ON DELETE CASCADE,
     FOREIGN KEY (user_id) REFERENCES Users(user_id) ON DELETE CASCADE
@@ -94,6 +94,9 @@ CREATE TABLE Announcements (
 ALTER TABLE communities ADD community_type varchar(50);
 ALTER TABLE communities CHANGE requirement_status recruitment_status enum('open','closed');
 ALTER TABLE users ADD birthdate DATE, COLUMN gender ENUM('Male', 'Female') NOT NULL;
+ALTER TABLE community_members ADD COLUMN roll ENUM('admin', 'member' , 'core_team')  NOT NULL;  
+ALTER TABLE community_members ADD COLUMN membership_status ENUM('approved', 'pending') NOT NULL;
+ALTER TABLE communities ADD COLUMN community_privacy ENUM('public', 'private') NOT NULL;
 
 ---
 

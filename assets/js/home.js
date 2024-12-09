@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         const navItems = document.querySelectorAll(
-            ".nav-item a, .profile-link, .profile-link2"
+            ".nav-item a, .profile-link, .profile-link2, .new-community-link a"
         );
 
         // Style mapping for each page
@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", function () {
             events: "/assets/styles/home_pages/events.css",
             news: "/assets/styles/home_pages/news.css",
             profile: "/assets/styles/home_pages/profile.css",
-            createCommunity: "/assets/styles/home_pages/newcommunity.css",
+            newcommunity: "/assets/styles/home_pages/newcommunity.css",
         };
 
         const pageScript = {
@@ -91,13 +91,32 @@ document.addEventListener("DOMContentLoaded", function () {
             events: "/assets/js/events.js",
             news: "/assets/js/events.js",
             profile: "/assets/js/profile.js",
-            createCommunity: "",
+            newcommunity: "/assets/js/newcommunity.js",
         };
+
+        // Add a mapping for page titles
+        const pageTitles = {
+            home: "Home",
+            discover: "Discover",
+            myCommunities: "My Communities",
+            events: "Events",
+            news: "News",
+            profile: "Profile",
+            newcommunity: "Create Community"
+        };
+
         // Improved loadPage function with better error handling
         async function loadPage(pageId) {
             try {
-                // Hide the main content to prevent FOUC
+                console.log('Loading page:', pageId); // Debug log
                 mainContent.style.visibility = "hidden";
+
+                // Check if it's a community view URL
+                if (pageId.startsWith('community/')) {
+                    // Let the community.js handle this
+                    mainContent.style.visibility = "visible";
+                    return;
+                }
 
                 // Remove 'active' class from all nav items
                 navItems.forEach((item) => {
@@ -115,9 +134,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     currentNavItem.parentElement.classList.add("active");
                 }
 
-                // Update the Nav-title
-                const title = pageId.charAt(0).toUpperCase() + pageId.slice(1);
-                navTitle.textContent = title;
+                // Update the Nav-title using the mapping
+                navTitle.textContent = pageTitles[pageId] || pageId.charAt(0).toUpperCase() + pageId.slice(1);
 
                 // Remove previously added CSS files
                 const existingLinks = document.querySelectorAll(
@@ -159,25 +177,44 @@ document.addEventListener("DOMContentLoaded", function () {
                 const pageContent = await response.text();
                 mainContent.innerHTML = pageContent;
 
+                // Debug log before loading script
+                console.log('Looking for script for page:', pageId);
+                console.log('Available scripts:', pageScript);
+
                 // Load the corresponding JS file
                 const scriptPath = pageScript[pageId];
                 if (scriptPath) {
+                    console.log('Loading script from:', scriptPath);
                     const scriptElement = document.createElement("script");
-                    scriptElement.id = "dynamic-script"; // Assign an ID for later removal
-                    scriptElement.src = scriptPath;
-                    document.body.appendChild(scriptElement);
-
-                    // Wait for the script file to be fully loaded
-                    await new Promise((resolve, reject) => {
-                        scriptElement.onload = resolve;
-                        scriptElement.onerror = reject;
-                    });
+                    scriptElement.id = "dynamic-script";
+                    scriptElement.type = "text/javascript";
+                    
+                    try {
+                        // First, fetch the script content
+                        const scriptResponse = await fetch(scriptPath);
+                        const scriptContent = await scriptResponse.text();
+                        
+                        // Create a self-executing function wrapper
+                        const wrappedScript = `
+                            (function() {
+                                ${scriptContent}
+                            })();
+                        `;
+                        
+                        // Add the script content directly
+                        scriptElement.textContent = wrappedScript;
+                        document.body.appendChild(scriptElement);
+                        
+                        console.log('Script executed successfully');
+                    } catch (error) {
+                        console.error('Error loading or executing script:', error);
+                    }
                 }
-                // Show the main content after everything is loaded
+
                 mainContent.style.visibility = "visible";
             } catch (error) {
                 console.error("Error loading page:", error);
-                mainContent.style.visibility = "visible"; // Ensure content is visible in case of error
+                mainContent.style.visibility = "visible";
             }
         }
 
@@ -188,16 +225,55 @@ document.addEventListener("DOMContentLoaded", function () {
                     collapse();
                 }
                 e.preventDefault();
-                const pageId =
-                    item.getAttribute("href")?.substring(1) || "home";
+                const pageId = item.getAttribute("href")?.substring(1) || "home";
                 loadPage(pageId);
-                // Update URL without page reload
-                window.history.pushState({ page: pageId }, "", `#${pageId}`);
+                // Update URL and push state with more information
+                window.history.pushState(
+                    { page: pageId, type: 'navigation' }, 
+                    "", 
+                    `#${pageId}`
+                );
             });
+        });
+
+        // Add popstate event listener to handle browser navigation
+        window.addEventListener('popstate', function(event) {
+            if (event.state) {
+                if (event.state.type === 'navigation') {
+                    loadPage(event.state.page);
+                }
+                // community.js will handle its own popstate events
+            } else {
+                // If no state exists, load the page based on hash
+                const pageId = window.location.hash.substring(1) || "home";
+                if (!pageId.startsWith('community/')) {
+                    loadPage(pageId);
+                }
+            }
         });
 
         // Load initial page based on URL hash or default to home
         const initialPage = window.location.hash.substring(1) || "home";
-        loadPage(initialPage);
+        if (initialPage.startsWith('community/')) {
+            // If it's a community page, set discover as active
+            navItems.forEach((item) => {
+                const parent = item.parentElement;
+                if (parent.classList.contains("nav-item")) {
+                    parent.classList.remove("active");
+                }
+            });
+            const discoverNavItem = document.querySelector('.nav-item a[href="#discover"]');
+            if (discoverNavItem) {
+                discoverNavItem.parentElement.classList.add('active');
+            }
+        } else {
+            loadPage(initialPage);
+            // Set initial history state
+            window.history.replaceState(
+                { page: initialPage, type: 'navigation' },
+                "",
+                window.location.hash || "#home"
+            );
+        }
     }
 });
