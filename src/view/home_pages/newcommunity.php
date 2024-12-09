@@ -44,7 +44,7 @@ require_once __DIR__ . '/../../controllers/home_pages/newCommunityController.php
                 
                 <div class="form-group image-upload">
                     <label for="profileImage">Profile Image</label>
-                    <div class="image-preview-container" onclick="document.getElementById('profileImage').click();">
+                    <div class="image-preview-container">
                         <img id="imagePreview" src="/assets/img/add.png" alt="Preview">
                         <div class="upload-overlay">
                             <i class="fas fa-camera"></i>
