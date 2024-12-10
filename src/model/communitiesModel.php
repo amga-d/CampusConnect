@@ -4,6 +4,70 @@ require_once __DIR__ . '/../config/db_conn.php';
 ini_set('display_errors', 0);
 ini_set('log_errors', 1);
 ini_set('error_log', __DIR__ . '../../../logs/error.log');
+
+
+
+function getCommunitiesNotIn($user_id){
+    $query = "             SELECT
+                   c.community_name, 
+                    c.community_type,
+                    c.description, 
+                    c.profile_image, 
+                    c.created_by, 
+                    c.recruitment_status, 
+                    c.created_at, 
+                    c.community_id,
+                    COUNT(cm.user_id) AS member_count
+                FROM 
+                    communities c 
+                LEFT JOIN 
+                    community_members cm
+                ON
+                    c.community_id = cm.community_id
+                where 
+                    c.community_id NOT IN (
+                    SELECT community_id
+                    FROM community_members
+                    WHERE user_id = ?
+                    )
+                GROUP BY 
+                    c.community_id,
+                    c.community_type,
+                    c.community_name, 
+                    c.description, 
+                    c.profile_image, 
+                    c.created_by, 
+                    c.recruitment_status, 
+                    c.created_at
+                ORDER BY 
+                    c.created_at DESC 
+                LIMIT 20;";
+
+
+    $conn = connect_db();
+    try {
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param("i", $user_id);
+
+        if (!$stmt->execute()) {
+            throw new Exception("Query execution failed");
+        }
+
+        $result = $stmt->get_result();
+        return $result;
+    } catch (Exception $e) {
+        error_log("Error fetching : " . $e->getMessage());
+        return false;
+    } finally {
+        if (isset($stmt)) {
+            $stmt->close();
+        }
+        if (isset($conn)) {
+            $conn->close();
+        }
+    }
+
+}
 function getCommunities()
 {
     $query = "             SELECT
