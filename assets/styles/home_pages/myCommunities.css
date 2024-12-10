@@ -14,7 +14,7 @@
 .page-content{
     padding-block: 50px;
     /* justify-items: center; */
-}
+}   
 
 /* No communities */
 .no-communities-container {
@@ -214,13 +214,16 @@ p {
 
 
 .role {
-    font-size: 15px;
-    font-weight: 500;
+    font-size: 14px;
+    font-weight: 600;
     padding: 8px 10px;
     border-radius: 10px;
     background-color: var(--tag-open-bg);
     color: var(--tag-open-text);
     margin-block: auto;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .card-footer {
@@ -273,18 +276,33 @@ p {
         padding-inline: 2.5rem;
         margin: auto;
     }
+    .community-info h2 {
+        padding-inline: 15px;
+        font-size: 1.2em;
+    }
+    .community-type {
+        font-size: 0.8em;
+        padding: 10px 0 0 15px;
+    }
 
 
 }
 
 @media (max-width: 450px) {
+
+    .page-content{
+        justify-items: center;
+    }
+
     .community-logo {
         width: 80px;
         height: 80px;
     }
     .community-grid {
-       margin: 0 30px;
-       justify-content: center;
+       margin: 0 0px;
+       /* justify-content: center; */
+       width: 100%;
+       align-items: center;
     }
     
     .community-info h2 {
@@ -294,5 +312,8 @@ p {
     .community-type {
         font-size: 0.8em;
         padding: 10px 0 0 15px;
+    }
+    .role{
+        max-width: 9rem;
     }
 }

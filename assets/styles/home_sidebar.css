@@ -267,6 +267,9 @@ body {
 .profile-name {
     font-weight: 600;
     color: var(--gray);
+    text-overflow: ellipsis;
+    max-width: 9rem;
+    overflow: hidden;
 }
 
 .profile-arrow {
