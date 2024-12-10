@@ -113,7 +113,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 mainContent.style.visibility = "hidden";
 
                 // Check if it's a community view URL
-                if (pageId.startsWith('community/')) {
+                if (pageId.startsWith('community/')|| pageId.startsWith('Dashboard/')) {
                     // Let the community.js handle this
                     mainContent.style.visibility = "visible";
                     return;
@@ -244,7 +244,7 @@ document.addEventListener("DOMContentLoaded", function () {
             } else {
                 // If no state exists, load the page based on hash
                 const pageId = window.location.hash.substring(1) || "home";
-                if (!pageId.startsWith('community/')) {
+                if (!pageId.startsWith('community/' ||!pageId.startsWith('Dashboard/'))) {
                     loadPage(pageId);
                 }
             }
@@ -252,7 +252,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Load initial page based on URL hash or default to home
         const initialPage = window.location.hash.substring(1) || "home";
-        if (initialPage.startsWith('community/')) {
+        if (initialPage.startsWith('community/') || initialPage.startsWith('Dashboard/')) {
             // If it's a community page, set discover as active
             navItems.forEach((item) => {
                 const parent = item.parentElement;

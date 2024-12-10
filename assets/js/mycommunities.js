@@ -1,16 +1,15 @@
 document.addEventListener("DOMContentLoaded", function () {
     document.body.addEventListener('click', function (e) {
         if (e.target && e.target.classList.contains('open-dashboard')) {
-            const community_name = e.target.getAttribute('data-community-name');
             const communityId = e.target.getAttribute('data-community-id');
-            loadDashboard(communityId , community_name);
+            loadDashboard(communityId);
         }
     });
 
     // Handle browser back/forward buttons
     window.addEventListener('popstate', function (event) {
         if (event.state && event.state.type === 'Dashboard') {
-            loadDashboard(event.state.id);//////////////////////
+            loadDashboard(event.state.id);
         }
     });
 
@@ -19,12 +18,12 @@ document.addEventListener("DOMContentLoaded", function () {
     if (hash.startsWith('#Dashboard/')) {
         const communityId = hash.split('/')[1];
         if (communityId) {
-            loadCommunityView(communityId);
+            loadDashboard(communityId);
         }
     }
 
 });
-function loadDashboard(communityId, community_name) {
+function loadDashboard(communityId) {
     //delete mycommunities.css
     const myCommunitiesStyles = document.getElementById('dynamicStyles');
     if(myCommunitiesStyles) {
@@ -60,7 +59,7 @@ function loadDashboard(communityId, community_name) {
         document.getElementById('main-content').innerHTML = html;
         const navTitle = document.getElementById('nav-title');
         if (navTitle) {
-            navTitle.textContent = 'Community Dashboard > ' + community_name;
+            navTitle.textContent = 'Community Dashboard' ;
         }
         // Update URL without page reload
         if (!window.location.hash.includes(communityId)) {
@@ -78,6 +77,6 @@ function loadDashboard(communityId, community_name) {
     .catch(error => {
         console.error('Error loading community dashboard:', error);
         document.getElementById('main-content').innerHTML = 
-        '<div class="error-message">Failed to load community details</div>';
+        '<div class="error-message">Failed to load Community Dashboard </div>';
     });
 }
