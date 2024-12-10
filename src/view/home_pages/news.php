@@ -5,14 +5,14 @@
             <p class="community-subtitle">Stay informed about the latest developments, events, and stories from our local community</p>
         </div>
         <div id="newsFeed">
-
             <div class="news-post">
                 <div class="post-header">
-                    <img src="profile-akram.jpg" alt="Akram Mohamed" class="post-avatar" loading="lazy">
+                    <img src="https://www.uii.ac.id/wp-content/uploads/2017/04/Logo-UII-Asli.png" alt="Akram Mohamed" class="post-avatar" loading="lazy">
                     <div class="post-info">
-                    <strong>Akram Mohamed</strong><br>
-                    <span class="post-date">November 30, 2021</span>
+                        <strong>Universtas Islam Indonesia</strong><br>
+                        <span class="post-date">November 30, 2021</span>
                     </div>
+                    <strong class="elipse">...</strong>
                 </div>
                 <img src="https://picsum.photos/700/700?random=1" class="post-image" alt="News Image">
                 <div class="post-description">
@@ -22,6 +22,14 @@
                 </div>
             </div>
             <div class="news-post">
+                <div class="post-header">
+                    <img src="https://picsum.photos/700/700?random=2" alt="Post Image" class="post-avatar" loading="lazy">
+                    <div class="post-info">
+                        <strong>Jane Doe</strong><br>
+                        <span class="post-date">December 5, 2021</span>
+                    </div>
+                    <strong class="elipse">...</strong>
+                </div>
                 <img src="https://picsum.photos/700/700?random=2" class="post-image" alt="News Image">
                 <div class="post-description">
                     <h2 class="post-title">Sustainable Urban Green Spaces Initiative</h2>
@@ -30,6 +38,14 @@
                 </div>
             </div>
             <div class="news-post">
+                <div class="post-header">
+                    <img src="https://picsum.photos/700/700?random=3" alt="Post Image" class="post-avatar" loading="lazy">
+                    <div class="post-info">
+                        <strong>John Smith</strong><br>
+                        <span class="post-date">December 10, 2021</span>
+                    </div>
+                    <strong class="elipse">...</strong>
+                </div>
                 <img src="https://picsum.photos/700/700?random=3" class="post-image" alt="News Image">
                 <div class="post-description">
                     <h2 class="post-title">Local Arts Festival Announces Exciting Lineup</h2>
@@ -38,5 +54,5 @@
                 </div>
             </div>
         </div>
-</main>
+    </main>
 </div>

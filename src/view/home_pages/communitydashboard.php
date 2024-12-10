@@ -51,7 +51,6 @@
             <img src="profile-akram.jpg" alt="Akram Mohamed" class="post-avatar" loading="lazy">
             <div class="post-info">
               <strong>Akram Mohamed</strong><br>
-              <span>Admin</span>
               <span class="post-date">November 30, 2021</span>
             </div>
           </div>
