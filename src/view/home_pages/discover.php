@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/../../controllers/home_pages/discoverController.php';
+
 ?>
 
 <div class="page-content">
@@ -10,10 +11,7 @@ require_once __DIR__ . '/../../controllers/home_pages/discoverController.php';
                 <p>Find and join communities that match your interests</p>
             </header>
 
-            <div class="search-bar">
-                <input type="text" placeholder="Search communities...">
-                <button><i class="fas fa-search"></i></button>
-            </div>
+            
             <div class="community-grid">
                 <?php if (empty($communities)): ?>
                     <h1 class="no-communities">No communities found.</h1>
@@ -40,7 +38,7 @@ require_once __DIR__ . '/../../controllers/home_pages/discoverController.php';
                                 </div>
                             </div>
                             <div class="card-footer">
-                                <button class="view-btn">View Community</button>
+                                <button class="view-btn" data-community-id="<?= htmlspecialchars($community['community_id']) ?>">View Community</button>
                             </div>
                         </div>
                     <?php endforeach; ?>

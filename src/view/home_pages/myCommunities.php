@@ -19,8 +19,8 @@ require_once __DIR__ . '/../../controllers/home_pages/myCommunitiesController.ph
                         <h1>You are not part of any community</h1>
                         <p>Join and discover exciting communities or create your own to connect with like-minded individuals!</p>
                         <div class="button-container">
-                            <button class="button primary" onclick="redirectTo('discover.html')">Discover Communities</button>
-                            <button class="button secondary" onclick="redirectTo('create-community.html')">Create New Community</button>
+                            <button class="button primary" onclick="window.location.hash = '#discover'">Discover Communities</button>
+                            <button class="button secondary" onclick="window.location.hash = '#newcommunity'">Create New Community</button>
                         </div>
                     </div>
                 </div>
@@ -30,7 +30,7 @@ require_once __DIR__ . '/../../controllers/home_pages/myCommunitiesController.ph
                 <?php foreach ($myCommunities as $community): ?>
                     <div class="community-card">
                         <div class="card-header">
-                            <img src="<?= htmlspecialchars($community['profile_image']) ?>" alt="LEM FTI Logo" class="community-logo">
+                            <img src="<?= htmlspecialchars($community['profile_image']) ?>" alt="Community Logo" class="community-logo">
                             <div class="community-info">
                                 <h2><?= htmlspecialchars($community['community_name']) ?></h2>
                                 <p class="community-type"><?= htmlspecialchars($community['community_type']) ?></p>

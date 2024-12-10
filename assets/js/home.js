@@ -68,12 +68,25 @@ document.addEventListener("DOMContentLoaded", function () {
             document.querySelector(".layout").appendChild(mainContent);
         }
 
+        // Add click handler for new community link
+        const newCommunityLink = document.querySelector('.new-community-link');
+        if (newCommunityLink) {
+            newCommunityLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                loadPage('newcommunity');
+                window.history.pushState(
+                    { page: 'newcommunity', type: 'navigation' },
+                    "",
+                    '#newcommunity'
+                );
+            });
+        }
+
         const navItems = document.querySelectorAll(
             ".nav-item a, .profile-link, .profile-link2"
         );
 
         // Style mapping for each page
-
         const pageStyles = {
             home: "/assets/styles/home_pages/home.css",
             discover: "/assets/styles/home_pages/discover.css",
@@ -81,7 +94,7 @@ document.addEventListener("DOMContentLoaded", function () {
             events: "/assets/styles/home_pages/events.css",
             news: "/assets/styles/home_pages/news.css",
             profile: "/assets/styles/home_pages/profile.css",
-            createCommunity: "/assets/styles/home_pages/newcommunity.css",
+            newcommunity: "/assets/styles/home_pages/newcommunity.css"
         };
 
         const pageScript = {
@@ -91,13 +104,20 @@ document.addEventListener("DOMContentLoaded", function () {
             events: "/assets/js/events.js",
             news: "/assets/js/events.js",
             profile: "/assets/js/profile.js",
-            createCommunity: "",
+            newcommunity: "/assets/js/newcommunity.js",
         };
         // Improved loadPage function with better error handling
         async function loadPage(pageId) {
             try {
                 // Hide the main content to prevent FOUC
                 mainContent.style.visibility = "hidden";
+
+                // Check if it's a community view URL
+                if (pageId.startsWith('community/')) {
+                    // Let the community.js handle this
+                    mainContent.style.visibility = "visible";
+                    return;
+                }
 
                 // Remove 'active' class from all nav items
                 navItems.forEach((item) => {
@@ -116,7 +136,16 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
                 // Update the Nav-title
-                const title = pageId.charAt(0).toUpperCase() + pageId.slice(1);
+                const titleMap = {
+                    home: "Home",
+                    discover: "Discover",
+                    myCommunities: "My Communities",
+                    events: "Events",
+                    news: "News",
+                    profile: "Profile",
+                    newcommunity: "Create Community"
+                };
+                const title = titleMap[pageId] || pageId.charAt(0).toUpperCase() + pageId.slice(1);
                 navTitle.textContent = title;
 
                 // Remove previously added CSS files
@@ -126,7 +155,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 existingLinks.forEach((link) => {
                     if (link.href.includes("/assets/styles/home_pages/")) {
                         link.remove();
-                        
                     }
                 });
 
@@ -159,11 +187,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 const pageContent = await response.text();
                 mainContent.innerHTML = pageContent;
 
-                // Load the corresponding JS file
+                // Load and execute the corresponding JS file
                 const scriptPath = pageScript[pageId];
                 if (scriptPath) {
                     const scriptElement = document.createElement("script");
-                    scriptElement.id = "dynamic-script"; // Assign an ID for later removal
+                    scriptElement.id = "dynamic-script";
                     scriptElement.src = scriptPath;
                     document.body.appendChild(scriptElement);
 
@@ -173,6 +201,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         scriptElement.onerror = reject;
                     });
                 }
+
                 // Show the main content after everything is loaded
                 mainContent.style.visibility = "visible";
             } catch (error) {
@@ -188,16 +217,61 @@ document.addEventListener("DOMContentLoaded", function () {
                     collapse();
                 }
                 e.preventDefault();
-                const pageId =
-                    item.getAttribute("href")?.substring(1) || "home";
+                let pageId = item.getAttribute("href")?.substring(1) || "home";
+                
+                // Handle the new community link click
+                if (item.classList.contains('plusButton') || item.parentElement.classList.contains('new-community-link')) {
+                    pageId = 'newcommunity';
+                }
+                
                 loadPage(pageId);
-                // Update URL without page reload
-                window.history.pushState({ page: pageId }, "", `#${pageId}`);
+                // Update URL and push state with more information
+                window.history.pushState(
+                    { page: pageId, type: 'navigation' }, 
+                    "", 
+                    `#${pageId}`
+                );
             });
+        });
+
+        // Add popstate event listener to handle browser navigation
+        window.addEventListener('popstate', function(event) {
+            if (event.state) {
+                if (event.state.type === 'navigation') {
+                    loadPage(event.state.page);
+                }
+                // community.js will handle its own popstate events
+            } else {
+                // If no state exists, load the page based on hash
+                const pageId = window.location.hash.substring(1) || "home";
+                if (!pageId.startsWith('community/')) {
+                    loadPage(pageId);
+                }
+            }
         });
 
         // Load initial page based on URL hash or default to home
         const initialPage = window.location.hash.substring(1) || "home";
-        loadPage(initialPage);
+        if (initialPage.startsWith('community/')) {
+            // If it's a community page, set discover as active
+            navItems.forEach((item) => {
+                const parent = item.parentElement;
+                if (parent.classList.contains("nav-item")) {
+                    parent.classList.remove("active");
+                }
+            });
+            const discoverNavItem = document.querySelector('.nav-item a[href="#discover"]');
+            if (discoverNavItem) {
+                discoverNavItem.parentElement.classList.add('active');
+            }
+        } else {
+            loadPage(initialPage);
+            // Set initial history state
+            window.history.replaceState(
+                { page: initialPage, type: 'navigation' },
+                "",
+                window.location.hash || "#home"
+            );
+        }
     }
 });
