@@ -89,6 +89,17 @@ CREATE TABLE Announcements (
     FOREIGN KEY (user_id) REFERENCES Users(user_id) ON DELETE CASCADE
 );
 ```
+### 7. Create `news` Table
+```
+CREATE TABLE news (
+    news_id INT AUTO_INCREMENT PRIMARY KEY,
+    news_name VARCHAR(255) NOT NULL,
+    description TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    news_image VARCHAR(255)
+);
+```
+
 
 ```
 ALTER TABLE communities ADD community_type varchar(50);
@@ -119,3 +130,4 @@ ALTER TABLE communities ADD COLUMN community_privacy ENUM('public', 'private') N
 ---
 
 Let me know if you'd like additional queries, such as **insert**, **select**, or **join** examples!
+

@@ -34,11 +34,16 @@ function setupFormSubmission() {
             
             const formData = new FormData(this);
             
-            fetch('/src/controllers/home_pages/createCommunity.php', {
+            fetch("/src/controllers/home_pages/createCommunity.php", {
                 method: 'POST',
                 body: formData
             })
-            .then(response => response.json())
+            .then(response => {
+                if (!response.headers.get('Content-Type')?.includes('application/json')) {
+                    throw new Error('Invalid response format');
+                }
+                return response.json();
+            })
             .then(data => {
                 if (data.success) {
                     // Redirect to the new community page
