@@ -66,7 +66,7 @@ try {
         }
     } else {
         // Set default image
-        $communityData['profile_image'] = '/public/uploads/community_images/default_community.png';
+        $communityData['profile_image'] = '/public/uploads/community_images/default_community.jpeg';
         error_log('Using default profile image.');
     }
 
