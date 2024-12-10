@@ -239,7 +239,7 @@ p {
     flex: 1;  /* This ensures content takes available space */
 }
 
-.open-btn {
+.open-dashboard {
     /* width: 100%; */
     background: var(--primary-color);
     color: white;
@@ -252,11 +252,11 @@ p {
     transition: background-color 0.2s;
 }
 
-.open-btn:hover {
+.open-dashboard:hover {
     background: #0284c7;
 }
 
-.open-btn:active {
+.open-dashboard:active {
     transform: translateY(0);
 }
 

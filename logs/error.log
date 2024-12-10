@@ -1,0 +1,7 @@
+[10-Dec-2024 19:21:24 Europe/Berlin] PHP Warning:  Undefined array key "community_name" in C:\xampp\htdocs\CampusConnect\src\view\home_pages\viewCommunity.php on line 10
+[10-Dec-2024 19:21:24 Europe/Berlin] PHP Warning:  Undefined array key "description" in C:\xampp\htdocs\CampusConnect\src\view\home_pages\viewCommunity.php on line 11
+[10-Dec-2024 19:21:24 Europe/Berlin] PHP Warning:  Undefined array key "profile_image" in C:\xampp\htdocs\CampusConnect\src\view\home_pages\viewCommunity.php on line 18
+[10-Dec-2024 20:15:26 Europe/Berlin] User is logged in.
+[10-Dec-2024 20:15:26 Europe/Berlin] All required fields are present.
+[10-Dec-2024 20:15:26 Europe/Berlin] Image uploaded successfully.
+[10-Dec-2024 20:15:26 Europe/Berlin] Community created with ID: 28
