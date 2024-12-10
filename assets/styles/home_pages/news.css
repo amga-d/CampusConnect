@@ -64,6 +64,13 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.post-header {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
 .post-image {
     width: 100%;
     aspect-ratio: 1 / 1; /* Square images */

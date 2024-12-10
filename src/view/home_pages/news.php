@@ -5,7 +5,15 @@
             <p class="community-subtitle">Stay informed about the latest developments, events, and stories from our local community</p>
         </div>
         <div id="newsFeed">
+
             <div class="news-post">
+                <div class="post-header">
+                    <img src="profile-akram.jpg" alt="Akram Mohamed" class="post-avatar" loading="lazy">
+                    <div class="post-info">
+                    <strong>Akram Mohamed</strong><br>
+                    <span class="post-date">November 30, 2021</span>
+                    </div>
+                </div>
                 <img src="https://picsum.photos/700/700?random=1" class="post-image" alt="News Image">
                 <div class="post-description">
                     <h2 class="post-title">New Community Center Breaks Ground</h2>
