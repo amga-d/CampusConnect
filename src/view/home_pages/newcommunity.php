@@ -1,6 +1,4 @@
-<?php
-require_once __DIR__ . '/../../controllers/home_pages/newCommunityController.php';
-?>
+
 
 <div class="page-content">
     <div class="create-community-container">
