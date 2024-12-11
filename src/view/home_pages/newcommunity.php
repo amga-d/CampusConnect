@@ -1,5 +1,3 @@
-
-
 <div class="page-content">
     <div class="create-community-container">
         <header class="page-header">
@@ -10,11 +8,11 @@
         <form id="createCommunityForm" class="community-form" method="POST" enctype="multipart/form-data">
             <div class="form-section">
                 <h2>Basic Information</h2>
-                
+
                 <div class="form-group">
                     <label for="communityName">Community Name*</label>
-                    <input type="text" id="communityName" name="community_name" required 
-                           placeholder="Enter community name">
+                    <input type="text" id="communityName" name="community_name" required
+                        placeholder="Enter community name">
                 </div>
 
                 <div class="form-group">
@@ -32,31 +30,31 @@
 
                 <div class="form-group">
                     <label for="description">Description*</label>
-                    <textarea id="description" name="description" required 
-                              placeholder="Describe your community..."></textarea>
+                    <textarea id="description" name="description" required
+                        placeholder="Describe your community..."></textarea>
                 </div>
             </div>
 
             <div class="form-section">
                 <h2>Community Image</h2>
-                
+
                 <div class="form-group image-upload">
                     <label for="profileImage">Profile Image</label>
                     <div class="image-preview-container">
-                        <img id="imagePreview" src="/public/uploads/community_images/default_community.jpeg" alt="Preview">
+                        <img id="imagePreview" src="\assets\img\communities\default_community.jpeg" alt="Preview">
                         <div class="upload-overlay">
                             <i class="fas fa-camera"></i>
                             <span>Upload Image</span>
                         </div>
                     </div>
-                    <input type="file" id="profileImage" name="profile_image" 
-                           accept="image/*" style="display: none;">
+                    <input type="file" id="profileImage" name="profile_image"
+                        accept="image/*" style="display: none;">
                 </div>
             </div>
 
             <div class="form-section">
                 <h2>Additional Settings</h2>
-                
+
                 <div class="form-group">
                     <label for="recruitmentStatus">Recruitment Status</label>
                     <select id="recruitmentStatus" name="recruitment_status">
@@ -88,4 +86,4 @@
             </div>
         </form>
     </div>
-</div> 
+</div>

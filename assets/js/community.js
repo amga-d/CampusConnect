@@ -25,8 +25,9 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function loadCommunityView(communityId) {
+    
     // Check if dynamic-styles element exists, if not create it
-    let dynamicStyles = document.getElementById('dynamic-styles');
+    let dynamicStyles = document.getElementById('dynamicStyles');
     if (!dynamicStyles) {
         dynamicStyles = document.createElement('link');
         dynamicStyles.id = 'dynamic-styles';

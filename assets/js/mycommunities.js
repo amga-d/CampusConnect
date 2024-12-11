@@ -24,17 +24,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 function loadDashboard(communityId) {
-    //delete mycommunities.css
-    const myCommunitiesStyles = document.getElementById('dynamicStyles');
-    if(myCommunitiesStyles) {
-        myCommunitiesStyles.remove();
-    }
 
     // Check if dynamic-styles element exists, if not create it
-    let dynamicStyles = document.getElementById('dynamic-styles');
+    let dynamicStyles = document.getElementById('dynamicStyles');
     if (!dynamicStyles) {
         dynamicStyles = document.createElement('link');
-        dynamicStyles.id = 'dynamic-styles';
+        dynamicStyles.id = 'dynamicStyles';
         dynamicStyles.rel = 'stylesheet';
         document.head.appendChild(dynamicStyles);
     }
