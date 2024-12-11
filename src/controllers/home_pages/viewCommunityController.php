@@ -6,7 +6,7 @@ $communityId = isset($_GET['community_id']) ? $_GET['community_id'] : null;
 
 if ($communityId) {
     // Fetch community details from the database
-    $result = getCommunityDetails($communityId); // You'll need to implement this function in communitiesModel.php
+    $result = getCommunityInfo($communityId); // 
     $community = [];
     if (!$result) {
         

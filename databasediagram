@@ -105,9 +105,9 @@ CREATE TABLE news (
 ALTER TABLE communities ADD community_type varchar(50);
 ALTER TABLE communities CHANGE requirement_status recruitment_status enum('open','closed');
 ALTER TABLE users ADD birthdate DATE, COLUMN gender ENUM('Male', 'Female') NOT NULL;
-ALTER TABLE community_members ADD COLUMN roll ENUM('admin', 'member' , 'core_team')  NOT NULL;  
 ALTER TABLE community_members ADD COLUMN membership_status ENUM('approved', 'pending') NOT NULL;
 ALTER TABLE communities ADD COLUMN community_privacy ENUM('public', 'private') NOT NULL;
+alter table community_members modify column role enum('admin','member','core_member') NOT NULL;
 
 ---
 
