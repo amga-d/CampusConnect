@@ -33,6 +33,16 @@ function loadDashboard(communityId) {
         dynamicStyles.rel = 'stylesheet';
         document.head.appendChild(dynamicStyles);
     }
+
+    // Check if dynamic-script element exists, if not create is 
+    let dynamicScript = document.getElementById("dynamic-script");
+    if (!dynamicScript){
+        dynamicScript = document.createElement('script');
+        dynamicScript.id = "dynamic-script";
+        document.body.appendChild(dynamicScript);
+    }
+    dynamicScript.src = '/assets/js/communitydashboard.js'
+
     // Update the stylesheet
     dynamicStyles.href = '/assets/styles/home_pages/communitydashboard.css';
 

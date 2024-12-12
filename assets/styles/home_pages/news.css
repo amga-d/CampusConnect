@@ -115,6 +115,7 @@
     margin-bottom: 12px;
     display: -webkit-box;
     -webkit-line-clamp: 3;
+    white-space: pre-wrap;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
