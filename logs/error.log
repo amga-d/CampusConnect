@@ -481,3 +481,11 @@ Stack trace:
 [16-Dec-2024 12:09:54 Europe/Berlin] All required fields are present.
 [16-Dec-2024 12:09:54 Europe/Berlin] Image uploaded successfully.
 [16-Dec-2024 12:09:54 Europe/Berlin] Community created with ID: 36
+[16-Dec-2024 13:14:14 Europe/Berlin] Profile update model error: Email is already taken
+[16-Dec-2024 13:14:14 Europe/Berlin] Profile update error: Failed to update profile
+[16-Dec-2024 13:14:20 Europe/Berlin] Profile update model error: Email is already taken
+[16-Dec-2024 13:14:20 Europe/Berlin] Profile update error: Failed to update profile
+[16-Dec-2024 13:14:24 Europe/Berlin] Profile update model error: Email is already taken
+[16-Dec-2024 13:14:24 Europe/Berlin] Profile update error: Failed to update profile
+[16-Dec-2024 13:14:33 Europe/Berlin] Profile update model error: Email is already taken
+[16-Dec-2024 13:14:33 Europe/Berlin] Profile update error: Failed to update profile

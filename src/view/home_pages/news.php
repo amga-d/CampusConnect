@@ -1,10 +1,5 @@
 <?php require_once __DIR__ . '/../../controllers/home_pages/newsController.php'; ?>
 
-<link rel="stylesheet" href="/assets/styles/imagepopup.css">
-<script>
-    console.log('PHP file loaded');
-</script>
-<script src="/assets/js/imagepopup.js"></script>
 
 <div class="page-content">
     <main class="app-container">
