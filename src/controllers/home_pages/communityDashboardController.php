@@ -79,7 +79,7 @@ function getCommunityDetails($communityId)
             'community' => $community[0],
             'role' => $role,
             'members' => $members,
-            'announcements' => $announcements[0],
+            'announcements' => $announcements,
             'events' => $events
         ];
 
@@ -168,6 +168,8 @@ function checkUserIsAdmin($user_id, $communityId)
 // Initialize dashboard data if community ID is provided
 $dashboardData = null;
 $error = null;
+
+
 if (isset($_GET['community_id'])) {
     $dashboardData = getCommunityDetails($_GET['community_id']);
     if (!$dashboardData) {

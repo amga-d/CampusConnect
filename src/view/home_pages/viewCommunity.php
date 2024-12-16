@@ -1,5 +1,10 @@
 <?php
 require_once __DIR__ . '/../../controllers/home_pages/viewCommunityController.php';
+print_r($communityData);
+echo  htmlspecialchars($communityData['info']['community_id']) ;
+
+
+
 ?>
 
 <div class="page-content">
@@ -7,19 +12,24 @@ require_once __DIR__ . '/../../controllers/home_pages/viewCommunityController.ph
         <section class="hero" id="about">
             <div class="hero-wrapper">
                 <div class="hero-content">
-                    <h2 class="hero-title"><?= htmlspecialchars($community['community_name']) ?></h2>
-                    <p class="hero-description"><?= htmlspecialchars($community['description']) ?></p>
-                    <a href="#" class="cta-button">Join Us</a>
+                    <h2 class="hero-title"><?= htmlspecialchars($communityData['info']['community_name']) ?></h2>
+                    <?php if ($communityData['info']['recruitment_status'] == "open"):?>
+                        <form id=joinCommunityForm method ="POST">
+                        <input type="hidden" name="community_id" value="<?= htmlspecialchars($communityData['info']['community_id']) ?>">
+                        <input type="hidden" name="user_id" value="<?= htmlspecialchars(($user_id))?>">
+                            <button type="submit" class="cta-button">Join Us</button>
+                        </form>
+                    <?php endif;?>
                 </div>
-                    <img class="hero-image" src="<?= htmlspecialchars($community['profile_image']) ?>" alt="Community Image">
+                    <img class="hero-image" src="<?= htmlspecialchars($communityData['info']['profile_image']) ?>" alt="Community Image">
             </div>
         </section>
         
         <section class="description">
             <div class="container">
                 <h2 class="section-title">Our Community</h2>
-                <p>CampusConnect is a dynamic hub for students, faculty, and staff to collaborate, share ideas, and foster meaningful connections. Our mission is to create an inclusive environment that promotes academic excellence, personal growth, and community engagement.</p>
-            </div>
+                <p class="hero-description"><?= htmlspecialchars($communityData['info']['description']) ?></p>
+                </div>
         </section>
         
         <section class="leaders-members" id="members">

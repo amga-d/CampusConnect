@@ -3,13 +3,9 @@ ini_set('display_errors', 0);
 ini_set('log_errors', 1);
 ini_set('error_log', __DIR__ . '../../../logs/error.log');
 
-require_once __DIR__ . '/../../model/communitiesModel.php';
+require_once __DIR__ . '/../../model/userModel.php';
 session_start();
 
-// if (!check_login()) {
-//     header("Location: /src/view/auth/signin.php");
-//     exit();
-// }
 header('Content-Type: application/json');
 try {
     // Check if user is logged in
@@ -71,7 +67,7 @@ try {
     }
 
     // Create the community
-    $communityId = createCommunity($communityData ,$_SESSION["user_id"]);
+    $communityId = createCommunity($communityData );
 
     if ($communityId) {
         echo json_encode([

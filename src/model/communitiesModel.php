@@ -20,7 +20,9 @@ function getCommunitiesNotIn($user_id)
                     SELECT community_id
                     FROM community_members
                     WHERE user_id = ?
-                    )
+                    ) 
+                And 
+                    community_privacy =! 'private'
                 GROUP BY 
                     c.community_id,
                     c.community_type,
@@ -58,6 +60,42 @@ function getCommunityMembers($communityId)
     $paramsType = "i";
     $params = [$communityId];
     return getData($query, $paramsType, $params, "getCommunityMember");
+}
+
+function getCommunityEvents($communityId)
+{
+    $query = "SELECT 
+                an.title,
+                an.content,
+                an.created_at,
+                cm.membership,
+                usr.name,
+                usr.profile_image
+
+            FROM announcements an
+            INNER JOIN  community_members cm ON an.community_id = cm.community_id
+            INNER JOIN  users usr ON an.user_id = usr.user_id
+            WHERE an.community_id = ?";
+    try {
+        $conn = connect_db();
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param("i",  $communityId);
+        if (!$stmt->execute()) {
+            throw new Exception("Query Execution Failed");
+        }
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    } catch (Exception $e) {
+        error_log("Error in get community events: " . $e->getMessage());
+        return false;
+    } finally {
+        if (isset($stmt)) {
+            $stmt->close();
+        }
+        if (isset($conn)) {
+            $conn->close();
+        }
+    }
 }
 
 function getAllCommunities()
@@ -149,95 +187,60 @@ function getMyCommunities($user_id)
 }
 function getCommunityInfo($community_id)
 {
-    $query = "SELECT * FROM communities WHERE community_id = ?";
+    $query = "SELECT community_id, community_name, description,profile_image,recruitment_status,community_type  FROM communities WHERE community_id = ? and community_privacy =! 'private'";
     $paramsType = "i";
     $params = [$community_id];
 
     return getData($query, $paramsType, $params, "getCommunityInfo");
 }
 
-function createCommunity($community_data, $user_id)
+function isCommunityOpen($community_id)
 {
-    $query = "INSERT INTO communities (
-                    community_name,
-                    community_type, 
-                    description, 
-                    profile_image, 
-                    created_by, 
-                    recruitment_status,
-                    community_privacy)
-                    VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+    $query = " Select 
+                recruitment_status 
+                from communities 
+                where community_id = ?;";
     try {
         $conn = connect_db();
+
         $stmt = $conn->prepare($query);
-        $stmt->bind_param(
-            "ssssiss",
-            $community_data['community_name'],
-            $community_data['community_type'],
-            $community_data['description'],
-            $community_data['profile_image'],
-            $community_data['creator_id'],
-            $community_data['recruitment_status'],
-            $community_data['privacy']
-        );
-
-
+        $stmt->bind_param("i", $community_id);
         if (!$stmt->execute()) {
-            throw new Exception('Query -INSERT NEW COMMUNIYT- Execution Failed ');
+            throw new Exception("Query Execution Failed");
         }
-        $last_id = $conn->insert_id;
-        if (addAdmin($community_data['creator_id'], $last_id)) {
-            return $last_id;
-        } else {
-            // handle deleting the community
-            return false;
+        $result = $stmt->get_result();
+        if ($result->num_rows > 0) {
+            if ($result->fetch_assoc()["recruitment_status"] == "open") {
+                return true;
+            }
         }
-    } catch (Exception $e) {
-        error_log("Error creating community: " . $e->getMessage());
         return false;
-    } finally {
-        if (isset($stmt)) {
-            $stmt->close();
-        }
-        if (isset($conn)) {
-            $conn->close();
-        }
+    } catch (Exception $e) {
+        error_log("Is Community Open". $e->getMessage());
+        return false;
     }
 }
 
-function addAdmin($user_id, $community_id)
-{
-    $query =
-        "INSERT INTO community_members(
-                                community_id,
-                                user_id,
-                                role,
-                                membership,
-                                membership_status) 
-                                VALUES (?,?,?,?,?);
-                                ";
+function isUserInCommunity($user_id,$community_id){
+    $query = " select joined_at from community_members where community_id = ? and user_id = ?";
+try {
+$conn = connect_db();
 
-    $conn = connect_db();
-    try {
-        $role = "admin";
-        $membership = "Leader";
-        $membership_status = "approved";
-        $stmt = $conn->prepare($query);
-        $stmt->bind_param("iisss", $community_id, $user_id, $role, $membership, $membership_status);
-
-        if (!$stmt->execute()) {
-            throw new Exception("Query Execution Failed");
-        };
-        return true;
-    } catch (Exception $e) {
-        error_log("Error adding the admin to the new community" . $e->getMessage());
-        return false;
-    } finally {
-        if (isset($stmt)) {
-            $stmt->close();
-        }
-        if (isset($conn)) {
-            $conn->close();
-        }
-    }
+$stmt = $conn->prepare($query);
+$stmt->bind_param("ii", $community_id, $user_id);
+if (!$stmt->execute()) {
+throw new Exception("Query Execution Failed");
+}
+$result = $stmt->get_result();
+if ($result->num_rows > 0) {
+    return true;
+}
+else{
+    return false;
+}
+} catch (Exception $e) {
+error_log("Is Community Open". $e->getMessage());
+return false;
+}
 }

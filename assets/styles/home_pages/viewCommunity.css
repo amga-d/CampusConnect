@@ -100,6 +100,8 @@
     font-weight: 600;
     transition: transform var(--transition), box-shadow var(--transition);
     box-shadow: var(--shadow-md);
+    cursor: pointer;
+    border: none;
 }
 
 .cta-button:hover {
