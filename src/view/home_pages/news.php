@@ -1,5 +1,11 @@
 <?php require_once __DIR__ . '/../../controllers/home_pages/newsController.php'; ?>
 
+<link rel="stylesheet" href="/assets/styles/imagepopup.css">
+<script>
+    console.log('PHP file loaded');
+</script>
+<script src="/assets/js/imagepopup.js"></script>
+
 <div class="page-content">
     <main class="app-container">
         <div class="community-header">
@@ -21,7 +27,7 @@
                     </div>
                     <strong class="elipse">...</strong>
                 </div>
-                <img src="<?= htmlspecialchars($newsItem['news_image']) ?>" class="post-image" alt="News Image">
+                <img src="<?= htmlspecialchars($newsItem['news_image']) ?>" class="post-image news-image" alt="News Image">
                 <div class="post-description">
                     <h2 class="post-title"><?= htmlspecialchars($newsItem['news_name'])?></h2>
                     <p class="post-excerpt"><?= htmlspecialchars($newsItem['description'])?></p>
