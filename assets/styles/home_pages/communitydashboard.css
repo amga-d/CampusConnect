@@ -98,23 +98,6 @@ body {
   gap: 20px;
 }
 
-.btn {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 16px 32px;
-  border: 1px solid var(--border-color);
-  background: var(--button-bg);
-  cursor: pointer;
-  border-radius: 8px;
-  font-size: 20px;
-  transition: background 0.3s, color 0.3s;
-  white-space: nowrap;
-}
-
-.btn i {
-  font-size: 22px;
-}
 
 .btn.leave-btn {
   background: linear-gradient(45deg, #1a91da, #0f8ad8);
@@ -122,36 +105,38 @@ body {
   padding: 0.5rem 1.2rem;
   border-radius: 25px;
   font-weight: bold;
+  font-size: 16px;
   box-shadow: 0 2px 8px rgba(29, 161, 242, 0.2);
   border: 2px solid transparent;
-  transition: all 0.3s ease;
+  text-wrap: nowrap;
+  cursor: pointer;
 }
 
 .btn.leave-btn:hover {
   background: white;
   color: #1a91da;
-  transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(29, 161, 242, 0.3);
   border: 2px solid #1a91da;
 }
 
 
-/* .btn.invite-btn {
+.btn.invite-btn {
   background: linear-gradient(45deg, #1a91da, #0f8ad8);
   color: white;
+  font-size: 16px;
   padding: 0.5rem 1.2rem;
   border-radius: 25px;
   font-weight: bold;
   box-shadow: 0 2px 8px rgba(29, 161, 242, 0.2);
   border: 2px solid transparent;
-  transition: all 0.3s ease;
   text-wrap: nowrap;
+  cursor: pointer;
+
 }
 
 .btn.invite-btn:hover {
   background: white;
-  color:  #1a91da;
-  transform: translateY(-2px);
+  color: #1a91da;
   box-shadow: 0 4px 12px rgba(29, 161, 242, 0.3);
   border: 2px solid #1a91da;
 }
@@ -163,24 +148,25 @@ body {
   border-radius: 25px;
   font-weight: bold;
   box-shadow: 0 2px 8px rgba(29, 161, 242, 0.2);
-  border: 2px solid transparent;
   border: 2px solid #1a91da;
-  transition: all 0.3s ease;
+  cursor: pointer;
+  font-size: 16px;
 }
 
 .btn.edit-btn:hover {
-  background: linear-gradient(45deg, #1a91da, #0f8ad8);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background: #1a91da;
   color: white;
-  transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(29, 161, 242, 0.3);
-} */
+  border: 2px solid #1a91da;
+}
 
 
 /* Avatar Wrapper Positioned at Bottom Center */
 .avatar-wrapper {
   position: absolute;
-  bottom: -110px;
-  left: 20%;
+  bottom: -100px;
+  left: 50%;
   transform: translateX(-50%);
   width: 280px;
   height: 280px;
@@ -203,7 +189,8 @@ body {
     */
 
 .group-info-container {
-  margin-top: 60px;
+  margin-top: 120px;
+  margin-bottom: 30px;
   text-align: center;
 }
 
@@ -217,7 +204,7 @@ body {
 .group-title {
   font-size: 32px;
   font-weight: 700;
-  margin-bottom: 12px;
+  margin-bottom: 20px;
 }
 
 .group-desc {
@@ -310,7 +297,7 @@ body {
     */
 
 .right-column {
-  background: var(--secondary-color);
+  background: white;
   padding: 30px;
   border: 1px solid var(--border-color);
   border-radius: 10px;
@@ -607,11 +594,13 @@ body {
     */
 
 .events-content #newsFeed {
+  margin-top: 3rem;
   background-color: white;
   display: grid;
   grid-template-columns: 1fr;
   gap: 15px;
   padding: 15px;
+  width: 60%;
 }
 
 .events-content .news-post {
@@ -739,6 +728,7 @@ body {
     width: 160px;
     height: 160px;
     bottom: -80px;
+    left: 50%;
   }
 
   .group-info-container {
