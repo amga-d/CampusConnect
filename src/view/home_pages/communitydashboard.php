@@ -13,6 +13,9 @@ require_once __DIR__ . '/../../controllers/home_pages/communityDashboardControll
     <div class="cover-overlay"></div>
     <div class="header-content">
       <button class="btn leave-btn"><i class="fas fa-sign-out"></i> Leave</button>
+      <!-- <button class="btn invite-btn"><i class="fas fa-user-plus"></i> Invite</button>
+      <button class="btn edit-btn"><i class="fas fa-edit"></i> Edit</button> -->
+
     </div>
     <div class="avatar-wrapper">
       <img src="<?= htmlspecialchars($dashboardData['community']['profile_image'])?>" alt="UII Global Group Avatar" class="avatar" loading="lazy"/>
