@@ -20,7 +20,7 @@ function initializeDashboard(){
         const targetSection = document.querySelector(`.${target}`);
         if(targetSection) {
           // Use block to maintain consistent layout
-          targetSection.style.display = 'block';
+          targetSection.style.display = 'grid';
         }
       });
     });
