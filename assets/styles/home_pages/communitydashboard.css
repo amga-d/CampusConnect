@@ -297,8 +297,10 @@ body {
     */
 
 .right-column {
+  max-height: fit-content;
   background: white;
   padding: 30px;
+  padding-bottom: 60px;
   border: 1px solid var(--border-color);
   border-radius: 10px;
   box-shadow: 0 6px 10px rgba(0,0,0,0.1);
@@ -354,18 +356,20 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 18px 36px;
+  padding: 14px 0;
   background: var(--twitterblue-color);
   color: white;
   text-decoration: none;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 600;
   border-radius: 8px;
   transition: background 0.3s, transform 0.2s;
   position: absolute;
   bottom: 20px;
   left: 50%;
+  width: 80%;
   transform: translateX(-50%);
+  text-wrap: nowrap;
 }
 
 .right-column .view-all-btn:hover {
@@ -446,7 +450,7 @@ body {
   border: 1px solid var(--border-color);
   border-radius: 10px;
   padding: 35px;
-  margin-bottom: 40px;
+  /* margin-bottom: 40px; */
   box-shadow: 0 4px 8px rgba(0,0,0,0.05);
   transition: transform 0.3s, box-shadow 0.3s;
 }
@@ -755,15 +759,16 @@ body {
   .post-input {
     padding: 15px 20px;
     margin-bottom: 30px;
-    flex-direction: column;
-    align-items: stretch;
+    /* flex-direction: column; */
+    /* align-items: center; */
+    
   }
 
   .post-input .user-avatar {
     width: 60px;
     height: 60px;
     margin-right: 0;
-    margin-bottom: 10px;
+
     align-self: center;
   }
 
@@ -775,8 +780,6 @@ body {
 
   .send-btn {
     font-size: 18px;
-    padding: 5px;
-    align-self: flex-end;
   }
 
   /* Post Adjustments */

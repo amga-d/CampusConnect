@@ -1,7 +1,6 @@
 <?php
         require_once __DIR__ . '/../../model/dashboardModel.php';
 
-
         // Dummy data for testing
         $dashboardDat1a = [
             'community' => [
@@ -66,9 +65,12 @@ function getCommunityDetails($communityId)
         // Check user's role in the community
         $role = getUserRole($_SESSION['user_id'], $communityId);
 
+        
         // Get community members
         $members = getCommunityMembers($communityId);
-
+        
+        // Get user profile
+        $userprofile = getUserProfile($_SESSION['user_id']);
         // Get community announcements
         $announcements = getCommunityAnnouncements($communityId);
 
@@ -78,6 +80,7 @@ function getCommunityDetails($communityId)
         return [
             'community' => $community[0],
             'role' => $role,
+            'profile' => $userprofile,
             'members' => $members,
             'announcements' => $announcements,
             'events' => $events
@@ -160,7 +163,6 @@ function postEvent($communityId, $memberId, $eventData)
     }
 }
 
-
 function checkUserIsAdmin($user_id, $communityId)
 {
     return getUserRole($user_id, $communityId) == "admin";
@@ -176,5 +178,6 @@ if (isset($_GET['community_id'])) {
         $error = "Failed to load community dashboard";
     }
 }
+
 
 ?>

@@ -139,18 +139,51 @@ function getCommunityMembers($communityId)
                 u.name, 
                 cm.role, 
                 cm.membership,
-                cm.membership_status
+                cm.membership_status,
                 u.profile_image
             FROM 
                 community_members cm
             JOIN 
                 users u 
             ON 
-                cm.user_id = u.id
+                cm.user_id = u.user_id
             WHERE 
             cm.community_id = ?
         ";
     $paramsType = "i";
     $params = [$communityId];
     return getData($query, $paramsType, $params, "getCommunityMember");
+}
+
+
+function getUserProfile($user_id){
+    try{
+        $conn = connect_db();
+        $stmt = $conn->prepare("SELECT `profile_image`,`name` FROM `users` WHERE `user_id` = ?");
+        $stmt->bind_param("i", $user_id);
+
+        if(!$stmt->execute()){
+            throw new Exception("Query Execation Failed");
+        }
+        $result = $stmt->get_result();
+        if($result->num_rows > 0){
+            $row = $result->fetch_assoc();
+            return $row;
+        }else{
+            return false;
+        }
+        
+
+    }catch(PDOException $e){   
+    error_log("".$e->getMessage());
+
+    }finally{
+    if(isset($conn)){
+        $conn->close();
+    }
+    if(isset($stmt)){
+        $stmt->close();
+    }
+    
+    }
 }
