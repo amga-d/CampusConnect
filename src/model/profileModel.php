@@ -3,7 +3,7 @@ require_once __DIR__ . "/modelsFunction.php";
 require_once __DIR__ ."/../config/db_conn.php";
 
 function getUserProfile($userId)
-{  
+{
     $query = "SELECT user_id, name, email, profile_image, bio, birthdate, gender, created_at FROM Users WHERE user_id = ?";
     $paramstype = "i";
     $params = [$userId];

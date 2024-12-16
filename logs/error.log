@@ -396,3 +396,88 @@ Stack trace:
 #1 C:\xampp\htdocs\CampusConnect\src\view\home_pages\communitydashboard.php(5): require_once('C:\\xampp\\htdocs...')
 #2 {main}
   thrown in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 62
+[16-Dec-2024 11:32:51 Europe/Berlin] PHP Warning:  Undefined variable $result in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\myCommunitiesController.php on line 12
+[16-Dec-2024 11:32:59 Europe/Berlin] PHP Warning:  Undefined variable $result in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\myCommunitiesController.php on line 12
+[16-Dec-2024 11:34:04 Europe/Berlin] PHP Warning:  Undefined variable $result in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\myCommunitiesController.php on line 12
+[16-Dec-2024 11:34:06 Europe/Berlin] PHP Warning:  Undefined variable $result in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\myCommunitiesController.php on line 12
+[16-Dec-2024 11:36:03 Europe/Berlin] PHP Warning:  Undefined variable $result in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\myCommunitiesController.php on line 12
+[16-Dec-2024 11:36:08 Europe/Berlin] PHP Warning:  Undefined variable $result in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\myCommunitiesController.php on line 12
+[16-Dec-2024 11:36:34 Europe/Berlin] PHP Warning:  Undefined variable $result in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\myCommunitiesController.php on line 12
+[16-Dec-2024 11:36:37 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to undefined function getCommunityInfo() in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php:62
+Stack trace:
+#0 C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php(172): getCommunityDetails('33')
+#1 C:\xampp\htdocs\CampusConnect\src\view\home_pages\communitydashboard.php(5): require_once('C:\\xampp\\htdocs...')
+#2 {main}
+  thrown in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 62
+[16-Dec-2024 11:36:39 Europe/Berlin] PHP Warning:  Undefined variable $result in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\myCommunitiesController.php on line 12
+[16-Dec-2024 11:36:44 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to undefined function getCommunityInfo() in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php:62
+Stack trace:
+#0 C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php(172): getCommunityDetails('33')
+#1 C:\xampp\htdocs\CampusConnect\src\view\home_pages\communitydashboard.php(5): require_once('C:\\xampp\\htdocs...')
+#2 {main}
+  thrown in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 62
+[16-Dec-2024 11:36:45 Europe/Berlin] PHP Warning:  Undefined variable $result in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\myCommunitiesController.php on line 12
+[16-Dec-2024 11:36:46 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to undefined function getCommunityInfo() in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php:62
+Stack trace:
+#0 C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php(172): getCommunityDetails('33')
+#1 C:\xampp\htdocs\CampusConnect\src\view\home_pages\communitydashboard.php(5): require_once('C:\\xampp\\htdocs...')
+#2 {main}
+  thrown in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 62
+[16-Dec-2024 11:36:59 Europe/Berlin] PHP Warning:  Undefined variable $result in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\myCommunitiesController.php on line 12
+[16-Dec-2024 11:39:06 Europe/Berlin] User is logged in.
+[16-Dec-2024 11:39:06 Europe/Berlin] All required fields are present.
+[16-Dec-2024 11:39:06 Europe/Berlin] Image uploaded successfully.
+[16-Dec-2024 11:39:06 Europe/Berlin] Community created with ID: 35
+[16-Dec-2024 11:39:06 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to undefined function getCommunityInfo() in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php:62
+Stack trace:
+#0 C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php(172): getCommunityDetails('35')
+#1 C:\xampp\htdocs\CampusConnect\src\view\home_pages\communitydashboard.php(5): require_once('C:\\xampp\\htdocs...')
+#2 {main}
+  thrown in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 62
+[16-Dec-2024 11:39:15 Europe/Berlin] Profile update model error: Email is already taken
+[16-Dec-2024 11:39:15 Europe/Berlin] Profile update error: Failed to update profile
+[16-Dec-2024 11:39:41 Europe/Berlin] PHP Warning:  Undefined variable $result in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\myCommunitiesController.php on line 12
+[16-Dec-2024 11:39:43 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to undefined function getCommunityInfo() in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php:62
+Stack trace:
+#0 C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php(172): getCommunityDetails('35')
+#1 C:\xampp\htdocs\CampusConnect\src\view\home_pages\communitydashboard.php(5): require_once('C:\\xampp\\htdocs...')
+#2 {main}
+  thrown in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 62
+[16-Dec-2024 11:40:02 Europe/Berlin] PHP Warning:  Undefined variable $result in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\myCommunitiesController.php on line 12
+[16-Dec-2024 11:40:07 Europe/Berlin] PHP Warning:  Undefined variable $result in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\myCommunitiesController.php on line 12
+[16-Dec-2024 11:41:19 Europe/Berlin] PHP Warning:  Undefined variable $result in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\myCommunitiesController.php on line 12
+[16-Dec-2024 11:42:35 Europe/Berlin] PHP Warning:  Undefined variable $result in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\myCommunitiesController.php on line 12
+[16-Dec-2024 11:42:41 Europe/Berlin] PHP Warning:  Undefined variable $result in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\myCommunitiesController.php on line 12
+[16-Dec-2024 11:42:44 Europe/Berlin] PHP Warning:  Undefined variable $result in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\myCommunitiesController.php on line 12
+[16-Dec-2024 11:42:45 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to undefined function getCommunityInfo() in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php:62
+Stack trace:
+#0 C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php(172): getCommunityDetails('35')
+#1 C:\xampp\htdocs\CampusConnect\src\view\home_pages\communitydashboard.php(5): require_once('C:\\xampp\\htdocs...')
+#2 {main}
+  thrown in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 62
+[16-Dec-2024 11:53:10 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to undefined function getCommunityInfo() in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php:62
+Stack trace:
+#0 C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php(172): getCommunityDetails('35')
+#1 C:\xampp\htdocs\CampusConnect\src\view\home_pages\communitydashboard.php(5): require_once('C:\\xampp\\htdocs...')
+#2 {main}
+  thrown in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 62
+[16-Dec-2024 11:54:43 Europe/Berlin] PHP Warning:  Undefined array key "community_name" in C:\xampp\htdocs\CampusConnect\src\view\home_pages\communitydashboard.php on line 28
+[16-Dec-2024 11:54:43 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CampusConnect\src\view\home_pages\communitydashboard.php on line 28
+[16-Dec-2024 11:55:25 Europe/Berlin] PHP Warning:  Undefined array key "community_name" in C:\xampp\htdocs\CampusConnect\src\view\home_pages\communitydashboard.php on line 28
+[16-Dec-2024 11:55:25 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CampusConnect\src\view\home_pages\communitydashboard.php on line 28
+[16-Dec-2024 11:55:54 Europe/Berlin] PHP Warning:  Undefined array key "community_name" in C:\xampp\htdocs\CampusConnect\src\view\home_pages\communitydashboard.php on line 28
+[16-Dec-2024 11:55:54 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CampusConnect\src\view\home_pages\communitydashboard.php on line 28
+[16-Dec-2024 11:56:28 Europe/Berlin] PHP Warning:  Undefined array key "community_name" in C:\xampp\htdocs\CampusConnect\src\view\home_pages\communitydashboard.php on line 28
+[16-Dec-2024 11:56:28 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CampusConnect\src\view\home_pages\communitydashboard.php on line 28
+[16-Dec-2024 11:56:42 Europe/Berlin] PHP Warning:  Undefined array key "community_name" in C:\xampp\htdocs\CampusConnect\src\view\home_pages\communitydashboard.php on line 28
+[16-Dec-2024 11:56:42 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CampusConnect\src\view\home_pages\communitydashboard.php on line 28
+[16-Dec-2024 11:58:47 Europe/Berlin] PHP Warning:  Undefined array key "community_name" in C:\xampp\htdocs\CampusConnect\src\view\home_pages\communitydashboard.php on line 28
+[16-Dec-2024 11:58:47 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CampusConnect\src\view\home_pages\communitydashboard.php on line 28
+[16-Dec-2024 11:59:42 Europe/Berlin] PHP Warning:  Undefined array key "community_name" in C:\xampp\htdocs\CampusConnect\src\view\home_pages\communitydashboard.php on line 30
+[16-Dec-2024 11:59:42 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CampusConnect\src\view\home_pages\communitydashboard.php on line 30
+[16-Dec-2024 12:00:17 Europe/Berlin] PHP Warning:  Undefined array key "community_name" in C:\xampp\htdocs\CampusConnect\src\view\home_pages\communitydashboard.php on line 30
+[16-Dec-2024 12:00:17 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CampusConnect\src\view\home_pages\communitydashboard.php on line 30
+[16-Dec-2024 12:09:54 Europe/Berlin] User is logged in.
+[16-Dec-2024 12:09:54 Europe/Berlin] All required fields are present.
+[16-Dec-2024 12:09:54 Europe/Berlin] Image uploaded successfully.
+[16-Dec-2024 12:09:54 Europe/Berlin] Community created with ID: 36

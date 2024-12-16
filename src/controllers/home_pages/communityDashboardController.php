@@ -1,4 +1,4 @@
-<!-- <?php
+<?php
         require_once __DIR__ . '/../../model/dashboardModel.php';
 
 
@@ -51,7 +51,7 @@
         ];
 
         $error = null;
-        ?> -->
+        ?>
 
 <?php
 session_start();
@@ -117,7 +117,7 @@ function manageMember($communityId, $memberId, $action)
                 removeMemberFromCommunity($communityId, $memberId);
                 break;
             case 'promote':
-                promoteMemberToAdmin($communityId, $memberId);
+                promoteMemberToCoreTeam($communityId, $memberId);
                 break;
             default:
                 throw new Exception("Invalid action");
@@ -166,14 +166,14 @@ function checkUserIsAdmin($user_id, $communityId)
     return getUserRole($user_id, $communityId) == "admin";
 }
 // Initialize dashboard data if community ID is provided
-$dashboardData = null;
+// $dashboardData = null;
 $error = null;
 if (isset($_GET['community_id'])) {
-    $dashboardData = getCommunityDetails($_GET['community_id']);
+    // $dashboardData = getCommunityDetails($_GET['community_id']);
     if (!$dashboardData) {
         $error = "Failed to load community dashboard";
     }
-    print_r(json_encode($dashboardData));
+    // print_r(json_encode($dashboardData));
 }
 
 ?>

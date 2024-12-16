@@ -9,7 +9,7 @@ try {
     $myCommunities = getMyCommunities($_SESSION['user_id']);
     // $result = getMyCommunities($_SESSION('user_id'));
     
-    if ($result === false) {
+    if ($myCommunities === false) {
         throw new Exception("Failed to fetch my communities");
     }
     
