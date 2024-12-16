@@ -4,6 +4,9 @@ ini_set('display_errors', 1);
 
 require_once __DIR__ . '/../../controllers/home_pages/communityDashboardController.php';
 
+print_r(json_encode($dashboardData));
+// echo ($dashboardData['community']['']);
+
 ?>
 
 <div class="page-content">
@@ -19,14 +22,14 @@ require_once __DIR__ . '/../../controllers/home_pages/communityDashboardControll
 
     </div>
     <div class="avatar-wrapper">
-      <img src="<?= htmlspecialchars($dashboardData['community']['profile_image'])?>" alt="UII Global Group Avatar" class="avatar" loading="lazy"/>
+      <img src="<?= htmlspecialchars($dashboardData['community']['profile_image'])?>" alt="community Avatar" class="avatar" loading="lazy"/>
     </div>
   </header>
   
   <!-- Group Info Section -->
   <div class="group-info-container">
     <div class="group-info">
-      <h1 class="group-title"><?= htmlspecialchars($dashboardData['community']['name'])?></h1>
+      <h1 class="group-title"><?= htmlspecialchars($dashboardData['community']['community_name'])?></h1>
       <p class="group-desc">
         <?=
         htmlspecialchars($dashboardData['community']['description'])
@@ -214,54 +217,5 @@ require_once __DIR__ . '/../../controllers/home_pages/communityDashboardControll
   </main>
 </div>
 
-<script>
-  // JavaScript to switch between sections
-const navLinks = document.querySelectorAll('.nav-link');
-const contentSections = document.querySelectorAll('.content-section');
-
-navLinks.forEach(link => {
-  link.addEventListener('click', e => {
-    e.preventDefault();
-    // Get the target content
-    const target = link.getAttribute('data-target');
-    
-    // Remove 'active' class from all nav links
-    navLinks.forEach(nav => nav.classList.remove('active'));
-    link.classList.add('active');
-    
-    // Hide all content sections
-    contentSections.forEach(section => section.style.display = 'none');
-    
-    // Show the target content section
-    const targetSection = document.querySelector(`.${target}`);
-    if(targetSection) {
-      // Use block to maintain consistent layout
-      targetSection.style.display = 'block';
-    }
-  });
-});
-  
-  // Like button toggle functionality
-  document.querySelectorAll('.like-btn').forEach(button => {
-    button.addEventListener('click', () => {
-      button.classList.toggle('liked');
-    });
-  });
-
-  function toggleReadMore(element) {
-    const excerpt = element.previousElementSibling;
-    const isCollapsed = excerpt.style.webkitLineClamp === "3" || !excerpt.style.webkitLineClamp;
-
-    if (isCollapsed) {
-        excerpt.style.display = "block";
-        excerpt.style.webkitLineClamp = "unset";
-        element.textContent = "Read less";
-    } else {
-        excerpt.style.webkitLineClamp = "3";
-        excerpt.style.display = "-webkit-box";
-        element.textContent = "Read more";
-    }
-}
-</script>
 
 </div>

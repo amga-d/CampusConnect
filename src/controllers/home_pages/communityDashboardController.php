@@ -3,7 +3,7 @@
 
 
         // Dummy data for testing
-        $dashboardData = [
+        $dashboardDat1a = [
             'community' => [
                 'name' => 'Computer Science Club',
                 'description' => 'A vibrant community for CS students to collaborate, learn, and grow together. Join us for coding challenges, workshops, and tech discussions!',
@@ -76,10 +76,10 @@ function getCommunityDetails($communityId)
         $events = getCommunityEvents($communityId);
 
         return [
-            'community' => $community,
+            'community' => $community[0],
             'role' => $role,
             'members' => $members,
-            'announcements' => $announcements,
+            'announcements' => $announcements[0],
             'events' => $events
         ];
 
@@ -166,14 +166,13 @@ function checkUserIsAdmin($user_id, $communityId)
     return getUserRole($user_id, $communityId) == "admin";
 }
 // Initialize dashboard data if community ID is provided
-// $dashboardData = null;
+$dashboardData = null;
 $error = null;
 if (isset($_GET['community_id'])) {
-    // $dashboardData = getCommunityDetails($_GET['community_id']);
+    $dashboardData = getCommunityDetails($_GET['community_id']);
     if (!$dashboardData) {
         $error = "Failed to load community dashboard";
     }
-    // print_r(json_encode($dashboardData));
 }
 
 ?>
