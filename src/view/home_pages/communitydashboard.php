@@ -3,6 +3,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 require_once __DIR__ . '/../../controllers/home_pages/communityDashboardController.php';
+
 ?>
 
 <div class="page-content">
@@ -18,16 +19,18 @@ require_once __DIR__ . '/../../controllers/home_pages/communityDashboardControll
 
     </div>
     <div class="avatar-wrapper">
-      <img src="" alt="UII Global Group Avatar" class="avatar" loading="lazy"/>
+      <img src="<?= htmlspecialchars($dashboardData['community']['profile_image'])?>" alt="UII Global Group Avatar" class="avatar" loading="lazy"/>
     </div>
   </header>
   
   <!-- Group Info Section -->
   <div class="group-info-container">
     <div class="group-info">
-      <h1 class="group-title">UII GLOBAL</h1>
+      <h1 class="group-title"><?= htmlspecialchars($dashboardData['community']['name'])?></h1>
       <p class="group-desc">
-        Connecting global talents in technology, fostering collaboration and innovation across borders.
+        <?=
+        htmlspecialchars($dashboardData['community']['description'])
+          ?>
       </p>
     </div>
   </div>
@@ -35,9 +38,9 @@ require_once __DIR__ . '/../../controllers/home_pages/communityDashboardControll
   <!-- Navigation Bar -->
   <nav class="navbar">
     <ul class="nav-menu">
-      <li class="nav-item"><a href="#" class="nav-link active" data-target="home-content">Home</a></li>
-      <li class="nav-item"><a href="#" class="nav-link" data-target="members-content">Members</a></li>
-      <li class="nav-item"><a href="#" class="nav-link" data-target="events-content">Events</a></li>
+      <li class="nav-item"><a href="" class="nav-link active" data-target="home-content">Home</a></li>
+      <li class="nav-item"><a href="" class="nav-link" data-target="members-content">Members</a></li>
+      <li class="nav-item"><a href="" class="nav-link" data-target="events-content">Events</a></li>
     </ul>
   </nav>
   

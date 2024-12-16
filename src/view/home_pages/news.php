@@ -20,7 +20,7 @@
         <div id="newsFeed">
             <div class="news-post">
                 <div class="post-header">
-                    <img src="\public\uploads\news\university.webp" alt="UII Logo" class="post-avatar" loading="lazy">
+                    <img src="\public\uploads\news\Logo-UII.webp" alt="UII Logo" class="post-avatar" loading="lazy">
                     <div class="post-info">
                         <strong>Universtas Islam Indonesia</strong><br>
                         <span class="post-date"><?= htmlspecialchars($newsItem['created_at'])?></span>
