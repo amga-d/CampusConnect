@@ -1,0 +1,196 @@
+[10-Dec-2024 15:47:44 Europe/Berlin] User is logged in.
+[10-Dec-2024 15:47:44 Europe/Berlin] All required fields are present.
+[10-Dec-2024 15:47:44 Europe/Berlin] Image uploaded successfully.
+[10-Dec-2024 15:47:44 Europe/Berlin] Error adding the admin to the new communityCannot add or update a child row: a foreign key constraint fails (`campusconnect`.`community_members`, CONSTRAINT `community_members_ibfk_1` FOREIGN KEY (`community_id`) REFERENCES `communities` (`community_id`) ON DELETE CASCADE)
+[10-Dec-2024 15:47:44 Europe/Berlin] Error: Failed to create community
+[10-Dec-2024 16:09:34 Europe/Berlin] User is logged in.
+[10-Dec-2024 16:09:34 Europe/Berlin] All required fields are present.
+[10-Dec-2024 16:09:34 Europe/Berlin] Image uploaded successfully.
+[10-Dec-2024 16:09:34 Europe/Berlin] Community created with ID: 23
+[10-Dec-2024 16:12:47 Europe/Berlin] User is logged in.
+[10-Dec-2024 16:12:47 Europe/Berlin] All required fields are present.
+[10-Dec-2024 16:12:47 Europe/Berlin] Image uploaded successfully.
+[10-Dec-2024 16:12:47 Europe/Berlin] Community created with ID: 24
+[10-Dec-2024 16:13:16 Europe/Berlin] User is logged in.
+[10-Dec-2024 16:13:16 Europe/Berlin] All required fields are present.
+[10-Dec-2024 16:13:16 Europe/Berlin] Image uploaded successfully.
+[10-Dec-2024 16:13:16 Europe/Berlin] Community created with ID: 25
+[10-Dec-2024 16:32:16 Europe/Berlin] User is logged in.
+[10-Dec-2024 16:32:16 Europe/Berlin] All required fields are present.
+[10-Dec-2024 16:32:16 Europe/Berlin] Image uploaded successfully.
+[10-Dec-2024 16:32:16 Europe/Berlin] Community created with ID: 26
+[11-Dec-2024 13:38:33 Europe/Berlin] Error fetching : MySQL server has gone away
+[11-Dec-2024 13:38:33 Europe/Berlin] Discover page error: Failed to fetch communities
+[11-Dec-2024 13:38:42 Europe/Berlin] Discover page error: No connection could be made because the target machine actively refused it
+[11-Dec-2024 13:38:47 Europe/Berlin] Discover page error: No connection could be made because the target machine actively refused it
+[11-Dec-2024 13:58:15 Europe/Berlin] User is logged in.
+[11-Dec-2024 13:58:15 Europe/Berlin] All required fields are present.
+[11-Dec-2024 13:58:15 Europe/Berlin] Image uploaded successfully.
+[11-Dec-2024 13:58:15 Europe/Berlin] Community created with ID: 32
+[11-Dec-2024 14:20:20 Europe/Berlin] User is logged in.
+[11-Dec-2024 14:20:20 Europe/Berlin] All required fields are present.
+[11-Dec-2024 14:20:20 Europe/Berlin] Using default profile image.
+[11-Dec-2024 14:20:20 Europe/Berlin] Community created with ID: 33
+[11-Dec-2024 15:23:03 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 58
+[11-Dec-2024 15:23:43 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 58
+[11-Dec-2024 15:23:43 Europe/Berlin] PHP Warning:  Array to string conversion in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 68
+[11-Dec-2024 15:23:43 Europe/Berlin] PHP Warning:  Undefined variable $Array in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 68
+[11-Dec-2024 15:23:43 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 68
+[11-Dec-2024 15:23:43 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\CampusConnect\src\model\communitiesModel.php on line 101
+[11-Dec-2024 15:23:43 Europe/Berlin] Error in getCommunityMembers: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.profile_image
+            FROM 
+                community_members cm
+    ...' at line 6
+[11-Dec-2024 15:23:45 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 58
+[11-Dec-2024 15:23:45 Europe/Berlin] PHP Warning:  Array to string conversion in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 68
+[11-Dec-2024 15:23:45 Europe/Berlin] PHP Warning:  Undefined variable $Array in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 68
+[11-Dec-2024 15:23:45 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 68
+[11-Dec-2024 15:23:45 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\CampusConnect\src\model\communitiesModel.php on line 101
+[11-Dec-2024 15:23:45 Europe/Berlin] Error in getCommunityMembers: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.profile_image
+            FROM 
+                community_members cm
+    ...' at line 6
+[11-Dec-2024 15:24:03 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 58
+[11-Dec-2024 15:24:03 Europe/Berlin] PHP Warning:  Array to string conversion in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 68
+[11-Dec-2024 15:24:03 Europe/Berlin] PHP Warning:  Undefined variable $Array in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 68
+[11-Dec-2024 15:24:03 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 68
+[11-Dec-2024 15:24:03 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\CampusConnect\src\model\communitiesModel.php on line 101
+[11-Dec-2024 15:24:04 Europe/Berlin] Error in getCommunityMembers: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.profile_image
+            FROM 
+                community_members cm
+    ...' at line 6
+[12-Dec-2024 14:09:27 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 58
+[12-Dec-2024 14:09:27 Europe/Berlin] PHP Warning:  Array to string conversion in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 68
+[12-Dec-2024 14:09:27 Europe/Berlin] PHP Warning:  Undefined variable $Array in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 68
+[12-Dec-2024 14:09:27 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 68
+[12-Dec-2024 14:09:27 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\CampusConnect\src\model\communitiesModel.php on line 101
+[12-Dec-2024 14:09:27 Europe/Berlin] Error in getCommunityMembers: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.profile_image
+            FROM 
+                community_members cm
+    ...' at line 6
+[12-Dec-2024 14:09:45 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 58
+[12-Dec-2024 14:09:45 Europe/Berlin] PHP Warning:  Array to string conversion in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 68
+[12-Dec-2024 14:09:45 Europe/Berlin] PHP Warning:  Undefined variable $Array in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 68
+[12-Dec-2024 14:09:45 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 68
+[12-Dec-2024 14:09:45 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\CampusConnect\src\model\communitiesModel.php on line 101
+[12-Dec-2024 14:09:45 Europe/Berlin] Error in getCommunityMembers: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.profile_image
+            FROM 
+                community_members cm
+    ...' at line 6
+[12-Dec-2024 14:10:11 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 58
+[12-Dec-2024 14:10:11 Europe/Berlin] PHP Warning:  Array to string conversion in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 68
+[12-Dec-2024 14:10:11 Europe/Berlin] PHP Warning:  Undefined variable $Array in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 68
+[12-Dec-2024 14:10:11 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 68
+[12-Dec-2024 14:10:11 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\CampusConnect\src\model\communitiesModel.php on line 101
+[12-Dec-2024 14:10:11 Europe/Berlin] Error in getCommunityMembers: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.profile_image
+            FROM 
+                community_members cm
+    ...' at line 6
+[12-Dec-2024 14:13:36 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 58
+[12-Dec-2024 14:13:36 Europe/Berlin] PHP Warning:  Array to string conversion in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 68
+[12-Dec-2024 14:13:36 Europe/Berlin] PHP Warning:  Undefined variable $Array in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 68
+[12-Dec-2024 14:13:36 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 68
+[12-Dec-2024 14:13:36 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\CampusConnect\src\model\communitiesModel.php on line 101
+[12-Dec-2024 14:13:36 Europe/Berlin] Error in getCommunityMembers: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.profile_image
+            FROM 
+                community_members cm
+    ...' at line 6
+[12-Dec-2024 14:13:47 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 58
+[12-Dec-2024 14:13:47 Europe/Berlin] PHP Warning:  Array to string conversion in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 68
+[12-Dec-2024 14:13:47 Europe/Berlin] PHP Warning:  Undefined variable $Array in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 68
+[12-Dec-2024 14:13:47 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 68
+[12-Dec-2024 14:13:47 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\CampusConnect\src\model\communitiesModel.php on line 101
+[12-Dec-2024 14:13:47 Europe/Berlin] Error in getCommunityMembers: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.profile_image
+            FROM 
+                community_members cm
+    ...' at line 6
+[12-Dec-2024 14:17:28 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 58
+[12-Dec-2024 14:17:28 Europe/Berlin] PHP Warning:  Array to string conversion in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 68
+[12-Dec-2024 14:17:28 Europe/Berlin] PHP Warning:  Undefined variable $Array in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 68
+[12-Dec-2024 14:17:28 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 68
+[12-Dec-2024 14:17:28 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\CampusConnect\src\model\communitiesModel.php on line 101
+[12-Dec-2024 14:17:28 Europe/Berlin] Error in getCommunityMembers: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.profile_image
+            FROM 
+                community_members cm
+    ...' at line 6
+[12-Dec-2024 14:18:15 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 58
+[12-Dec-2024 14:18:15 Europe/Berlin] PHP Warning:  Array to string conversion in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 68
+[12-Dec-2024 14:18:15 Europe/Berlin] PHP Warning:  Undefined variable $Array in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 68
+[12-Dec-2024 14:18:15 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 68
+[12-Dec-2024 14:18:15 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\CampusConnect\src\model\communitiesModel.php on line 101
+[12-Dec-2024 14:18:16 Europe/Berlin] Error in getCommunityMembers: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.profile_image
+            FROM 
+                community_members cm
+    ...' at line 6
+[12-Dec-2024 14:24:40 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 58
+[12-Dec-2024 14:24:40 Europe/Berlin] PHP Warning:  Array to string conversion in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 68
+[12-Dec-2024 14:24:40 Europe/Berlin] PHP Warning:  Undefined variable $Array in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 68
+[12-Dec-2024 14:24:40 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 68
+[12-Dec-2024 14:24:40 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\CampusConnect\src\model\communitiesModel.php on line 101
+[12-Dec-2024 14:24:40 Europe/Berlin] Error in getCommunityMembers: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.profile_image
+            FROM 
+                community_members cm
+    ...' at line 6
+[12-Dec-2024 14:29:04 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 58
+[12-Dec-2024 14:29:04 Europe/Berlin] PHP Warning:  Array to string conversion in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 68
+[12-Dec-2024 14:29:04 Europe/Berlin] PHP Warning:  Undefined variable $Array in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 68
+[12-Dec-2024 14:29:04 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 68
+[12-Dec-2024 14:29:04 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\CampusConnect\src\model\communitiesModel.php on line 101
+[12-Dec-2024 14:29:04 Europe/Berlin] Error in getCommunityMembers: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.profile_image
+            FROM 
+                community_members cm
+    ...' at line 6
+[12-Dec-2024 14:29:09 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 58
+[12-Dec-2024 14:29:09 Europe/Berlin] PHP Warning:  Array to string conversion in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 68
+[12-Dec-2024 14:29:09 Europe/Berlin] PHP Warning:  Undefined variable $Array in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 68
+[12-Dec-2024 14:29:09 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 68
+[12-Dec-2024 14:29:09 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\CampusConnect\src\model\communitiesModel.php on line 101
+[12-Dec-2024 14:29:09 Europe/Berlin] Error in getCommunityMembers: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.profile_image
+            FROM 
+                community_members cm
+    ...' at line 6
+[12-Dec-2024 14:30:21 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 58
+[12-Dec-2024 14:30:21 Europe/Berlin] PHP Warning:  Array to string conversion in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 68
+[12-Dec-2024 14:30:21 Europe/Berlin] PHP Warning:  Undefined variable $Array in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 68
+[12-Dec-2024 14:30:21 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 68
+[12-Dec-2024 14:30:21 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\CampusConnect\src\model\communitiesModel.php on line 101
+[12-Dec-2024 14:30:21 Europe/Berlin] Error in getCommunityMembers: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.profile_image
+            FROM 
+                community_members cm
+    ...' at line 6
+[12-Dec-2024 14:30:25 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 58
+[12-Dec-2024 14:30:25 Europe/Berlin] PHP Warning:  Array to string conversion in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 68
+[12-Dec-2024 14:30:25 Europe/Berlin] PHP Warning:  Undefined variable $Array in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 68
+[12-Dec-2024 14:30:25 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 68
+[12-Dec-2024 14:30:25 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\CampusConnect\src\model\communitiesModel.php on line 101
+[12-Dec-2024 14:30:25 Europe/Berlin] Error in getCommunityMembers: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.profile_image
+            FROM 
+                community_members cm
+    ...' at line 6
+[12-Dec-2024 14:30:57 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 58
+[12-Dec-2024 14:30:57 Europe/Berlin] PHP Warning:  Array to string conversion in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 68
+[12-Dec-2024 14:30:57 Europe/Berlin] PHP Warning:  Undefined variable $Array in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 68
+[12-Dec-2024 14:30:57 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 68
+[12-Dec-2024 14:30:57 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\CampusConnect\src\model\communitiesModel.php on line 101
+[12-Dec-2024 14:30:57 Europe/Berlin] Error in getCommunityMembers: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.profile_image
+            FROM 
+                community_members cm
+    ...' at line 6
+[12-Dec-2024 14:31:11 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 58
+[12-Dec-2024 14:31:11 Europe/Berlin] PHP Warning:  Array to string conversion in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 68
+[12-Dec-2024 14:31:11 Europe/Berlin] PHP Warning:  Undefined variable $Array in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 68
+[12-Dec-2024 14:31:11 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 68
+[12-Dec-2024 14:31:11 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\CampusConnect\src\model\communitiesModel.php on line 101
+[12-Dec-2024 14:31:11 Europe/Berlin] Error in getCommunityMembers: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.profile_image
+            FROM 
+                community_members cm
+    ...' at line 6
+[12-Dec-2024 14:31:27 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 58
+[12-Dec-2024 14:31:27 Europe/Berlin] PHP Warning:  Array to string conversion in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 68
+[12-Dec-2024 14:31:27 Europe/Berlin] PHP Warning:  Undefined variable $Array in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 68
+[12-Dec-2024 14:31:27 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 68
+[12-Dec-2024 14:31:27 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\CampusConnect\src\model\communitiesModel.php on line 101
+[12-Dec-2024 14:31:27 Europe/Berlin] Error in getCommunityMembers: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.profile_image
+            FROM 
+                community_members cm
+    ...' at line 6

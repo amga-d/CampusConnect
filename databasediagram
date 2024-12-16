@@ -17,10 +17,16 @@ CREATE TABLE Users (
     password VARCHAR(255) NOT NULL,
     profile_image VARCHAR(255),
     bio TEXT,
+    birthdate DATE,
+    gender ENUM('Male', 'Female') NOT NULL;
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 ```
 
+-- To add the new columns queries:-
+-- ALTER TABLE Users
+-- ADD COLUMN birthdate DATE,
+-- ADD COLUMN gender ENUM('Male', 'Female') NOT NULL;
 ---
 
 ### 3. Create `Communities` Table
@@ -45,7 +51,7 @@ CREATE TABLE Community_Members (
     membership_id INT AUTO_INCREMENT PRIMARY KEY,
     community_id INT NOT NULL,
     user_id INT NOT NULL,
-    role ENUM('admin', 'member') NOT NULL,
+    role ENUM('admin', 'member) NOT NULL,
     joined_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (community_id) REFERENCES Communities(community_id) ON DELETE CASCADE,
     FOREIGN KEY (user_id) REFERENCES Users(user_id) ON DELETE CASCADE
@@ -83,6 +89,25 @@ CREATE TABLE Announcements (
     FOREIGN KEY (user_id) REFERENCES Users(user_id) ON DELETE CASCADE
 );
 ```
+### 7. Create `news` Table
+```
+CREATE TABLE news (
+    news_id INT AUTO_INCREMENT PRIMARY KEY,
+    news_name VARCHAR(255) NOT NULL,
+    description TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    news_image VARCHAR(255)
+);
+```
+
+
+```
+ALTER TABLE communities ADD community_type varchar(50);
+ALTER TABLE communities CHANGE requirement_status recruitment_status enum('open','closed');
+ALTER TABLE users ADD birthdate DATE, COLUMN gender ENUM('Male', 'Female') NOT NULL;
+ALTER TABLE community_members ADD COLUMN membership_status ENUM('approved', 'pending') NOT NULL;
+ALTER TABLE communities ADD COLUMN community_privacy ENUM('public', 'private') NOT NULL;
+alter table community_members modify column role enum('admin','member','core_member') NOT NULL;
 
 ---
 
@@ -105,3 +130,4 @@ CREATE TABLE Announcements (
 ---
 
 Let me know if you'd like additional queries, such as **insert**, **select**, or **join** examples!
+

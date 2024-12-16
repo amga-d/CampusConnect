@@ -5,7 +5,7 @@
 
 .container {
     width: 100%;
-    max-width: 1200px;
+    max-width: 1500px;
     margin: 0 auto;
     padding: 0 var(--container-padding);
 }
@@ -14,7 +14,7 @@
 .hero {
     background: var(--white);
     color: var(#333);
-    padding: clamp(4rem, 12vw, 8rem) 0;
+    padding: clamp(4rem, 12vw, 2rem) 0;
     text-align: center;
     position: relative;
     z-index: 1;
@@ -55,12 +55,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden; /* Prevents overflow if using object-fit: cover */
+
 }
 
 .hero-images .image-grid {
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden; /* Prevents overflow if using object-fit: cover */
     max-width: 800px;
     width: 100%;
 }
@@ -74,6 +77,8 @@
     box-shadow: var(--shadow-lg);
     transition: all var(--transition);
     position: relative;
+    overflow: hidden; /* Prevents overflow if using object-fit: cover */
+
 }
 
 .hero-images .image-item::before {
@@ -98,13 +103,14 @@
     box-shadow: 0 15px 30px rgba(0,0,0,0.2);
 }
 
+
 .hero-img {
     width: 100%;
     height: 100%;
-    object-fit: contain; /* Changed to contain */
-    object-position: center; /* Ensure image is centered */
+    /* background-size:cover ; */
+    object-fit: cover; /* Ensures the container is completely covered */
+    object-position: 50% 50%;
 }
-
 /* CTA Button */
 .cta-button {
     display: inline-block;

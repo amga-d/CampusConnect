@@ -1,123 +1,167 @@
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+:root {
+    --primary-color: #ffffff;
+    --secondary-color: #f9fafb;
+    --border-color: #e7e7e9;
+    --text-color: #333;
+    --muted-text-color: #6c757d;
+    --accent-color: #1da1f2;
+    --hover-accent-color: #0ea5e9;
 }
-
-main{
-    font-family: Arial, sans-serif;
-    background-color: white;
-    line-height: 1.6;
-    color: #333;
-}
-
 .app-container {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    line-height: 1.6;
     max-width: 700px;
     margin: 0 auto;
-    background-color: white;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    min-height: 100vh;
+    background-color: var(--primary-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
 }
-
 .community-header {
     text-align: center;
-    padding: 20px 15px;
-    background-color: white;
-    border-bottom: 1px solid #e7e7e9;
-    top: 0;
+    padding: 20px;
+    background-color: var(--primary-color);
+    border-bottom: 1px solid var(--border-color);
 }
-
 .community-title {
     font-size: 1.8em;
-    font-weight: 700;
-    color: #333;
-    letter-spacing: -0.5px;
-    margin-bottom: 5px;
+    font-weight: bold;
+    color: var(--text-color);
+    margin-bottom: 8px;
 }
-
 .community-subtitle {
-    font-size: 0.9em;
-    color: #6c757d;
-    max-width: 350px;
+    font-size: 1em;
+    color: var(--muted-text-color);
     margin: 0 auto;
+    max-width: 400px;
 }
-
+#newsFeed {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+    gap: 15px;
+    padding: 15px;
+}
 .news-post {
-    background-color: white;
-    margin-bottom: 15px;
-    border-bottom: 1px solid #e7e7e9;
-    transition: background-color 0.3s ease;
+    background-color: var(--primary-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
+    position: relative;
 }
-
 .news-post:hover {
-    background-color: #f9fafb;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-
+.post-header {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 10px;
+    position: relative;
+}
+.post-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--twitterblue-color);
+    margin-top: 10px;
+    margin-left: 20px;
+}
+.post-info {
+    margin-top: 10px;
+    flex-grow: 1;
+}
+.post-info strong {
+    font-size: 18px;
+    color: var(--text-color);
+}
+.post-date {
+    color: var(--muted-text-color);
+    font-size: 14px;
+}
+.elipse {
+    font-size: 18px;
+    color: var(--text-color);
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    user-select: none;
+    z-index: 10;
+}
 .post-image {
     width: 100%;
     aspect-ratio: 1 / 1;
     object-fit: cover;
-    transition: transform 0.3s ease;
+    background-color: var(--secondary-color);
 }
-
-.news-post:hover .post-image {
-    transform: scale(1.01);
-}
-
 .post-description {
     padding: 15px;
 }
-
 .post-title {
-    font-size: 1.1em;
-    font-weight: 700;
-    color: #2c3e50;
-    margin-bottom: 8px;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: var(--text-color);
+    margin-bottom: 10px;
     line-height: 1.4;
 }
-
 .post-excerpt {
-    font-size: 0.95em;
-    color: #4a5568;
-    line-height: 1.6;
+    font-size: 1em;
+    color: var(--muted-text-color);
+    margin-bottom: 12px;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    margin-bottom: 12px;
 }
-
 .read-more {
     display: inline-block;
-    color: #0ea5e9;
+    color: var(--accent-color);
     font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9em;
     cursor: pointer;
     transition: color 0.3s ease;
-    font-size: 0.9em;
 }
-
 .read-more:hover {
-    color: #38bdf8;
+    color: var(--hover-accent-color);
 }
-
 .loading {
     text-align: center;
     padding: 20px;
-    color: #6c757d;
+    color: var(--muted-text-color);
     font-style: italic;
 }
-
 @media (max-width: 500px) {
     .app-container {
         width: 100%;
-        box-shadow: none;
+        border-radius: 0;
+        border: none;
     }
-
+    .post-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    .post-avatar {
+        margin-left: 10px;
+    }
+    .post-info {
+        width: 100%;
+        padding: 0 10px;
+    }
+    .elipse {
+        right: 10px;
+        top: 10px;
+    }
     .community-title {
         font-size: 1.5em;
     }
-
     .community-subtitle {
-        font-size: 0.85em;
+        font-size: 0.9em;
     }
 }

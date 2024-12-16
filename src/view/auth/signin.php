@@ -83,7 +83,7 @@ require_once __DIR__ . '/../../controllers/auth/signinController.php';
 
 <script>
     document.getElementById('googleButton').addEventListener('click', function(event) {
-        // event.preventDefault(); // Prevent form submission
+        event.preventDefault(); // Prevent form submission
     });
 
     document.getElementById('show-password').addEventListener('click', function() {

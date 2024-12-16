@@ -13,6 +13,9 @@ require_once __DIR__ . '/../controllers/homeController.php';
     <title>CampusConnect</title>
     <link rel="stylesheet" href="/assets/styles/home_sidebar.css" />
     <link id="dynamic-styles" rel="stylesheet" href="" />
+    <script src="/assets/js/home.js"></script>
+    <script src="/assets/js/community.js"></script>
+    <script src="/assets/js/mycommunities.js"></script>
 </head>
 
 <body>
@@ -50,7 +53,7 @@ require_once __DIR__ . '/../controllers/homeController.php';
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#communities">
+                        <a href="#myCommunities">
                             <i class="fas fa-users"></i>
                             <span>My Communities</span>
                         </a>
@@ -85,10 +88,10 @@ require_once __DIR__ . '/../controllers/homeController.php';
                 <div class="profile-section">
                     <a href="#profile" class="profile-link">
                         <div class="profile-image">
-                            <img src="/assets/img/home/default_profile.png" alt="Profile">
+                            <img src=<?=htmlspecialchars($userProfile ?? "/assets/img/home/default_profile.png")?> alt="Profile">
                         </div>
                         <div class="profile-info">
-                            <span class="profile-name">Mike Tyson</span>
+                            <span class="profile-name"><?= htmlspecialchars($username)?></span>
                         </div>
                         <i class="fas fa-chevron-right profile-arrow"></i>
                     </a>
@@ -114,10 +117,10 @@ require_once __DIR__ . '/../controllers/homeController.php';
                             <i class="fas fa-envelope"></i>
                             <span class="messages-badge">5</span>
                         </button>
-                        <div class="user-menu">
+                        <div  class="user-menu">
                             <button class="user-menu-btn" id="userMenuBtn">
                                 <div class="user-avatar">
-                                    <img src="/assets/img/home/default_profile.png" alt="User Avatar">
+                                    <img src=<?= htmlspecialchars($userProfile ?? "/assets/img/home/default_profile.png")?> alt="User Avatar">
                                 </div>
                                 <i class="fas fa-chevron-down"></i>
                             </button>
@@ -140,8 +143,7 @@ require_once __DIR__ . '/../controllers/homeController.php';
         </div>
     </div>
 
-    <script src="/assets/js/home.js"></script>
-    <script class="dynamic-script"></script>
+    
 </body>
 
 </html>

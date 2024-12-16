@@ -1,10 +1,11 @@
 <?php
 
-require_once __DIR__. '/../../model/signModel.php';
+require_once __DIR__ . '/../../model/signModel.php';
 
 session_start();
 
 if (isset($_SESSION["user_id"])) {
+
   header("Location: /index.php");
   exit();
 }
@@ -17,12 +18,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $username = htmlspecialchars($_POST["username"]);
   $useremail = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL);
   $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_SPECIAL_CHARS);
-  $valid_information =true;
+  $valid_information = true;
 
   if (empty($username)) {
     $valid_information = false;
     $nameerror = "Name is Required ";
-  }elseif (is_numeric($username)) {
+  } elseif (is_numeric($username)) {
     $valid_information = false;
     $nameerror = "Name is not Valid ";
   }
@@ -34,8 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   } elseif (filter_var($useremail, FILTER_VALIDATE_EMAIL) === false) {
     $valid_information = false;
     $emailerror = "Email in not a Valid Email Address";
-  }
-  elseif(!isEmailUniqu($useremail)){
+  } elseif (!isEmailUniqu($useremail)) {
     $valid_information = false;
     $emailerror = "Email Address is Used";
   }
@@ -46,14 +46,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   }
   if (strlen($password) < 8) {
     $valid_information = false;
-   $passworderror = "Password must be at least 8 characters";
-  } 
+    $passworderror = "Password must be at least 8 characters";
+  }
 
   if ($valid_information) {
-    $user_id = signup($username,$useremail,$password);
+    $user_id = signup($username, $useremail, $password);
+
     if(!empty($user_id)){
       $_SESSION["user_id"] = $user_id;
-      header("Location: /index.php");
+      $_SESSION["additonalInfo"] = false;
+      header("Location: /src/view/auth/additionalInformation.php");
       $useremail = $username = $password = "";
       exit();
     }
@@ -61,7 +63,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       echo "Something went wrong";
     }
   }
-
 }
-
-?>

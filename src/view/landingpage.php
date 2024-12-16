@@ -39,7 +39,7 @@
                 <div class="hero-text">
                     <h1>Discover Your Campus Community</h1>
                     <p>Connect with organizations, stay informed, and make the most of your university experience.</p>
-                    <a href="../user_service/auth/signup.php" class="cta-button">Get Started</a>
+                    <a href="/src/view/auth/signup.php" class="cta-button">Get Started</a>
                 </div>
                 <div class="hero-image">
                     <img src="/assets/img/landing/hero.jpeg" alt="Campus life">
