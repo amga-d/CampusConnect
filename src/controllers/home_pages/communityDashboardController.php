@@ -1,6 +1,6 @@
 <!-- <?php
-        // require_once __DIR__ . '/../../model/communitiesModel.php';
-        session_start();
+        require_once __DIR__ . '/../../model/dashboardModel.php';
+
 
         // Dummy data for testing
         $dashboardData = [
@@ -10,7 +10,7 @@
                 'profile_image' => 'https://cdn-icons-png.flaticon.com/512/2721/2721620.png',
                 'banner_image' => 'https://img.freepik.com/free-vector/gradient-technological-background_23-2148884155.jpg',
             ],
-            'isAdmin' => true,
+            'role' => 'admin',
             'members' => [
                 [
                     'name' => 'John Doe',
@@ -54,31 +54,35 @@
         ?> -->
 
 <?php
-require_once __DIR__ . '/../../model/communitiesModel.php';
 session_start();
 function getCommunityDetails($communityId)
 {
     try {
         // Get basic community information
-        $community = getCommunityById($communityId);
+        $community = getCommunityInfo($communityId);
         if (!$community) {
             throw new Exception("Community not found");
         }
         // Check user's role in the community
-        $role = getUserRole($$_SESSION['user_id'], $communityId);
+        $role = getUserRole($_SESSION['user_id'], $communityId);
 
         // Get community members
         $members = getCommunityMembers($communityId);
 
-        // Get community posts/activities
-        // $activities = getCommunityActivities($communityId);
+        // Get community announcements
+        $announcements = getCommunityAnnouncements($communityId);
+
+        // Get community events
+        $events = getCommunityEvents($communityId);
 
         return [
             'community' => $community,
             'role' => $role,
-            'members' => $members
-            // 'activities' => $activities
+            'members' => $members,
+            'announcements' => $announcements,
+            'events' => $events
         ];
+
     } catch (Exception $e) {
         error_log("Community Dashboard error: " . $e->getMessage());
         return false;
@@ -124,8 +128,41 @@ function manageMember($communityId, $memberId, $action)
     }
 }
 
+function postAnnouncement($communityId, $memberId, $announcementContent)
+{
+    $roll = getUserRole($memberId, $communityId);
+    if ($roll && ($roll == "core_member" || $roll == "admin")) {
+        try {
+            if (create_announcement($communityId, $memberId, $announcementContent)) { //TODO: make a function to create a new announcement in community Model
+                return ["success" => true];
+            };
+        } catch (Exception $e) {
+            return ["success" => false, "message" => $e->getMessage()];
+        }
+    } else {
+        return ["success" => false, "message" => "Unauthorized"];
+    }
+}
 
-function checkUserIsAdmin($user_id, $communityId){
+function postEvent($communityId, $memberId, $eventData)
+{
+    $roll = getUserRole($memberId, $communityId);
+    if ($roll && ($roll == "core_member" || $roll == "admin")) {
+        try {
+            if (create_Event($communityId, $memberId, $eventData)) { //TODO: make a function to create a new Event in community Model
+                return ["success" => true]; // TODO: call a function to reload the page
+            };
+        } catch (Exception $e) {
+            return ["success" => false, "message" => $e->getMessage()];
+        }
+    } else {
+        return ["success" => false, "message" => "Unauthorized"];
+    }
+}
+
+
+function checkUserIsAdmin($user_id, $communityId)
+{
     return getUserRole($user_id, $communityId) == "admin";
 }
 // Initialize dashboard data if community ID is provided
@@ -136,6 +173,7 @@ if (isset($_GET['community_id'])) {
     if (!$dashboardData) {
         $error = "Failed to load community dashboard";
     }
+    print_r(json_encode($dashboardData));
 }
 
 ?>

@@ -1,8 +1,11 @@
 <?php
-
-require_once __DIR__ . '/../config/db_conn.php';
+require_once __DIR__ . "/modelsFunction.php";
 
 function getUserName($user_id){
+
+    $query = "INSERT INTO news (news_name, description, news_image) VALUES (?, ?, ?)";
+    $paramstype = "sss";
+    $params = [$data["news_name"], $data["description"], $data["news_image"]];
     try{
 
     

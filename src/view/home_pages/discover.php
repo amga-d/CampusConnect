@@ -22,7 +22,7 @@ require_once __DIR__ . '/../../controllers/home_pages/discoverController.php';
                                 <img src="<?= htmlspecialchars($community['profile_image']) ?>" alt="LEM FTI Logo" class="community-logo">
                                 <div class="community-info">
                                     <h2><?= htmlspecialchars($community['community_name']) ?></h2>
-                                    <p class="community-type"><?= htmlspecialchars($community['community_type']) ?></p>
+                                    <p class="community-type"><?= ucwords(htmlspecialchars($community['community_type'])) ?></p>
                                 </div>
                             </div>
                             <div class="card-body">
