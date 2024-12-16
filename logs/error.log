@@ -363,3 +363,36 @@ Stack trace:
 [15-Dec-2024 18:28:11 Europe/Berlin] Profile update error: Failed to update profile
 [15-Dec-2024 18:28:18 Europe/Berlin] Profile update model error: Email is already taken
 [15-Dec-2024 18:28:18 Europe/Berlin] Profile update error: Failed to update profile
+[16-Dec-2024 04:40:55 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\CampusConnect\src\model\userModel.php on line 8
+[16-Dec-2024 04:40:55 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\CampusConnect\src\model\userModel.php on line 8
+[16-Dec-2024 04:40:55 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\CampusConnect\src\model\userModel.php on line 8
+[16-Dec-2024 04:40:55 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\CampusConnect\src\model\userModel.php on line 8
+[16-Dec-2024 04:40:55 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\CampusConnect\src\model\userModel.php on line 8
+[16-Dec-2024 04:40:55 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\CampusConnect\src\model\userModel.php on line 8
+[16-Dec-2024 04:40:56 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\CampusConnect\src\model\userModel.php on line 8
+[16-Dec-2024 04:40:56 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\CampusConnect\src\model\userModel.php on line 8
+[16-Dec-2024 04:40:56 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\CampusConnect\src\model\userModel.php on line 8
+[16-Dec-2024 04:40:56 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\CampusConnect\src\model\userModel.php on line 8
+[16-Dec-2024 04:40:56 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\CampusConnect\src\model\userModel.php on line 8
+[16-Dec-2024 04:40:56 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\CampusConnect\src\model\userModel.php on line 8
+[16-Dec-2024 04:41:02 Europe/Berlin] PHP Warning:  Attempt to read property "num_rows" on array in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\myCommunitiesController.php on line 17
+[16-Dec-2024 04:41:04 Europe/Berlin] PHP Warning:  Attempt to read property "num_rows" on array in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\myCommunitiesController.php on line 17
+[16-Dec-2024 04:41:12 Europe/Berlin] PHP Warning:  Attempt to read property "num_rows" on array in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\myCommunitiesController.php on line 17
+[16-Dec-2024 04:41:22 Europe/Berlin] Profile update model error: Email is already taken
+[16-Dec-2024 04:41:22 Europe/Berlin] Profile update error: Failed to update profile
+[16-Dec-2024 04:41:30 Europe/Berlin] Profile update model error: Email is already taken
+[16-Dec-2024 04:41:30 Europe/Berlin] Profile update error: Failed to update profile
+[16-Dec-2024 04:42:59 Europe/Berlin] PHP Warning:  Attempt to read property "num_rows" on array in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\myCommunitiesController.php on line 17
+[16-Dec-2024 04:44:04 Europe/Berlin] PHP Warning:  Attempt to read property "num_rows" on array in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\myCommunitiesController.php on line 17
+[16-Dec-2024 04:44:18 Europe/Berlin] PHP Warning:  Attempt to read property "num_rows" on array in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\myCommunitiesController.php on line 17
+[16-Dec-2024 04:46:44 Europe/Berlin] PHP Warning:  Undefined variable $result in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\myCommunitiesController.php on line 12
+[16-Dec-2024 05:28:13 Europe/Berlin] PHP Warning:  Undefined variable $result in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\myCommunitiesController.php on line 12
+[16-Dec-2024 05:28:16 Europe/Berlin] PHP Warning:  Undefined variable $result in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\myCommunitiesController.php on line 12
+[16-Dec-2024 05:28:19 Europe/Berlin] PHP Warning:  Undefined variable $result in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\myCommunitiesController.php on line 12
+[16-Dec-2024 05:28:24 Europe/Berlin] PHP Warning:  Undefined variable $result in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\myCommunitiesController.php on line 12
+[16-Dec-2024 05:28:25 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to undefined function getCommunityInfo() in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php:62
+Stack trace:
+#0 C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php(172): getCommunityDetails('33')
+#1 C:\xampp\htdocs\CampusConnect\src\view\home_pages\communitydashboard.php(5): require_once('C:\\xampp\\htdocs...')
+#2 {main}
+  thrown in C:\xampp\htdocs\CampusConnect\src\controllers\home_pages\communityDashboardController.php on line 62

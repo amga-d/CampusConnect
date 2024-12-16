@@ -6,7 +6,7 @@ $myCommunities = [];
 
 
 try {
-    $result = getMyCommunities($_SESSION['user_id']);
+    $myCommunities = getMyCommunities($_SESSION['user_id']);
     // $result = getMyCommunities($_SESSION('user_id'));
     
     if ($result === false) {
@@ -14,11 +14,6 @@ try {
     }
     
     // Check if we have results before trying to fetch them
-    if ($result && $result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            $myCommunities[] = $row;
-        }
-    }
     
 } catch (Exception $e) {
     error_log("Discover page error: " . $e->getMessage());
