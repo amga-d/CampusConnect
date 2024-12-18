@@ -4,6 +4,9 @@ ini_set('display_errors', 1);
 
 require_once __DIR__ . '/../../controllers/home_pages/communityDashboardController.php';
 
+// $controller = new CommunityController();
+// $communityId = $_GET['community_id'] ?? null; // Assuming community ID is passed via URL
+// $community = $controller->getCommunityDetails($communityId);
 ?>
 
 <div class="page-content">
@@ -12,11 +15,10 @@ require_once __DIR__ . '/../../controllers/home_pages/communityDashboardControll
   <!-- Cover Section -->
   <header class="cover">
     <div class="cover-overlay"></div>
+    <button class="btn leave-btn"><i class="fas fa-sign-out"></i> Leave</button>
     <div class="header-content">
-      <button class="btn leave-btn"><i class="fas fa-sign-out"></i> Leave</button>
       <button class="btn invite-btn"><i class="fas fa-user-plus"></i> Invite</button>
-      <button class="btn edit-btn"><i class="fas fa-edit"></i> Edit</button>
-
+      <button class="btn edit-btn" id=""><i class="fas fa-edit"></i> Edit</button>
     </div>
     <div class="avatar-wrapper">
       <img src="<?= htmlspecialchars($dashboardData['community']['profile_image'])?>" alt="UII Global Group Avatar" class="avatar" loading="lazy"/>
@@ -43,6 +45,70 @@ require_once __DIR__ . '/../../controllers/home_pages/communityDashboardControll
       <li class="nav-item"><a href="" class="nav-link" data-target="events-content">Events</a></li>
     </ul>
   </nav>
+
+        <!-- Edit Community Modal -->
+        <div class="edit-community-container" style="display: none;">
+                <div class="edit-community-modal">
+                    <form id="edit-community-form" method="POST" enctype="multipart/form-data">
+                        <input type="hidden" name="community_id" value="<?php echo htmlspecialchars($community['community_id']); ?>">
+
+                        <div class="edit-community-sidebar">
+                            <div class="community-avatar">
+                                <img src="<?php echo htmlspecialchars($community['profile_image'] ?? '/assets/img/default_community.png'); ?>" alt="Community Image">
+                            </div>
+                            <div class="community-image-upload">
+                                <input type="file" id="community-image" name="community_image" accept="image/*">
+                                <label for="community-image">
+                                    <i class="fas fa-upload"></i> Change Image
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="edit-community-main">
+                            <div class="form-group">
+                                <label for="community_name">Community Name</label>
+                                <input type="text" id="community_name" name="community_name" 
+                                       value="<?php echo htmlspecialchars($community['community_name']); ?>" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="description">Description</label>
+                                <textarea id="description" name="description" rows="4"><?php echo htmlspecialchars($community['description'] ?? ''); ?></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="community_type">Community Type</label>
+                                <select id="community_type" name="community_type">
+                                    <option value="academic" <?php echo $community['community_type'] == 'academic' ? 'selected' : ''; ?>>Academic</option>
+                                    <option value="hobby" <?php echo $community['community_type'] == 'hobby' ? 'selected' : ''; ?>>Hobby</option>
+                                    <option value="professional" <?php echo $community['community_type'] == 'professional' ? 'selected' : ''; ?>>Professional</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="community_privacy">Community Privacy</label>
+                                <select id="community_privacy" name="community_privacy">
+                                    <option value="public" <?php echo $community['community_privacy'] == 'public' ? 'selected' : ''; ?>>Public</option>
+                                    <option value="private" <?php echo $community['community_privacy'] == 'private' ? 'selected' : ''; ?>>Private</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="recruitment_status">Recruitment Status</label>
+                                <select id="recruitment_status" name="recruitment_status">
+                                    <option value="open" <?php echo $community['recruitment_status'] == 'open' ? 'selected' : ''; ?>>Open</option>
+                                    <option value="closed" <?php echo $community['recruitment_status'] == 'closed' ? 'selected' : ''; ?>>Closed</option>
+                                </select>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-secondary cancel-edit">Cancel</button>
+                                <button type="submit" class="btn btn-primary">Save Changes</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
   
   <!-- Main Content Area -->
   <main class="main-content">
@@ -213,55 +279,4 @@ require_once __DIR__ . '/../../controllers/home_pages/communityDashboardControll
 </section>
   </main>
 </div>
-
-<script>
-  // JavaScript to switch between sections
-const navLinks = document.querySelectorAll('.nav-link');
-const contentSections = document.querySelectorAll('.content-section');
-
-navLinks.forEach(link => {
-  link.addEventListener('click', e => {
-    e.preventDefault();
-    // Get the target content
-    const target = link.getAttribute('data-target');
-    
-    // Remove 'active' class from all nav links
-    navLinks.forEach(nav => nav.classList.remove('active'));
-    link.classList.add('active');
-    
-    // Hide all content sections
-    contentSections.forEach(section => section.style.display = 'none');
-    
-    // Show the target content section
-    const targetSection = document.querySelector(`.${target}`);
-    if(targetSection) {
-      // Use block to maintain consistent layout
-      targetSection.style.display = 'block';
-    }
-  });
-});
-  
-  // Like button toggle functionality
-  document.querySelectorAll('.like-btn').forEach(button => {
-    button.addEventListener('click', () => {
-      button.classList.toggle('liked');
-    });
-  });
-
-  function toggleReadMore(element) {
-    const excerpt = element.previousElementSibling;
-    const isCollapsed = excerpt.style.webkitLineClamp === "3" || !excerpt.style.webkitLineClamp;
-
-    if (isCollapsed) {
-        excerpt.style.display = "block";
-        excerpt.style.webkitLineClamp = "unset";
-        element.textContent = "Read less";
-    } else {
-        excerpt.style.webkitLineClamp = "3";
-        excerpt.style.display = "-webkit-box";
-        element.textContent = "Read more";
-    }
-}
-</script>
-
 </div>

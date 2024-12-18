@@ -343,6 +343,10 @@
         max-width: 500px;
         height: 350px; /* Adjusted height */
     }
+    .events-content #newsFeed{
+        width: 100%;
+    }
+
 }
 
 @media (max-width: 768px) {
@@ -367,6 +371,10 @@
     .hero-images .image-item {
         max-width: 100%;
         height: 300px; /* Adjusted height */
+    }
+
+    .events-content #newsFeed{
+        width: 100%;
     }
 }
 
@@ -404,6 +412,34 @@
     .hero-images .image-item {
         height: 250px; /* Adjusted height */
     }
+
+    #newsFeed{
+        width: 100%;
+    }
+    
+      .post-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    .post-avatar {
+        margin-left: 10px;
+    }
+    .post-info {
+        width: 100%;
+        padding: 0 10px;
+    }
+    .elipse {
+        right: 10px;
+        top: 10px;
+    }
+    .community-title {
+        font-size: 1.5em;
+    }
+    .community-subtitle {
+        font-size: 0.9em;
+    }
+    
 }
 
 /* Accessibility */
