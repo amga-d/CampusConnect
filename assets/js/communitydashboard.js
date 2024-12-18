@@ -98,13 +98,18 @@ initializeDashboard();
             const formData = new FormData(this);
 
             try {
-                const response = await fetch(window.location.href, {
+                const response = await fetch("/src/controllers/home_pages/updateCommunityController.php", {
                     method: "POST",
                     body: formData,
                 });
 
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                console.log(response);
+                const contentType = response.headers.get("content-type");
+                if (!contentType || !contentType.includes("application/json")) {
+                    throw new Error("Received non-JSON response");
                 }
 
                 const result = await response.json();

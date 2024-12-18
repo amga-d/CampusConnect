@@ -3,9 +3,13 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 require_once __DIR__ . '/../../controllers/home_pages/communityDashboardController.php';
+require_once __DIR__ . '/../../controllers/home_pages/updateCommunityController.php';
+
 
 // print_r(json_encode($dashboardData));
-
+$controller = new CommunityController();
+$communityId = $_GET['community_id'] ?? null; // Assuming community ID is passed via URL
+$community = $controller->getCommunityDetails($communityId);
 
 ?>
 

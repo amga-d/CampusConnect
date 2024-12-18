@@ -46,14 +46,14 @@ function getCommunityMembers($communityId)
                 u.name, 
                 cm.role, 
                 cm.membership,
-                cm.membership_status
+                cm.membership_status,
                 u.profile_image
             FROM 
                 community_members cm
             JOIN 
                 users u 
             ON 
-                cm.user_id = u.id
+                cm.user_id = u.user_id
             WHERE 
             cm.community_id = ?
         ";

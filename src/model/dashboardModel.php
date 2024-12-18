@@ -192,7 +192,7 @@ function getUserProfile($user_id){
 
     #edit community model
 
-function getCommunityDetails($communityId) {
+function getCommunityDetails($communityId): mixed {
     $query = "SELECT * FROM Communities WHERE community_id = ?";
     $paramstype = "i";
     $params = [$communityId];
@@ -263,6 +263,6 @@ function updateCommunityDetails($communityId, $name, $description, $type, $priva
     }
 }
 
-}
+
 
 ?>
