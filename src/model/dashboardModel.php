@@ -1,18 +1,19 @@
 <?php
 
 require_once __DIR__ . '/../config/db_conn.php';
-require_once __DIR__ .'/modelsFunction.php';
+require_once __DIR__ . '/modelsFunction.php';
 ini_set('display_errors', 0);
 ini_set('log_errors', 1);
 ini_set('error_log', __DIR__ . '/../../logs/error.log');
 
 
-function getCommunity($communityId){
+function getCommunity($communityId)
+{
     try {
         $conn = connect_db();
         $stmt = $conn->prepare("SELECT * FROM communities WHERE community_id = ?");
         $stmt->bind_param("i", $communityId);
-        if (!$stmt->execute() ) {
+        if (!$stmt->execute()) {
             throw new Exception("Query Execution Failed");
         }
         $result = $stmt->get_result();
@@ -89,9 +90,9 @@ function getUserRole($userId, $communityId)
     }
 }
 
-function getCommunityAnnouncements($communityId){
-    $query ="SELECT 
-                an.title,
+function getCommunityAnnouncements($communityId)
+{
+    $query = "SELECT 
                 an.content,
                 an.created_at,
                 cm.membership,
@@ -101,16 +102,18 @@ function getCommunityAnnouncements($communityId){
             FROM announcements an
             INNER JOIN  community_members cm ON an.community_id = cm.community_id
             INNER JOIN  users usr ON an.user_id = usr.user_id
-            WHERE an.community_id = ?";
+            WHERE an.community_id = ?
+            ORDER BY
+            an.created_at DESC";
     try {
         $conn = connect_db();
         $stmt = $conn->prepare($query);
         $stmt->bind_param("i",  $communityId);
-        if(!$stmt->execute()){
+        if (!$stmt->execute()) {
             throw new Exception("Query Execution Failed");
         }
-        $result = $stmt->get_result();            
-        return $result -> fetch_all(MYSQLI_ASSOC);
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
     } catch (Exception $e) {
         error_log("Error in getCommunityAnnouncements: " . $e->getMessage());
         return false;
@@ -155,44 +158,38 @@ function getCommunityMembers($communityId)
     return getData($query, $paramsType, $params, "getCommunityMember");
 }
 
-
-function getUserProfile($user_id){
-    try{
+function getUserProfile($user_id)
+{
+    try {
         $conn = connect_db();
         $stmt = $conn->prepare("SELECT `profile_image`,`name` FROM `users` WHERE `user_id` = ?");
         $stmt->bind_param("i", $user_id);
 
-        if(!$stmt->execute()){
+        if (!$stmt->execute()) {
             throw new Exception("Query Execation Failed");
         }
         $result = $stmt->get_result();
-        if($result->num_rows > 0){
+        if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
             return $row;
-        }else{
+        } else {
             return false;
         }
-        
-
-    }catch(PDOException $e){   
-    error_log("".$e->getMessage());
-
-    }finally{
-    if(isset($conn)){
-        $conn->close();
-    }
-    if(isset($stmt)){
-        $stmt->close();
-    }
-    
+    } catch (PDOException $e) {
+        error_log("" . $e->getMessage());
+    } finally {
+        if (isset($conn)) {
+            $conn->close();
+        }
+        if (isset($stmt)) {
+            $stmt->close();
+        }
     }
 }
+#edit community model
 
-
-
-    #edit community model
-
-function getCommunityDetails($communityId): mixed {
+function getCommunityDetails($communityId): mixed
+{
     $query = "SELECT * FROM Communities WHERE community_id = ?";
     $paramstype = "i";
     $params = [$communityId];
@@ -200,7 +197,8 @@ function getCommunityDetails($communityId): mixed {
     return $result ? $result[0] : null;
 }
 
-function updateCommunityDetails($communityId, $name, $description, $type, $privacy, $recruitmentStatus, $profileImage = null) {
+function updateCommunityDetails($communityId, $name, $description, $type, $privacy, $recruitmentStatus, $profileImage = null)
+{
     try {
         $conn = connect_db();
 
@@ -249,7 +247,6 @@ function updateCommunityDetails($communityId, $name, $description, $type, $priva
         }
 
         return true;
-
     } catch (Exception $e) {
         error_log('Community update model error: ' . $e->getMessage());
         return false;
@@ -263,6 +260,61 @@ function updateCommunityDetails($communityId, $name, $description, $type, $priva
     }
 }
 
+function create_announcement($xommunity_id, $user_id, $contnet)
+{
+    try {
+        $conn = connect_db();
+        $stmt = $conn->prepare('INSERT INTO announcements (community_id, user_id, content) values (?,?,?)');
+        $stmt->bind_param('iis', $xommunity_id, $user_id, $contnet);
+        if (!$stmt->execute()) {
+            throw new Exception('Query Execution Failed' . $stmt->error);
+        }
+        $annoId = $stmt->insert_id;
+        return $annoId;
+    } catch (Exception $e) {
+        error_log('Error in create_accouncemet: ' . $e->getMessage());
+        return false;
+    } finally {
+        if (isset($conn)) {
+            $conn->close();
+        }
+        if (isset($stmt)) {
+            $stmt->close();
+        }
+    }
+}
 
+function get_announcementById($announcement_id)
+{
+    $query = "SELECT 
+                an.content,
+                an.created_at,
+                cm.membership,
+                usr.name,
+                usr.profile_image
 
-?>
+            FROM announcements an
+            INNER JOIN  community_members cm ON an.community_id = cm.community_id
+            INNER JOIN  users usr ON an.user_id = usr.user_id
+            WHERE an.announcement_id = ?";
+    try {
+        $conn = connect_db();
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param("i",  $announcement_id);
+        if (!$stmt->execute()) {
+            throw new Exception("Query Execution Failed");
+        }
+        $result = $stmt->get_result();
+        return $result->fetch_assoc();
+    } catch (Exception $e) {
+        error_log("Error in getAnnouncementsBy Id: " . $e->getMessage());
+        return false;
+    } finally {
+        if (isset($stmt)) {
+            $stmt->close();
+        }
+        if (isset($conn)) {
+            $conn->close();
+        }
+    }
+}

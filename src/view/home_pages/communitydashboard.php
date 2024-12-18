@@ -3,13 +3,29 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 require_once __DIR__ . '/../../controllers/home_pages/communityDashboardController.php';
-require_once __DIR__ . '/../../controllers/home_pages/updateCommunityController.php';
+require_once __DIR__ . '/../../controllers/home_pages/communityUsers.php';
 
+$role = $dashboardData['role'];
+print_r($dashboardData['announcements']);
 
-// print_r(json_encode($dashboardData));
-$controller = new CommunityController();
-$communityId = $_GET['community_id'] ?? null; // Assuming community ID is passed via URL
-$community = $controller->getCommunityDetails($communityId);
+switch ($role) {
+  
+  case "member":
+    break;
+
+  case "admin":
+    $controller = new communityAdmin();
+    $communityId = $_GET['community_id'] ?? null; // Assuming community ID is passed via URL
+    $community = $controller->getCommunityDetails($communityId);
+    break;
+
+  case "core_member";
+    break;
+
+  default;
+    echo "unaotherized access";
+    exit;
+}
 
 ?>
 
@@ -19,10 +35,14 @@ $community = $controller->getCommunityDetails($communityId);
     <!-- Cover Section -->
     <header class="cover">
       <div class="cover-overlay"></div>
-    <button class="btn leave-btn"><i class="fas fa-sign-out"></i> Leave</button>
+      <button class="btn leave-btn"><i class="fas fa-sign-out"></i> Leave</button>
       <div class="header-content">
+        <?php if ($role == "admin"): ?>
           <button class="btn invite-btn"><i class="fas fa-user-plus"></i> Invite</button>
-        <button class="btn edit-btn" id=""><i class="fas fa-edit"></i> Edit</button>
+          <button class="btn edit-btn" id=""><i class="fas fa-edit"></i> Edit</button>
+        <?php endif; ?>
+        <!-- <button class="btn invite-btn"><i class="fas fa-user-plus"></i> Invite</button> -->
+        <!-- <button class="btn edit-btn" id=""><i class="fas fa-edit"></i> Edit</button> -->
       </div>
       <div class="avatar-wrapper">
         <img src="<?= htmlspecialchars($dashboardData['community']['profile_image']) ?>" alt="community Avatar" class="avatar" loading="lazy" />
@@ -50,70 +70,73 @@ $community = $controller->getCommunityDetails($communityId);
       </ul>
     </nav>
 
-        <!-- Edit Community Modal -->
-        <div class="edit-community-container" style="display: none;">
-                <div class="edit-community-modal">
-                    <form id="edit-community-form" method="POST" enctype="multipart/form-data">
-                        <input type="hidden" name="community_id" value="<?php echo htmlspecialchars($community['community_id']); ?>">
-
-                        <div class="edit-community-sidebar">
-                            <div class="community-avatar">
-                                <img src="<?php echo htmlspecialchars($community['profile_image'] ?? '/assets/img/default_community.png'); ?>" alt="Community Image">
-                            </div>
-                            <div class="community-image-upload">
-                                <input type="file" id="community-image" name="community_image" accept="image/*">
-                                <label for="community-image">
-                                    <i class="fas fa-upload"></i> Change Image
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="edit-community-main">
-                            <div class="form-group">
-                                <label for="community_name">Community Name</label>
-                                <input type="text" id="community_name" name="community_name" 
-                                       value="<?php echo htmlspecialchars($community['community_name']); ?>" required>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="description">Description</label>
-                                <textarea id="description" name="description" rows="4"><?php echo htmlspecialchars($community['description'] ?? ''); ?></textarea>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="community_type">Community Type</label>
-                                <select id="community_type" name="community_type">
-                                    <option value="academic" <?php echo $community['community_type'] == 'academic' ? 'selected' : ''; ?>>Academic</option>
-                                    <option value="hobby" <?php echo $community['community_type'] == 'hobby' ? 'selected' : ''; ?>>Hobby</option>
-                                    <option value="professional" <?php echo $community['community_type'] == 'professional' ? 'selected' : ''; ?>>Professional</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="community_privacy">Community Privacy</label>
-                                <select id="community_privacy" name="community_privacy">
-                                    <option value="public" <?php echo $community['community_privacy'] == 'public' ? 'selected' : ''; ?>>Public</option>
-                                    <option value="private" <?php echo $community['community_privacy'] == 'private' ? 'selected' : ''; ?>>Private</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="recruitment_status">Recruitment Status</label>
-                                <select id="recruitment_status" name="recruitment_status">
-                                    <option value="open" <?php echo $community['recruitment_status'] == 'open' ? 'selected' : ''; ?>>Open</option>
-                                    <option value="closed" <?php echo $community['recruitment_status'] == 'closed' ? 'selected' : ''; ?>>Closed</option>
-                                </select>
-                            </div>
-
-                            <div class="form-actions">
-                                <button type="button" class="btn btn-secondary cancel-edit">Cancel</button>
-                                <button type="submit" class="btn btn-primary">Save Changes</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+    <!-- Admin -->
+    <?php if ($role == "admin"): ?>
+      <!-- Edit Community Modal -->
+      <div class="edit-community-container" style="display: none;">
+        <div class="edit-community-modal">
+          <form id="edit-community-form" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="action" value="updateCommunity">
+            <input type="hidden" name="role" value=<?= htmlspecialchars($dashboardData['role']) ?>>
+            <input type="hidden" name="community_id" value="<?php echo htmlspecialchars($community['community_id']); ?>">
+            <div class="edit-community-sidebar">
+              <div class="community-avatar">
+                <img src="<?php echo htmlspecialchars($community['profile_image'] ?? '/assets/img/default_community.png'); ?>" alt="Community Image">
+              </div>
+              <div class="community-image-upload">
+                <input type="file" id="community-image" name="community_image" accept="image/*">
+                <label for="community-image">
+                  <i class="fas fa-upload"></i> Change Image
+                </label>
+              </div>
             </div>
 
+            <div class="edit-community-main">
+              <div class="form-group">
+                <label for="community_name">Community Name</label>
+                <input type="text" id="community_name" name="community_name"
+                  value="<?php echo htmlspecialchars($community['community_name']); ?>" required>
+              </div>
+
+              <div class="form-group">
+                <label for="description">Description</label>
+                <textarea id="description" name="description" rows="4"><?php echo htmlspecialchars($community['description'] ?? ''); ?></textarea>
+              </div>
+
+              <div class="form-group">
+                <label for="community_type">Community Type</label>
+                <select id="community_type" name="community_type">
+                  <option value="academic" <?php echo $community['community_type'] == 'academic' ? 'selected' : ''; ?>>Academic</option>
+                  <option value="hobby" <?php echo $community['community_type'] == 'hobby' ? 'selected' : ''; ?>>Hobby</option>
+                  <option value="professional" <?php echo $community['community_type'] == 'professional' ? 'selected' : ''; ?>>Professional</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="community_privacy">Community Privacy</label>
+                <select id="community_privacy" name="community_privacy">
+                  <option value="public" <?php echo $community['community_privacy'] == 'public' ? 'selected' : ''; ?>>Public</option>
+                  <option value="private" <?php echo $community['community_privacy'] == 'private' ? 'selected' : ''; ?>>Private</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="recruitment_status">Recruitment Status</label>
+                <select id="recruitment_status" name="recruitment_status">
+                  <option value="open" <?php echo $community['recruitment_status'] == 'open' ? 'selected' : ''; ?>>Open</option>
+                  <option value="closed" <?php echo $community['recruitment_status'] == 'closed' ? 'selected' : ''; ?>>Closed</option>
+                </select>
+              </div>
+
+              <div class="form-actions">
+                <button type="button" class="btn btn-secondary cancel-edit">Cancel</button>
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    <?php endif; ?>
     <!-- Main Content Area -->
     <main class="main-content">
       <!-- Original Home Content -->
@@ -121,33 +144,42 @@ $community = $controller->getCommunityDetails($communityId);
         <section class="left-column">
           <!-- Post Input Section -->
           <?php if ($dashboardData['role'] == "admin" || $dashboardData['role']  == "core_member"): ?>
-            <div class="post-input">
-              <img src="<?= htmlspecialchars($dashboardData['profile']['profile_image']) ?>" alt="Your Profile" class="user-avatar" loading="lazy">
-              <input type="text" placeholder="What would you like to share today?" />
-              <button class="btn send-btn" aria-label="Send Post">
-                <i class="fas fa-paper-plane"></i>
-              </button>
-            </div>
+            <form action="POST" id="post-Announcement">
+              <div class="post-input">
+                <input type="hidden" name="community_id" value="<?php echo htmlspecialchars($community['community_id']); ?>">
+                <input type="hidden" name="action" value="postAnnouncement">
+                <input type="hidden" name="role" value="<?= htmlspecialchars($dashboardData['role']) ?>">
+                <img src="<?= htmlspecialchars($dashboardData['profile']['profile_image']) ?>" alt="Your Profile" class="user-avatar" loading="lazy">
+                <input type="text" name="announcementContnet" placeholder="What would you like to share today?" required>
+                <button type="submit" class="btn send-btn" aria-label="Send Post">
+                  <i class="fas fa-paper-plane"></i>
+                </button>
+              </div>
+            </form>
           <?php endif; ?>
-          <!-- Example Post -->
-          <article class="post">
+          
+          <?php if($dashboardData['announcements'] == null):?>
+            <h3 id="noAnnoTag">No Announcements 😶‍🌫️</h3>
+            <?php else:?>
+              <?php foreach ($dashboardData['announcements'] as $announcement): ?>
+              <article class="post">
             <div class="post-header">
-              <img src="" alt="Akram Mohamed" class="post-avatar" loading="lazy">
+              <img src="<?= htmlspecialchars($announcement['profile_image'])?>" alt="Akram Mohamed" class="post-avatar" loading="lazy">
               <div class="post-info">
-                <strong>Akram Mohamed</strong><br>
-                <span>Admin</span>
-                <span class="post-date">November 30, 2021</span>
+                <strong><?= htmlspecialchars($announcement['name'])?></strong><br>
+                <span><?= htmlspecialchars($announcement['membership'])?></span>
+                <span class="post-date"><?= htmlspecialchars($announcement['created_at'])?></span>
               </div>
             </div>
             <div class="post-body">
-              <p>A vibrant community for CS students to collaborate, learn, and grow together. Join us for coding challenges, workshops, and tech discussions!</p>
+              <p><?= htmlspecialchars($announcement['content'])?></p>
             </div>
             <div class="post-actions">
               <button class="btn like-btn" aria-label="Like Post"><i class="fas fa-heart"></i></button>
             </div>
           </article>
-
-          <!-- Additional posts can go here -->
+          <?php endforeach; ?>
+          <?php endif; ?>
         </section>
 
         <aside class="right-column">
@@ -160,10 +192,10 @@ $community = $controller->getCommunityDetails($communityId);
                 <li class="member-item">
                   <?php if (!$member['profile_image']): ?>
                     <div class="member-avatar"><span class="avatar-initial"><?= htmlspecialchars($member['name'])[0] ?></span></div>
-                    <?php else: ?>
-                      <img src="<?= htmlspecialchars($member['profile_image']) ?>" alt="Amgad Al-Ameri" class="member-avatar-img" loading="lazy">
+                  <?php else: ?>
+                    <img src="<?= htmlspecialchars($member['profile_image']) ?>" alt="Amgad Al-Ameri" class="member-avatar-img" loading="lazy">
                   <?php endif; ?>
-                  <span class="member-name"><?= htmlspecialchars($member['name'])?></span>
+                  <span class="member-name"><?= htmlspecialchars($member['name']) ?></span>
                 </li>
                 <?php $count++; ?>
               <?php endif; ?>

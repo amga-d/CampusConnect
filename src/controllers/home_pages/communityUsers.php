@@ -3,7 +3,8 @@
 require_once __DIR__ . '/../../model/dashboardModel.php';
 ini_set('display_errors', 0);
 ini_set('log_errors', 1);
-class CommunityController {
+class communityAdmin
+{
     private const ALLOWED_TYPES = [
         'image/jpeg' => 'jpg',
         'image/png'  => 'png',
@@ -11,17 +12,19 @@ class CommunityController {
     ];
     private const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
 
-    public function __construct() {
+    public function __construct()
+    {
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
     }
-
-    public function getCommunityDetails($communityId) {
+    public function getCommunityDetails($communityId)
+    {
         return getCommunityDetails($communityId);
     }
 
-    public function updateCommunity($data, $files = null) {
+    public function updateCommunity($data, $files = null)
+    {
         if (!isset($_SESSION['user_id'])) {
             return [
                 'success' => false,
@@ -84,7 +87,6 @@ class CommunityController {
                 'message' => 'Community updated successfully',
                 'profileImage' => $profileImagePath
             ];
-
         } catch (Exception $e) {
             error_log('Community update error: ' . $e->getMessage());
             return [
@@ -94,7 +96,8 @@ class CommunityController {
         }
     }
 
-    private function validateInputs($data) {
+    private function validateInputs($data)
+    {
         if (empty($data['community_name'])) {
             throw new Exception('Community name is required');
         }
@@ -114,7 +117,8 @@ class CommunityController {
         }
     }
 
-    private function uploadCommunityImage($file) {
+    private function uploadCommunityImage($file)
+    {
         if (!isset(self::ALLOWED_TYPES[$file['type']])) {
             throw new Exception('Invalid file type');
         }
@@ -138,15 +142,136 @@ class CommunityController {
 
         return '/public/uploads/community_images/' . $fileName;
     }
+
+    public function postAnnouncement($data) {
+        if (!isset($_SESSION['user_id'])) {
+            return [
+                'success' => false,
+                'message' => "unauthorized access"
+            ];
+        }
+
+        try {
+            // create_announcement($data['community_id'], $_SESSION('user_id'), $data['announcementContnet']);
+            $result = create_announcement($data['community_id'], $_SESSION['user_id'] ,$data['announcementContnet']);
+
+            if (!$result) {
+                throw new Exception('Failed To Post Annoucement');
+            }
+            $AnnouncementData = get_announcementById($result);
+            return [
+                'success' => true,
+                'message' => 'Announcement is Successfully Posted',
+                'newAnnouncement' => $AnnouncementData
+            ];
+        } catch (Exception $e) {
+            error_log("Core Member class" . $e->getMessage());
+            return [
+                'success' => false,
+                'message' => $e->getMessage()
+            ];
+        }
+    }
+    public function postEvent($data, $file) {}
+
+
+    public function manageMemeber($data) {}
+
+    public function invite($data) {}
+}
+
+class communityMember {}
+
+class communityCoreMember
+{
+    public function postEvent() {}
+    public function postAnnouncement($data)
+    {
+        if (!isset($_SESSION['iser_id'])) {
+            return [
+                'success' => false,
+                'message' => "unauthorized access"
+            ];
+        }
+
+        try {
+            $result = create_announcement($data['community_id'], $_SESSION['user_id'], $data['announcementContnet']);
+            
+            if (!$result) {
+                throw new Exception('Failed To Post Annoucement'.$result);
+            }
+            return [
+                'success' => true,
+                'message' => '',
+                'content' => $data['announcementContnet']
+            ];
+        } catch (Exception $e) {
+            error_log("Core Member class" . $e->getMessage());
+            return [
+                'success' => false,
+                'message' => $e->getMessage()
+            ];
+        }
+    }
+
+    // public function invite(){}
 }
 
 // Handle AJAX requests
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $controller = new CommunityController();
-    $response = $controller->updateCommunity($_POST, $_FILES);
+    if ($_POST['role'] == "admin") {
 
+        $controller = new communityAdmin();
+        switch ($_POST['action']) {
+            case 'updateCommunity':
+                $response = $controller->updateCommunity($_POST, $_FILES);
+                break;
+            case 'postAnnouncement':
+                $response = $controller->postAnnouncement($_POST);
+                break;
+            case 'postEvent':
+                $response = $controller->postEvent($_POST, $_FILES);
+                break;
+            case 'manageMemeber':
+                $response = $controller->manageMemeber($_POST);
+                break;
+            case 'invite';
+                $response = $controller->invite($_POST);
+                break;
+            default;
+                $response = [
+                    'success' => false,
+                    'message' => 'undefinded action'
+                ];
+                break;
+        }
+    } elseif ($_POST['role'] == 'core_member') {
+
+        $controller = new communityCoreMember();
+        $response = [
+            'success' => false,
+            'message' => 'undefinded action'
+        ];
+        switch ($_POST['action']) {
+            case 'postEvent':
+                $response = $controller->postEvent($_POST, $_FILES);
+                break;
+            case 'postAnnouncement':
+                $response = $controller->postAnnouncement($_POST);
+                break;
+                // case 'invite':
+                //     $response = $controller->invite($_POST);
+                //     break;
+            default;
+                break;
+        }
+    } else {
+        $response = [
+            'success' => false,
+            'message' => 'Unauthorized access'
+        ];
+    }
     header('Content-Type: application/json');
     echo json_encode($response);
     exit();
 }
-?>
