@@ -187,3 +187,82 @@ function getUserProfile($user_id){
     
     }
 }
+
+
+
+    #edit community model
+
+function getCommunityDetails($communityId) {
+    $query = "SELECT * FROM Communities WHERE community_id = ?";
+    $paramstype = "i";
+    $params = [$communityId];
+    $result = getData($query, $paramstype, $params, "getCommunityDetails");
+    return $result ? $result[0] : null;
+}
+
+function updateCommunityDetails($communityId, $name, $description, $type, $privacy, $recruitmentStatus, $profileImage = null) {
+    try {
+        $conn = connect_db();
+
+        // Check if community name is unique (if necessary)
+        $queryCheck = "SELECT community_id FROM Communities WHERE community_name = ? AND community_id != ?";
+        $paramstypeCheck = "si";
+        $paramsCheck = [$name, $communityId];
+        $checkResult = getData($queryCheck, $paramstypeCheck, $paramsCheck, "checkCommunityName");
+
+        if ($checkResult) {
+            throw new Exception('Community name is already taken');
+        }
+
+        // Prepare base update query
+        $updateQuery = "UPDATE Communities SET 
+            community_name = ?, 
+            description = ?, 
+            community_type = ?, 
+            community_privacy = ?, 
+            recruitment_status = ?";
+
+        $params = [$name, $description, $type, $privacy, $recruitmentStatus];
+        $types = "sssss";
+
+        // Add profile image to update if provided
+        if ($profileImage) {
+            $updateQuery .= ", profile_image = ?";
+            $params[] = $profileImage;
+            $types .= "s";
+        }
+
+        $updateQuery .= " WHERE community_id = ?";
+        $params[] = $communityId;
+        $types .= "i";
+
+        // Prepare and execute statement
+        $stmt = $conn->prepare($updateQuery);
+        if (!$stmt) {
+            throw new Exception('Prepare failed: ' . $conn->error);
+        }
+        $stmt->bind_param($types, ...$params);
+        $result = $stmt->execute();
+
+        if (!$result) {
+            throw new Exception('Execute failed: ' . $stmt->error);
+        }
+
+        return true;
+
+    } catch (Exception $e) {
+        error_log('Community update model error: ' . $e->getMessage());
+        return false;
+    } finally {
+        if (isset($stmt)) {
+            $stmt->close();
+        }
+        if (isset($conn)) {
+            $conn->close();
+        }
+    }
+}
+
+}
+
+?>

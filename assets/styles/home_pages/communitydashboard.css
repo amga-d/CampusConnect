@@ -110,6 +110,12 @@ body {
   border: 2px solid transparent;
   text-wrap: nowrap;
   cursor: pointer;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 3;
+  gap: 10px;
+
 }
 
 .btn.leave-btn:hover {
@@ -713,6 +719,276 @@ body {
 }
 
 
+/* Edit Community Overlay */
+.edit-community-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: none; /* Initially hidden */
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  /* opacity: 0; */
+  transition: opacity 0.3s ease;
+}
+
+.edit-community-container.active {
+  display: flex;
+  opacity: 1;
+}
+
+/* Edit Community Modal */
+.edit-community-modal {
+  background: var(--white);
+  border-radius: 1rem;
+  width: 90%;
+  max-width: 800px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 15px 50px rgba(0,0,0,0.2);
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+/* Close Button */
+.modal-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 1.5rem;
+  color: var(--twitterblue-color);
+  cursor: pointer;
+}
+
+/* Form Styles */
+#edit-community-form {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem; /* Space between sidebar and main */
+}
+
+@media (max-width: 768px) {
+  #edit-community-form {
+      flex-direction: column;
+  }
+}
+
+/* Sidebar */
+.edit-community-sidebar {
+  width: 350px;
+  padding: 1rem;
+  background-color: var(--secondary-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-right: 2px solid var(--twitterblue-color);
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .edit-community-sidebar {
+      width: 100%;
+      border-right: none;
+      border-bottom: 2px solid var(--twitterblue-color);
+      padding: 1.5rem 1rem;
+  }
+}
+
+/* Community Avatar */
+.community-avatar {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  border: 6px solid var(--white);
+  background-color: var(--white);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
+}
+
+.community-avatar:hover {
+  transform: scale(1.05);
+}
+
+.community-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Community Image Upload */
+.community-image-upload {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.community-image-upload input[type="file"] {
+  display: none;
+}
+
+.community-image-upload label {
+  cursor: pointer;
+  background-color: var(--twitterblue-color);
+  color: var(--white);
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  margin-top: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.community-image-upload label:hover {
+  background-color: #0c84c5;
+}
+
+/* Main Content */
+.edit-community-main {
+  flex: 1;
+  padding: 0;
+}
+
+@media (max-width: 768px) {
+  .edit-community-main {
+      padding: 0;
+  }
+}
+
+/* Form Groups */
+.edit-community-main .form-group {
+  margin-bottom: 1.5rem;
+}
+
+.edit-community-main .form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--text-color);
+  font-weight: bold;
+}
+
+.edit-community-main .form-group input,
+.edit-community-main .form-group textarea,
+.edit-community-main .form-group select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--primary-color);
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  background-color: var(--white);
+  color: var(--text-color);
+}
+
+.edit-community-main .form-group input:focus,
+.edit-community-main .form-group textarea:focus,
+.edit-community-main .form-group select:focus {
+  outline: none;
+  border-color: var(--twitterblue-color);
+  box-shadow: 0 0 5px rgba(29, 161, 242, 0.5);
+}
+
+/* Textarea */
+.edit-community-main .form-group textarea {
+  resize: vertical;
+}
+
+/* Form Actions */
+.edit-community-main .form-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+
+.edit-community-main .btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.625rem 1.25rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+
+.edit-community-main .btn-primary {
+  background-color: var(--twitterblue-color);
+  color: var(--white);
+  border: 2px solid var(--twitterblue-color);
+}
+
+.edit-community-main .btn-primary:hover {
+  background-color: #0c84c5;
+}
+
+.edit-community-main .btn-secondary {
+  color: var(--twitterblue-color);
+  border: 2px solid var(--twitterblue-color);
+  background-color: transparent;
+}
+
+.edit-community-main .btn-secondary:hover {
+  background-color: var(--twitterblue-color);
+  color: var(--white);
+}
+
+/* Notification Styles (Reused) */
+.notification {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 15px 30px;
+  border-radius: 8px;
+  color: white;
+  z-index: 1000;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: opacity 0.5s ease;
+}
+
+.notification.success {
+  background-color: #4CAF50;
+}
+
+.notification.error {
+  background-color: #F44336;
+}
+
+.notification.info {
+  background-color: #2196F3;
+}
+
+.notification.fade-out {
+  opacity: 0;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .edit-community-modal {
+      padding: 1.5rem;
+  }
+}
+@media (max-width: 1024px) {
+  .events-content #newsFeed{
+      width: 100%;
+  }
+
+}
+
+
+
 /* Tablet and Below (Max Width: 768px) */
 @media (max-width: 768px) {
   /* Home Content Grid to Single Column */
@@ -860,6 +1136,20 @@ body {
     color: white; /* Ensure text remains visible */
     border: 2px solid #1a91da;
   }
+
+  .events-content #newsFeed{
+    width: 100%;
+}
+
+
+.edit-community-modal {
+  flex-direction: column;
+}
+
+.edit-community-sidebar {
+  width: 100%;
+}
+
 }
 
 /* Mobile S (Max Width: 480px) */
@@ -954,6 +1244,39 @@ body {
   .events-content .read-more {
     font-size: 0.8em;
   }
+
+
+  .events-content #newsFeed{
+    width: 100%;
+    border-radius: 0;
+    border: none;
+}
+
+
+
+  .post-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+.post-avatar {
+    margin-left: 10px;
+}
+.post-info {
+    width: 100%;
+    padding: 0 10px;
+}
+.elipse {
+    right: 10px;
+    top: 10px;
+}
+.community-title {
+    font-size: 1.5em;
+}
+.community-subtitle {
+    font-size: 0.9em;
+}
+
 }
 
 img {
