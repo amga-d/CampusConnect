@@ -33,7 +33,7 @@ function getCommunitiesNotIn($user_id)
                     c.recruitment_status, 
                     c.created_at
                 ORDER BY c.created_at DESC 
-                LIMIT 20;";
+                ";
 
     $paramsType = "i";
     $params = [$user_id];
