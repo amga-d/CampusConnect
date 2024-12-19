@@ -1,5 +1,5 @@
-<?php 
-    require_once(__DIR__ ."/../../controllers/auth/additionalInfoController.php");
+<?php
+require_once(__DIR__ . "/../../controllers/auth/additionalInfoController.php");
 ?>
 
 <!DOCTYPE html>
@@ -10,8 +10,9 @@
     ?>
     <link rel="stylesheet" href="/assets/styles/additionalInfo.css">
     <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <title>CampusConnect</title>
 </head>
 
 <body>
@@ -25,7 +26,7 @@
                         <img src="/assets/img/home/default_profile.png" alt="Profile Picture" id="profilePicturePreview">
                     </div>
                     <div class="profile-image-upload">
-                        <input type="file" id="profile-image" name="profile_image" accept="image/*">
+                        <input type="file" id="profile-image" name="profile_image" accept="image/*" Required>
                         <label for="profile-image">
                             <i class="fas fa-upload"></i> Change Picture
                         </label>
@@ -35,12 +36,11 @@
 
                     <div class="form-group">
                         <label for="birthday">Birthday</label>
-                        <input type="date" id="birthday" name="birthday" Required>
+                        <input type="date" id="birthday" name="birthday" Required onclick="this.showPicker()">
                     </div>
-
                     <div class="form-group">
                         <label>Gender</label>
-                        <div class="radio-group" >
+                        <div class="radio-group">
                             <label>
                                 <input type="radio" name="gender" value="male" Required> Male
                             </label>
@@ -60,7 +60,22 @@
         </div>
     </div>
     </div>
-
+    <script>
+        const profileImageInput = document.getElementById("profile-image");
+        const profilePicturePreview = document.getElementById("profilePicturePreview");
+        if (profileImageInput) {
+            profileImageInput.addEventListener("change", function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(event) {
+                        profilePicturePreview.src = event.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        }
+    </script>
 
 </body>
 
