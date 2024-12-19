@@ -520,7 +520,9 @@ body {
 .user-dropdown.show {
   display: block;
 }
-
+.fa-chevron-down:hover{
+  color: var(--primary)
+}
 .user-dropdown a {
   display: block;
   padding: 0.75rem 1rem;

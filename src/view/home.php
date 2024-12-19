@@ -126,7 +126,7 @@ require_once __DIR__ . '/../controllers/homeController.php';
                             </button>
                             <div class="user-dropdown" id="userDropdown">
                                 <a href="#profile" class="profile-link2">Profile</a>
-                                <a href="#settings">Settings</a>
+                                <a onclick="preventDefault()">Settings</a>
                                 <a href="/src/controllers/logout.php">Logout</a>
                             </div>
                             <!-- <button class="user-menu-btn">
