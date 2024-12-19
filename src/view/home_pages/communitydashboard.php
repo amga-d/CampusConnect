@@ -4,7 +4,10 @@ ini_set('display_errors', 1);
 
 require_once __DIR__ . '/../../controllers/home_pages/communityDashboardController.php';
 require_once __DIR__ . '/../../controllers/home_pages/updateCommunityController.php';
+require_once __DIR__ . '/../../controllers/home_pages/EventController.php';
 
+$controller = new EventController();
+echo $controller->createEvent();
 
 // print_r(json_encode($dashboardData));
 $controller = new CommunityController();
@@ -196,7 +199,55 @@ $community = $controller->getCommunityDetails($communityId);
 
       <!-- Future Events Content (Hidden by default) -->
       <section class="events-content content-section" style="display:none;">
-        <div id="newsFeed">
+      <?php if ($dashboardData['role'] == "admin" || $dashboardData['role']  == "core_member"): ?>
+            <div class="event-input">
+              <img src="<?= htmlspecialchars($dashboardData['profile']['profile_image']) ?>" alt="Your Profile" class="user-avatar" loading="lazy">
+              <input type="text" placeholder="What do have in mind to share?" />
+              <button class="btn send-btn" aria-label="Send Post">
+                <i class="fas fa-paper-plane"></i>
+              </button>
+            </div>
+          <?php endif; ?>
+
+          <div class="create-event-container" style="display: none;">
+    <div class="create-event-modal">
+        <form id="create-event-form" method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="community_id" value="<?php echo htmlspecialchars($community['community_id']); ?>">
+            <div class="event-image-section">
+                <div class="event-image-preview">
+                    <img id="event-image-preview" src="/assets/img/default_event.png" alt="Event Preview">
+                </div>
+                <div class="event-image-upload">
+                    <input type="file" id="event-image" name="event_image" accept="image/*">
+                    <label for="event-image">
+                        <i class="fas fa-upload"></i> Upload Event Image
+                    </label>
+                </div>
+            </div>
+
+            <div class="event-details-section">
+                <h2>Create New Event</h2>
+                
+                <div class="form-group">
+                    <label for="event_name">Event Name</label>
+                    <input type="text" id="event_name" name="event_name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea id="description" name="description" rows="4"></textarea>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary cancel-event">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Create Event</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+    <div id="newsFeed">
           <div class="news-post">
             <div class="post-header">
               <img src="https://plus.unsplash.com/premium_photo-1664474619075-644dd191935f?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aW1hZ2V8ZW58MHx8MHx8fDA%3D" alt="Akram Mohamed" class="post-avatar" loading="lazy">

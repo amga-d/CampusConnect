@@ -789,6 +789,241 @@ body {
   box-sizing: border-box;
 }
 
+
+
+/* event Input Section */
+.event-input {
+  display: flex;
+  align-items: center;
+  background: white;
+  border: 1px solid var(--border-color);
+  padding: 25px 30px;
+  border-radius: 10px;
+  margin-bottom: 40px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  position: relative;
+  width: 60%;
+  margin: 0 auto;
+  margin-top: 40px;
+}
+
+.event-input .user-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 15px;
+}
+
+.event-input input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 18px;
+  background: var(--input-bg);
+  padding: 14px 20px;
+  border-radius: 8px;
+  margin-right: 15px;
+}
+
+.event-input input::placeholder {
+  color: var(--light-text-color);
+}
+
+
+/* Event Creation Modal Styles */
+.create-event-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  transition: opacity 0.3s ease;
+}
+
+.create-event-modal {
+  background: var(--white);
+  border-radius: 1rem;
+  width: 90%;
+  max-width: 800px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 15px 50px rgba(0,0,0,0.2);
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+#create-event-form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.event-image-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.event-image-preview {
+  width: 100%;
+  height: 400px;
+  max-width: 300px;
+  background-color: var(--secondary-color);
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px dashed var(--border-color);
+}
+
+.event-image-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.event-image-upload {
+  width: 100%;
+  text-align: center;
+}
+
+.event-image-upload input[type="file"] {
+  display: none;
+}
+
+.event-image-upload label {
+  cursor: pointer;
+  background-color: var(--twitterblue-color);
+  color: var(--white);
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.event-image-upload label:hover {
+  background-color: #0c84c5;
+  transform: translateY(-2px);
+}
+
+.event-details-section {
+  padding: 1rem 0;
+}
+
+.event-details-section h2 {
+  color: var(--text-color);
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--text-color);
+  font-weight: bold;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  background-color: var(--white);
+  color: var(--text-color);
+  transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--twitterblue-color);
+  box-shadow: 0 0 5px rgba(29, 161, 242, 0.5);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+
+.btn-primary {
+  background-color: var(--twitterblue-color);
+  color: var(--white);
+}
+
+.btn-primary:hover {
+  background-color: #0c84c5;
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  color: var(--twitterblue-color);
+  border: 2px solid var(--twitterblue-color);
+  background-color: transparent;
+}
+
+.btn-secondary:hover {
+  background-color: var(--twitterblue-color);
+  color: var(--white);
+  transform: translateY(-2px);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .create-event-modal {
+      padding: 1rem;
+  }
+
+  .event-image-preview {
+      height: 400px;
+  }
+
+  .form-actions {
+      flex-direction: column;
+  }
+
+  .btn {
+      width: 100%;
+      text-align: center;
+  }
+}
+
 @media (max-width: 768px) {
   .edit-community-sidebar {
       width: 100%;

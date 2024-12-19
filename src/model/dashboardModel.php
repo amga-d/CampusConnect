@@ -266,3 +266,75 @@ function updateCommunityDetails($communityId, $name, $description, $type, $priva
 
 
 ?>
+
+
+<?php
+function createEvent($eventData) {
+    try {
+        $conn = connect_db();
+        
+        $query = "INSERT INTO Events (community_id, creator_id, event_name, description, image_path) 
+                 VALUES (?, ?, ?, ?, ?)";
+        
+        $stmt = $conn->prepare($query);
+        if (!$stmt) {
+            throw new Exception("Prepare failed: " . $conn->error);
+        }
+        
+        $stmt->bind_param("iisss", 
+            $eventData['community_id'],
+            $eventData['creator_id'],
+            $eventData['event_name'],
+            $eventData['description'],
+            $eventData['image_path']
+        );
+        
+        if (!$stmt->execute()) {
+            throw new Exception("Execute failed: " . $stmt->error);
+        }
+        
+        return true;
+    } catch (Exception $e) {
+        error_log("Error in createEvent: " . $e->getMessage());
+        return false;
+    } finally {
+        if (isset($stmt)) {
+            $stmt->close();
+        }
+        if (isset($conn)) {
+            $conn->close();
+        }
+    }
+}
+
+function getEventsByCommunity($communityId) {
+    try {
+        $conn = connect_db();
+        
+        $query = "SELECT e.*, u.name as creator_name, u.profile_image as creator_image 
+                 FROM Events e 
+                 JOIN Users u ON e.creator_id = u.user_id 
+                 WHERE e.community_id = ? 
+                 ORDER BY e.created_at DESC";
+        
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param("i", $communityId);
+        
+        if (!$stmt->execute()) {
+            throw new Exception("Query execution failed");
+        }
+        
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    } catch (Exception $e) {
+        error_log("Error in getEventsByCommunity: " . $e->getMessage());
+        return false;
+    } finally {
+        if (isset($stmt)) {
+            $stmt->close();
+        }
+        if (isset($conn)) {
+            $conn->close();
+        }
+    }
+}

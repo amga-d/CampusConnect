@@ -223,3 +223,168 @@ initializeDashboard();
         }
     });
 })();
+
+
+
+// Event Modal Functionality
+(function() {
+    function initializeEventModal() {
+        const eventInput = document.querySelector('.event-input input');
+        const createEventContainer = document.querySelector('.create-event-container');
+        const cancelEventButton = document.querySelector('.cancel-event');
+        const eventImageInput = document.getElementById('event-image');
+        const eventImagePreview = document.getElementById('event-image-preview');
+        const createEventForm = document.getElementById('create-event-form');
+        const newsFeed = document.getElementById('newsFeed');
+
+        if (eventInput && createEventContainer) {
+            // Open modal when clicking the event input
+            eventInput.addEventListener('click', function() {
+                createEventContainer.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            });
+
+            // Close modal when clicking cancel
+            if (cancelEventButton) {
+                cancelEventButton.addEventListener('click', function() {
+                    createEventContainer.style.display = 'none';
+                    document.body.style.overflow = '';
+                });
+            }
+
+            // Close modal when clicking outside
+            createEventContainer.addEventListener('click', function(e) {
+                if (e.target === createEventContainer) {
+                    createEventContainer.style.display = 'none';
+                    document.body.style.overflow = '';
+                }
+            });
+        }
+
+        // Handle image preview
+        if (eventImageInput && eventImagePreview) {
+            eventImageInput.addEventListener('change', function() {
+                const file = this.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        eventImagePreview.src = e.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        }
+
+        // Function to create new event HTML
+        function createEventElement(eventData) {
+            const newEvent = document.createElement('div');
+            newEvent.className = 'news-post';
+            
+            // Format current date
+            const currentDate = new Date();
+            const formattedDate = currentDate.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+
+            newEvent.innerHTML = `
+                <div class="post-header">
+                    <img src="${eventData.creatorImage || '/assets/img/default_profile.png'}" alt="${eventData.creatorName}" class="post-avatar" loading="lazy">
+                    <div class="post-info">
+                        <strong>${eventData.creatorName}</strong><br>
+                        <span class="post-date">${formattedDate}</span>
+                    </div>
+                    <strong class="elipse">...</strong>
+                </div>
+                <img src="${eventData.imagePath || '/assets/img/default_event.png'}" class="post-image" alt="${eventData.eventName}" loading="lazy">
+                <div class="post-description">
+                    <h2 class="post-title">${eventData.eventName}</h2>
+                    <p class="post-excerpt">${eventData.description}</p>
+                    <span class="read-more" onclick="toggleReadMore(this)">Read more</span>
+                </div>
+            `;
+            
+            return newEvent;
+        }
+
+        // Handle form submission
+        if (createEventForm) {
+            createEventForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+
+                const formData = new FormData(this);
+                formData.append('community_id', document.querySelector('input[name="community_id"]').value);
+
+                try {
+                    const response = await fetch('/src/controllers/home_pages/EventController.php', {
+                        method: 'POST',
+                        body: formData
+                    });
+
+                    const result = await response.json();
+
+                    if (result.success) {
+                        // Create and add new event to the top of the feed
+                        const eventElement = createEventElement({
+                            eventName: formData.get('event_name'),
+                            description: formData.get('description'),
+                            imagePath: result.imagePath,
+                            creatorName: result.creatorName,
+                            creatorImage: result.creatorImage
+                        });
+
+                        // Add the new event to the top of the feed
+                        if (newsFeed.firstChild) {
+                            newsFeed.insertBefore(eventElement, newsFeed.firstChild);
+                        } else {
+                            newsFeed.appendChild(eventElement);
+                        }
+
+                        // Show success notification
+                        showNotification('Event created successfully!', 'success');
+                        
+                        // Reset form and close modal
+                        createEventContainer.style.display = 'none';
+                        document.body.style.overflow = '';
+                        createEventForm.reset();
+                        eventImagePreview.src = '/assets/img/default_event.png';
+                    } else {
+                        throw new Error(result.message || 'Failed to create event');
+                    }
+                } catch (error) {
+                    showNotification(error.message || 'Failed to create event. Please try again.', 'error');
+                }
+            });
+        }
+    }
+
+    // Initialize when DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initializeEventModal);
+    } else {
+        initializeEventModal();
+    }
+
+    // Reuse the existing notification function
+    function showNotification(message, type = "info") {
+        const existingNotifications = document.querySelectorAll(".notification");
+        existingNotifications.forEach((notification) => {
+            notification.remove();
+        });
+
+        const notification = document.createElement("div");
+        notification.className = `notification ${type}`;
+        notification.textContent = message;
+        document.body.appendChild(notification);
+
+        setTimeout(() => {
+            notification.classList.add("fade-out");
+            setTimeout(() => {
+                if (notification.parentElement) {
+                    notification.parentElement.removeChild(notification);
+                }
+            }, 500);
+        }, 3000);
+    }
+})();
