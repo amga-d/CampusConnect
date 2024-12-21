@@ -62,12 +62,16 @@ initializeDashboard();
     const editCommunityOverlay = document.querySelector(
         ".edit-community-container"
     );
-    const modalCloseBtn = editCommunityOverlay.querySelector(".cancel-edit");
+    let modalCloseBtn;
+    let communityImagePreview;
+    if (editCommunityBtn) {
+        modalCloseBtn = editCommunityOverlay.getElementById(".cancel-edit");
+        communityImagePreview = editCommunityOverlay.querySelector(
+            ".community-avatar img"
+        );
+    }
     const editCommunityForm = document.getElementById("edit-community-form");
     const communityImageInput = document.getElementById("community-image");
-    const communityImagePreview = editCommunityOverlay.querySelector(
-        ".community-avatar img"
-    );
     const communityAnnouncementForm =
         document.getElementById("post-Announcement");
 
@@ -129,7 +133,7 @@ initializeDashboard();
                     const result = await response.json();
                     if (result.success) {
                         showNotification(result.message, "success");
-                        updateAnnouncements(result.newAnnouncement)
+                        updateAnnouncements(result.newAnnouncement);
                     } else {
                         showNotification(result.message, "error");
                     }
@@ -303,7 +307,7 @@ initializeDashboard();
         const announcementElement = document.createElement("article");
         const noAnnouncementtag = document.getElementById("noAnnoTag");
 
-        if (noAnnouncementtag){
+        if (noAnnouncementtag) {
             noAnnouncementtag.remove();
         }
         announcementElement.className = "post";
@@ -328,120 +332,139 @@ initializeDashboard();
         `;
 
         // Prepend the new announcement to the top of the list
-        announcementsContainer.insertBefore(announcementElement, announcementsContainer.children[1]);
+        announcementsContainer.insertBefore(
+            announcementElement,
+            announcementsContainer.children[1]
+        );
     }
 })();
 
 
-
-// Function to show the invite modal
+(function(){
+    // Function to show the invite modal
 function showInviteModal() {
-  document.getElementById('inviteModal').style.display = 'flex';
+    document.getElementById("inviteModal").style.display = "flex";
 }
 
 // Function to hide the invite modal
 function hideInviteModal() {
-  document.getElementById('inviteModal').style.display = 'none';
+    document.getElementById("inviteModal").style.display = "none";
 }
 
 // Event listener for the Invite button
-document.querySelector('.invite-btn').addEventListener('click', function(event) {
-  event.preventDefault();
-  showInviteModal();
-});
+let invite = document.querySelector(".invite-btn");
+if (invite) {
+    invite = addEventListener("click", function (event) {
+        event.preventDefault();
+        showInviteModal();
+    });
+    // Event listener for the Close button
+    document
+        .getElementById("closeInviteModal")
+        .addEventListener("click", hideInviteModal);
 
-// Event listener for the Close button
-document.getElementById('closeInviteModal').addEventListener('click', hideInviteModal);
+    // Event listener for the Cancel button inside the modal
+    document
+        .getElementById("cancelInvite")
+        .addEventListener("click", hideInviteModal);
 
-// Event listener for the Cancel button inside the modal
-document.getElementById('cancelInvite').addEventListener('click', hideInviteModal);
+    // Event listener for the Invite form submission
+    document
+        .getElementById("inviteForm")
+        .addEventListener("submit", function (event) {
+            event.preventDefault();
 
-// Event listener for the Invite form submission
-document.getElementById('inviteForm').addEventListener('submit', function(event) {
-  event.preventDefault();
-  
-  // Get the email value
-  const email = document.getElementById('inviteEmail').value.trim();
-  
-  if (email) {
-    // Here you can add validation if needed
+            // Get the email value
+            const email = document.getElementById("inviteEmail").value.trim();
 
-    // Hide the modal
-    hideInviteModal();
+            if (email) {
+                // Here you can add validation if needed
 
-    // Show success notification
-    showNotification('Invitation sent successfully!', 'success');
-    
-    // Optionally, reset the form
-    document.getElementById('inviteForm').reset();
-  }
-});
+                // Hide the modal
+                hideInviteModal();
+
+                // Show success notification
+                showNotification("Invitation sent successfully!", "success");
+
+                // Optionally, reset the form
+                document.getElementById("inviteForm").reset();
+            }
+        });
+}
+
 
 // Function to show notifications
 function showNotification(message, type) {
-  const notification = document.createElement('div');
-  notification.classList.add('notification', type);
-  notification.textContent = message;
-  
-  document.body.appendChild(notification);
-  
-  // Automatically fade out after 3 seconds
-  setTimeout(() => {
-    notification.classList.add('fade-out');
-    // Remove the notification after the fade-out transition
-    notification.addEventListener('transitionend', () => {
-      notification.remove();
-    });
-  }, 3000);
+    const notification = document.createElement("div");
+    notification.classList.add("notification", type);
+    notification.textContent = message;
+
+    document.body.appendChild(notification);
+
+    // Automatically fade out after 3 seconds
+    setTimeout(() => {
+        notification.classList.add("fade-out");
+        // Remove the notification after the fade-out transition
+        notification.addEventListener("transitionend", () => {
+            notification.remove();
+        });
+    }, 3000);
 }
 
 // Function to show the leave modal
 function showLeaveModal() {
-    document.getElementById('leaveModal').style.display = 'flex';
-  }
-  
-  // Function to hide the leave modal
-  function hideLeaveModal() {
-    document.getElementById('leaveModal').style.display = 'none';
-  }
-  
-  // Event listener for the Leave button
-  document.querySelector('.leave-btn').addEventListener('click', function(event) {
-    event.preventDefault();
-    showLeaveModal();
-  });
-  
-  // Event listener for the Close button in Leave modal
-  document.getElementById('closeLeaveModal').addEventListener('click', hideLeaveModal);
-  
-  // Event listener for the Cancel button inside the Leave modal
-  document.getElementById('cancelLeave').addEventListener('click', hideLeaveModal);
-  
-  // Event listener for the Confirm Leave button
-  document.getElementById('confirmLeave').addEventListener('click', function() {
+    document.getElementById("leaveModal").style.display = "flex";
+}
+console.log("loaded");
+// Function to hide the leave modal
+function hideLeaveModal() {
+    document.getElementById("leaveModal").style.display = "none";
+}
+
+// Event listener for the Leave button
+document
+    .querySelector(".leave-btn")
+    .addEventListener("click", function (event) {
+        event.preventDefault();
+        showLeaveModal();
+    });
+
+// Event listener for the Close button in Leave modal
+document
+    .getElementById("closeLeaveModal")
+    .addEventListener("click", hideLeaveModal);
+
+// Event listener for the Cancel button inside the Leave modal
+document
+    .getElementById("cancelLeave")
+    .addEventListener("click", hideLeaveModal);
+
+// Event listener for the Confirm Leave button
+document.getElementById("confirmLeave").addEventListener("click", function () {
     hideLeaveModal();
-    showNotification('You have successfully left the community.', 'info');
+    showNotification("You have successfully left the community.", "info");
     setTimeout(() => {
-        window.loadPage('discover'); // Redirect after 1 second
+        window.loadPage("discover"); // Redirect after 1 second
     }, 600);
 });
 
-
-  // Reusing the showNotification function from the Invite modal
-  // Ensure this function is defined only once if both modals are present
-  function showNotification(message, type) {
-    const notification = document.createElement('div');
-    notification.classList.add('notification', type);
+// Reusing the showNotification function from the Invite modal
+// Ensure this function is defined only once if both modals are present
+function showNotification(message, type) {
+    const notification = document.createElement("div");
+    notification.classList.add("notification", type);
     notification.textContent = message;
-    
+
     document.body.appendChild(notification);
-    
+
     // Automatically fade out after 3 seconds
     setTimeout(() => {
-      notification.classList.add('fade-out');
-      // Remove the notification after the fade-out transition
-      notification.addEventListener('transitionend', () => {
-        notification.remove();
-      });
+        notification.classList.add("fade-out");
+        // Remove the notification after the fade-out transition
+        notification.addEventListener("transitionend", () => {
+            notification.remove();
+        });
     }, 3000);
-  }
+}
+
+})();

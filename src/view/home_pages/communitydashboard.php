@@ -9,7 +9,7 @@ $role = $dashboardData['role'];
 print_r($dashboardData['announcements']);
 
 switch ($role) {
-  
+
   case "member":
     break;
 
@@ -37,7 +37,7 @@ switch ($role) {
       <div class="cover-overlay"></div>
       <button class="btn leave-btn"><i class="fas fa-sign-out"></i> Leave</button>
       <div class="header-content">
-        <?php if ($role == "admin"): ?>
+        <!-- <?php if ($role == "admin"): ?> -->
           <button class="btn invite-btn"><i class="fas fa-user-plus"></i> Invite</button>
           <button class="btn edit-btn" id=""><i class="fas fa-edit"></i> Edit</button>
         <?php endif; ?>
@@ -132,7 +132,7 @@ switch ($role) {
               </div>
 
               <div class="form-actions">
-                <button type="button" class="btn btn-secondary cancel-edit">Cancel</button>
+                <button type="button" class="btn btn-secondary cancel-edit" id="cancel">Cancel</button>
                 <button type="submit" class="btn btn-primary">Save Changes</button>
               </div>
             </div>
@@ -141,37 +141,37 @@ switch ($role) {
       </div>
 
       <!-- Invite Modal -->
-<div class="invite-modal-overlay" id="inviteModal">
-  <div class="invite-modal">
-    <button class="modal-close-btn" id="closeInviteModal">&times;</button>
-    <h2>Invite a New Member</h2>
-    <form id="inviteForm">
-      <div class="form-group">
-        <label for="inviteEmail">Email Address</label>
-        <input type="email" id="inviteEmail" name="inviteEmail" placeholder="Enter email" required>
+      <div class="invite-modal-overlay" id="inviteModal">
+        <div class="invite-modal">
+          <button class="modal-close-btn" id="closeInviteModal">&times;</button>
+          <h2>Invite a New Member</h2>
+          <form id="inviteForm">
+            <div class="form-group">
+              <label for="inviteEmail">Email Address</label>
+              <input type="email" id="inviteEmail" name="inviteEmail" placeholder="Enter email" required>
+            </div>
+            <div class="form-actions">
+              <button type="button" class="btn btn-secondary" id="cancelInvite">Cancel</button>
+              <button type="submit" class="btn btn-primary">Invite</button>
+            </div>
+          </form>
+        </div>
       </div>
-      <div class="form-actions">
-        <button type="button" class="btn btn-secondary" id="cancelInvite">Cancel</button>
-        <button type="submit" class="btn btn-primary">Invite</button>
-      </div>
-    </form>
-  </div>
-</div>
 
     <?php endif; ?>
 
     <!-- Leave Confirmation Modal -->
-<div class="leave-modal-overlay" id="leaveModal">
-  <div class="leave-modal">
-    <button class="modal-close-btn" id="closeLeaveModal">&times;</button>
-    <h2>Leave Community</h2>
-    <p>Are you sure you want to leave this community?</p>
-    <div class="form-actions">
-      <button type="button" class="btn btn-secondary" id="cancelLeave">Cancel</button>
-      <button type="button" class="btn btn-danger" id="confirmLeave">Leave</button>
+    <div class="leave-modal-overlay" id="leaveModal">
+      <div class="leave-modal">
+        <button class="modal-close-btn" id="closeLeaveModal">&times;</button>
+        <h2>Leave Community</h2>
+        <p>Are you sure you want to leave this community?</p>
+        <div class="form-actions">
+          <button type="button" class="btn btn-secondary" id="cancelLeave">Cancel</button>
+          <button type="button" class="btn btn-danger" id="confirmLeave">Leave</button>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
 
     <!-- Main Content Area -->
     <main class="main-content">
@@ -193,28 +193,28 @@ switch ($role) {
               </div>
             </form>
           <?php endif; ?>
-          
-          <?php if($dashboardData['announcements'] == null):?>
+
+          <?php if ($dashboardData['announcements'] == null): ?>
             <h3 id="noAnnoTag">No Announcements 😶‍🌫️</h3>
-            <?php else:?>
-              <?php foreach ($dashboardData['announcements'] as $announcement): ?>
+          <?php else: ?>
+            <?php foreach ($dashboardData['announcements'] as $announcement): ?>
               <article class="post">
-            <div class="post-header">
-              <img src="<?= htmlspecialchars($announcement['profile_image'])?>" alt="Akram Mohamed" class="post-avatar" loading="lazy">
-              <div class="post-info">
-                <strong><?= htmlspecialchars($announcement['name'])?></strong><br>
-                <span><?= htmlspecialchars($announcement['membership'])?></span>
-                <span class="post-date"><?= htmlspecialchars($announcement['created_at'])?></span>
-              </div>
-            </div>
-            <div class="post-body">
-              <p><?= htmlspecialchars($announcement['content'])?></p>
-            </div>
-            <div class="post-actions">
-              <button class="btn like-btn" aria-label="Like Post"><i class="fas fa-heart"></i></button>
-            </div>
-          </article>
-          <?php endforeach; ?>
+                <div class="post-header">
+                  <img src="<?= htmlspecialchars($announcement['profile_image']) ?>" alt="Akram Mohamed" class="post-avatar" loading="lazy">
+                  <div class="post-info">
+                    <strong><?= htmlspecialchars($announcement['name']) ?></strong><br>
+                    <span><?= htmlspecialchars($announcement['membership']) ?></span>
+                    <span class="post-date"><?= htmlspecialchars($announcement['created_at']) ?></span>
+                  </div>
+                </div>
+                <div class="post-body">
+                  <p><?= htmlspecialchars($announcement['content']) ?></p>
+                </div>
+                <div class="post-actions">
+                  <button class="btn like-btn" aria-label="Like Post"><i class="fas fa-heart"></i></button>
+                </div>
+              </article>
+            <?php endforeach; ?>
           <?php endif; ?>
         </section>
 
