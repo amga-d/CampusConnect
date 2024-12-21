@@ -316,6 +316,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             default;
                 break;
         }
+    } elseif ($_POST['role'] == 'member') {
+
+        $controller = new communityMember();
+        switch ($_POST['action']) {
+            case 'leaveCommunity':
+                $response = $controller->leaveCommunity($_POST);
+                break;
+            default:
+                $response = [
+                    'success' => false,
+                    'message' => 'Undefined action'
+                ];
+                break;
+        }
     } else {
         $response = [
             'success' => false,

@@ -322,7 +322,7 @@ function get_announcementById($announcement_id)
 
 function removeMemberFromCommunity($communityId, $userId)
 {
-    $query = "DELETE FROM Community_Members WHERE community_id = ? AND user_id = ?";
+    $query = "DELETE FROM community_members WHERE community_id = ? AND user_id = ?";
     $paramsType = "ii";
     $params = [$communityId, $userId];
     return deleteData($query, $paramsType, $params, "removeMemberFromCommunity");
