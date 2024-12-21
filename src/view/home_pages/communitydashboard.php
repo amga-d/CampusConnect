@@ -5,8 +5,8 @@ ini_set('display_errors', 1);
 require_once __DIR__ . '/../../controllers/home_pages/communityDashboardController.php';
 require_once __DIR__ . '/../../controllers/home_pages/communityUsers.php';
 
-$role = $dashboardData['role'];
-print_r($dashboardData['announcements']);
+$role = htmlspecialchars($dashboardData['role']);
+print_r($dashboardData['role']);
 
 switch ($role) {
 
@@ -77,7 +77,7 @@ switch ($role) {
         <div class="edit-community-modal">
           <form id="edit-community-form" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="action" value="updateCommunity">
-            <input type="hidden" name="role" value=<?= htmlspecialchars($dashboardData['role']) ?>>
+            <input type="hidden" name="role" value=<?= ($role) ?>>
             <input type="hidden" name="community_id" value="<?php echo htmlspecialchars($community['community_id']); ?>">
             <div class="edit-community-sidebar">
               <div class="community-avatar">
@@ -179,12 +179,12 @@ switch ($role) {
       <section class="home-content content-section">
         <section class="left-column">
           <!-- Post Input Section -->
-          <?php if ($dashboardData['role'] == "admin" || $dashboardData['role']  == "core_member"): ?>
+          <?php if ($role == "admin" || $role  == "core_member"): ?>
             <form action="POST" id="post-Announcement">
               <div class="post-input">
                 <input type="hidden" name="community_id" value="<?php echo htmlspecialchars($community['community_id']); ?>">
                 <input type="hidden" name="action" value="postAnnouncement">
-                <input type="hidden" name="role" value="<?= htmlspecialchars($dashboardData['role']) ?>">
+                <input type="hidden" name="role" value="<?= htmlspecialchars($role) ?>">
                 <img src="<?= htmlspecialchars($dashboardData['profile']['profile_image']) ?>" alt="Your Profile" class="user-avatar" loading="lazy">
                 <input type="text" name="announcementContnet" placeholder="What would you like to share today?" required>
                 <button type="submit" class="btn send-btn" aria-label="Send Post">
@@ -264,6 +264,56 @@ switch ($role) {
 
       <!-- Future Events Content (Hidden by default) -->
       <section class="events-content content-section" style="display:none;">
+        <?php if ($role == "admin" || $role  == "core_member"): ?>
+          <div class="event-input">
+            <img src="<?= htmlspecialchars($dashboardData['profile']['profile_image']) ?>" alt="Your Profile" class="user-avatar" loading="lazy">
+            <input type="text" placeholder="What do have in mind to share?" />
+            <button class="btn send-btn" aria-label="Send Post">
+              <i class="fas fa-paper-plane"></i>
+            </button>
+          </div>
+        <?php endif; ?>
+
+        <div class="create-event-container" style="display: none;">
+          <div class="create-event-modal">
+            <form id="create-event-form" method="POST" enctype="multipart/form-data">
+              <input type="hidden" name="community_id" value="<?php echo htmlspecialchars($community['community_id']); ?>">
+              <input type="hidden" name="role" value="<?= $role ?>">
+              <input type="hidden" name="action" value="postEvent">
+              <div class="event-image-section">
+                <div class="event-image-preview">
+                  <img id="event-image-preview" src="/assets/img/default_event.png" alt="Event Preview">
+                </div>
+                <div class="event-image-upload">
+                  <input type="file" id="event-image" name="event_image" accept="image/*">
+                  <label for="event-image">
+                    <i class="fas fa-upload"></i> Upload Event Image
+                  </label>
+                </div>
+              </div>
+
+              <div class="event-details-section">
+                <h2>Create New Event</h2>
+
+                <div class="form-group">
+                  <label for="event_name">Event Name</label>
+                  <input type="text" id="event_name" name="event_name" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="description">Description</label>
+                  <textarea id="description" name="description" rows="4"></textarea>
+                </div>
+
+                <div class="form-actions">
+                  <button type="button" class="btn btn-secondary cancel-event">Cancel</button>
+                  <button type="submit" class="btn btn-primary">Create Event</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
         <div id="newsFeed">
           <div class="news-post">
             <div class="post-header">

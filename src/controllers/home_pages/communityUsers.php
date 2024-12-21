@@ -143,7 +143,8 @@ class communityAdmin
         return '/public/uploads/community_images/' . $fileName;
     }
 
-    public function postAnnouncement($data) {
+    public function postAnnouncement($data)
+    {
         if (!isset($_SESSION['user_id'])) {
             return [
                 'success' => false,
@@ -153,7 +154,7 @@ class communityAdmin
 
         try {
             // create_announcement($data['community_id'], $_SESSION('user_id'), $data['announcementContnet']);
-            $result = create_announcement($data['community_id'], $_SESSION['user_id'] ,$data['announcementContnet']);
+            $result = create_announcement($data['community_id'], $_SESSION['user_id'], $data['announcementContnet']);
 
             if (!$result) {
                 throw new Exception('Failed To Post Annoucement');
@@ -172,7 +173,83 @@ class communityAdmin
             ];
         }
     }
-    public function postEvent($data, $file) {}
+    public function postEvent($data, $file)
+    {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            return (['success' => false, 'message' => 'Invalid request method']);
+        }
+
+        $userId = $_SESSION['user_id'] ?? null;
+        $communityId = $data['community_id'] ?? null;
+
+        if (!$userId || !$communityId) {
+            return (['success' => false, 'message' => 'Missing required data']);
+        }
+
+        $role = getUserRole($userId, $communityId);
+        if (!$role || ($role !== 'admin' && $role !== 'core_member')) {
+            return (['success' => false, 'message' => 'Unauthorized']);
+        }
+
+        if (empty($data['event_name']) || empty($data['description'])) {
+            return (['success' => false, 'message' => 'Event name and description are required']);
+        }
+
+        // Handle image upload if present
+        $imagePath = null;
+        if (isset($file['event_image']) && $file['event_image']['error'] === UPLOAD_ERR_OK) {
+            $uploadDir = __DIR__ . '/../../../public/uploads/events/';
+            if (!is_dir($uploadDir)) {
+                mkdir($uploadDir, 0777, true);
+            }
+
+            $fileExtension = strtolower(pathinfo($file['event_image']['name'], PATHINFO_EXTENSION));
+            $allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
+
+            if (!in_array($fileExtension, $allowedExtensions)) {
+                return (['success' => false, 'message' => 'Invalid file type. Only JPG, JPEG, PNG and GIF are allowed']);
+            }
+
+            $fileName = uniqid('event_') . '.' . $fileExtension;
+            $fullPath = $uploadDir . $fileName;
+            $imagePath = "/public/uploads/events/" . $fileName;
+
+            if (!move_uploaded_file($file['event_image']['tmp_name'], $fullPath)) {
+                return (['success' => false, 'message' => 'Failed to upload image']);
+            }
+
+            $eventData = [
+                'community_id' => $communityId,
+                'creator_id' => $userId,
+                'event_name' => $data['event_name'],
+                'description' => $data['description'],
+                'image_path' => $fullPath
+            ];
+
+            // Create event
+            try {
+                $result = createEvent($eventData);
+                if ($result) {
+                    // Get user profile for response
+                    $userProfile = getUserProfile($userId);
+
+                    return ([
+                        'success' => true,
+                        'message' => 'Event created successfully',
+                        'imagePath' => $imagePath,
+                        'creatorName' => $userProfile['name'],
+                        'creatorImage' => $userProfile['profile_image'],
+                        'event' => $eventData
+                    ]);
+                } else {
+                    return (['success' => false, 'message' => 'Failed to create event']);
+                }
+            } catch (Exception $e) {
+                error_log("Error creating event: " . $e->getMessage());
+                return (['success' => false, 'message' => 'An error occurred while creating the event']);
+            }
+        }
+    }
 
 
     public function manageMemeber($data) {}
@@ -247,9 +324,9 @@ class communityCoreMember
 
         try {
             $result = create_announcement($data['community_id'], $_SESSION['user_id'], $data['announcementContnet']);
-            
+
             if (!$result) {
-                throw new Exception('Failed To Post Annoucement'.$result);
+                throw new Exception('Failed To Post Annoucement' . $result);
             }
             return [
                 'success' => true,
@@ -310,9 +387,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             case 'postAnnouncement':
                 $response = $controller->postAnnouncement($_POST);
                 break;
-                // case 'invite':
-                //     $response = $controller->invite($_POST);
-                //     break;
             default;
                 break;
         }
