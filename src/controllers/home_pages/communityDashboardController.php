@@ -25,7 +25,7 @@ function initializeCommunityDashboard($communityId)
         $announcements = getCommunityAnnouncements($communityId);
 
         // Get community events
-        $events = getCommunityEvents($communityId);
+        $events = getEventsByCommunity($communityId);
 
         return [
             'community' => $community[0],

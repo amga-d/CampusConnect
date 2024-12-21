@@ -111,6 +111,27 @@ alter table community_members modify column role enum('admin','member','core_mem
 
 ---
 
+ALTER TABLE Events
+DROP COLUMN start_date,
+DROP COLUMN end_date,
+ADD COLUMN image_path VARCHAR(255) NULL;
+
+
+
+//new events table:-
+
+CREATE TABLE events (
+    event_id INT AUTO_INCREMENT PRIMARY KEY,
+    community_id INT NOT NULL,
+    creator_id INT NOT NULL,
+    event_name VARCHAR(255) NOT NULL,
+    description TEXT,
+    image_path VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (community_id) REFERENCES Communities(community_id) ON DELETE CASCADE,
+    FOREIGN KEY (creator_id) REFERENCES Users(user_id) ON DELETE CASCADE
+);
+
 ### Relationships Recap
 1. **`Users` ↔ `Communities`:**
    - A user can create a community (`created_by` in `Communities` references `Users`).
