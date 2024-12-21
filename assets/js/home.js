@@ -107,7 +107,7 @@ document.addEventListener("DOMContentLoaded", function () {
             newcommunity: "/assets/js/newcommunity.js",
         };
         // Improved loadPage function with better error handling
-        async function loadPage(pageId) {
+        window.loadPage = async function(pageId) {
             try {
                 // Hide the main content to prevent FOUC
                 mainContent.style.visibility = "hidden";

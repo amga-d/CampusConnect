@@ -107,8 +107,11 @@ switch ($role) {
                 <label for="community_type">Community Type</label>
                 <select id="community_type" name="community_type">
                   <option value="academic" <?php echo $community['community_type'] == 'academic' ? 'selected' : ''; ?>>Academic</option>
-                  <option value="hobby" <?php echo $community['community_type'] == 'hobby' ? 'selected' : ''; ?>>Hobby</option>
-                  <option value="professional" <?php echo $community['community_type'] == 'professional' ? 'selected' : ''; ?>>Professional</option>
+                  <option value="hobby" <?php echo $community['community_type'] == 'Sports' ? 'selected' : ''; ?>>Sports</option>
+                  <option value="professional" <?php echo $community['community_type'] == 'arts' ? 'selected' : ''; ?>>Arts & Culutre</option>
+                  <option value="professional" <?php echo $community['community_type'] == 'technology' ? 'selected' : ''; ?>>Technology</option>
+                  <option value="professional" <?php echo $community['community_type'] == 'social' ? 'selected' : ''; ?>>Social</option>
+                  <option value="professional" <?php echo $community['community_type'] == 'other' ? 'selected' : ''; ?>>Other</option>
                 </select>
               </div>
 
@@ -136,7 +139,40 @@ switch ($role) {
           </form>
         </div>
       </div>
+
+      <!-- Invite Modal -->
+<div class="invite-modal-overlay" id="inviteModal">
+  <div class="invite-modal">
+    <button class="modal-close-btn" id="closeInviteModal">&times;</button>
+    <h2>Invite a New Member</h2>
+    <form id="inviteForm">
+      <div class="form-group">
+        <label for="inviteEmail">Email Address</label>
+        <input type="email" id="inviteEmail" name="inviteEmail" placeholder="Enter email" required>
+      </div>
+      <div class="form-actions">
+        <button type="button" class="btn btn-secondary" id="cancelInvite">Cancel</button>
+        <button type="submit" class="btn btn-primary">Invite</button>
+      </div>
+    </form>
+  </div>
+</div>
+
     <?php endif; ?>
+
+    <!-- Leave Confirmation Modal -->
+<div class="leave-modal-overlay" id="leaveModal">
+  <div class="leave-modal">
+    <button class="modal-close-btn" id="closeLeaveModal">&times;</button>
+    <h2>Leave Community</h2>
+    <p>Are you sure you want to leave this community?</p>
+    <div class="form-actions">
+      <button type="button" class="btn btn-secondary" id="cancelLeave">Cancel</button>
+      <button type="button" class="btn btn-danger" id="confirmLeave">Leave</button>
+    </div>
+  </div>
+</div>
+
     <!-- Main Content Area -->
     <main class="main-content">
       <!-- Original Home Content -->

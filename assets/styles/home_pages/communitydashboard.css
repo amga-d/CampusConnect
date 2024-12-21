@@ -854,6 +854,231 @@ body {
   background-color: #0c84c5;
 }
 
+
+/* Invite Modal Overlay */
+.invite-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none; /* Hidden by default */
+  justify-content: center;
+  align-items: center;
+  z-index: 1001; /* Above other elements */
+}
+
+/* Invite Modal */
+.invite-modal {
+  background-color: var(--white);
+  padding: 2rem;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 400px;
+  position: relative;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Close Button */
+.modal-close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--text-color);
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.modal-close-btn:hover {
+  color: #1a91da;
+}
+
+/* Modal Heading */
+.invite-modal h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: var(--text-color);
+}
+
+/* Form Group */
+.invite-modal .form-group {
+  margin-bottom: 1.5rem;
+}
+
+.invite-modal .form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--text-color);
+  font-weight: bold;
+}
+
+.invite-modal .form-group input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: var(--input-bg);
+  color: var(--text-color);
+}
+
+.invite-modal .form-group input:focus {
+  outline: none;
+  border-color: #1a91da;
+  box-shadow: 0 0 5px rgba(26, 145, 218, 0.5);
+}
+
+/* Form Actions */
+.invite-modal .form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.invite-modal .btn {
+  padding: 0.5rem 1.2rem;
+  border-radius: 25px;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+}
+
+.invite-modal .btn-primary {
+  background: linear-gradient(45deg, #1a91da, #0f8ad8);
+  color: var(--white);
+  border: 2px solid transparent;
+}
+
+.invite-modal .btn-primary:hover {
+  background: white;
+  color: #1a91da;
+  border: 2px solid #1a91da;
+}
+
+.invite-modal .btn-secondary {
+  background: transparent;
+  color: #1a91da;
+  border: 2px solid #1a91da;
+}
+
+.invite-modal .btn-secondary:hover {
+  background: #1a91da;
+  color: var(--white);
+}
+
+
+/* Leave Modal Overlay */
+.leave-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none; /* Hidden by default */
+  justify-content: center;
+  align-items: center;
+  z-index: 1001; /* Above other elements */
+}
+
+/* Leave Modal */
+.leave-modal {
+  background-color: var(--white);
+  padding: 2rem;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 400px;
+  position: relative;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.3s ease-out;
+  text-align: center;
+}
+
+/* Close Button */
+.leave-modal .modal-close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--text-color);
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.leave-modal .modal-close-btn:hover {
+  color: #1a91da;
+}
+
+/* Modal Heading */
+.leave-modal h2 {
+  margin-bottom: 1rem;
+  color: var(--text-color);
+}
+
+/* Confirmation Text */
+.leave-modal p {
+  margin-bottom: 2rem;
+  color: var(--text-color);
+  font-size: 1.1rem;
+}
+
+/* Form Actions */
+.leave-modal .form-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+/* Danger Button */
+.leave-modal .btn-danger {
+  background: #e74c3c;
+  color: var(--white);
+  font-size: 16px;
+  border: 1px solid #e74c3c;
+  padding: 4px 8px;
+  border-radius: 8px;
+}
+
+.leave-modal .btn-danger:hover {
+  background: white;
+  color: #e74c3c;
+  border: 2px solid #e74c3c;
+  border-radius: 8px;
+}
+
+.leave-modal .btn-secondary {
+  background: white;
+  color: var(--text-color);
+  font-size: 16px;
+  border: 1px solid var(--text-color);
+  padding: 4px 8px;
+  border-radius: 8px;
+
+}
+
+.leave-modal .btn-secondary:hover {
+  background: var(--text-color);
+  color: white;
+  border-radius: 8px;
+}
+
+
+/* Animation for Modal */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+
 /* Main Content */
 .edit-community-main {
   flex: 1;

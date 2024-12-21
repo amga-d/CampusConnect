@@ -81,3 +81,35 @@ function insertData($query, $paramsType, $params, $functionName){
         }
     }
 }
+
+
+function deleteData($query, $paramsType, $params, $functionName){
+    try {
+        if (!$conn = connect_db()) {
+            throw new Exception("Database Connection Failed");
+        }
+        $stmt = $conn->prepare($query);
+        if (!$stmt) {
+            throw new Exception("Prepare failed: " . $conn->error);
+        }
+        $stmt->bind_param($paramsType, ...$params);
+        if (!$stmt->execute()) {
+            throw new Exception("DELETE Query Execution failed: " . $stmt->error);
+        }
+        // Check if any row was affected
+        if ($stmt->affected_rows === 0) {
+            throw new Exception("No matching record found to delete.");
+        }
+        return true;
+    } catch (Exception $e) {
+        error_log("Error " . $functionName . " : " . $e->getMessage());
+        return false;
+    } finally {
+        if (isset($stmt)) {
+            $stmt->close();
+        }
+        if (isset($conn)) {
+            $conn->close();
+        }
+    }
+}

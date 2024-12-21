@@ -180,7 +180,58 @@ class communityAdmin
     public function invite($data) {}
 }
 
-class communityMember {}
+class communityMember {
+    public function leaveCommunity($data)
+    {
+        if (!isset($_SESSION['user_id'])) {
+            return [
+                'success' => false,
+                'message' => 'Unauthorized access'
+            ];
+        }
+
+        // Retrieve and validate the community_id from POST data
+        if (!isset($data['community_id'])) {
+            return [
+                'success' => false,
+                'message' => 'Community ID not provided.'
+            ];
+        }
+
+        $communityId = intval($data['community_id']);
+        if ($communityId <= 0) {
+            return [
+                'success' => false,
+                'message' => 'Invalid Community ID.'
+            ];
+        }
+
+        $userId = $_SESSION['user_id'];
+
+        // Check if the user is a member of the community
+        $role = getUserRole($userId, $communityId);
+        if (!$role) {
+            return [
+                'success' => false,
+                'message' => 'You are not a member of this community.'
+            ];
+        }
+
+        // Proceed to remove the user from the community
+        $result = removeMemberFromCommunity($communityId, $userId);
+        if ($result) {
+            return [
+                'success' => true,
+                'message' => 'Successfully left the community.'
+            ];
+        } else {
+            return [
+                'success' => false,
+                'message' => 'Failed to leave the community. Please try again.'
+            ];
+        }
+    }
+}
 
 class communityCoreMember
 {
