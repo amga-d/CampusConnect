@@ -1,4 +1,12 @@
 <?php
+<<<<<<< HEAD
+// Move credentials to a separate config file that's not in version control
+$db_server = "mysql-server";
+$db_user = "root";
+$db_pass = "";
+$db_name = "campusconnect";
+=======
+>>>>>>> ed99b2e3b707801345a5a049e705627581b756aa
 
 require_once realpath(__DIR__ . "/../../vendor/autoload.php");
 
