@@ -20,6 +20,7 @@ function getCommunitiesNotIn($user_id)
                     SELECT community_id
                     FROM community_members
                     WHERE user_id = ?
+                    And community_privacy='public'
                     ) 
                 And 
                     community_privacy =! 'private'
@@ -65,17 +66,20 @@ function getCommunityMembers($communityId)
 function getCommunityEvents($communityId)
 {
     $query = "SELECT 
-                an.title,
-                an.content,
-                an.created_at,
-                cm.membership,
+                ev.event_name, 
+                ev.description,
+                ev.created_at,
+                ev.creator_id,
+                ev.image_path,
                 usr.name,
                 usr.profile_image
 
-            FROM announcements an
-            INNER JOIN  community_members cm ON an.community_id = cm.community_id
-            INNER JOIN  users usr ON an.user_id = usr.user_id
-            WHERE an.community_id = ?";
+            FROM events ev
+            INNER JOIN  users usr ON ev.creator_id = usr.user_id
+            WHERE ev.community_id = ?
+            ORDER BY 
+                    ev.created_at DESC
+            ";
     try {
         $conn = connect_db();
         $stmt = $conn->prepare($query);

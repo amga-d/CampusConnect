@@ -324,27 +324,34 @@ function createEvent($eventData)
 
     
 }
-function getEventsByCommunity($communityId) {
+function getEvents($communityId)
+{
+    $query = "SELECT 
+                ev.event_name, 
+                ev.description,
+                ev.created_at,
+                ev.creator_id,
+                ev.image_path,
+                usr.name,
+                usr.profile_image
+
+            FROM events ev
+            INNER JOIN  users usr ON ev.creator_id = usr.user_id
+            WHERE ev.community_id = ?
+            ORDER BY 
+                    ev.created_at DESC
+            ";
     try {
         $conn = connect_db();
-        
-        $query = "SELECT e.*, u.name as creator_name, u.profile_image as creator_image 
-                 FROM Events e 
-                 JOIN Users u ON e.creator_id = u.user_id 
-                 WHERE e.community_id = ? 
-                 ORDER BY e.created_at DESC";
-        
         $stmt = $conn->prepare($query);
-        $stmt->bind_param("i", $communityId);
-        
+        $stmt->bind_param("i",  $communityId);
         if (!$stmt->execute()) {
-            throw new Exception("Query execution failed");
+            throw new Exception("Query Execution Failed");
         }
-        
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
     } catch (Exception $e) {
-        error_log("Error in getEventsByCommunity: " . $e->getMessage());
+        error_log("Error in get community events: " . $e->getMessage());
         return false;
     } finally {
         if (isset($stmt)) {
@@ -364,4 +371,72 @@ function removeMemberFromCommunity($communityId, $userId)
     $paramsType = "ii";
     $params = [$communityId, $userId];
     return deleteData($query, $paramsType, $params, "removeMemberFromCommunity");
+}
+
+function findUserByEmail($email)
+{
+    try {
+        $conn = connect_db();
+        $stmt = $conn->prepare("SELECT user_id FROM users WHERE email = ?");
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_assoc();
+    } catch (Exception $e) {
+        error_log("Error in getUserByEmail: " . $e->getMessage());
+        return false;
+    } finally {
+        if (isset($stmt)) {
+            $stmt->close();
+        }
+        if (isset($conn)) {
+            $conn->close();
+        }
+    }
+}
+
+function checkUserIsInCommunity($userId, $communityId)
+{
+    try {
+        $conn = connect_db();
+        $stmt = $conn->prepare("SELECT user_id FROM community_members WHERE user_id = ? AND community_id = ?");
+        $stmt->bind_param("ii", $userId, $communityId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result -> fetch_assoc();
+    } catch (Exception $e) {
+        error_log("Error in isUserInCommunity: " . $e->getMessage());
+        return false;
+    } finally {
+        if (isset($stmt)) {
+            $stmt->close();
+        }
+        if (isset($conn)) {
+            $conn->close();
+        }
+    }
+}
+
+function addToCommunity($user,$communityId){
+    $query ="insert into community_members (community_id, user_id, role,membership) values (?,?,'member','member');";
+    $conn = connect_db();
+    try {
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param("ii", $communityId, $user);
+
+        if (!$stmt->execute()) {
+            throw new Exception("Query Execution Failed");
+        };
+        return true;
+    } catch (Exception $e) {
+        error_log("Error inviting user to join community" . $e->getMessage());
+        return false;
+    } finally {
+        if (isset($stmt)) {
+            $stmt->close();
+        }
+        if (isset($conn)) {
+            $conn->close();
+        }
+    }
 }
