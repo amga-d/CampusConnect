@@ -1,0 +1,100 @@
+[22-Dec-2024 17:02:47 UTC] connect database
+[22-Dec-2024 17:02:51 UTC] connect database
+[22-Dec-2024 17:02:55 UTC] connect database
+[22-Dec-2024 17:02:57 UTC] connect database
+[22-Dec-2024 17:02:58 UTC] connect database
+[22-Dec-2024 17:03:01 UTC] connect database
+[22-Dec-2024 17:03:03 UTC] connect database
+[22-Dec-2024 17:03:06 UTC] connect database
+[22-Dec-2024 17:03:08 UTC] connect database
+[22-Dec-2024 17:03:10 UTC] connect database
+[22-Dec-2024 17:03:11 UTC] connect database
+[22-Dec-2024 17:03:33 UTC] connect database
+[22-Dec-2024 17:13:33 UTC] connect database
+[22-Dec-2024 17:13:36 UTC] connect database
+[22-Dec-2024 17:13:38 UTC] connect database
+[22-Dec-2024 17:13:42 UTC] connect database
+[22-Dec-2024 17:13:45 UTC] connect database
+[22-Dec-2024 17:13:55 UTC] User is logged in.
+[22-Dec-2024 17:13:55 UTC] All required fields are present.
+[22-Dec-2024 17:13:55 UTC] Using default profile image.
+[22-Dec-2024 17:13:55 UTC] connect database
+[22-Dec-2024 17:13:55 UTC] Community created with ID: 86
+[22-Dec-2024 17:13:55 UTC] connect database
+[22-Dec-2024 17:14:11 UTC] connect database
+[22-Dec-2024 17:14:15 UTC] connect database
+[22-Dec-2024 17:14:28 UTC] connect database
+[22-Dec-2024 17:14:32 UTC] connect database
+[22-Dec-2024 17:14:36 UTC] connect database
+[22-Dec-2024 17:14:36 UTC] connect database
+[22-Dec-2024 17:14:38 UTC] connect database
+[22-Dec-2024 17:14:39 UTC] connect database
+[22-Dec-2024 17:14:40 UTC] connect database
+[22-Dec-2024 17:14:41 UTC] connect database
+[22-Dec-2024 17:14:42 UTC] connect database
+[22-Dec-2024 17:14:44 UTC] connect database
+[22-Dec-2024 17:28:16 UTC] connect database
+[22-Dec-2024 17:28:19 UTC] connect database
+[22-Dec-2024 17:28:26 UTC] connect database
+[22-Dec-2024 17:28:55 UTC] connect database
+[22-Dec-2024 17:28:58 UTC] connect database
+[22-Dec-2024 17:28:59 UTC] connect database
+[22-Dec-2024 17:29:04 UTC] connect database
+[22-Dec-2024 17:29:05 UTC] connect database
+[22-Dec-2024 17:29:12 UTC] connect database
+[22-Dec-2024 17:29:16 UTC] connect database
+[22-Dec-2024 17:29:16 UTC] connect database
+[22-Dec-2024 17:29:24 UTC] connect database
+[22-Dec-2024 17:29:25 UTC] connect database
+[22-Dec-2024 17:29:26 UTC] connect database
+[22-Dec-2024 18:05:40 UTC] Error creating a new account : Connection timed out
+[22-Dec-2024 18:07:43 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Connection timed out in /var/www/CampusConnect/src/config/db_conn.php:26
+Stack trace:
+#0 /var/www/CampusConnect/src/config/db_conn.php(26): mysqli->__construct('192.168.1.3', 'root', Object(SensitiveParameterValue), 'campusconnect')
+#1 /var/www/CampusConnect/src/model/signModel.php(10): connect_db()
+#2 /var/www/CampusConnect/src/controllers/auth/signupController.php(38): isEmailUniqu('asdf@gmail.com')
+#3 /var/www/CampusConnect/src/view/auth/signup.php(2): require_once('/var/www/Campus...')
+#4 {main}
+  thrown in /var/www/CampusConnect/src/config/db_conn.php on line 26
+[22-Dec-2024 18:07:43 UTC] connect database
+[22-Dec-2024 18:07:44 UTC] connect database
+[22-Dec-2024 18:07:45 UTC] connect database
+[22-Dec-2024 18:07:54 UTC] connect database
+[22-Dec-2024 18:07:55 UTC] connect database
+[22-Dec-2024 18:08:02 UTC] connect database
+[22-Dec-2024 18:08:04 UTC] connect database
+[22-Dec-2024 18:08:15 UTC] connect database
+[22-Dec-2024 18:08:24 UTC] connect database
+[22-Dec-2024 18:08:25 UTC] connect database
+[22-Dec-2024 18:08:27 UTC] connect database
+[22-Dec-2024 18:08:28 UTC] connect database
+[22-Dec-2024 18:08:34 UTC] connect database
+[22-Dec-2024 18:09:13 UTC] connect database
+[22-Dec-2024 18:09:14 UTC] connect database
+[22-Dec-2024 18:09:22 UTC] connect database
+[22-Dec-2024 18:09:23 UTC] connect database
+[22-Dec-2024 18:09:45 UTC] connect database
+[22-Dec-2024 18:09:47 UTC] connect database
+[22-Dec-2024 18:12:13 UTC] connect database
+[22-Dec-2024 18:12:17 UTC] connect database
+[22-Dec-2024 18:12:35 UTC] connect database
+[22-Dec-2024 18:12:36 UTC] connect database
+[23-Dec-2024 02:32:48 UTC] connect database
+[23-Dec-2024 02:33:08 UTC] connect database
+[23-Dec-2024 02:33:09 UTC] connect database
+[23-Dec-2024 02:33:10 UTC] connect database
+[23-Dec-2024 02:33:13 UTC] connect database
+[23-Dec-2024 02:33:16 UTC] connect database
+[23-Dec-2024 02:33:18 UTC] connect database
+[23-Dec-2024 02:33:20 UTC] connect database
+[23-Dec-2024 03:25:09 UTC] connect database
+[23-Dec-2024 03:25:16 UTC] connect database
+[23-Dec-2024 03:25:28 UTC] connect database
+[23-Dec-2024 03:25:29 UTC] connect database
+[23-Dec-2024 03:25:30 UTC] connect database
+[23-Dec-2024 03:25:35 UTC] connect database
+[23-Dec-2024 03:25:40 UTC] connect database
+[23-Dec-2024 03:25:44 UTC] connect database
+[23-Dec-2024 03:34:14 UTC] connect database
+[23-Dec-2024 03:34:15 UTC] connect database
+[23-Dec-2024 03:34:16 UTC] connect database

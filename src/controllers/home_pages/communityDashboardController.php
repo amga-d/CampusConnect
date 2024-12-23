@@ -25,7 +25,7 @@ function initializeCommunityDashboard($communityId)
         $announcements = getCommunityAnnouncements($communityId);
 
         // Get community events
-        $events = getEventsByCommunity($communityId);
+        $events = getEvents($communityId);
 
         return [
             'community' => $community[0],
@@ -41,48 +41,8 @@ function initializeCommunityDashboard($communityId)
     }
 }
 
-function manageMember($communityId, $memberId, $action)
-{
-    if (!checkUserIsAdmin($_SESSION['user_id'], $communityId)) {
-        return ['success' => false, 'message' => 'Unauthorized'];
-    }
-
-    try {
-        switch ($action) {
-            case 'add':
-                addMemberToCommunity($communityId, $memberId);
-                break;
-            case 'remove':
-                removeMemberFromCommunity($communityId, $memberId);
-                break;
-            case 'promote':
-                promoteMemberToCoreTeam($communityId, $memberId);
-                break;
-            default:
-                throw new Exception("Invalid action");
-        }
-        return ['success' => true];
-    } catch (Exception $e) {
-        return ['success' => false, 'message' => $e->getMessage()];
-    }
-}
 
 
-function postEvent($communityId, $memberId, $eventData)
-{
-    $roll = getUserRole($memberId, $communityId);
-    if ($roll && ($roll == "core_member" || $roll == "admin")) {
-        try {
-            if (create_Event($communityId, $memberId, $eventData)) { //TODO: make a function to create a new Event in community Model
-                return ["success" => true]; // TODO: call a function to reload the page
-            };
-        } catch (Exception $e) {
-            return ["success" => false, "message" => $e->getMessage()];
-        }
-    } else {
-        return ["success" => false, "message" => "Unauthorized"];
-    }
-}
 
 function checkUserIsAdmin($user_id, $communityId)
 {

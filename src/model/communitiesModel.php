@@ -21,8 +21,7 @@ function getCommunitiesNotIn($user_id)
                     FROM community_members
                     WHERE user_id = ?
                     ) 
-                And 
-                    community_privacy =! 'private'
+                AND community_privacy = 'public'
                 GROUP BY 
                     c.community_id,
                     c.community_type,
@@ -65,17 +64,20 @@ function getCommunityMembers($communityId)
 function getCommunityEvents($communityId)
 {
     $query = "SELECT 
-                an.title,
-                an.content,
-                an.created_at,
-                cm.membership,
+                ev.event_name, 
+                ev.description,
+                ev.created_at,
+                ev.creator_id,
+                ev.image_path,
                 usr.name,
                 usr.profile_image
 
-            FROM announcements an
-            INNER JOIN  community_members cm ON an.community_id = cm.community_id
-            INNER JOIN  users usr ON an.user_id = usr.user_id
-            WHERE an.community_id = ?";
+            FROM events ev
+            INNER JOIN  users usr ON ev.creator_id = usr.user_id
+            WHERE ev.community_id = ?
+            ORDER BY 
+                    ev.created_at DESC
+            ";
     try {
         $conn = connect_db();
         $stmt = $conn->prepare($query);
@@ -91,9 +93,6 @@ function getCommunityEvents($communityId)
     } finally {
         if (isset($stmt)) {
             $stmt->close();
-        }
-        if (isset($conn)) {
-            $conn->close();
         }
     }
 }
@@ -147,9 +146,6 @@ function getAllCommunities()
         if (isset($stmt)) {
             $stmt->close();
         }
-        if (isset($conn)) {
-            $conn->close();
-        }
     }
 }
 
@@ -174,12 +170,12 @@ function getMyCommunities($user_id)
                     WHERE user_id = ?
                 )
             GROUP BY
-                
                 c.community_name,
                 c.community_id,
                 c.description,
                 c.profile_image,
-                c.community_type;
+                c.community_type,
+                cm.membership
     ;";
     $paramstype = "i";
     $param = [$user_id];
@@ -187,7 +183,7 @@ function getMyCommunities($user_id)
 }
 function getCommunityInfo($community_id)
 {
-    $query = "SELECT community_id, community_name, description,profile_image,recruitment_status,community_type  FROM communities WHERE community_id = ? and community_privacy =! 'private'";
+    $query = "SELECT community_id, community_name, description,profile_image,recruitment_status,community_type  FROM communities WHERE community_id = ? and community_privacy = 'public'";
     $paramsType = "i";
     $params = [$community_id];
 
@@ -217,32 +213,32 @@ function isCommunityOpen($community_id)
         }
         return false;
     } catch (Exception $e) {
-        error_log("Is Community Open". $e->getMessage());
+        error_log("Is Community Open" . $e->getMessage());
         return false;
     }
 }
 
-function isUserInCommunity($user_id,$community_id){
+function isUserInCommunity($user_id, $community_id)
+{
     $query = " select joined_at from community_members where community_id = ? and user_id = ?";
-try {
-$conn = connect_db();
+    try {
+        $conn = connect_db();
 
-$stmt = $conn->prepare($query);
-$stmt->bind_param("ii", $community_id, $user_id);
-if (!$stmt->execute()) {
-throw new Exception("Query Execution Failed");
-}
-$result = $stmt->get_result();
-if ($result->num_rows > 0) {
-    return true;
-}
-else{
-    return false;
-}
-} catch (Exception $e) {
-error_log("Is Community Open". $e->getMessage());
-return false;
-}
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param("ii", $community_id, $user_id);
+        if (!$stmt->execute()) {
+            throw new Exception("Query Execution Failed");
+        }
+        $result = $stmt->get_result();
+        if ($result->num_rows > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    } catch (Exception $e) {
+        error_log("Is Community Open" . $e->getMessage());
+        return false;
+    }
 }
 
 

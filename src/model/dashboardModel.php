@@ -25,9 +25,7 @@ function getCommunity($communityId)
         if (isset($stmt)) {
             $stmt->close();
         }
-        if (isset($conn)) {
-            $conn->close();
-        }
+
     }
 }
 
@@ -49,9 +47,7 @@ function getUserRole($userId, $communityId)
         if (isset($stmt)) {
             $stmt->close();
         }
-        if (isset($conn)) {
-            $conn->close();
-        }
+
     }
 }
 
@@ -86,9 +82,7 @@ function getCommunityAnnouncements($communityId)
         if (isset($stmt)) {
             $stmt->close();
         }
-        if (isset($conn)) {
-            $conn->close();
-        }
+        
     }
 }
 
@@ -143,19 +137,17 @@ function getUserProfile($user_id)
     } catch (PDOException $e) {
         error_log("" . $e->getMessage());
     } finally {
-        if (isset($conn)) {
-            $conn->close();
-        }
         if (isset($stmt)) {
             $stmt->close();
         }
+
     }
 }
 #edit community model
 
 function getCommunityDetails($communityId): mixed
 {
-    $query = "SELECT * FROM Communities WHERE community_id = ?";
+    $query = "SELECT * FROM communities WHERE community_id = ?";
     $paramstype = "i";
     $params = [$communityId];
     $result = getData($query, $paramstype, $params, "getCommunityDetails");
@@ -168,7 +160,7 @@ function updateCommunityDetails($communityId, $name, $description, $type, $priva
         $conn = connect_db();
 
         // Check if community name is unique (if necessary)
-        $queryCheck = "SELECT community_id FROM Communities WHERE community_name = ? AND community_id != ?";
+        $queryCheck = "SELECT community_id FROM communities WHERE community_name = ? AND community_id != ?";
         $paramstypeCheck = "si";
         $paramsCheck = [$name, $communityId];
         $checkResult = getData($queryCheck, $paramstypeCheck, $paramsCheck, "checkCommunityName");
@@ -178,7 +170,7 @@ function updateCommunityDetails($communityId, $name, $description, $type, $priva
         }
 
         // Prepare base update query
-        $updateQuery = "UPDATE Communities SET 
+        $updateQuery = "UPDATE communities SET 
             community_name = ?, 
             description = ?, 
             community_type = ?, 
@@ -219,9 +211,7 @@ function updateCommunityDetails($communityId, $name, $description, $type, $priva
         if (isset($stmt)) {
             $stmt->close();
         }
-        if (isset($conn)) {
-            $conn->close();
-        }
+        
     }
 }
 
@@ -240,12 +230,10 @@ function create_announcement($xommunity_id, $user_id, $contnet)
         error_log('Error in create_accouncemet: ' . $e->getMessage());
         return false;
     } finally {
-        if (isset($conn)) {
-            $conn->close();
-        }
         if (isset($stmt)) {
             $stmt->close();
         }
+
     }
 }
 
@@ -278,9 +266,7 @@ function get_announcementById($announcement_id)
         if (isset($stmt)) {
             $stmt->close();
         }
-        if (isset($conn)) {
-            $conn->close();
-        }
+        
     }
 }
 
@@ -289,7 +275,7 @@ function createEvent($eventData)
     try {
         $conn = connect_db();
 
-        $query = "INSERT INTO Events (community_id, creator_id, event_name, description, image_path) 
+        $query = "INSERT INTO events (community_id, creator_id, event_name, description, image_path) 
                  VALUES (?, ?, ?, ?, ?)";
 
         $stmt = $conn->prepare($query);
@@ -317,42 +303,45 @@ function createEvent($eventData)
         if (isset($stmt)) {
             $stmt->close();
         }
-        if (isset($conn)) {
-            $conn->close();
-        }
+
     }
 
     
 }
-function getEventsByCommunity($communityId) {
+function getEvents($communityId)
+{
+    $query = "SELECT 
+                ev.event_name, 
+                ev.description,
+                ev.created_at,
+                ev.creator_id,
+                ev.image_path,
+                usr.name,
+                usr.profile_image
+
+            FROM events ev
+            INNER JOIN  users usr ON ev.creator_id = usr.user_id
+            WHERE ev.community_id = ?
+            ORDER BY 
+                    ev.created_at DESC
+            ";
     try {
         $conn = connect_db();
-        
-        $query = "SELECT e.*, u.name as creator_name, u.profile_image as creator_image 
-                 FROM Events e 
-                 JOIN Users u ON e.creator_id = u.user_id 
-                 WHERE e.community_id = ? 
-                 ORDER BY e.created_at DESC";
-        
         $stmt = $conn->prepare($query);
-        $stmt->bind_param("i", $communityId);
-        
+        $stmt->bind_param("i",  $communityId);
         if (!$stmt->execute()) {
-            throw new Exception("Query execution failed");
+            throw new Exception("Query Execution Failed");
         }
-        
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
     } catch (Exception $e) {
-        error_log("Error in getEventsByCommunity: " . $e->getMessage());
+        error_log("Error in get community events: " . $e->getMessage());
         return false;
     } finally {
         if (isset($stmt)) {
             $stmt->close();
         }
-        if (isset($conn)) {
-            $conn->close();
-        }
+
     }
 }
 
@@ -364,4 +353,66 @@ function removeMemberFromCommunity($communityId, $userId)
     $paramsType = "ii";
     $params = [$communityId, $userId];
     return deleteData($query, $paramsType, $params, "removeMemberFromCommunity");
+}
+
+function findUserByEmail($email)
+{
+    try {
+        $conn = connect_db();
+        $stmt = $conn->prepare("SELECT user_id FROM users WHERE email = ?");
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_assoc();
+    } catch (Exception $e) {
+        error_log("Error in getUserByEmail: " . $e->getMessage());
+        return false;
+    } finally {
+        if (isset($stmt)) {
+            $stmt->close();
+        }
+
+    }
+}
+
+function checkUserIsInCommunity($userId, $communityId)
+{
+    try {
+        $conn = connect_db();
+        $stmt = $conn->prepare("SELECT user_id FROM community_members WHERE user_id = ? AND community_id = ?");
+        $stmt->bind_param("ii", $userId, $communityId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result -> fetch_assoc();
+    } catch (Exception $e) {
+        error_log("Error in isUserInCommunity: " . $e->getMessage());
+        return false;
+    } finally {
+        if (isset($stmt)) {
+            $stmt->close();
+        }
+
+    }
+}
+
+function addToCommunity($user,$communityId){
+    $query ="insert into community_members (community_id, user_id, role,membership) values (?,?,'member','member');";
+    $conn = connect_db();
+    try {
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param("ii", $communityId, $user);
+
+        if (!$stmt->execute()) {
+            throw new Exception("Query Execution Failed");
+        };
+        return true;
+    } catch (Exception $e) {
+        error_log("Error inviting user to join community" . $e->getMessage());
+        return false;
+    } finally {
+        if (isset($stmt)) {
+            $stmt->close();
+        }
+
+    }
 }

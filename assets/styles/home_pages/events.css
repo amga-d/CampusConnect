@@ -111,6 +111,7 @@
     line-height: 1.4;
 }
 .post-excerpt {
+    white-space: pre-wrap;
     font-size: 1em;
     color: var(--muted-text-color);
     margin-bottom: 12px;

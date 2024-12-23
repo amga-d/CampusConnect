@@ -7,7 +7,7 @@ function getUserProfile($userId)
     $conn = connect_db();
 
     try {
-        $stmt = $conn->prepare("SELECT user_id, name, email, profile_image, bio, birthdate, gender, created_at FROM Users WHERE user_id = ?");
+        $stmt = $conn->prepare("SELECT user_id, name, email, profile_image, bio, birthdate, gender, created_at FROM users WHERE user_id = ?");
         $stmt->bind_param("i", $userId);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -20,9 +20,7 @@ function getUserProfile($userId)
         if (isset($stmt)) {
             $stmt->close();
         }
-        if (isset($conn)) {
-            $conn->close();
-        }
+        
     }
 }
 
@@ -30,13 +28,13 @@ function updateUserProfile($name, $userId, $email, $gender, $birthday, $bio, $pr
     $conn = connect_db();
     try {
         // Check if email is already taken by another user
-        $stmt = $conn->prepare("SELECT user_id FROM Users WHERE email = ? AND user_id != ?");
+        $stmt = $conn->prepare("SELECT user_id FROM users WHERE email = ? AND user_id != ?");
         $stmt->bind_param("si", $email, $userId);
         $stmt->execute();
         $result = $stmt->get_result();
 
         if ($result->num_rows > 0) {
-            throw new Exception('Email is already taken');
+            return ('Email is already taken');
         }
 
         // Prepare base update query
@@ -78,9 +76,7 @@ function updateUserProfile($name, $userId, $email, $gender, $birthday, $bio, $pr
         if (isset($stmt)) {
             $stmt->close();
         }
-        if (isset($conn)) {
-            $conn->close();
-        }
+        
     }
 }
 
@@ -128,8 +124,6 @@ function setUserProfile($userId, $name, $gender,$bio, $birthday, $profileImage =
         if (isset($stmt)) {
             $stmt->close();
         }
-        if (isset($conn)) {
-            $conn->close();
-        }
+        
     }
 }

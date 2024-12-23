@@ -120,7 +120,7 @@ require_once __DIR__ . '/../../controllers/auth/signupController.php';
         <div class="profile-section">
           <div class="profile-picture" id="profilePictureContainer">
             <input type="file" id="profilePicture" name="profilePicture" accept="image/*" style="display: none;">
-            <img src="add.png" alt="Profile Picture" id="profilePicturePreview">
+            <!-- <img src="add.png" alt="Profile Picture" id="profilePicturePreview"> -->
           </div>
           <p class="upload-text">Click to upload</p>
         </div>

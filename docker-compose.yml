@@ -1,0 +1,98 @@
+version: '3.8'
+
+services:
+  php1:
+    build: .
+    container_name: php-fpm-1
+    volumes:
+      - .:/var/www/CampusConnect
+    expose:
+      - 9000
+    networks:
+      mynetwork:
+          ipv4_address: 192.168.2.4
+
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql-server
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ""
+      MYSQL_PASSWORD: ""
+      MYSQL_DATABASE: campusconnect 
+      MYSQL_ALLOW_EMPTY_PASSWORD: yes
+    ports:
+      - "3306:3306"
+    volumes:
+      - data:/var/lib/mysql
+    networks:
+      mynetwork:
+          ipv4_address: 192.168.2.3
+      
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    volumes:
+      - ./default.conf:/etc/nginx/conf.d/default.conf
+      - .:/var/www/CampusConnect
+    ports:
+      - "80:80"
+    depends_on:
+      - mysql
+      - php1
+    networks:
+      mynetwork:
+          ipv4_address: 192.168.2.2
+
+  dns:
+    image: andyshinn/dnsmasq
+    container_name: dns-resolver
+    command: ["-k"]  # Keep dnsmasq running in the foreground
+    ports:
+      - "53:53/udp"  # DNS runs on port 53
+    volumes:
+      - ./dnsmasq.conf:/etc/dnsmasq.conf  # Custom dnsmasq config
+    networks:
+      mynetwork:
+        ipv4_address: 192.168.2.5
+
+
+
+networks:
+  mynetwork:
+    name:
+      campusconnect
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.2.0/24
+          gateway: 192.168.2.1
+
+volumes:
+  data:
+    driver: local
+
+
+
+
+  # php2:
+  #   build: .
+  #   container_name: php-fpm-2
+  #   volumes:
+  #     - .:/var/www/CampusConnect
+  #   networks:
+  #     - mynetwork
+  #   expose:
+  #     - 9000
+
+  # php3:
+  #   build: .
+  #   container_name: php-fpm-3
+  #   volumes:
+  #     - .:/var/www/CampusConnect
+  #   networks:
+  #     - mynetwork
+  #   expose:
+  #     - 9000
+  

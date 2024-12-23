@@ -1,7 +1,7 @@
 <?php require_once __DIR__ . '/../config/db_conn.php';
 ini_set('display_errors', 0);
 ini_set('log_errors', 1);
-ini_set('error_log', __DIR__ . '../../../logs/error.log');
+ini_set('error_log', __DIR__ . '/../../logs/error.log');
 
 function getData($query, $paramsType, $params, $functionName)
 {
@@ -26,9 +26,7 @@ function getData($query, $paramsType, $params, $functionName)
         if (isset($stmt)) {
             $stmt->close();
         }
-        if (isset($conn)) {
-            $conn->close();
-        }
+        
     }
 }
 
@@ -54,9 +52,7 @@ function getDataWithoutParams($query, $functionName)
         if (isset($stmt)) {
             $stmt->close();
         }
-        if (isset($conn)) {
-            $conn->close();
-        }
+        
     }
 }
 
@@ -76,9 +72,7 @@ function insertData($query, $paramsType, $params, $functionName){
         if (isset($stmt)) {
             $stmt->close();
         }
-        if (isset($conn)) {
-            $conn->close();
-        }
+        
     }
 }
 
@@ -108,8 +102,6 @@ function deleteData($query, $paramsType, $params, $functionName){
         if (isset($stmt)) {
             $stmt->close();
         }
-        if (isset($conn)) {
-            $conn->close();
-        }
+        
     }
 }

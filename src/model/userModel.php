@@ -25,9 +25,7 @@ function getUserName($user_id){
     }catch(PDOException $e){
         error_log("Failed to get username".$e->getMessage());
     }finally{
-        if(isset($conn)){
-            $conn->close();
-        }
+        
         if(isset($stmt)){
             $stmt->close();
         }
@@ -52,9 +50,7 @@ function getUserProfile($user_id){
     error_log("".$e->getMessage());
 
     }finally{
-    if(isset($conn)){
-        $conn->close();
-    }
+    
     if(isset($stmt)){
         $stmt->close();
     }
@@ -105,9 +101,7 @@ function createCommunity($community_data)
         if (isset($stmt)) {
             $stmt->close();
         }
-        if (isset($conn)) {
-            $conn->close();
-        }
+        
     }
 
 
@@ -143,9 +137,7 @@ function addAdmin($user_id, $community_id)
         if (isset($stmt)) {
             $stmt->close();
         }
-        if (isset($conn)) {
-            $conn->close();
-        }
+    
     }
 }
 
@@ -167,9 +159,7 @@ function joinCommunity($user_id, $community_id){
         if (isset($stmt)) {
             $stmt->close();
         }
-        if (isset($conn)) {
-            $conn->close();
-        }
+        
     }
 }
 
