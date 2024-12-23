@@ -328,19 +328,13 @@ switch ($role) {
               </form>
             </div>
           </div>
-
-        <!-- in case there are no evnets -->
-        <div class="no-events-container">
-      <h3 id="noEventsTag" class="no-events">
-        No Events <i class="fas fa-calendar-times calendar-icon"></i>
-      </h3>
-        </div>
-
         <?php endif; ?>
 
         <div id="newsFeed">
           <?php if ($dashboardData['events'] == null): ?>
-            <h2 class="no-events" id="no-events" >Stay tuned! Our first event is comming soon.</h2>
+            <div class="no-events-container">
+            <h2 class="no-events" id="noEventsTag" >Stay tuned! Our first event is comming soon <i class="fas fa-clock"></i></h2>
+            </div>
           <?php else: ?>
             <?php foreach ($dashboardData['events'] as $event): ?>
               <div class="news-post">

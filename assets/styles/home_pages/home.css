@@ -193,7 +193,7 @@ body {
 .event-image {
     width: 80px;
     height: 80px;
-    border-radius: 0.75rem;
+    border-radius: 4rem;
     object-fit: cover;
     background: linear-gradient(45deg, var(--primary-color), #64B5F6);
     display: flex;

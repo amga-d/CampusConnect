@@ -54,17 +54,11 @@ require_once __DIR__ . '/../../controllers/home_pages/viewCommunityController.ph
         
                 <h2 class="section-title">Upcoming Events</h2>
 
-                    <!-- in case there are no evnets -->
-                    <div class="no-events-container">
-                        <h3 id="noEventsTag" class="no-events">
-                            No Events <i class="fas fa-calendar-times calendar-icon"></i>
-                        </h3>
-                    </div>
 
         <div class="events-posts">
             <section class="events-content content-section">
                 <?php if ($communityData['event'] == null): ?>
-                    <h3 class="no-events">Stay tuned! Our first event is comming soon. </h3>
+                    <h3 class="no-events">Stay tuned! Our first event is comming soon<i class="fas fa-calendar-times calendar-icon"></i></h3>
                     <?php else: ?>
                         <div id="newsFeed">
                             <?php foreach ($communityData['event'] as $event):?>
