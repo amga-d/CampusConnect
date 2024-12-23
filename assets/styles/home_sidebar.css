@@ -887,6 +887,91 @@ body.dark-mode .bar {
   color: #cbd5e0;
 }
 
+/* No Communities Section */
+body.dark-mode .no-container {
+  background: var(--dark-card-bg);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode .icon {
+  color: #63b3ed;
+}
+
+body.dark-mode p {
+  color: var(--dark-text-secondary);
+}
+
+/* Button Styles */
+body.dark-mode .button.primary {
+  background: linear-gradient(45deg, #2b6cb0, #1a4971);
+}
+
+body.dark-mode .button.primary:hover {
+  background: var(--dark-card-bg);
+  border-color: #63b3ed;
+  color: #63b3ed;
+}
+
+body.dark-mode .button.secondary {
+  background: var(--dark-card-bg);
+  border-color: #63b3ed;
+  color: #63b3ed;
+}
+
+body.dark-mode .button.secondary:hover {
+  background: linear-gradient(45deg, #2b6cb0, #1a4971);
+  color: var(--dark-text);
+}
+
+/* Community Card Styles */
+body.dark-mode .community-card {
+  background: var(--dark-card-bg);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  border-color: var(--dark-border);
+}
+
+body.dark-mode .community-card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-mode .community-type {
+  color: var(--dark-text-secondary);
+}
+
+body.dark-mode .community-description {
+  color: var(--dark-text-secondary);
+}
+
+body.dark-mode .member-count {
+  color: var(--dark-text-secondary);
+}
+
+body.dark-mode .role {
+  background-color: var(--dark-tag-bg);
+  color: var(--dark-tag-text);
+}
+
+body.dark-mode .card-footer {
+  border-color: var(--dark-border);
+}
+
+body.dark-mode .open-dashboard {
+  background: #2b6cb0;
+  color: var(--dark-text);
+}
+
+body.dark-mode .open-dashboard:hover {
+  background: #1a4971;
+}
+
+/* Media Queries - preserve existing styles */
+@media (max-width: 768px), (max-width: 450px) {
+  body.dark-mode .community-card,
+  body.dark-mode .no-container {
+      background: var(--dark-card-bg);
+  }
+}
+
 /* Dark Mode Variables Override */
 body.dark-mode:root {
   --primary-color: #1a202c;
@@ -1351,6 +1436,58 @@ body.dark-mode .events-content .read-more {
 
 body.dark-mode .events-content .read-more:hover {
   color: #4299e1;
+}
+
+/* Input Container Dark Mode */
+body.dark-mode .post-input,
+body.dark-mode .event-input {
+    background: var(--dark-card-bg);
+    border-color: var(--dark-border);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Avatar Border Dark Mode */
+body.dark-mode .post-input .user-avatar,
+body.dark-mode .event-input .user-avatar {
+    border-color: var(--dark-border);
+}
+
+/* Text Input Dark Mode */
+body.dark-mode .post-input input[type="text"],
+body.dark-mode .event-input input[type="text"] {
+    background: #374151;
+    border-color: var(--dark-border);
+    color: var(--dark-text);
+}
+
+body.dark-mode .post-input input[type="text"]:focus,
+body.dark-mode .event-input input[type="text"]:focus {
+    background: #4B5563;
+    border-color: #63b3ed;
+    box-shadow: 0 0 0 2px rgba(99, 179, 237, 0.2);
+}
+
+body.dark-mode .post-input input[type="text"]::placeholder,
+body.dark-mode .event-input input[type="text"]::placeholder {
+    color: #9CA3AF;
+}
+
+/* Send Button Dark Mode */
+body.dark-mode .post-input .send-btn,
+body.dark-mode .event-input .send-btn {
+    background: #2B6CB0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode .post-input .send-btn:hover,
+body.dark-mode .event-input .send-btn:hover {
+    background: #1A4971;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .post-input .send-btn:focus,
+body.dark-mode .event-input .send-btn:focus {
+    outline-color: #63b3ed;
 }
 
 /* No Events Tag */
