@@ -152,33 +152,35 @@ function getAllCommunities()
 function getMyCommunities($user_id)
 {
     $query = "SELECT
-                c.community_name,
-                c.community_id,
-                c.description,
-                c.profile_image,
-                c.community_type,
-                cm.membership,
-                COUNT(cm.user_id) AS member_count
-            FROM
-                communities c
-            LEFT JOIN community_members cm ON
-                c.community_id = cm.community_id
-            WHERE
-                c.community_id IN (
-                    SELECT community_id
-                    FROM community_members
-                    WHERE user_id = ?
-                )
-            GROUP BY
-                c.community_name,
-                c.community_id,
-                c.description,
-                c.profile_image,
-                c.community_type,
-                cm.membership
-    ;";
-    $paramstype = "i";
-    $param = [$user_id];
+    c.community_name,
+    c.community_id,
+    c.description,
+    c.profile_image,
+    c.community_type,
+    (SELECT cm.membership 
+     FROM community_members cm 
+     WHERE cm.community_id = c.community_id 
+     AND cm.user_id = ?) AS membership,
+    COUNT(cm.user_id) AS member_count
+FROM
+    communities c
+LEFT JOIN community_members cm ON
+    c.community_id = cm.community_id
+WHERE
+    c.community_id IN (
+        SELECT community_id
+        FROM community_members
+        WHERE user_id = ?
+    )
+GROUP BY
+    c.community_name,
+    c.community_id,
+    c.description,
+    c.profile_image,
+    c.community_type
+;";
+    $paramstype = "ii";
+    $param = [$user_id,$user_id];
     return getData($query, $paramstype, $param, "getMyCommunities");
 }
 function getCommunityInfo($community_id)
