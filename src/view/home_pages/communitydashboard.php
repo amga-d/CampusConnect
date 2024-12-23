@@ -8,7 +8,7 @@ require_once __DIR__ . '/../../controllers/home_pages/communityUsers.php';
 $role = htmlspecialchars($dashboardData['role']);
 // print_r($dashboardData['role']);
 // print_r($dashboardData['events'][0]);
-print_r($dashboardData['community']['community_id']);
+// print_r($dashboardData['community']['community_id']);
 
 
 
@@ -210,7 +210,7 @@ switch ($role) {
           <?php endif; ?>
 
           <?php if ($dashboardData['announcements'] == null): ?>
-            <h2 class="no-announ">No Announcements 😶‍🌫️</h2>
+            <h2 class="no-announ" id="no-announ">No Announcements 😶‍🌫️</h2>
           <?php else: ?>
             <?php foreach ($dashboardData['announcements'] as $announcement): ?>
               <article class="post">
@@ -297,7 +297,7 @@ switch ($role) {
                 <input type="hidden" name="action" value="postEvent">
                 <div class="event-image-section">
                   <div class="event-image-preview">
-                    <img id="event-image-preview" src="/assets/img/default_event.png" alt="Event Preview">
+                    <img id="event-image-preview" src="/assets/img/default_event. " alt="Event Preview">
                   </div>
                   <div class="event-image-upload">
                     <input type="file" id="event-image" name="event_image" accept="image/*">
@@ -332,7 +332,7 @@ switch ($role) {
 
         <div id="newsFeed">
           <?php if ($dashboardData['events'] == null): ?>
-            <h2 class="no-events">Stay tuned! Our first event is comming soon.</h2>
+            <h2 class="no-events" id="no-events" >Stay tuned! Our first event is comming soon.</h2>
           <?php else: ?>
             <?php foreach ($dashboardData['events'] as $event): ?>
               <div class="news-post">

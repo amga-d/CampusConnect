@@ -25,9 +25,7 @@ function getCommunity($communityId)
         if (isset($stmt)) {
             $stmt->close();
         }
-        if (isset($conn)) {
-            $conn->close();
-        }
+
     }
 }
 
@@ -49,9 +47,7 @@ function getUserRole($userId, $communityId)
         if (isset($stmt)) {
             $stmt->close();
         }
-        if (isset($conn)) {
-            $conn->close();
-        }
+
     }
 }
 
@@ -86,9 +82,7 @@ function getCommunityAnnouncements($communityId)
         if (isset($stmt)) {
             $stmt->close();
         }
-        if (isset($conn)) {
-            $conn->close();
-        }
+        
     }
 }
 
@@ -143,19 +137,17 @@ function getUserProfile($user_id)
     } catch (PDOException $e) {
         error_log("" . $e->getMessage());
     } finally {
-        if (isset($conn)) {
-            $conn->close();
-        }
         if (isset($stmt)) {
             $stmt->close();
         }
+
     }
 }
 #edit community model
 
 function getCommunityDetails($communityId): mixed
 {
-    $query = "SELECT * FROM Communities WHERE community_id = ?";
+    $query = "SELECT * FROM communities WHERE community_id = ?";
     $paramstype = "i";
     $params = [$communityId];
     $result = getData($query, $paramstype, $params, "getCommunityDetails");
@@ -168,7 +160,7 @@ function updateCommunityDetails($communityId, $name, $description, $type, $priva
         $conn = connect_db();
 
         // Check if community name is unique (if necessary)
-        $queryCheck = "SELECT community_id FROM Communities WHERE community_name = ? AND community_id != ?";
+        $queryCheck = "SELECT community_id FROM communities WHERE community_name = ? AND community_id != ?";
         $paramstypeCheck = "si";
         $paramsCheck = [$name, $communityId];
         $checkResult = getData($queryCheck, $paramstypeCheck, $paramsCheck, "checkCommunityName");
@@ -178,7 +170,7 @@ function updateCommunityDetails($communityId, $name, $description, $type, $priva
         }
 
         // Prepare base update query
-        $updateQuery = "UPDATE Communities SET 
+        $updateQuery = "UPDATE communities SET 
             community_name = ?, 
             description = ?, 
             community_type = ?, 
@@ -219,9 +211,7 @@ function updateCommunityDetails($communityId, $name, $description, $type, $priva
         if (isset($stmt)) {
             $stmt->close();
         }
-        if (isset($conn)) {
-            $conn->close();
-        }
+        
     }
 }
 
@@ -240,12 +230,10 @@ function create_announcement($xommunity_id, $user_id, $contnet)
         error_log('Error in create_accouncemet: ' . $e->getMessage());
         return false;
     } finally {
-        if (isset($conn)) {
-            $conn->close();
-        }
         if (isset($stmt)) {
             $stmt->close();
         }
+
     }
 }
 
@@ -278,9 +266,7 @@ function get_announcementById($announcement_id)
         if (isset($stmt)) {
             $stmt->close();
         }
-        if (isset($conn)) {
-            $conn->close();
-        }
+        
     }
 }
 
@@ -289,7 +275,7 @@ function createEvent($eventData)
     try {
         $conn = connect_db();
 
-        $query = "INSERT INTO Events (community_id, creator_id, event_name, description, image_path) 
+        $query = "INSERT INTO events (community_id, creator_id, event_name, description, image_path) 
                  VALUES (?, ?, ?, ?, ?)";
 
         $stmt = $conn->prepare($query);
@@ -317,9 +303,7 @@ function createEvent($eventData)
         if (isset($stmt)) {
             $stmt->close();
         }
-        if (isset($conn)) {
-            $conn->close();
-        }
+
     }
 
     
@@ -357,9 +341,7 @@ function getEvents($communityId)
         if (isset($stmt)) {
             $stmt->close();
         }
-        if (isset($conn)) {
-            $conn->close();
-        }
+
     }
 }
 
@@ -389,9 +371,7 @@ function findUserByEmail($email)
         if (isset($stmt)) {
             $stmt->close();
         }
-        if (isset($conn)) {
-            $conn->close();
-        }
+
     }
 }
 
@@ -411,9 +391,7 @@ function checkUserIsInCommunity($userId, $communityId)
         if (isset($stmt)) {
             $stmt->close();
         }
-        if (isset($conn)) {
-            $conn->close();
-        }
+
     }
 }
 
@@ -435,8 +413,6 @@ function addToCommunity($user,$communityId){
         if (isset($stmt)) {
             $stmt->close();
         }
-        if (isset($conn)) {
-            $conn->close();
-        }
+
     }
 }

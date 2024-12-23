@@ -129,7 +129,6 @@ initializeDashboard();
                     }
 
                     const result = await response.json();
-                    console.log(result);
 
                     if (result.success) {
                         showNotification(result.message, "success");
@@ -376,35 +375,36 @@ initializeDashboard();
 
                     const formData = new FormData(this);
 
-            fetch("/src/controllers/home_pages/communityUsers.php", {
-                method: "POST",
-                body: formData,
-            })
-                .then((response) => {
-                    console.log(response);
-                    if (
-                        !response.headers
-                            .get("Content-Type")
-                            ?.includes("application/json")
-                    ) {
-                        throw new Error("Invalid response format");
-                    }
-                    return response.json();
-                })
-                .then((data) => {
-                    if (data.success) {
-                        showNotification(
-                            "Invitation sent successfully.",
-                            "success"
-                        );
-                        
-                        hideInviteModal();
-                        document.getElementById("inviteForm").reset();
-                    }
-                    else{
-                        showNotification(data.message || "Failed to Invite","error");
-                    }
-                });
+                    fetch("/src/controllers/home_pages/communityUsers.php", {
+                        method: "POST",
+                        body: formData,
+                    })
+                        .then((response) => {
+                            if (
+                                !response.headers
+                                    .get("Content-Type")
+                                    ?.includes("application/json")
+                            ) {
+                                throw new Error("Invalid response format");
+                            }
+                            return response.json();
+                        })
+                        .then((data) => {
+                            if (data.success) {
+                                showNotification(
+                                    "Invitation sent successfully.",
+                                    "success"
+                                );
+
+                                hideInviteModal();
+                                document.getElementById("inviteForm").reset();
+                            } else {
+                                showNotification(
+                                    data.message || "Failed to Invite",
+                                    "error"
+                                );
+                            }
+                        });
                     // Get the email value
                     // const email = document
                     //     .getElementById("inviteEmail")
@@ -423,7 +423,7 @@ initializeDashboard();
                     //     );
 
                     //     // Optionally, reset the form
-                        // document.getElementById("inviteForm").reset();
+                    // document.getElementById("inviteForm").reset();
                     // }
                 });
         });
@@ -545,6 +545,7 @@ initializeDashboard();
         );
         const createEventForm = document.getElementById("create-event-form");
         const newsFeed = document.getElementById("newsFeed");
+        const noEventsTag = document.getElementById("no-events");
 
         if (eventInput && createEventContainer) {
             // Open modal when clicking the event input
@@ -626,6 +627,12 @@ initializeDashboard();
             return newEvent;
         }
 
+        // Function to remove no event tag
+        function removeNoEventTag() {
+            if (noEventsTag) {
+                noEventsTag.remove;
+            }
+        }
         // Handle form submission
         if (createEventForm) {
             createEventForm.addEventListener("submit", async function (e) {
@@ -647,9 +654,7 @@ initializeDashboard();
                     );
 
                     const result = await response.json();
-                    console.log(result);
                     if (result.success) {
-                        console.log(result.success);
                         // Create and add new event to the top of the feed
                         const eventElement = createEventElement({
                             eventName: formData.get("event_name"),
@@ -658,7 +663,8 @@ initializeDashboard();
                             creatorName: result.creatorName,
                             creatorImage: result.creatorImage,
                         });
-
+                        // remove no event tag
+                        removeNoEventTag();
                         // Add the new event to the top of the feed
                         if (newsFeed.firstChild) {
                             newsFeed.insertBefore(
@@ -691,7 +697,6 @@ initializeDashboard();
                             "Failed to create event. Please try again.",
                         "error"
                     );
-                    // console.log(result.success);
                 }
             });
         }

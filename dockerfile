@@ -10,7 +10,6 @@ RUN apt-get update && apt-get install -y \
 
 WORKDIR /var/www/CampusConnect
 
-COPY . /var/www/CampusConnect/
 
 EXPOSE 9000
 

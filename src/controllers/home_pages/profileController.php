@@ -55,6 +55,9 @@ class ProfileController {
             if (!$result) {
                 throw new Exception('Failed to update profile');
             }
+            else if(is_string($result)){
+                throw new Exception($result);
+            }
 
             return [
                 'success' => true,

@@ -15,8 +15,6 @@ function isEmailUniqu($useremail)
     $stmt->execute();
     $stmt->bind_result($count);
     $stmt->fetch();
-    $stmt->close();
-    $conn->close();
     return $count === 0;
 }
 
@@ -45,9 +43,7 @@ function signup($username, $useremail, $password)
         if (isset($stmt)) {
             $stmt->close();
         }
-        if (isset($conn)) {
-            $conn->close();
-        }
+
     }
 }
 
@@ -78,9 +74,7 @@ function authenticateLogin($useremail, $password)
         if (isset($stmt)) {
             $stmt->close();
         }
-        if (isset($conn)) {
-            $conn->close();
-        }
+        
     }
 }
 
@@ -107,9 +101,7 @@ function get_user_id($useremail)
         return false;
 
     } finally {
-        if (isset($conn)) {
-            $conn->close();
-        }
+        
         if (isset($stmt)) {
             $stmt->close();
         }
@@ -135,9 +127,7 @@ function is_addtional_info($user_id){
     } catch (Exception $e) {
         error_log(message: "Check addtional information failed" . $e->getMessage());
     }finally {
-        if (isset($conn)) {
-            $conn->close();
-        }
+       
         if (isset($stmt)) {
             $stmt->close();
         }
