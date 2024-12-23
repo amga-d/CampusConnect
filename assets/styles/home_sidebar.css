@@ -1010,3 +1010,570 @@ body.dark-mode .post-avatar {
     color: #a0aec0;
   }
 }
+
+/* Dark Mode Styles */
+body.dark-mode .create-community-container {
+  background: #2d3748;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .page-header h1 {
+  color: #cbd5e0;
+}
+
+body.dark-mode .page-header p {
+  color: #a0aec0;
+}
+
+body.dark-mode .form-section {
+  background: #1a202c;
+  border-color: #4a5568;
+}
+
+body.dark-mode .form-section h2 {
+  color: #cbd5e0;
+  border-bottom-color: #4a5568;
+}
+
+body.dark-mode .form-group label {
+  color: #cbd5e0;
+}
+
+body.dark-mode .form-group input[type="text"],
+body.dark-mode .form-group select,
+body.dark-mode .form-group textarea {
+  background: #2d3748;
+  border-color: #4a5568;
+  color: #cbd5e0;
+}
+
+body.dark-mode .form-group input[type="text"]:focus,
+body.dark-mode .form-group select:focus,
+body.dark-mode .form-group textarea:focus {
+  border-color: #63b3ed;
+  box-shadow: 0 0 0 2px rgba(99, 179, 237, 0.2);
+}
+
+body.dark-mode .upload-overlay {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+body.dark-mode .radio-label span {
+  color: #cbd5e0;
+}
+
+body.dark-mode .radio-label small {
+  color: #a0aec0;
+}
+
+body.dark-mode .btn-secondary {
+  background: #2d3748;
+  color: #cbd5e0;
+  border-color: #4a5568;
+}
+
+body.dark-mode .btn-secondary:hover {
+  background: #4a5568;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .page-content {
+      padding: 1rem;
+  }
+
+  .create-community-container {
+      padding: 1rem;
+  }
+
+  .form-section {
+      padding: 1rem;
+  }
+
+  .form-actions {
+      flex-direction: column;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+      width: 100%;
+  }
+}
+
+body.dark-mode {
+  background-color: #1a202c;
+  color: #cbd5e0;
+}
+
+/* Card & Container */
+body.dark-mode .profile-card {
+  background-color: #2d3748; /* A deeper background */
+  border-color: #4a5568;     /* Dark border */
+}
+
+body.dark-mode .profile-sidebar {
+  background-color: #2d3748;
+  border-right-color: #4a5568; /* If you have a right border somewhere */
+}
+
+body.dark-mode .profile-sidebar::after {
+  background-color: #2b6cb0; /* Keep a highlight color for the divider */
+}
+
+/* Text & Titles */
+body.dark-mode .name,
+body.dark-mode .profile-title,
+body.dark-mode .info-label,
+body.dark-mode .social-link,
+body.dark-mode .nav-button,
+body.dark-mode label {
+  color: #cbd5e0;
+}
+
+body.dark-mode .social-link:hover,
+body.dark-mode .nav-button:hover {
+  color: #63b3ed; /* Slightly brighter hover text */
+}
+
+/* Avatar & Images */
+body.dark-mode .profile-avatar {
+  border-color: #4a5568; 
+  background-color: #2d3748;
+}
+
+/* Info-Grid Items */
+body.dark-mode .info-item {
+  background-color: #2d3748;
+  box-shadow: none; /* Or a subtle shadow if you prefer */
+  border: 1px solid #4a5568;
+}
+
+body.dark-mode .info-item:hover {
+  background-color: #2d3748;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .info-icon {
+  color: #cbd5e0;
+}
+
+/* Bio Section */
+body.dark-mode .bio-section {
+  background-color: #2d3748;
+  border-color: #4a5568;
+}
+
+body.dark-mode .bio-title {
+  color: #cbd5e0;
+  border-bottom-color: #2b6cb0; /* Keep a highlight color for the underline */
+}
+
+/* Buttons & Links */
+body.dark-mode .btn-primary {
+  background-color: #2b6cb0;
+  border-color: #2b6cb0;
+  color: #ffffff;
+}
+
+body.dark-mode .btn-primary:hover {
+  background-color: #2c5282; /* Slightly darker blue on hover */
+}
+
+body.dark-mode .btn-secondary {
+  color: #2b6cb0;
+  border-color: #2b6cb0;
+  background-color: transparent;
+}
+
+body.dark-mode .btn-secondary:hover {
+  color: #ffffff;
+  background-color: #2b6cb0;
+}
+
+/* Edit-Profile Modal */
+body.dark-mode .edit-profile-modal {
+  background-color: #2d3748;
+  color: #cbd5e0;
+}
+
+body.dark-mode .modal-close {
+  color: #63b3ed;
+}
+
+body.dark-mode .edit-form-sidebar {
+  background-color: #1a202c;
+}
+
+body.dark-mode .edit-form-main {
+  background-color: #2d3748;
+}
+
+/* Inputs */
+body.dark-mode .form-group input,
+body.dark-mode .form-group textarea,
+body.dark-mode .form-group select {
+  background-color: #1a202c;
+  color: #cbd5e0;
+  border: 1px solid #4a5568;
+}
+
+body.dark-mode .form-group input:focus,
+body.dark-mode .form-group textarea:focus,
+body.dark-mode .form-group select:focus {
+  border-color: #63b3ed;
+  box-shadow: 0 0 0 2px rgba(99, 179, 237, 0.3);
+}
+
+/* Notifications */
+body.dark-mode .notification {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode {
+  background-color: #1a202c; 
+  color: #cbd5e0;
+}
+
+/* Hero */
+body.dark-mode .hero {
+  background: #2d3748;
+  color: #cbd5e0;
+}
+
+body.dark-mode .hero-title {
+  color: #cbd5e0;
+  text-shadow: none; /* Optional: remove or soften the shadow in dark mode */
+}
+
+body.dark-mode .hero-description {
+  color: #a0aec0;
+}
+
+body.dark-mode .hero-image::before {
+  background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.7));
+}
+
+body.dark-mode .cta-button {
+  background-color: #2d3748;
+  color: #cbd5e0;
+  border: 2px solid #63b3ed;
+}
+
+body.dark-mode .cta-button:hover {
+  background-color: #2b6cb0;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* Sections */
+body.dark-mode .section-title {
+  color: #cbd5e0;
+}
+
+body.dark-mode .description {
+  background-color: #1a202c;
+}
+
+body.dark-mode .description p {
+  color: #a0aec0;
+}
+
+/* Cards */
+body.dark-mode .card {
+  background-color: #2d3748;
+  box-shadow: none;
+  border: 1px solid #4a5568;
+}
+
+body.dark-mode .card:hover {
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-mode .card h3 {
+  color: #cbd5e0;
+}
+
+body.dark-mode .card p {
+  color: #a0aec0;
+}
+
+/* Member Card Circles */
+body.dark-mode .member-card .card-image {
+  border: 3px solid #63b3ed; /* Keep a nice accent color for the circle border */
+}
+
+/* Events Content */
+body.dark-mode .events-content #newsFeed {
+  background-color: #1a202c;
+}
+
+body.dark-mode .events-content .news-post {
+  background-color: #2d3748;
+  border: 1px solid #4a5568;
+}
+
+body.dark-mode .events-content .news-post:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .events-content .post-avatar {
+  border-color: #63b3ed;
+}
+
+body.dark-mode .events-content .post-info strong {
+  color: #cbd5e0;
+}
+
+body.dark-mode .events-content .post-date {
+  color: #a0aec0;
+}
+
+body.dark-mode .events-content .elipse {
+  color: #cbd5e0;
+}
+
+body.dark-mode .events-content .post-image {
+  background-color: #4a5568; /* A darker neutral behind images */
+}
+
+body.dark-mode .events-content .post-title {
+  color: #cbd5e0;
+}
+
+body.dark-mode .events-content .post-excerpt {
+  color: #a0aec0;
+}
+
+body.dark-mode .events-content .read-more {
+  color: #63b3ed;
+}
+
+body.dark-mode .events-content .read-more:hover {
+  color: #4299e1;
+}
+
+/* No Events Tag */
+body.dark-mode #noEventsTag,
+body.dark-mode .no-events {
+  background-color: #2d3748;
+  color: #cbd5e0;
+  border: 1px solid #4a5568;
+}
+
+body.dark-mode .calendar-icon {
+  color: #63b3ed;
+}
+
+body.dark-mode .calendar-icon:hover {
+  color: #4299e1;
+}
+
+/* Additional Tweaks */
+body.dark-mode .card-grid {
+  background-color: transparent; /* or #1a202c if needed */
+}
+
+/* ========================================= */
+/*    Dark Mode Overrides for This Page      */
+/* ========================================= */
+body.dark-mode {
+  background-color: #1a202c; /* Primary dark background */
+  color: #cbd5e0;           /* Lighter text color for readability */
+}
+
+/* Cover & Overlay */
+body.dark-mode .cover {
+  background: #2d3748 !important;
+}
+body.dark-mode .cover-overlay {
+  background: rgba(0, 0, 0, 0.5) !important; /* Slightly darker overlay */
+}
+
+/* Text & Headings */
+body.dark-mode .group-title,
+body.dark-mode .group-desc,
+body.dark-mode .members-title,
+body.dark-mode .member-name,
+body.dark-mode .member-fullname,
+body.dark-mode h2,
+body.dark-mode label,
+body.dark-mode .form-group label,
+body.dark-mode .nav-item .nav-link {
+  color: #cbd5e0 !important;
+}
+
+body.dark-mode .nav-item .nav-link:hover::after,
+body.dark-mode .nav-item .nav-link.active::after {
+  background: #63b3ed !important; /* Accent hover underline */
+}
+
+/* Navbar */
+body.dark-mode .navbar {
+  background: #2d3748 !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6) !important;
+}
+
+/* Buttons (General) */
+body.dark-mode .btn {
+  border-color: #4a5568 !important;
+}
+body.dark-mode .btn:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Specific Buttons: leave-btn, invite-btn, edit-btn, etc. */
+body.dark-mode .btn.leave-btn,
+body.dark-mode .btn.invite-btn {
+  background: #2b6cb0 !important; 
+  color: #ffffff !important;
+  border: 2px solid #2b6cb0 !important;
+}
+body.dark-mode .btn.leave-btn:hover,
+body.dark-mode .btn.invite-btn:hover {
+  background: #1a202c !important;
+  color: #63b3ed !important;
+  border-color: #63b3ed !important;
+}
+
+body.dark-mode .btn.edit-btn {
+  background: #1a202c !important;
+  color: #63b3ed !important;
+  border: 2px solid #63b3ed !important;
+}
+body.dark-mode .btn.edit-btn:hover {
+  background: #63b3ed !important;
+  color: #1a202c !important;
+}
+
+/* Cards & Boxes (general backgrounds) */
+body.dark-mode .right-column,
+body.dark-mode .post,
+body.dark-mode .members-content .member-card,
+body.dark-mode .events-content #newsFeed,
+body.dark-mode .events-content .news-post,
+body.dark-mode .edit-community-modal,
+body.dark-mode .invite-modal,
+body.dark-mode .leave-modal,
+body.dark-mode .community-avatar,
+body.dark-mode .create-event-modal {
+  background-color: #2d3748 !important;
+  border-color: #4a5568 !important;
+  color: #cbd5e0 !important;
+  box-shadow: none !important; /* Or adjust if you prefer a subtle shadow */
+}
+
+/* Post & News-Post Text */
+body.dark-mode .post-info strong,
+body.dark-mode .post-body,
+body.dark-mode .post-date,
+body.dark-mode .post-title,
+body.dark-mode .post-excerpt {
+  color: #cbd5e0 !important;
+}
+
+/* Secondary (muted) text */
+body.dark-mode .post-date,
+body.dark-mode .post-excerpt,
+body.dark-mode .group-desc,
+body.dark-mode .member-role,
+body.dark-mode .calendar-icon,
+body.dark-mode .bell-icon {
+  color: #a0aec0 !important;
+}
+
+/* Inputs */
+body.dark-mode input,
+body.dark-mode textarea,
+body.dark-mode select {
+  background-color: #1a202c !important;
+  color: #cbd5e0 !important;
+  border: 1px solid #4a5568 !important;
+}
+body.dark-mode input:focus,
+body.dark-mode textarea:focus,
+body.dark-mode select:focus {
+  border-color: #63b3ed !important;
+  box-shadow: 0 0 0 2px rgba(99, 179, 237, 0.3) !important;
+}
+
+/* Avatars & Borders */
+body.dark-mode .avatar-wrapper,
+body.dark-mode .member-avatar,
+body.dark-mode .member-avatar-img-large,
+body.dark-mode .community-avatar,
+body.dark-mode .post-avatar {
+  border-color: #4a5568 !important;
+}
+
+/* Links & Hover Effects */
+body.dark-mode a,
+body.dark-mode .read-more,
+body.dark-mode .view-all-btn {
+  color: #63b3ed !important;
+}
+body.dark-mode a:hover,
+body.dark-mode .read-more:hover,
+body.dark-mode .view-all-btn:hover {
+  color: #4299e1 !important;
+  background-color: #1a202c !important;
+}
+
+/* Icon Hover States */
+body.dark-mode .calendar-icon:hover,
+body.dark-mode .bell-icon:hover {
+  color: #4299e1 !important;
+}
+
+/* "No Events", "No Announcements", etc. Boxes */
+body.dark-mode #noEventsTag,
+body.dark-mode .no-events,
+body.dark-mode #noAnnoTag,
+body.dark-mode .no-announcement {
+  background-color: #2d3748 !important;
+  color: #cbd5e0 !important;
+  border: 1px solid #4a5568 !important;
+}
+
+/* Modals, Overlays */
+body.dark-mode .edit-community-container,
+body.dark-mode .create-event-container,
+body.dark-mode .invite-modal-overlay,
+body.dark-mode .leave-modal-overlay {
+  background: rgba(0, 0, 0, 0.7) !important; /* Darker overlay */
+}
+
+/* Buttons inside Modals (e.g., .btn-primary, .btn-secondary) */
+body.dark-mode .btn-primary {
+  background-color: #2b6cb0 !important;
+  border-color: #2b6cb0 !important;
+}
+body.dark-mode .btn-primary:hover {
+  background-color: #2c5282 !important;
+}
+
+body.dark-mode .btn-secondary {
+  color: #2b6cb0 !important;
+  border-color: #2b6cb0 !important;
+  background-color: transparent !important;
+}
+body.dark-mode .btn-secondary:hover {
+  background-color: #2b6cb0 !important;
+  color: #ffffff !important;
+}
+
+/* "Like" Button in Dark Mode */
+body.dark-mode .btn.like-btn {
+  color: #63b3ed !important; /* Default icon color in dark mode */
+}
+body.dark-mode .btn.like-btn:hover {
+  color: #4299e1 !important; 
+}
+body.dark-mode .btn.like-btn.liked {
+  color: #e0245e !important; /* Heart color when liked */
+}
+
+/* Notifications */
+body.dark-mode .notification {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4) !important;
+}
