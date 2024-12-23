@@ -111,7 +111,6 @@ require_once __DIR__ . '/../controllers/homeController.php';
                     <div class="top-bar-actions">
                         <button class="notification-btn">
                             <i class="fas fa-bell"></i>
-                            <span class="notification-badge">3</span>
                         </button>
                         <div class="notification-dropdown">
                         <div class="dropdown-header">
@@ -128,7 +127,6 @@ require_once __DIR__ . '/../controllers/homeController.php';
 
                         <button class="messages-btn">
                             <i class="fas fa-envelope"></i>
-                            <span class="messages-badge">5</span>
                         </button>
                     <div class="messages-dropdown">
                         <div class="dropdown-header">
