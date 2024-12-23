@@ -163,5 +163,68 @@ function joinCommunity($user_id, $community_id){
     }
 }
 
+function getUserCommunitiesAndEvents($user_id) {
+    try {
+        $conn = connect_db();
+        
+        // Query to get communities
+        $communitiesQuery = "
+            SELECT 
+                c.community_id, 
+                c.community_name, 
+                c.description, 
+                c.profile_image, 
+                c.community_type,
+                (SELECT COUNT(*) FROM community_members cm WHERE cm.community_id = c.community_id) AS member_count
+            FROM communities c
+            INNER JOIN community_members cm ON c.community_id = cm.community_id
+            WHERE cm.user_id = ?
+            GROUP BY c.community_id
+        ";
+        
+        $stmt = $conn->prepare($communitiesQuery);
+        $stmt->bind_param("i", $user_id);
+        if (!$stmt->execute()) {
+            throw new Exception("Query execution failed");
+        }
+        $communitiesResult = $stmt->get_result();
+        $communities = $communitiesResult->fetch_all(MYSQLI_ASSOC);
+        
+        // Query to get events for these communities
+        $eventsQuery = "
+            SELECT 
+                e.event_id, 
+                e.event_name, 
+                e.created_at, 
+                c.profile_image AS community_image
+            FROM events e
+            INNER JOIN communities c ON e.community_id = c.community_id
+            WHERE e.community_id IN (
+                SELECT community_id
+                FROM community_members
+                WHERE user_id = ?
+            )
+            ORDER BY e.created_at ASC
+        ";
+        
+        $stmt = $conn->prepare($eventsQuery);
+        $stmt->bind_param("i", $user_id);
+        if (!$stmt->execute()) {
+            throw new Exception("Query execution failed");
+        }
+        $eventsResult = $stmt->get_result();
+        $events = $eventsResult->fetch_all(MYSQLI_ASSOC);
+        
+        return ['communities' => $communities, 'events' => $events];
+        
+    } catch (Exception $e) {
+        error_log("Failed to get communities and events: " . $e->getMessage());
+        return false;
+    } finally {
+        if (isset($stmt)) {
+            $stmt->close();
+        }
+    }
+}
 
 ?>

@@ -238,3 +238,124 @@ Stack trace:
 [23-Dec-2024 18:35:29 Europe/Berlin] connect database
 [23-Dec-2024 18:35:30 Europe/Berlin] connect database
 [23-Dec-2024 18:35:31 Europe/Berlin] connect database
+[23-Dec-2024 18:37:53 Europe/Berlin] connect database
+[23-Dec-2024 18:38:07 Europe/Berlin] connect database
+[23-Dec-2024 18:38:07 Europe/Berlin] connect database
+[23-Dec-2024 18:38:07 Europe/Berlin] connect database
+[23-Dec-2024 18:45:51 Europe/Berlin] connect database
+[23-Dec-2024 18:45:52 Europe/Berlin] connect database
+[23-Dec-2024 18:45:52 Europe/Berlin] Failed to get communities and events: Unknown column 'e.event_description' in 'field list'
+[23-Dec-2024 18:46:00 Europe/Berlin] connect database
+[23-Dec-2024 18:46:00 Europe/Berlin] connect database
+[23-Dec-2024 18:46:00 Europe/Berlin] Failed to get communities and events: Unknown column 'e.event_description' in 'field list'
+[23-Dec-2024 18:46:02 Europe/Berlin] connect database
+[23-Dec-2024 18:46:04 Europe/Berlin] connect database
+[23-Dec-2024 18:46:05 Europe/Berlin] connect database
+[23-Dec-2024 18:46:05 Europe/Berlin] connect database
+[23-Dec-2024 18:46:10 Europe/Berlin] connect database
+[23-Dec-2024 18:46:12 Europe/Berlin] connect database
+[23-Dec-2024 18:46:12 Europe/Berlin] connect database
+[23-Dec-2024 18:46:14 Europe/Berlin] connect database
+[23-Dec-2024 18:46:15 Europe/Berlin] connect database
+[23-Dec-2024 18:46:15 Europe/Berlin] Failed to get communities and events: Unknown column 'e.event_description' in 'field list'
+[23-Dec-2024 18:46:16 Europe/Berlin] connect database
+[23-Dec-2024 18:46:16 Europe/Berlin] connect database
+[23-Dec-2024 18:46:16 Europe/Berlin] Failed to get communities and events: Unknown column 'e.event_description' in 'field list'
+[23-Dec-2024 18:46:25 Europe/Berlin] connect database
+[23-Dec-2024 18:46:25 Europe/Berlin] connect database
+[23-Dec-2024 18:46:25 Europe/Berlin] Failed to get communities and events: Unknown column 'e.event_description' in 'field list'
+[23-Dec-2024 18:46:25 Europe/Berlin] connect database
+[23-Dec-2024 18:46:26 Europe/Berlin] connect database
+[23-Dec-2024 18:46:26 Europe/Berlin] Failed to get communities and events: Unknown column 'e.event_description' in 'field list'
+[23-Dec-2024 18:46:40 Europe/Berlin] connect database
+[23-Dec-2024 18:46:40 Europe/Berlin] connect database
+[23-Dec-2024 18:46:40 Europe/Berlin] Failed to get communities and events: Unknown column 'e.event_description' in 'field list'
+[23-Dec-2024 18:48:04 Europe/Berlin] connect database
+[23-Dec-2024 18:48:04 Europe/Berlin] connect database
+[23-Dec-2024 18:48:04 Europe/Berlin] Failed to get communities and events: Unknown column 'e.event_date' in 'field list'
+[23-Dec-2024 18:49:55 Europe/Berlin] connect database
+[23-Dec-2024 18:49:55 Europe/Berlin] connect database
+[23-Dec-2024 18:49:55 Europe/Berlin] PHP Warning:  Undefined array key "event_description" in C:\Users\amgad\OneDrive\Desktop\project\CampusConnect\src\view\home_pages\home.php on line 74
+[23-Dec-2024 18:49:55 Europe/Berlin] PHP Warning:  Undefined array key "event_date" in C:\Users\amgad\OneDrive\Desktop\project\CampusConnect\src\view\home_pages\home.php on line 75
+[23-Dec-2024 18:49:55 Europe/Berlin] PHP Warning:  Undefined array key "event_description" in C:\Users\amgad\OneDrive\Desktop\project\CampusConnect\src\view\home_pages\home.php on line 74
+[23-Dec-2024 18:49:55 Europe/Berlin] PHP Warning:  Undefined array key "event_date" in C:\Users\amgad\OneDrive\Desktop\project\CampusConnect\src\view\home_pages\home.php on line 75
+[23-Dec-2024 18:49:55 Europe/Berlin] PHP Warning:  Undefined array key "event_description" in C:\Users\amgad\OneDrive\Desktop\project\CampusConnect\src\view\home_pages\home.php on line 74
+[23-Dec-2024 18:49:55 Europe/Berlin] PHP Warning:  Undefined array key "event_date" in C:\Users\amgad\OneDrive\Desktop\project\CampusConnect\src\view\home_pages\home.php on line 75
+[23-Dec-2024 18:50:10 Europe/Berlin] connect database
+[23-Dec-2024 18:50:11 Europe/Berlin] connect database
+[23-Dec-2024 18:50:11 Europe/Berlin] PHP Warning:  Undefined array key "event_description" in C:\Users\amgad\OneDrive\Desktop\project\CampusConnect\src\view\home_pages\home.php on line 74
+[23-Dec-2024 18:50:11 Europe/Berlin] PHP Warning:  Undefined array key "event_date" in C:\Users\amgad\OneDrive\Desktop\project\CampusConnect\src\view\home_pages\home.php on line 75
+[23-Dec-2024 18:50:11 Europe/Berlin] PHP Warning:  Undefined array key "event_description" in C:\Users\amgad\OneDrive\Desktop\project\CampusConnect\src\view\home_pages\home.php on line 74
+[23-Dec-2024 18:50:11 Europe/Berlin] PHP Warning:  Undefined array key "event_date" in C:\Users\amgad\OneDrive\Desktop\project\CampusConnect\src\view\home_pages\home.php on line 75
+[23-Dec-2024 18:50:11 Europe/Berlin] PHP Warning:  Undefined array key "event_description" in C:\Users\amgad\OneDrive\Desktop\project\CampusConnect\src\view\home_pages\home.php on line 74
+[23-Dec-2024 18:50:11 Europe/Berlin] PHP Warning:  Undefined array key "event_date" in C:\Users\amgad\OneDrive\Desktop\project\CampusConnect\src\view\home_pages\home.php on line 75
+[23-Dec-2024 18:50:57 Europe/Berlin] connect database
+[23-Dec-2024 18:50:57 Europe/Berlin] connect database
+[23-Dec-2024 18:52:01 Europe/Berlin] connect database
+[23-Dec-2024 18:52:01 Europe/Berlin] connect database
+[23-Dec-2024 18:59:26 Europe/Berlin] connect database
+[23-Dec-2024 18:59:26 Europe/Berlin] connect database
+[23-Dec-2024 18:59:26 Europe/Berlin] PHP Warning:  Undefined array key "member_count" in C:\Users\amgad\OneDrive\Desktop\project\CampusConnect\src\view\home_pages\home.php on line 42
+[23-Dec-2024 18:59:26 Europe/Berlin] PHP Warning:  Undefined array key "community_image" in C:\Users\amgad\OneDrive\Desktop\project\CampusConnect\src\view\home_pages\home.php on line 71
+[23-Dec-2024 18:59:26 Europe/Berlin] PHP Warning:  Undefined array key "community_image" in C:\Users\amgad\OneDrive\Desktop\project\CampusConnect\src\view\home_pages\home.php on line 71
+[23-Dec-2024 18:59:26 Europe/Berlin] PHP Warning:  Undefined array key "community_image" in C:\Users\amgad\OneDrive\Desktop\project\CampusConnect\src\view\home_pages\home.php on line 71
+[23-Dec-2024 19:00:37 Europe/Berlin] connect database
+[23-Dec-2024 19:00:37 Europe/Berlin] connect database
+[23-Dec-2024 19:00:37 Europe/Berlin] PHP Warning:  Undefined array key "member_count" in C:\Users\amgad\OneDrive\Desktop\project\CampusConnect\src\view\home_pages\home.php on line 43
+[23-Dec-2024 19:00:37 Europe/Berlin] PHP Warning:  Undefined array key "community_image" in C:\Users\amgad\OneDrive\Desktop\project\CampusConnect\src\view\home_pages\home.php on line 72
+[23-Dec-2024 19:00:37 Europe/Berlin] PHP Warning:  Undefined array key "community_image" in C:\Users\amgad\OneDrive\Desktop\project\CampusConnect\src\view\home_pages\home.php on line 72
+[23-Dec-2024 19:00:37 Europe/Berlin] PHP Warning:  Undefined array key "community_image" in C:\Users\amgad\OneDrive\Desktop\project\CampusConnect\src\view\home_pages\home.php on line 72
+[23-Dec-2024 19:01:37 Europe/Berlin] connect database
+[23-Dec-2024 19:01:38 Europe/Berlin] connect database
+[23-Dec-2024 19:03:48 Europe/Berlin] connect database
+[23-Dec-2024 19:03:48 Europe/Berlin] connect database
+[23-Dec-2024 19:03:56 Europe/Berlin] connect database
+[23-Dec-2024 19:03:56 Europe/Berlin] connect database
+[23-Dec-2024 19:03:57 Europe/Berlin] connect database
+[23-Dec-2024 19:03:58 Europe/Berlin] connect database
+[23-Dec-2024 19:04:02 Europe/Berlin] connect database
+[23-Dec-2024 19:04:03 Europe/Berlin] connect database
+[23-Dec-2024 19:04:05 Europe/Berlin] connect database
+[23-Dec-2024 19:04:12 Europe/Berlin] connect database
+[23-Dec-2024 19:04:14 Europe/Berlin] connect database
+[23-Dec-2024 19:04:18 Europe/Berlin] connect database
+[23-Dec-2024 19:04:18 Europe/Berlin] connect database
+[23-Dec-2024 19:04:19 Europe/Berlin] connect database
+[23-Dec-2024 19:04:19 Europe/Berlin] connect database
+[23-Dec-2024 19:04:37 Europe/Berlin] connect database
+[23-Dec-2024 19:04:38 Europe/Berlin] connect database
+[23-Dec-2024 19:04:42 Europe/Berlin] connect database
+[23-Dec-2024 19:04:45 Europe/Berlin] connect database
+[23-Dec-2024 19:04:46 Europe/Berlin] connect database
+[23-Dec-2024 19:06:04 Europe/Berlin] connect database
+[23-Dec-2024 19:06:05 Europe/Berlin] connect database
+[23-Dec-2024 19:06:14 Europe/Berlin] connect database
+[23-Dec-2024 19:06:15 Europe/Berlin] connect database
+[23-Dec-2024 19:06:16 Europe/Berlin] connect database
+[23-Dec-2024 19:06:16 Europe/Berlin] connect database
+[23-Dec-2024 19:06:16 Europe/Berlin] connect database
+[23-Dec-2024 19:06:17 Europe/Berlin] connect database
+[23-Dec-2024 19:06:17 Europe/Berlin] connect database
+[23-Dec-2024 19:06:18 Europe/Berlin] connect database
+[23-Dec-2024 19:06:19 Europe/Berlin] connect database
+[23-Dec-2024 19:06:20 Europe/Berlin] connect database
+[23-Dec-2024 19:06:20 Europe/Berlin] connect database
+[23-Dec-2024 19:06:20 Europe/Berlin] connect database
+[23-Dec-2024 19:06:21 Europe/Berlin] connect database
+[23-Dec-2024 19:06:22 Europe/Berlin] connect database
+[23-Dec-2024 19:06:23 Europe/Berlin] connect database
+[23-Dec-2024 19:06:26 Europe/Berlin] connect database
+[23-Dec-2024 19:06:27 Europe/Berlin] connect database
+[23-Dec-2024 19:06:27 Europe/Berlin] connect database
+[23-Dec-2024 19:06:28 Europe/Berlin] connect database
+[23-Dec-2024 19:06:29 Europe/Berlin] connect database
+[23-Dec-2024 19:06:30 Europe/Berlin] connect database
+[23-Dec-2024 19:06:31 Europe/Berlin] connect database
+[23-Dec-2024 19:06:37 Europe/Berlin] connect database
+[23-Dec-2024 19:06:42 Europe/Berlin] connect database
+[23-Dec-2024 19:06:42 Europe/Berlin] connect database
+[23-Dec-2024 19:06:42 Europe/Berlin] connect database
+[23-Dec-2024 19:06:43 Europe/Berlin] connect database
+[23-Dec-2024 19:06:44 Europe/Berlin] connect database
+[23-Dec-2024 19:06:45 Europe/Berlin] connect database
+[23-Dec-2024 19:06:47 Europe/Berlin] connect database
