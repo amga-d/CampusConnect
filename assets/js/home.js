@@ -6,7 +6,22 @@ document.addEventListener("DOMContentLoaded", function () {
     const toggleIcon = toggleBtn.querySelector("i");
     const barbtn = document.getElementById("bar");
     const navTitle = document.getElementById("nav-title");
+    const toggleButton = document.getElementById('dark-mode-toggle');
+    const notificationBtn = document.querySelector('.notification-btn');
+    const messagesBtn = document.querySelector('.messages-btn');
 
+
+  // Dark mode toggle with fixed classList property
+  toggleButton.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+    
+    // Change the icon based on dark mode state
+    if (document.body.classList.contains('dark-mode')) {
+        toggleButton.innerHTML = '<i class="fas fa-sun"></i>';
+    } else {
+        toggleButton.innerHTML = '<i class="fas fa-moon"></i>';
+    }
+});
     userMenuBtn.addEventListener("click", function (event) {
         event.stopPropagation();
         userDropdown.classList.toggle("show");
@@ -29,6 +44,54 @@ document.addEventListener("DOMContentLoaded", function () {
     toggleBtn.addEventListener("click", function () {
         collapse();
     });
+
+// Notification dropdown toggle with proper event handling
+if (notificationBtn) {
+    notificationBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        // Remove active class from messages dropdown
+        if (messagesBtn) {
+            messagesBtn.classList.remove('active');
+        }
+        // Toggle active class for notification dropdown
+        this.classList.toggle('active');
+    });
+}
+
+// Messages dropdown toggle with proper event handling
+if (messagesBtn) {
+    messagesBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        // Remove active class from notification dropdown
+        if (notificationBtn) {
+            notificationBtn.classList.remove('active');
+        }
+        // Toggle active class for messages dropdown
+        this.classList.toggle('active');
+    });
+}
+
+// Close dropdowns when clicking outside
+document.addEventListener('click', function(e) {
+    if (notificationBtn && !e.target.closest('.notification-dropdown') && 
+        !e.target.closest('.notification-btn')) {
+        notificationBtn.classList.remove('active');
+    }
+    if (messagesBtn && !e.target.closest('.messages-dropdown') && 
+        !e.target.closest('.messages-btn')) {
+        messagesBtn.classList.remove('active');
+    }
+});
+
+// // Handle "Mark all as read" buttons
+// document.querySelectorAll('.mark-all-read').forEach(button => {
+//     button.addEventListener('click', function(e) {
+//         e.stopPropagation();
+//         // Add your mark as read logic here
+//         const badges = document.querySelectorAll('.notification-badge, .messages-badge');
+//         badges.forEach(badge => badge.style.display = 'none');
+//     });
+// });
 
     // Navigation functionality
     setupNavigation();

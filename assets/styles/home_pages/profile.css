@@ -210,6 +210,13 @@ body {
     padding-bottom: 0.5rem;
 }
 
+#bio {
+    width: 100%;
+    height: 150px; /* You can adjust the height as needed */
+    resize: none; /* Disables the ability to resize the textarea */
+    box-sizing: border-box; /* Ensures padding is included in the width/height calculation */
+}
+
 .edit-profile-overlay {
     position: fixed;
     top: 0;

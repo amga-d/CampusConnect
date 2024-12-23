@@ -44,14 +44,15 @@ class ProfileController {
 
             // Update profile
             $result = updateUserProfile(
-                $_SESSION['user_id'],
+                $data['name'],
+                $_SESSION['user_id'], 
                 $data['email'],
                 $data['gender'],
                 $data['birthday'],
                 $data['bio'],
                 $profileImagePath
             );
-
+            
             if (!$result) {
                 throw new Exception('Failed to update profile');
             }
@@ -72,6 +73,10 @@ class ProfileController {
     }
 
     private function validateInputs($data) {
+        if (empty($data['name'])) {
+            throw new Exception('Invalid name format');
+        }
+
         if (empty($data['email']) || !filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
             throw new Exception('Invalid email format');
         }

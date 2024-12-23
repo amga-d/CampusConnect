@@ -120,10 +120,10 @@
                     </div>
                     <p class="footer-tagline">Empowering student connections</p>
                     <div class="footer-social">
-                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.instagram.com/campusconnect.idn/" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/campusconnect.idn/" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/campusconnect.idn/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.instagram.com/campusconnect.idn/" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
                 <div class="footer-links">
@@ -147,9 +147,9 @@
                 <div class="footer-contact">
                     <h3>Contact Us</h3>
                     <p><i class="fas fa-envelope"></i> info@campusconnect.com</p>
-                    <p><i class="fas fa-phone"></i> +62 8888888888</p>
-                    <p><i class="fas fa-map-marker-alt"></i> 123 University Islam Indonesia</p>
-                    <a href="#contact" class="footer-button">Get in Touch</a>
+                    <p><i class="fas fa-phone"></i> +62 08820241224</p>
+                    <p><i class="fas fa-map-marker-alt"></i>University Islam Indonesia</p>
+                    <a href="https://www.instagram.com/campusconnect.idn/" class="footer-button">Get in Touch</a>
                 </div>
             </div>
         </div>

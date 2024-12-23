@@ -195,7 +195,7 @@ switch ($role) {
           <?php endif; ?>
 
           <?php if ($dashboardData['announcements'] == null): ?>
-            <h3 id="noAnnoTag">No Announcements 😶‍🌫️</h3>
+            <h3 id="noAnnoTag" class="no-announcement">No Announcements<i class="fas fa-bell bell-icon"></i></h3>
           <?php else: ?>
             <?php foreach ($dashboardData['announcements'] as $announcement): ?>
               <article class="post">
@@ -238,7 +238,7 @@ switch ($role) {
             <?php endforeach; ?>
             <!-- Additional members can go here -->
           </ul>
-          <a href="#" class="view-all-btn">View All</a>
+          <a href="#" class="view-all-btn" id="viewAllBtn">View All</a>
         </aside>
       </section>
 
@@ -313,6 +313,14 @@ switch ($role) {
             </form>
           </div>
         </div>
+
+        <!-- in case there are no evnets -->
+        <div class="no-events-container">
+      <h3 id="noEventsTag" class="no-events">
+        No Events <i class="fas fa-calendar-times calendar-icon"></i>
+      </h3>
+        </div>
+
 
         <div id="newsFeed">
           <div class="news-post">

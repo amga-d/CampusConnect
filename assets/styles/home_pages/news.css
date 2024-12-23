@@ -143,22 +143,6 @@
         border-radius: 0;
         border: none;
     }
-    .post-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-    }
-    .post-avatar {
-        margin-left: 10px;
-    }
-    .post-info {
-        width: 100%;
-        padding: 0 10px;
-    }
-    .elipse {
-        right: 10px;
-        top: 10px;
-    }
     .community-title {
         font-size: 1.5em;
     }
@@ -214,4 +198,78 @@
 
 .news-image {
     cursor: pointer;
+}
+
+/* Updated Media Query for Screens Up to 500px */
+@media (max-width: 500px) {
+    .events-content .post-header {
+        display: flex;
+        flex-direction: row; /* Horizontal alignment */
+        align-items: center;
+        gap: 10px; /* Reduced gap */
+        padding: 8px 10px; /* Reduced padding */
+        flex-wrap: nowrap; /* Prevent wrapping */
+        position: relative; /* Ensure proper positioning of the ellipsis */
+    }
+
+    /* Avatar Image Adjustments */
+    .events-content .post-avatar {
+        width: 50px; /* Slightly reduced size */
+        height: 50px;
+        border: 2px solid var(--twitterblue-color);
+    }
+
+    /* Post Info Adjustments */
+    .events-content .post-info {
+        flex-grow: 1;
+        min-width: 0; /* Allows text to truncate */
+    }
+
+    .events-content .post-info strong {
+        font-size: 1rem; /* Adjusted font size */
+        white-space: nowrap; /* Prevent wrapping */
+        overflow: hidden; /* Hide overflow text */
+        text-overflow: ellipsis; /* Add ellipsis for overflow */
+        color: var(--text-color);
+    }
+
+    .events-content .post-date {
+        font-size: 0.8rem; /* Smaller font size */
+        color: var(--muted-text-color);
+        white-space: nowrap; /* Prevent wrapping */
+        overflow: hidden; /* Hide overflow text */
+        text-overflow: ellipsis; /* Add ellipsis for overflow */
+    }
+
+    /* Ellipsis (Options Button) Adjustments */
+    .events-content .elipse {
+        font-size: 16px; /* Adjusted font size */
+        right: 10px; /* Adjusted position */
+        top: 50%;
+        transform: translateY(-50%);
+        flex-shrink: 0; /* Prevent shrinking */
+    }
+
+    /* Ensure the News Feed Takes Full Width */
+    .events-content #newsFeed {
+        width: 100%; /* Full width on small screens */
+    }
+
+    /* Post Description Adjustments */
+    .events-content .post-description {
+        padding: 10px; /* Reduced padding */
+    }
+
+    .events-content .post-title {
+        font-size: 1rem; /* Smaller title font */
+    }
+
+    .events-content .post-excerpt {
+        font-size: 0.9rem; /* Smaller excerpt font */
+    }
+
+    /* Read More Link Adjustments */
+    .events-content .read-more {
+        font-size: 0.8rem; /* Smaller read more font */
+    }
 }

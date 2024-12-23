@@ -206,6 +206,44 @@
    Events Content Layout
     */
 
+    /* Styling for No Events Message */
+#noEventsTag, .no-events {
+    font-size: 24px;
+    color: #555; /* Slightly darker gray for better readability */
+    background-color: #f0f0f0; /* Light gray background */
+    padding: 20px 30px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 40px auto;
+    max-width: 600px;
+    position: relative;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px; /* Space between text and icon */
+  }
+  
+  /* Hover Effect */
+  #noEventsTag:hover, .no-events:hover {
+    transform: translateY(-5px);
+    background-color: #e8e8e8;
+  }
+  
+  /* Styling the Calendar Icon */
+  .calendar-icon {
+    color: #1da1f2; /* Twitter blue color */
+    font-size: 24px;
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .calendar-icon:hover {
+    color: #0c84c5;
+    transform: scale(1.2);
+  }
+  
+
     .events-content{
         display: flex;
         justify-content: center;
@@ -419,29 +457,77 @@
         width: 100%;
     }
     
-      .post-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-    }
-    .post-avatar {
-        margin-left: 10px;
-    }
-    .post-info {
-        width: 100%;
-        padding: 0 10px;
-    }
-    .elipse {
-        right: 10px;
-        top: 10px;
-    }
-    .community-title {
-        font-size: 1.5em;
-    }
-    .community-subtitle {
-        font-size: 0.9em;
+    .events-content .post-header {
+        display: flex;
+        flex-direction: row; /* Ensure horizontal alignment */
+        align-items: center;
+        gap: 10px; /* Reduce gap between elements */
+        padding: 10px 15px; /* Adjust padding for smaller screens */
+        flex-wrap: nowrap; /* Prevent wrapping to the next line */
+        position: relative; /* Ensure proper positioning of the ellipsis */
     }
     
+    /* Avatar Image */
+    .events-content .post-avatar {
+        width: 40px; /* Reduced avatar size */
+        height: 40px;
+        flex-shrink: 0; /* Prevent the avatar from shrinking */
+    }
+    
+    /* Post Info */
+    .events-content .post-info {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1; /* Allow to take up remaining space */
+        min-width: 0; /* Enable text truncation */
+    }
+    
+    .events-content .post-info strong {
+        font-size: 1rem; /* Adjust font size */
+        white-space: nowrap; /* Prevent wrapping */
+        overflow: hidden; /* Hide overflow text */
+        text-overflow: ellipsis; /* Add ellipsis for overflow */
+    }
+    
+    .events-content .post-date {
+        font-size: 0.8rem; /* Smaller font size for date */
+        color: var(--muted-text-color);
+        white-space: nowrap; /* Prevent wrapping */
+        overflow: hidden; /* Hide overflow text */
+        text-overflow: ellipsis; /* Add ellipsis for overflow */
+    }
+    
+    /* Ellipsis (Options Button) */
+    .events-content .elipse {
+        font-size: 16px; /* Adjust font size */
+        right: 10px; /* Adjust position */
+        top: 50%;
+        transform: translateY(-50%);
+        flex-shrink: 0; /* Prevent from shrinking */
+    }
+    
+    /* Ensure the post-header doesn't exceed the container */
+    .events-content #newsFeed {
+        width: 100%; /* Full width on small screens */
+    }
+    
+    /* Post Description Adjustments (Optional) */
+    .events-content .post-description {
+        padding: 10px; /* Reduce padding */
+    }
+    
+    .events-content .post-title {
+        font-size: 1rem; /* Smaller title font */
+    }
+    
+    .events-content .post-excerpt {
+        font-size: 0.9rem; /* Smaller excerpt font */
+    }
+    
+    /* Read More Link */
+    .events-content .read-more {
+        font-size: 0.8rem; /* Smaller read more font */
+    }
 }
 
 /* Accessibility */

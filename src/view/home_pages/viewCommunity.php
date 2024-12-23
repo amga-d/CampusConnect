@@ -96,6 +96,13 @@ echo  htmlspecialchars($communityData['info']['community_id']) ;
         
                 <h2 class="section-title">Upcoming Events</h2>
 
+                    <!-- in case there are no evnets -->
+                    <div class="no-events-container">
+                        <h3 id="noEventsTag" class="no-events">
+                            No Events <i class="fas fa-calendar-times calendar-icon"></i>
+                        </h3>
+                    </div>
+
                 <div class="events-posts">
                 <section class="events-content content-section">
                     <div id="newsFeed">

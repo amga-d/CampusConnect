@@ -113,10 +113,36 @@ require_once __DIR__ . '/../controllers/homeController.php';
                             <i class="fas fa-bell"></i>
                             <span class="notification-badge">3</span>
                         </button>
+                        <div class="notification-dropdown">
+                        <div class="dropdown-header">
+                            <h3>Notifications</h3>
+                            <button class="mark-all-read">Mark all as read</button>
+                        </div>
+                        <div class="dropdown-content">
+                            <div class="empty-state">
+                                <i class="fas fa-bell-slash"></i>
+                                <p>No new notifications</p>
+                            </div>
+                        </div>
+                    </div>
+
                         <button class="messages-btn">
                             <i class="fas fa-envelope"></i>
                             <span class="messages-badge">5</span>
                         </button>
+                    <div class="messages-dropdown">
+                        <div class="dropdown-header">
+                            <h3>Messages</h3>
+                            <button class="mark-all-read">Mark all as read</button>
+                        </div>
+                        <div class="dropdown-content">
+                            <div class="empty-state">
+                                <i class="fas fa-envelope-open"></i>
+                                <p>No new messages</p>
+                            </div>
+                        </div>
+                    </div>
+
                         <div  class="user-menu">
                             <button class="user-menu-btn" id="userMenuBtn">
                                 <div class="user-avatar">
@@ -143,7 +169,12 @@ require_once __DIR__ . '/../controllers/homeController.php';
         </div>
     </div>
 
-    
+    <button id="dark-mode-toggle" class="dark-mode-toggle">
+        <i class="fas fa-moon"></i>
+    </button>
+
+
+
 </body>
 
 </html>

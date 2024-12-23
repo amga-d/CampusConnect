@@ -26,10 +26,8 @@ function getUserProfile($userId)
     }
 }
 
-function updateUserProfile($userId, $email, $gender, $birthday, $bio, $profileImage = null)
-{
+function updateUserProfile($name, $userId, $email, $gender, $birthday, $bio, $profileImage = null) {
     $conn = connect_db();
-
     try {
         // Check if email is already taken by another user
         $stmt = $conn->prepare("SELECT user_id FROM Users WHERE email = ? AND user_id != ?");
@@ -43,13 +41,14 @@ function updateUserProfile($userId, $email, $gender, $birthday, $bio, $profileIm
 
         // Prepare base update query
         $updateQuery = "UPDATE Users SET 
-            email = ?, 
-            gender = ?, 
-            birthdate = ?, 
+            name = ?,
+            email = ?,
+            gender = ?,
+            birthdate = ?,
             bio = ?";
-
-        $params = [$email, $gender, $birthday, $bio];
-        $types = "ssss";
+        
+        $params = [$name, $email, $gender, $birthday, $bio];
+        $types = "sssss";
 
         // Add profile image to update if provided
         if ($profileImage) {
@@ -74,9 +73,8 @@ function updateUserProfile($userId, $email, $gender, $birthday, $bio, $profileIm
         return true;
     } catch (Exception $e) {
         error_log('Profile update model error: ' . $e->getMessage());
-        return false;
-    }
-    finally{
+        throw $e; // Re-throw to handle in controller
+    } finally {
         if (isset($stmt)) {
             $stmt->close();
         }
@@ -86,18 +84,19 @@ function updateUserProfile($userId, $email, $gender, $birthday, $bio, $profileIm
     }
 }
 
-function setUserProfile($userId, $gender,$bio, $birthday, $profileImage = null){
+function setUserProfile($userId, $name, $gender,$bio, $birthday, $profileImage = null){
     $conn = connect_db();
 
     try{
         // Prepare base update query
         $updateQuery =" UPDATE users set 
+        name = ?,
         gender = ?,
         birthdate = ?,
         bio = ?";
 
-        $params = [$gender, $birthday, $bio];
-        $types = "sss";
+        $params = [$name, $gender, $birthday, $bio];
+        $types = "ssss";
 
         if($profileImage){
             $updateQuery .= ", profile_image = ?";

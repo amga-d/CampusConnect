@@ -480,6 +480,104 @@ body {
   min-width: 20px;
 }
 
+/* Dropdown Base Styles */
+.notification-dropdown,
+.messages-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 300px;
+    background: var(--white);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    display: none;
+    z-index: 1000;
+    margin-top: 0.5rem;
+}
+
+/* Show dropdown when button is active */
+.notification-btn.active + .notification-dropdown,
+.messages-btn.active + .messages-dropdown {
+    display: block;
+}
+
+/* Dropdown Header */
+.dropdown-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.dropdown-header h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.mark-all-read {
+    background: none;
+    border: none;
+    color: var(--primary);
+    font-size: 0.875rem;
+    cursor: pointer;
+    padding: 0.25rem 0.5rem;
+    border-radius: var(--radius-sm);
+}
+
+.mark-all-read:hover {
+    text-decoration: underline;
+}
+
+/* Dropdown Content */
+.dropdown-content {
+    max-height: 300px;
+    overflow-y: auto;
+    padding: 0.5rem 0;
+}
+
+/* Empty State */
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    color: var(--gray);
+    text-align: center;
+}
+
+.empty-state i {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.empty-state p {
+    margin: 0;
+    font-size: 0.875rem;
+}
+
+/* Dark Mode Styles */
+body.dark-mode .notification-dropdown,
+body.dark-mode .messages-dropdown {
+    background: #2d3748;
+    border-color: #4a5568;
+}
+
+body.dark-mode .dropdown-header {
+    border-bottom-color: #4a5568;
+}
+
+body.dark-mode .mark-all-read {
+    color: #63b3ed;
+}
+
+body.dark-mode .empty-state {
+    color: #a0aec0;
+}
+
 .user-menu-btn {
   display: flex;
   align-items: center;
@@ -607,5 +705,308 @@ body {
   }
   .top-bar {
     padding: 0 1rem;
+  }
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+  background-color: #1a202c;
+  color: #cbd5e0;
+}
+
+body.dark-mode .stat-card,
+body.dark-mode .community-card,
+body.dark-mode .event-card,
+body.dark-mode .testimonials {
+  background-color: #2d3748;
+  border-color: #4a5568;
+  box-shadow: 0 2px 4px rgba(255,255,255,0.1);
+}
+
+body.dark-mode .carousel-caption,
+body.dark-mode .news-info p,
+body.dark-mode .community-info p,
+body.dark-mode .event-info p {
+  color: #a0aec0;
+}
+
+body.dark-mode .btn-analytics,
+body.dark-mode .filter-dropdown {
+  background-color: #4a5568;
+  color: #cbd5e0;
+  border-color: #4a5568;
+}
+
+body.dark-mode .btn-new-post,
+body.dark-mode .cta-btn,
+body.dark-mode .read-more {
+  background-color: #2b6cb0;
+}
+
+body.dark-mode .read-more {
+  color: #ebf8ff;
+}
+
+/* Dark Mode Toggle Button */
+.dark-mode-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: var(--primary-color);
+  color: var(--white);
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  font-size: 1.25rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  transition: background-color 0.3s ease;
+  z-index: 1000;
+}
+
+.dark-mode-toggle:hover {
+  background-color: #0d95e8;
+}
+
+/* Dark Mode Styles for Sidebar and Top Bar */
+body.dark-mode .sidebar {
+  background: #1a202c;
+  border-right-color: #2d3748;
+}
+
+body.dark-mode .image-box {
+  background: #2d3748;
+  box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode .nav-item a {
+  color: #cbd5e0;
+}
+
+body.dark-mode .nav-item.active a,
+body.dark-mode .nav-item a:hover {
+  background-color: #2b6cb0;
+  color: #ffffff;
+}
+
+body.dark-mode .nav-divider {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .plusButton {
+  background-color: #2d3748;
+  border-color: #4a5568;
+}
+
+body.dark-mode .plusButton > .plusIcon {
+  fill: #cbd5e0;
+}
+
+body.dark-mode .new-community-link:hover .plusButton::before {
+  border-color: transparent #2b6cb0 transparent transparent;
+}
+
+body.dark-mode .profile-link {
+  color: #cbd5e0;
+}
+
+body.dark-mode .profile-name {
+  color: #cbd5e0;
+}
+
+/* Top Bar Dark Mode */
+body.dark-mode .top-bar {
+  background: #1a202c;
+  border-bottom-color: #2d3748;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode #nav-title {
+  color: #cbd5e0;
+}
+
+body.dark-mode .notification-btn,
+body.dark-mode .messages-btn,
+body.dark-mode .user-menu-btn,
+body.dark-mode .fa-chevron-down {
+  color: #cbd5e0;
+}
+
+body.dark-mode .notification-btn:hover,
+body.dark-mode .messages-btn:hover,
+body.dark-mode .fa-chevron-down:hover {
+  color: #63b3ed;
+}
+
+body.dark-mode #toggleSidebar {
+  background: #2d3748;
+  color: #cbd5e0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode #toggleSidebar:hover {
+  background: #2b6cb0;
+  color: #ffffff;
+}
+
+/* User Dropdown Dark Mode */
+body.dark-mode .user-dropdown {
+  background: #2d3748;
+  border-color: #4a5568;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode .user-dropdown a {
+  color: #cbd5e0;
+}
+
+body.dark-mode .user-dropdown a:hover {
+  background-color: #4a5568;
+}
+
+body.dark-mode .user-dropdown a:not(:last-child) {
+  border-bottom-color: #4a5568;
+}
+
+/* Scrollbar Dark Mode */
+body.dark-mode .sidebar::-webkit-scrollbar-track {
+  background: #2d3748;
+}
+
+body.dark-mode .sidebar::-webkit-scrollbar-thumb {
+  background: #4a5568;
+}
+
+body.dark-mode .sidebar::-webkit-scrollbar-thumb:hover {
+  background: #2b6cb0;
+}
+
+/* Bar Icon Dark Mode */
+body.dark-mode .bar {
+  color: #cbd5e0;
+}
+
+/* Dark Mode Variables Override */
+body.dark-mode:root {
+  --primary-color: #1a202c;
+  --secondary-color: #2d3748;
+  --background-color: #1a202c;
+  --text-color: #cbd5e0;
+  --muted-text-color: #a0aec0;
+  --border-color: #4a5568;
+  --accent-color: #63b3ed;
+  --hover-accent-color: #4299e1;
+  --twitterblue-color: #2b6cb0;
+  --white: #2d3748;
+}
+
+/* App Container Dark Mode */
+body.dark-mode .app-container {
+  background-color: #1a202c;
+  border-color: #4a5568;
+  color: #cbd5e0;
+}
+
+/* Community Header Dark Mode */
+body.dark-mode .community-header {
+  background-color: #1a202c;
+  border-bottom-color: #4a5568;
+}
+
+body.dark-mode .community-title {
+  color: #cbd5e0;
+}
+
+body.dark-mode .community-subtitle {
+  color: #a0aec0;
+}
+
+/* News Posts Dark Mode */
+body.dark-mode .news-post {
+  background-color: #2d3748;
+  border-color: #4a5568;
+}
+
+body.dark-mode .news-post:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Post Elements Dark Mode */
+body.dark-mode .post-info strong {
+  color: #cbd5e0;
+}
+
+body.dark-mode .post-date {
+  color: #a0aec0;
+}
+
+body.dark-mode .elipse {
+  color: #cbd5e0;
+}
+
+body.dark-mode .post-image {
+  background-color: #2d3748;
+}
+
+/* Post Description Dark Mode */
+body.dark-mode .post-title {
+  color: #cbd5e0;
+}
+
+body.dark-mode .post-excerpt {
+  color: #a0aec0;
+}
+
+body.dark-mode .read-more {
+  color: #63b3ed;
+}
+
+body.dark-mode .read-more:hover {
+  color: #4299e1;
+}
+
+body.dark-mode .loading {
+  color: #a0aec0;
+}
+
+/* Image Popup Dark Mode */
+body.dark-mode .image-popup {
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+body.dark-mode .popup-content {
+  background-color: #2d3748;
+}
+
+body.dark-mode .close-popup {
+  color: #cbd5e0;
+}
+
+/* Handle post avatar borders */
+body.dark-mode .post-avatar {
+  border-color: #2b6cb0;
+}
+
+/* Mobile Adjustments Dark Mode */
+@media (max-width: 500px) {
+  body.dark-mode .app-container {
+    border: none;
+  }
+  
+  body.dark-mode .events-content .post-info strong {
+    color: #cbd5e0;
+  }
+  
+  body.dark-mode .events-content .post-date {
+    color: #a0aec0;
+  }
+  
+  body.dark-mode .events-content .post-title {
+    color: #cbd5e0;
+  }
+  
+  body.dark-mode .events-content .post-excerpt {
+    color: #a0aec0;
   }
 }

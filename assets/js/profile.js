@@ -73,7 +73,7 @@
 
             if (result.success) {
                 // Update UI elements
-                updateProfileUI(formData, result.profileImage);
+                updateProfileUI(formData, result.profileImage, result);
                 showNotification(result.message, "success");
                 closeModal();
             } else {
@@ -90,6 +90,7 @@
 
     // Form Validation
     function validateForm() {
+        const name = document.getElementById("name").value;
         const email = document.getElementById("email").value;
         const birthday = document.getElementById("birthday").value;
         const bio = document.getElementById("bio").value;
@@ -122,11 +123,10 @@
 
     // Update Profile UI
     function updateProfileUI(formData, newProfileImage) {
+        // Update name
+        document.querySelector('.name').textContent = formData.get('name');
         // Update email
-        document.querySelector(
-            ".info-item:nth-child(1) .info-text p:last-child"
-        ).textContent = formData.get("email");
-
+        document.querySelector('.info-item:nth-child(1) .info-text p:last-child').textContent = formData.get('email');
         // Update gender
         document.querySelector(
             ".info-item:nth-child(2) .info-text p:last-child"

@@ -642,3 +642,73 @@ initializeDashboard();
         }, 3000);
     }
 })();
+
+
+(function () {
+    // Function to show the members-content section
+    function showMembersContent() {
+        // Select all navigation links and the "View All" button
+        const navLinks = document.querySelectorAll(".nav-link");
+        const viewAllBtn = document.getElementById("viewAllBtn");
+        const contentSections = document.querySelectorAll(".content-section");
+
+        // Remove 'active' class from all nav links
+        navLinks.forEach((nav) => nav.classList.remove("active"));
+
+        // Hide all content sections
+        contentSections.forEach((section) => (section.style.display = "none"));
+
+        // Show the members-content section
+        const membersContent = document.querySelector(".members-content");
+        if (membersContent) {
+            membersContent.style.display = "grid"; // Adjust as per your layout (e.g., "block" or "flex")
+        }
+
+        // Optionally, add 'active' class to the "View All" button for styling
+        if (viewAllBtn) {
+            viewAllBtn.classList.add("active");
+        }
+    }
+
+    // Function to remove 'active' class from the "View All" button when other nav links are clicked
+    function removeActiveFromViewAll() {
+        const viewAllBtn = document.getElementById("viewAllBtn");
+        if (viewAllBtn) {
+            viewAllBtn.classList.remove("active");
+        }
+    }
+
+    // Initialize the "View All" button event listener
+    function initializeViewAllButton() {
+        const viewAllBtn = document.getElementById("viewAllBtn");
+        if (viewAllBtn) {
+            viewAllBtn.addEventListener("click", function (e) {
+                e.preventDefault();
+                showMembersContent();
+            });
+        }
+    }
+
+    // Initialize the existing navigation links to remove 'active' from "View All" when clicked
+    function initializeNavLinks() {
+        const navLinks = document.querySelectorAll(".nav-link");
+        navLinks.forEach((link) => {
+            link.addEventListener("click", () => {
+                removeActiveFromViewAll();
+            });
+        });
+    }
+
+    // Initialize all event listeners
+    function initialize() {
+        initializeViewAllButton();
+        initializeNavLinks();
+    }
+
+    // Initialize when DOM is ready
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initialize);
+    } else {
+        initialize();
+    }
+})();

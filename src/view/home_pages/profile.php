@@ -14,9 +14,9 @@ $userProfile = $controller->getProfile();
                     <h1 class="name"><?php echo htmlspecialchars($userProfile['name'] ?? 'No Name'); ?></h1>
                     <p class="profile-title">Student</p>
                     <div class="social-links">
-                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="javascript:void(0)" class="social-link"><i class="fab fa-linkedin"></i></a>
+                        <a href="javascript:void(0)" class="social-link"><i class="fab fa-github"></i></a>
+                        <a href="javascript:void(0)" class="social-link"><i class="fab fa-twitter"></i></a>
                     </div>
                 </div>
             </div>
@@ -85,6 +85,10 @@ $userProfile = $controller->getProfile();
                     </div>
                 </div>
                 <div class="edit-form-main">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" value="<?php echo htmlspecialchars($userProfile['name']); ?>" required>
+                    </div>
                     <div class="form-group">
                         <label for="email">Email</label>
                         <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($userProfile['email']); ?>" required>
