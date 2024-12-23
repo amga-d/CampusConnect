@@ -151,3 +151,56 @@ Stack trace:
 [23-Dec-2024 11:27:16 Europe/Berlin] connect database
 [23-Dec-2024 11:27:16 Europe/Berlin] connect database
 [23-Dec-2024 11:27:55 Europe/Berlin] connect database
+[23-Dec-2024 18:22:56 Europe/Berlin] connect database
+[23-Dec-2024 18:23:00 Europe/Berlin] connect database
+[23-Dec-2024 18:23:00 Europe/Berlin] connect database
+[23-Dec-2024 18:23:04 Europe/Berlin] connect database
+[23-Dec-2024 18:23:06 Europe/Berlin] connect database
+[23-Dec-2024 18:23:06 Europe/Berlin] connect database
+[23-Dec-2024 18:23:11 Europe/Berlin] connect database
+[23-Dec-2024 18:23:11 Europe/Berlin] connect database
+[23-Dec-2024 18:23:21 Europe/Berlin] connect database
+[23-Dec-2024 18:23:30 Europe/Berlin] connect database
+[23-Dec-2024 18:23:30 Europe/Berlin] connect database
+[23-Dec-2024 18:23:32 Europe/Berlin] connect database
+[23-Dec-2024 18:23:35 Europe/Berlin] connect database
+[23-Dec-2024 18:23:36 Europe/Berlin] connect database
+[23-Dec-2024 18:23:37 Europe/Berlin] connect database
+[23-Dec-2024 18:24:53 Europe/Berlin] connect database
+[23-Dec-2024 18:24:53 Europe/Berlin] connect database
+[23-Dec-2024 18:30:28 Europe/Berlin] connect database
+[23-Dec-2024 18:30:28 Europe/Berlin] connect database
+[23-Dec-2024 18:30:28 Europe/Berlin] PHP Fatal error:  Uncaught ArgumentCountError: The number of variables must match the number of parameters in the prepared statement in C:\Users\amgad\OneDrive\Desktop\project\CampusConnect\src\model\dashboardModel.php:68
+Stack trace:
+#0 C:\Users\amgad\OneDrive\Desktop\project\CampusConnect\src\model\dashboardModel.php(68): mysqli_stmt->bind_param('i', '83')
+#1 C:\Users\amgad\OneDrive\Desktop\project\CampusConnect\src\controllers\home_pages\communityDashboardController.php(25): getCommunityAnnouncements('83')
+#2 C:\Users\amgad\OneDrive\Desktop\project\CampusConnect\src\controllers\home_pages\communityDashboardController.php(58): initializeCommunityDashboard('83')
+#3 C:\Users\amgad\OneDrive\Desktop\project\CampusConnect\src\view\home_pages\communitydashboard.php(5): require_once('C:\\Users\\amgad\\...')
+#4 {main}
+  thrown in C:\Users\amgad\OneDrive\Desktop\project\CampusConnect\src\model\dashboardModel.php on line 68
+[23-Dec-2024 18:30:30 Europe/Berlin] connect database
+[23-Dec-2024 18:30:32 Europe/Berlin] connect database
+[23-Dec-2024 18:30:32 Europe/Berlin] PHP Fatal error:  Uncaught ArgumentCountError: The number of variables must match the number of parameters in the prepared statement in C:\Users\amgad\OneDrive\Desktop\project\CampusConnect\src\model\dashboardModel.php:68
+Stack trace:
+#0 C:\Users\amgad\OneDrive\Desktop\project\CampusConnect\src\model\dashboardModel.php(68): mysqli_stmt->bind_param('i', '69')
+#1 C:\Users\amgad\OneDrive\Desktop\project\CampusConnect\src\controllers\home_pages\communityDashboardController.php(25): getCommunityAnnouncements('69')
+#2 C:\Users\amgad\OneDrive\Desktop\project\CampusConnect\src\controllers\home_pages\communityDashboardController.php(58): initializeCommunityDashboard('69')
+#3 C:\Users\amgad\OneDrive\Desktop\project\CampusConnect\src\view\home_pages\communitydashboard.php(5): require_once('C:\\Users\\amgad\\...')
+#4 {main}
+  thrown in C:\Users\amgad\OneDrive\Desktop\project\CampusConnect\src\model\dashboardModel.php on line 68
+[23-Dec-2024 18:30:45 Europe/Berlin] connect database
+[23-Dec-2024 18:30:45 Europe/Berlin] connect database
+[23-Dec-2024 18:30:46 Europe/Berlin] connect database
+[23-Dec-2024 18:30:49 Europe/Berlin] connect database
+[23-Dec-2024 18:30:50 Europe/Berlin] connect database
+[23-Dec-2024 18:30:56 Europe/Berlin] connect database
+[23-Dec-2024 18:30:57 Europe/Berlin] connect database
+[23-Dec-2024 18:31:27 Europe/Berlin] connect database
+[23-Dec-2024 18:31:28 Europe/Berlin] connect database
+[23-Dec-2024 18:31:29 Europe/Berlin] connect database
+[23-Dec-2024 18:32:10 Europe/Berlin] connect database
+[23-Dec-2024 18:32:11 Europe/Berlin] connect database
+[23-Dec-2024 18:32:21 Europe/Berlin] connect database
+[23-Dec-2024 18:32:22 Europe/Berlin] connect database
+[23-Dec-2024 18:32:59 Europe/Berlin] connect database
+[23-Dec-2024 18:33:02 Europe/Berlin] connect database

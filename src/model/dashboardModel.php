@@ -25,7 +25,6 @@ function getCommunity($communityId)
         if (isset($stmt)) {
             $stmt->close();
         }
-
     }
 }
 
@@ -47,25 +46,22 @@ function getUserRole($userId, $communityId)
         if (isset($stmt)) {
             $stmt->close();
         }
-
     }
 }
 
 function getCommunityAnnouncements($communityId)
 {
     $query = "SELECT 
-                an.content,
-                an.created_at,
-                cm.membership,
-                usr.name,
-                usr.profile_image
-
-            FROM announcements an
-            INNER JOIN  community_members cm ON an.community_id = cm.community_id
-            INNER JOIN  users usr ON an.user_id = usr.user_id
-            WHERE an.community_id = ?
-            ORDER BY
-            an.created_at DESC";
+    an.content,
+    an.created_at,
+    cm.membership,
+    usr.name,
+    usr.profile_image
+FROM announcements an
+INNER JOIN users usr ON an.user_id = usr.user_id
+LEFT JOIN community_members cm ON an.community_id = cm.community_id AND cm.user_id = an.user_id
+WHERE an.community_id = ?
+ORDER BY an.created_at DESC;";
     try {
         $conn = connect_db();
         $stmt = $conn->prepare($query);
@@ -82,7 +78,6 @@ function getCommunityAnnouncements($communityId)
         if (isset($stmt)) {
             $stmt->close();
         }
-        
     }
 }
 
@@ -140,7 +135,6 @@ function getUserProfile($user_id)
         if (isset($stmt)) {
             $stmt->close();
         }
-
     }
 }
 #edit community model
@@ -211,7 +205,6 @@ function updateCommunityDetails($communityId, $name, $description, $type, $priva
         if (isset($stmt)) {
             $stmt->close();
         }
-        
     }
 }
 
@@ -233,7 +226,6 @@ function create_announcement($xommunity_id, $user_id, $contnet)
         if (isset($stmt)) {
             $stmt->close();
         }
-
     }
 }
 
@@ -266,7 +258,6 @@ function get_announcementById($announcement_id)
         if (isset($stmt)) {
             $stmt->close();
         }
-        
     }
 }
 
@@ -303,10 +294,7 @@ function createEvent($eventData)
         if (isset($stmt)) {
             $stmt->close();
         }
-
     }
-
-    
 }
 function getEvents($communityId)
 {
@@ -341,7 +329,6 @@ function getEvents($communityId)
         if (isset($stmt)) {
             $stmt->close();
         }
-
     }
 }
 
@@ -371,7 +358,6 @@ function findUserByEmail($email)
         if (isset($stmt)) {
             $stmt->close();
         }
-
     }
 }
 
@@ -383,7 +369,7 @@ function checkUserIsInCommunity($userId, $communityId)
         $stmt->bind_param("ii", $userId, $communityId);
         $stmt->execute();
         $result = $stmt->get_result();
-        return $result -> fetch_assoc();
+        return $result->fetch_assoc();
     } catch (Exception $e) {
         error_log("Error in isUserInCommunity: " . $e->getMessage());
         return false;
@@ -391,12 +377,12 @@ function checkUserIsInCommunity($userId, $communityId)
         if (isset($stmt)) {
             $stmt->close();
         }
-
     }
 }
 
-function addToCommunity($user,$communityId){
-    $query ="insert into community_members (community_id, user_id, role,membership) values (?,?,'member','member');";
+function addToCommunity($user, $communityId)
+{
+    $query = "insert into community_members (community_id, user_id, role,membership) values (?,?,'member','member');";
     $conn = connect_db();
     try {
         $stmt = $conn->prepare($query);
@@ -413,6 +399,5 @@ function addToCommunity($user,$communityId){
         if (isset($stmt)) {
             $stmt->close();
         }
-
     }
 }
