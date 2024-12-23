@@ -46,11 +46,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
             $useremail= $password="";
             if(is_addtional_info($user_id)){
                 header("Location: /index.php");
+                exit();
             }
             else{
                 header("Location: /src/view/auth/additionalInformation.php");
+                exit();
             }
-            exit();
         }
         else{
             $passworderror= "Wrong Email or Password";

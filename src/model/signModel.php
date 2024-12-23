@@ -58,23 +58,22 @@ function authenticateLogin($useremail, $password)
         if (!$stmt->execute()) {
             throw new Exception("Query execution failed");
         }
-        $stmt ->bind_result($hasedPassword);
-        if ($stmt->fetch()){
-            if(password_verify($password, $hasedPassword)){
+        $stmt->bind_result($hasedPassword);
+
+        if ($stmt->fetch()) {
+
+            if (isset($stmt)) {
+                $stmt->close();
+            }
+            if (password_verify($password, $hasedPassword)) {
                 $user_id = get_user_id(useremail: $useremail);
                 return $user_id;
+            }
         }
-    }
-        return false; 
-    } catch (Exception $e) {
-        error_log("Error creating a new account : " . $e->getMessage());
         return false;
-
-    } finally {
-        if (isset($stmt)) {
-            $stmt->close();
-        }
-        
+    } catch (Exception $e) {
+        error_log("Error creating a new account : authenticateLogin " . $e->getMessage());
+        return false;
     }
 }
 

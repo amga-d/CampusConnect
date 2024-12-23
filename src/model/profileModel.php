@@ -16,15 +16,15 @@ function getUserProfile($userId)
     } catch (Exception $e) {
         error_log('Get profile error: ' . $e->getMessage());
         return false;
-    }finally{
+    } finally {
         if (isset($stmt)) {
             $stmt->close();
         }
-        
     }
 }
 
-function updateUserProfile($name, $userId, $email, $gender, $birthday, $bio, $profileImage = null) {
+function updateUserProfile($name, $userId, $email, $gender, $birthday, $bio, $profileImage = null)
+{
     $conn = connect_db();
     try {
         // Check if email is already taken by another user
@@ -44,7 +44,7 @@ function updateUserProfile($name, $userId, $email, $gender, $birthday, $bio, $pr
             gender = ?,
             birthdate = ?,
             bio = ?";
-        
+
         $params = [$name, $email, $gender, $birthday, $bio];
         $types = "sssss";
 
@@ -71,59 +71,55 @@ function updateUserProfile($name, $userId, $email, $gender, $birthday, $bio, $pr
         return true;
     } catch (Exception $e) {
         error_log('Profile update model error: ' . $e->getMessage());
-        throw $e; // Re-throw to handle in controller
+        return false; // Re-throw to handle in controller
     } finally {
         if (isset($stmt)) {
             $stmt->close();
         }
-        
     }
 }
 
-function setUserProfile($userId, $name, $gender,$bio, $birthday, $profileImage = null){
+function setUserProfile($userId, $gender, $bio, $birthday, $profileImage = null)
+{
     $conn = connect_db();
 
-    try{
+    try {
         // Prepare base update query
-        $updateQuery =" UPDATE users set 
-        name = ?,
+        $updateQuery = " UPDATE users set 
         gender = ?,
         birthdate = ?,
         bio = ?";
 
-        $params = [$name, $gender, $birthday, $bio];
-        $types = "ssss";
+        $params = [$gender, $birthday, $bio];
+        $types = "sss";
 
-        if($profileImage){
+        if ($profileImage) {
             $updateQuery .= ", profile_image = ?";
             $params[] = $profileImage;
             $types .= "s";
         }
-        
+
         $updateQuery .= " WHERE user_id = ?";
         $params[] = $userId;
         $types .= "i";
 
         // Prepare and execute statement
-        $stmt = $conn->prepare( $updateQuery );
+        $stmt = $conn->prepare($updateQuery);
         $stmt->bind_param($types, ...$params);
         $result = $stmt->execute();
 
         if (!$result) {
-            echo"". $conn->error;
+            echo "" . $conn->error;
             throw new Exception($conn->error);
         }
         return true;
-
-    }catch (Exception $e) {
+    } catch (Exception $e) {
         error_log('Profile update model error: ' . $e->getMessage());
-        echo"". $e->getMessage();
+        echo "" . $e->getMessage();
         return false;
-    }
-    finally{
+    } finally {
         if (isset($stmt)) {
             $stmt->close();
         }
-        
     }
 }
