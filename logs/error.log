@@ -359,3 +359,69 @@ Stack trace:
 [23-Dec-2024 19:06:44 Europe/Berlin] connect database
 [23-Dec-2024 19:06:45 Europe/Berlin] connect database
 [23-Dec-2024 19:06:47 Europe/Berlin] connect database
+[03-Jan-2025 17:06:47 UTC] connect database
+[03-Jan-2025 17:07:00 UTC] connect database
+[03-Jan-2025 17:07:00 UTC] connect database
+[03-Jan-2025 17:07:01 UTC] connect database
+[03-Jan-2025 17:07:36 UTC] connect database
+[03-Jan-2025 17:07:37 UTC] connect database
+[03-Jan-2025 17:07:38 UTC] connect database
+[03-Jan-2025 17:07:40 UTC] connect database
+[03-Jan-2025 18:08:25 Europe/Berlin] PHP Warning:  mysqli::__construct(): php_network_getaddresses: getaddrinfo for mysql-server failed: No such host is known.  in E:\INFORMATICS\SemesterProjects\CampusConnect\src\config\db_conn.php on line 26
+[03-Jan-2025 18:08:25 Europe/Berlin] Error creating a new account : authenticateLogin php_network_getaddresses: getaddrinfo for mysql-server failed: No such host is known. 
+[03-Jan-2025 18:08:38 Europe/Berlin] PHP Warning:  mysqli::__construct(): php_network_getaddresses: getaddrinfo for mysql-server failed: No such host is known.  in E:\INFORMATICS\SemesterProjects\CampusConnect\src\config\db_conn.php on line 26
+[03-Jan-2025 18:08:38 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: php_network_getaddresses: getaddrinfo for mysql-server failed: No such host is known.  in E:\INFORMATICS\SemesterProjects\CampusConnect\src\config\db_conn.php:26
+Stack trace:
+#0 E:\INFORMATICS\SemesterProjects\CampusConnect\src\config\db_conn.php(26): mysqli->__construct('mysql-server', 'root', Object(SensitiveParameterValue), 'campusconnect')
+#1 E:\INFORMATICS\SemesterProjects\CampusConnect\src\model\signModel.php(10): connect_db()
+#2 E:\INFORMATICS\SemesterProjects\CampusConnect\src\controllers\auth\signupController.php(38): isEmailUniqu('amgad3@gmail.co...')
+#3 E:\INFORMATICS\SemesterProjects\CampusConnect\src\view\auth\signup.php(2): require_once('E:\\INFORMATICS\\...')
+#4 {main}
+  thrown in E:\INFORMATICS\SemesterProjects\CampusConnect\src\config\db_conn.php on line 26
+[03-Jan-2025 18:12:35 Europe/Berlin] Error creating a new account : authenticateLogin Access denied for user 'root'@'localhost'
+[03-Jan-2025 18:12:43 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'root'@'localhost' in E:\INFORMATICS\SemesterProjects\CampusConnect\src\config\db_conn.php:26
+Stack trace:
+#0 E:\INFORMATICS\SemesterProjects\CampusConnect\src\config\db_conn.php(26): mysqli->__construct('127.0.0.1:3306', 'root', Object(SensitiveParameterValue), 'campusconnect')
+#1 E:\INFORMATICS\SemesterProjects\CampusConnect\src\model\signModel.php(10): connect_db()
+#2 E:\INFORMATICS\SemesterProjects\CampusConnect\src\controllers\auth\signupController.php(38): isEmailUniqu('amgad3@gmail.co...')
+#3 E:\INFORMATICS\SemesterProjects\CampusConnect\src\view\auth\signup.php(2): require_once('E:\\INFORMATICS\\...')
+#4 {main}
+  thrown in E:\INFORMATICS\SemesterProjects\CampusConnect\src\config\db_conn.php on line 26
+[03-Jan-2025 18:14:40 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'root'@'localhost' in E:\INFORMATICS\SemesterProjects\CampusConnect\src\config\db_conn.php:26
+Stack trace:
+#0 E:\INFORMATICS\SemesterProjects\CampusConnect\src\config\db_conn.php(26): mysqli->__construct('127.0.0.1:3306', 'root', Object(SensitiveParameterValue), 'campusconnect')
+#1 E:\INFORMATICS\SemesterProjects\CampusConnect\src\model\signModel.php(10): connect_db()
+#2 E:\INFORMATICS\SemesterProjects\CampusConnect\src\controllers\auth\signupController.php(38): isEmailUniqu('amgad3@gmail.co...')
+#3 E:\INFORMATICS\SemesterProjects\CampusConnect\src\view\auth\signup.php(2): require_once('E:\\INFORMATICS\\...')
+#4 {main}
+  thrown in E:\INFORMATICS\SemesterProjects\CampusConnect\src\config\db_conn.php on line 26
+[03-Jan-2025 18:17:22 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'root'@'localhost' in E:\INFORMATICS\SemesterProjects\CampusConnect\src\config\db_conn.php:26
+Stack trace:
+#0 E:\INFORMATICS\SemesterProjects\CampusConnect\src\config\db_conn.php(26): mysqli->__construct('127.0.0.1', 'root', Object(SensitiveParameterValue), 'campusconnect')
+#1 E:\INFORMATICS\SemesterProjects\CampusConnect\src\model\signModel.php(10): connect_db()
+#2 E:\INFORMATICS\SemesterProjects\CampusConnect\src\controllers\auth\signupController.php(38): isEmailUniqu('amgad.abdulrazz...')
+#3 E:\INFORMATICS\SemesterProjects\CampusConnect\src\view\auth\signup.php(2): require_once('E:\\INFORMATICS\\...')
+#4 {main}
+  thrown in E:\INFORMATICS\SemesterProjects\CampusConnect\src\config\db_conn.php on line 26
+[03-Jan-2025 18:17:59 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'root'@'localhost' in E:\INFORMATICS\SemesterProjects\CampusConnect\src\config\db_conn.php:26
+Stack trace:
+#0 E:\INFORMATICS\SemesterProjects\CampusConnect\src\config\db_conn.php(26): mysqli->__construct('127.0.0.1', 'root', Object(SensitiveParameterValue), 'campusconnect')
+#1 E:\INFORMATICS\SemesterProjects\CampusConnect\src\model\signModel.php(10): connect_db()
+#2 E:\INFORMATICS\SemesterProjects\CampusConnect\src\controllers\auth\signupController.php(38): isEmailUniqu('amgad3@gmail.co...')
+#3 E:\INFORMATICS\SemesterProjects\CampusConnect\src\view\auth\signup.php(2): require_once('E:\\INFORMATICS\\...')
+#4 {main}
+  thrown in E:\INFORMATICS\SemesterProjects\CampusConnect\src\config\db_conn.php on line 26
+[03-Jan-2025 18:19:03 Europe/Berlin] connect database
+[03-Jan-2025 18:19:13 Europe/Berlin] connect database
+[03-Jan-2025 18:19:13 Europe/Berlin] connect database
+[03-Jan-2025 18:19:14 Europe/Berlin] connect database
+[03-Jan-2025 18:19:16 Europe/Berlin] connect database
+[03-Jan-2025 18:19:17 Europe/Berlin] connect database
+[03-Jan-2025 18:19:17 Europe/Berlin] connect database
+[03-Jan-2025 18:19:18 Europe/Berlin] connect database
+[03-Jan-2025 18:19:19 Europe/Berlin] connect database
+[03-Jan-2025 18:19:28 Europe/Berlin] connect database
+[03-Jan-2025 18:19:33 Europe/Berlin] connect database
+[03-Jan-2025 18:19:34 Europe/Berlin] connect database
+[03-Jan-2025 18:19:35 Europe/Berlin] connect database
+[03-Jan-2025 18:19:39 Europe/Berlin] connect database
