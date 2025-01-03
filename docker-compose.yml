@@ -23,7 +23,7 @@ services:
       MYSQL_DATABASE: campusconnect 
       MYSQL_ALLOW_EMPTY_PASSWORD: yes
     ports:
-      - "3306:3306"
+      - "3307:3306"
     volumes:
       - data:/var/lib/mysql
     networks:
@@ -45,17 +45,17 @@ services:
       mynetwork:
           ipv4_address: 192.168.2.2
 
-  dns:
-    image: andyshinn/dnsmasq
-    container_name: dns-resolver
-    command: ["-k"]  # Keep dnsmasq running in the foreground
-    ports:
-      - "53:53/udp"  # DNS runs on port 53
-    volumes:
-      - ./dnsmasq.conf:/etc/dnsmasq.conf  # Custom dnsmasq config
-    networks:
-      mynetwork:
-        ipv4_address: 192.168.2.5
+  # dns:
+  #   image: andyshinn/dnsmasq
+  #   container_name: dns-resolver
+  #   command: ["-k"]  # Keep dnsmasq running in the foreground
+  #   ports:
+  #     - "53:53/udp"  # DNS runs on port 53
+  #   volumes:
+  #     - ./dnsmasq.conf:/etc/dnsmasq.conf  # Custom dnsmasq config
+  #   networks:
+  #     mynetwork:
+  #       ipv4_address: 192.168.2.5
 
 
 
