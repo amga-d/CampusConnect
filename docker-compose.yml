@@ -25,6 +25,7 @@ services:
     ports:
       - "3306:3306"
     volumes:
+      - ./campusconnect.sql:/var/lib/mysql/campusconnect.sql
       - data:/var/lib/mysql
     networks:
       mynetwork:
